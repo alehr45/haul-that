@@ -8,7 +8,6 @@ const addressSchema = new Schema(
     },
     address2: {
       type: String,
-      required: true,
     },
     city: {
       type: String,
@@ -22,10 +21,10 @@ const addressSchema = new Schema(
       type: String,
       required: true,
     },
-    latitude: {
+    lat: {
       type: String
     },
-    longitude: {
+    lng: {
       type: String
     }
   },

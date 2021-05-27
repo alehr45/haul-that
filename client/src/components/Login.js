@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutation";
-import Signup from "./Signup";
+
 import Auth from "../utils/auth";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
 
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -30,6 +30,7 @@ const Login = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
+
 
       Auth.login(data.login.token);
     } catch (e) {

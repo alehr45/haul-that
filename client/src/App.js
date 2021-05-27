@@ -32,8 +32,9 @@ function App() {
         <div className="App">
           <NavBar />
           <Switch>
-          <Route path="/profile" component={Profile} /> 
+          
             <Route path="/signup" component={Signup} /> 
+            <Route path="/profile" component={Profile} /> 
             <Route path="/BookingA" component={BookingA} /> 
             <Route path="/login" component={Login} />
             <Route path="/jobs" component={Jobs} />

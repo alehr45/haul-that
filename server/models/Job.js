@@ -6,18 +6,15 @@ const dateFormat = require('../utils/dateFormat');
 
 const jobSchema = new Schema(
   {
-    quantity: {
-      type: String,
+    date: {
+      type: Date,
       required: true,
     },
     category: {
       type: String,
       required: true,
     },
-    date: {
-      type: Date,
-      required: true,
-    },
+    
     description: {
       type: String,
       required: true,
@@ -33,7 +30,7 @@ const jobSchema = new Schema(
     },
     pickup: addressSchema,
 
-    dropoff: addressSchema
+    dropoff: addressSchema,
   },
   {
     toJSON: {

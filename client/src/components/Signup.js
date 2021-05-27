@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Container, Form } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
@@ -15,7 +15,7 @@ const Signup = () => {
     // customer: "",
   });
 
-  const [addUser, { error }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {

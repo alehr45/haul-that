@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Image } from "react-bootstrap";
 import { BrowserRouter as Router } from "react-router-dom";
+import image from "../images/background.png"
 
 function Home() {
 
@@ -12,6 +14,7 @@ function Home() {
             <h1>Haul That</h1>
           </Link>
         </div>
+        <Image className="image1" src={ image } fluid />
       </header>
     </Router>
   );

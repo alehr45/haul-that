@@ -23,18 +23,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_JOB = gql`
-  mutation addJob($quantity: String!, $category: String!, $date: DateTime!, $description: String!, $distance: String!, $pickup: addressInput!, $dropoff: addressInput!) {
-    addJob(quantity: $quantity, category: $category, date: $date, description: $description, distance: $distance, pickup: $pickup, dropoff: $dropoff) {
-      job {
-        _id: ID
-        quantity
-        category
-        date
-        description
-        distance
-        pickup
-        dropoff
-      }
+  mutation addJob($date: DateTime!, $category: String!, $description: String!, $distance: String!, $pickup: addressInput!, $dropoff: addressInput! ) {
+    addJob(date: $date, category: $category, description: $description, distance: $distance, pickup: $pickup, dropoff: $dropoff) {
+      _id
     }
   }
 `;
@@ -48,3 +39,4 @@ export const PICKUP_JOB = gql`
     }
   }
 `;
+

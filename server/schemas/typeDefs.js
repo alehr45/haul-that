@@ -21,24 +21,23 @@ const typeDefs = gql`
 
   type Job {
     _id: ID
-    quantity: String!
+    date: DateTime
     category: String!
-    date: DateTime!
     createdAt: String
     description: String!
     distance: String!
     pickup: Address
     dropoff: Address
-    
   }
 
   type Address {
-    street: String!
+    address: String!
+    address2: String!
     city: String!
     state: String!
     zip: String!
-    latitude: String
-    longitude: String
+    lat: String
+    lng: String
   }
 
   input addressInput {
@@ -47,8 +46,8 @@ const typeDefs = gql`
     city: String!
     state: String!
     zip: String!
-    latitude: String
-    longitude: String
+    lat: String
+    lng: String
   }
 
   type Auth {
@@ -67,9 +66,8 @@ const typeDefs = gql`
     ): Auth
     login(email: String!, password: String!): Auth
     addJob(
-      quantity: String!
+      date: DateTime
       category: String!
-      date: DateTime!
       description: String!
       distance: String!
       pickup: addressInput!

@@ -19,3 +19,32 @@ export const QUERY_ME_BASIC = gql`
     }
   }
 `;
+
+export const GET_JOBS = gql`
+{
+  jobs {
+    _id
+    date
+    description
+    distance
+    createdAt
+    pickup {
+      address
+      address2
+      city
+      state
+      zip
+      lat
+      lng
+    }
+    dropoff {
+      address
+      address2
+      city
+      state
+      zip
+      lat
+      lng
+    }
+  }
+}`

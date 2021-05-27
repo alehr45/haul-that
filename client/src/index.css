@@ -8,24 +8,21 @@ code {
     monospace;
 }
 
-.form-group{
+.form-group {
   padding: 10px;
 }
 
 .loginform {
- position: relative;
-top: 200px;
-left: 20px;
+  position: relative;
+  top: 200px;
+  left: 20px;
 }
-
-
 
 .signupform {
   position: relative;
   top: 200px;
   left: 20px;
 }
-
 
 .dropdown .dropbtn {
   font-size: 16px;
@@ -60,10 +57,8 @@ left: 20px;
 }
 
 * {
-  
   box-sizing: border-box;
 }
-
 
 .navbar-light {
   background-color: #ffffff;
@@ -103,6 +98,11 @@ left: 20px;
   font-weight: 400;
 }
 
+.jobsForm {
+  display: flex;
+  justify-content: center;
+}
+
 .forgot-password,
 .forgot-password a {
   text-align: center;
@@ -131,46 +131,105 @@ left: 20px;
   color: yellow;
 }
 
-.profileForm {
-  position:fixed;
-  top: 100px;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  font-weight: 400;
-  font-family: sans-serif;
-  background: #12c2e9;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #f64f59, #eb9335, #ceed07);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(from top, #f64f59, #eb9335, #ceed07); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  
-}
-
-body, html, .App, #root, .outer {
+.imagehome {
   width: 100%;
   height: 100%;
 }
 
-.bookingForm{
-  padding-top:70px ;
+.jobForm {
+  display: flex;
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.map-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+  
+}
+
+.profileForm {
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+
+
+body {
+  display: flex;
+  font-weight: 400;
+  font-family: sans-serif;
+  background: #12c2e9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #f64f59,
+    #eb9335,
+    #ceed07
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to left,
+    #f64f59,
+    #eb9335,
+    #ceed07
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+body,
+html,
+.App,
+#root,
+.outer {
+  width: 100%;
+  height: 100%;
+}
+
+.bookingForm {
+  padding-top: 70px;
   padding-bottom: 20px;
 }
 
-.card{
-  background-color: rgba(240, 248, 255, 0);
+.logintitle {
+  text-align: center;
 }
 
 .logout {
   color: rgba(250, 235, 215, 0.858);
 }
 
+.form-control {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (min-width: 575px) {
+  .login2.nav-link {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 575px) {
+  .signup2.nav-link {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 575px) {
   .login1.nav-link {
-    display: none
-  }}
+    display: none;
+  }
+}
 
-  @media screen and (max-width: 575px) {
-    .signup1.nav-link {
-      display: none
-    }}
+@media screen and (max-width: 575px) {
+  .signup1.nav-link {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 575px) {
+  .img-fluid {
+    background-image: src= "../";
+  }
+}
+

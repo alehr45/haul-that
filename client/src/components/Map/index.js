@@ -1,32 +1,8 @@
 import React, { useState } from "react";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
-import "./map.css";
+import { GoogleMap, LoadScript} from "@react-google-maps/api";
+
 
 const Map = () => {
-  const [formState, setFormState] = useState({
-    quantity: "0",
-    category: "",
-    description: "",
-    pickup: {
-      address: "",
-      address2: "",
-      city: "",
-      state: "",
-      zip: "",
-      lat: "",
-      lng: "",
-    },
-    dropoff: {
-      address: "",
-      address2: "",
-      city: "",
-      state: "",
-      zip: "",
-      lat: "",
-      lng: "",
-    },
-    distance: 0,
-  });
 
   const [position, setPosition] = useState({
     lat: 36.1627,
@@ -47,8 +23,8 @@ const Map = () => {
   //   })
 
   const mapStyles = {
-    height: "40vh",
-    width: "50%",
+    height: "50vh",
+    width: "80%",
   };
 
   // Get users location and set
