@@ -4,6 +4,7 @@ const { Kind } = require("graphql/language");
 const { User, Job } = require("../models");
 const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
+const { populate } = require("../models/User");
 
 
 const resolvers = {
@@ -31,6 +32,9 @@ const resolvers = {
     time: () => new Date(),
     users: async () => {
       return User.find()
+    },
+    user: async (parent, {_id}) => {
+      return User.findOne({_id})
     }
   },
 

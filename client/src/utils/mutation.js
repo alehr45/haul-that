@@ -12,8 +12,10 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($firstName: String!, $lastName: String!, $email: String!, $password: String!, $driver: String, $customer: String) {
-    addUser(firstName: $firstName, lastName: $lastName, email: $email, password: $password, driver: $driver, customer: $customer) {
+
+    mutation addUser($firstName: String!, $lastName: String!, $email: String!, phone: String!, username: String!, $password: String!, $driver: String, $customer: String) {
+    addUser(firstName: $firstName, lastName: $lastName, email: $email, phone: $phone, username: $username, password: $password, driver: $driver, customer: $customer) {
+
       token
       user {
         _id

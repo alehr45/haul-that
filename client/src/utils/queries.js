@@ -6,15 +6,23 @@ export const QUERY_USER = gql`
       _id
       username
       email
-    }
+      }
   }
 `;
+
+export const GET_USER = gql`
+query user($_id: String!) {
+  user(_id: $_id) {
+    _id
+  }
+}`
 
 export const QUERY_ME_BASIC = gql`
   {
     me {
       _id
       username
+      phone
       email
     }
   }
@@ -25,6 +33,7 @@ export const GET_JOBS = gql`
   jobs {
     _id
     date
+    category
     description
     distance
     createdAt
