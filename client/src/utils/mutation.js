@@ -33,12 +33,11 @@ export const ADD_JOB = gql`
 `;
 
 export const PICKUP_JOB = gql`
-  mutation pickupJob($jobId: ID!) {
-    pickupJob(jobId: $jobId) {
-      user{
-        _id: ID
-      }
-    }
+mutation pickupJob($jobId: ID!){
+  pickupJob(jobId: $jobId) {
+    _id
+
+  }
   }
 `;
 
