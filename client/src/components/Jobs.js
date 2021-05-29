@@ -3,7 +3,7 @@ import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
 import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
+import { GET_JOBS } from "../utils/queries";
 import { PICKUP_JOB } from "../utils/mutation";
 import moment from "moment";
 const Jobs = () => {
