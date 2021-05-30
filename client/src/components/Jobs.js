@@ -20,7 +20,7 @@ const [pickupJob] = useMutation(PICKUP_JOB)
   const handlePickup = async (id) => {
     console.log(id)
     await pickupJob({
-      variables: { jobId: id },
+      variables: { _id: id  },
     })
 
     window.location.assign("/profile");
@@ -48,7 +48,7 @@ const [pickupJob] = useMutation(PICKUP_JOB)
               <ListGroupItem>Price: </ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button variant="danger" onClick={() => handlePickup(job._id)} >Accept Job</Button>{" "}
+              <Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category)} >Accept Job</Button>{" "}
             </Card.Body>
           </Card>
         );

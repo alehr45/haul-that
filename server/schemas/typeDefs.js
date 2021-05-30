@@ -10,6 +10,7 @@ const typeDefs = gql`
     time: DateTime
     me: User
     user(_id: String!): User
+    job(_id: String!): Job
   }
 
   type User {
@@ -79,7 +80,7 @@ const typeDefs = gql`
       pickup: addressInput!
       dropoff: addressInput!
     ): Job
-    pickupJob(jobId: ID!): User
+    pickupJob(_id: ID!, distance: String!, category: String!): User
   }
 `;
 

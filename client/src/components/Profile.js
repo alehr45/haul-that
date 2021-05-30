@@ -1,21 +1,28 @@
 import React from "react";
-import {Card, ListGroupItem, ListGroup, Container, Row,} from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+} from "react-bootstrap";
 import image from "../images/profile.png";
-import { QUERY_ME_BASIC } from "../utils/queries";
+import { QUERY_ME_BASIC, GET_JOB } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 
-
 const Profile = () => {
+  const { loading, data } = useQuery(QUERY_ME_BASIC);
+  var user = {};
+  var jobs = [{}];
 
-const {loading, data} = useQuery(QUERY_ME_BASIC);
-var user = {};
+  if (!loading) {
+    user = data.me;
+    jobs = [user.jobs[0]];
+    console.log(jobs[0]);
+    console.log(user);
+  }
 
-if(!loading){
-  user = data.me
-  console.log(user.username) 
-}
-
-return (
+  return (
     <Container className="profileForm">
       <Row>
         <Card style={{ width: "18rem" }}>
@@ -33,6 +40,23 @@ return (
           </ListGroup>
         </Card>
       </Row>
+      {jobs.map((job) => {
+        console.log(job)
+        return (
+          <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
+            <Card.Body>
+              <Card.Title>Job # {job.id}</Card.Title>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>
+                Distance: {job.distance} miles{" "}
+              </ListGroupItem>
+              <ListGroupItem>Item Category: {job.category} </ListGroupItem>
+              <ListGroupItem>Price: </ListGroupItem>
+            </ListGroup>
+          </Card>
+        );
+      })}
     </Container>
   );
 };
