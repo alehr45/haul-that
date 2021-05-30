@@ -1,1 +1,0 @@
-// If job is accepted, allow for confirmation and send notification to client

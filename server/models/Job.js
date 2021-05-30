@@ -1,20 +1,22 @@
 const { Schema, model } = require("mongoose");
-const addressSchema = require('./Address')
+const addressSchema = require("./Address");
 const bcrypt = require("bcrypt");
 const { JsonWebTokenError } = require("jsonwebtoken");
-const dateFormat = require('../utils/dateFormat');
+const dateFormat = require("../utils/dateFormat");
+const mongoose = require("mongoose");
+const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const jobSchema = new Schema(
   {
     date: {
-      type: Date,
+      type: String,
       required: true,
     },
     category: {
       type: String,
       required: true,
     },
-    
+
     description: {
       type: String,
       required: true,
@@ -39,6 +41,9 @@ const jobSchema = new Schema(
   }
 );
 
-const Job = model('Job', jobSchema);
+jobSchema.plugin(AutoIncrement, { inc_field: "id" });
+
+const Job = mongoose.model("Job", jobSchema);
+
 
 module.exports = Job;

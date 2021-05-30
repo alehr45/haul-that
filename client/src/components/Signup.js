@@ -89,7 +89,7 @@ const Signup = () => {
               <label>Phone Number</label>
               <input
                 type="tel"
-                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
                 className="form-control"
                 placeholder="123-456-7890"
                 name="phone"

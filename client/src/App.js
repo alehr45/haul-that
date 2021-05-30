@@ -25,6 +25,7 @@ const client = new ApolloClient({
   uri: "http://localhost:3001/graphql",
 });
 
+
 function App() {
   return (
     <ApolloProvider client={client}>
@@ -37,7 +38,7 @@ function App() {
             <Route path="/profile" component={Profile} /> 
             <Route path="/BookingA" component={BookingA} /> 
             <Route path="/login" component={Login} />
-            <Route path="/jobs" component={Jobs} />
+            <Route path="/jobs"  component={Jobs} />
             <Route path="/" component={Home} />
             
           </Switch>
