@@ -6,7 +6,7 @@
 Haul-That is an interactive MERN application. Moving!? Need a truck!? Haul-That provides a P2P communication method in which the customers and carriers can connect easily. You are able to sign up, create an account 
 ## Table of Contents
 * [Link](#link)
-* [Screenshot](#Scrrenshot)
+* [Screenshot](#Screenshot)
 * [License](#license)
 * [Questions](#questions)
 
@@ -17,7 +17,9 @@ https://agile-beyond-53405.herokuapp.com/
 
 
 ## Screenshot
-<img src="https://media.giphy.com/media/qetyYss9nUxRm/giphy.gif">
+![](images/screenshot1.png)
+![](images/screenshot2.png)
+![](images/screenshot3.png)
 
 
 ## License
