@@ -18,6 +18,7 @@ code {
   left: 20px;
 }
 
+
 .signupform {
   position: relative;
   top: 200px;
@@ -155,9 +156,16 @@ code {
 }
 
 .profileForm {
-  padding-top: 100px;
-  display: flex;
-  justify-content: center;
+   
+ padding-top: 100px;
+ display: flex ;
+ justify-content:center;
+  
+}
+
+.profilejob{
+  padding-left: 20px;
+  
 }
 
 .map-info {

@@ -80,7 +80,7 @@ const typeDefs = gql`
       pickup: addressInput!
       dropoff: addressInput!
     ): Job
-    pickupJob(_id: ID!, distance: String!, category: String!): User
+    pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
   }
 `;
 

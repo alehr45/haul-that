@@ -17,10 +17,10 @@ const [pickupJob] = useMutation(PICKUP_JOB)
     jobs = [jobsData.jobs];
   }
 
-  const handlePickup = async (id, jobDistance, jobCategory) => {
+  const handlePickup = async (id, jobDistance, jobCategory, jobId) => {
     console.log(typeof distance)
     await pickupJob({
-      variables: { _id: id, distance: jobDistance, category: jobCategory  },
+      variables: { _id: id, distance: jobDistance, category: jobCategory, id: jobId },
     })
 
     window.location.assign("/profile");
@@ -32,6 +32,8 @@ const [pickupJob] = useMutation(PICKUP_JOB)
     if (loading) {
       return <div>Loading...</div>;
     }
+
+    console.log(loading)
 
     if (!loading) {
       cards = jobs[0].map((job) => {
@@ -55,7 +57,7 @@ const [pickupJob] = useMutation(PICKUP_JOB)
               </ListGroupItem>
             </ListGroup>
             <Card.Body>
-              <Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category)} >Accept Job</Button>{" "}
+              <Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category, job.id)} >Accept Job</Button>{" "}
             </Card.Body>
           </Card>
         );

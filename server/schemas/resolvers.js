@@ -73,14 +73,14 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    pickupJob: async (parent, { _id, distance, category }, context) => {
+    pickupJob: async (parent, { _id, distance, category, id }, context) => {
       if (context.user) {
-        console.log(_id);
+        console.log(id);
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $push: {
-              jobs: { _id, distance, category },
+              jobs: { _id, distance, category, id },
             },
           },
           { new: true }
