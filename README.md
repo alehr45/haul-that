@@ -49,7 +49,7 @@ This application is covered by the Mozilla license.
 ========================
 
 ### Questions?
-**** alehr45@gmail.com
+alehr45@gmail.com
 
 
 
