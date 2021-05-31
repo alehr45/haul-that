@@ -7,6 +7,7 @@
 * [Description](#description)
 * [Website](#website)
 * [Contributors](#contributors)
+* [Installation](#installation)
 * [Technologies](#Technologies)
 * [Licensing](#Licenses)
 * [Contact](#questions)
@@ -21,6 +22,13 @@ A P2P frieght delivery service that helps those without a truck or trailer, move
 
 ### **Website**  
 https://haul-that.herokuapp.com/
+
+### **Installation**
+Currently having trouble with Heroku deployment.
+To run locally:
+clone repo, 
+npm install
+npm start from root.
 
 
 ### **Usage**  
