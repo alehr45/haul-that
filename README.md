@@ -5,7 +5,7 @@
 ## **Table of Contents**
 ========================
 * [Description](#description)
-* [ActiveSite](#activesite)
+* [Website](#website)
 * [Contributors](#contributors)
 * [Technologies](#Technologies)
 * [Licensing](#Licenses)
@@ -19,7 +19,7 @@ haul-that
 ### **Description**  
 A P2P frieght delivery service that helps those without a truck or trailer, move or deliver large items on demand and in a timeline favorable to the user themselves. Haul-That also provides jobs for those who are looking for additional employment throughout the day and are in possession of a hauling vehicle.
 
-### **Active Site**  
+### **Website**  
 https://haul-that.herokuapp.com/
 
 
