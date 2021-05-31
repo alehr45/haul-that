@@ -31,11 +31,11 @@ https://haul-that.herokuapp.com/
 
 
 ### **Contributors**  
-@alehr45@gmail.com
-@Zakonik13
-@william-hunt88
-@Dustymick
-@hadeediqbal
+##### @alehr45@gmail.com
+##### @Zakonik13
+##### @william-hunt88
+##### @Dustymick
+##### @hadeediqbal
 
 
 ### **Testing**  
