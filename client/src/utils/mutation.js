@@ -33,8 +33,8 @@ export const ADD_JOB = gql`
 `;
 
 export const PICKUP_JOB = gql`
-mutation pickupJob($_id: ID!, $distance: String!, $category: String!){
-  pickupJob(_id: $_id, distance: $distance, category: $category) {
+mutation pickupJob($_id: ID!, $distance: String!, $category: String!, $id: String!){
+  pickupJob(_id: $_id, distance: $distance, category: $category, id: $id) {
     jobs {
       _id
     }
