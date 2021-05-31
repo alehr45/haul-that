@@ -7,7 +7,7 @@
 * [Description](#description)
 * [Active Site](#activesite)
 * [Contributors](#contributors)
-* [Testing](#Testing)
+* [Technologies](#Technologies)
 * [Licensing](#Licenses)
 * [Contact](#questions)
 
@@ -38,8 +38,15 @@ https://haul-that.herokuapp.com/
 ##### @hadeediqbal
 
 
-### **Testing**  
-N/A
+### **Technologies**  
+#### React
+#### React-Bootstrap
+#### Google Maps API
+#### JWT
+#### becrypt
+#### Apollo
+#### Figma
+#### Twillio
 
 ### **License**  
 ![badge](https://img.shields.io/badge/license-Mozilla-brightgreen)  
