@@ -27,8 +27,8 @@ https://haul-that.herokuapp.com/
 Currently having trouble with Heroku deployment.
 To run locally:
 clone repo, 
-npm install
-npm start from root.
+run `npm install`,
+then run `npm start` from root.
 
 
 ### **Usage**  
