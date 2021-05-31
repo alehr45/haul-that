@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const jobSchema = require('./Job.js').schema
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -42,12 +43,7 @@ const userSchema = new Schema(
       type: String,
       // required: true
     },
-    jobs: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Job'
-      }
-    ]
+    jobs: [jobSchema]
   },
   {
     toJSON: {

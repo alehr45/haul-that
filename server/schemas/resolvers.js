@@ -6,7 +6,6 @@ const { AuthenticationError } = require("apollo-server-express");
 const { signToken } = require("../utils/auth");
 const { populate } = require("../models/User");
 
-
 const resolvers = {
   DateTime: new GraphQLScalarType({
     name: "DateTime",
@@ -18,9 +17,8 @@ const resolvers = {
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-        console.log(context.user_id)
-
+        const userData = await User.findOne({ _id: context.user._id });
+        console.log(userData);
         return userData;
       }
 
@@ -29,13 +27,16 @@ const resolvers = {
     jobs: async () => {
       return Job.find().select("-__v -password");
     },
+    job: async (parent, { _id }) => {
+      return Job.findOne({ _id });
+    },
     time: () => new Date(),
     users: async () => {
-      return User.find()
+      return User.find();
     },
-    user: async (parent, {_id}) => {
-      return User.findOne({_id})
-    }
+    user: async (parent, { _id }) => {
+      return User.findOne({ _id });
+    },
   },
 
   Mutation: {
@@ -59,11 +60,9 @@ const resolvers = {
       }
 
       const token = signToken(user);
-      console.log(token)
       return { token, user };
     },
     addJob: async (parent, args, context) => {
-
       if (context.user) {
         const job = Job.create({
           ...args,
@@ -74,21 +73,23 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    pickupJob: async (parent, { jobId }, context) => {
-      console.log(jobId)
-      if(context.user) {
+    pickupJob: async (parent, { _id, distance, category }, context) => {
+      if (context.user) {
+        console.log(_id);
         const updatedUser = await User.findOneAndUpdate(
-          {_id: context.user._id},
-          { $push: { jobs: jobId } },
+          { _id: context.user._id },
+          {
+            $push: {
+              jobs: { _id, distance, category },
+            },
+          },
           { new: true }
-        )
+        );
 
-        return updatedUser
-
+        return updatedUser;
       }
-    }
+    },
   },
 };
-
 
 module.exports = resolvers;
