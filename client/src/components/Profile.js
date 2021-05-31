@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal} from "react-bootstrap";
-import { QUERY_ME_BASIC, GET_JOB } from "../utils/queries";
+import { QUERY_ME_BASIC } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 import Avatar from 'react-avatar';
 // import AcceptedJobs from '../components/AcceptedJobs'
