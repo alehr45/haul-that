@@ -57,6 +57,7 @@ code {
   }
 }
 
+
 * {
   box-sizing: border-box;
 }
@@ -87,6 +88,7 @@ code {
   border-color: #ee1e1e;
   box-shadow: none;
 }
+
 
 .outer h3 {
   text-align: center;
@@ -191,6 +193,10 @@ body {
     #ceed07
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
+
+
+
 
 body,
 html,
