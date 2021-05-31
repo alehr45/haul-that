@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Container , Badge} from "react-bootstrap";
+import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import Auth from "../utils/auth";
 
 const NavBar = () => {
@@ -16,7 +16,7 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav>
-          {Auth.loggedIn() ? (
+            {Auth.loggedIn() ? (
               <React.Fragment>
                 <Nav.Link href="/">Home</Nav.Link>
                 <Nav.Link href="/bookingA">Booking</Nav.Link>
