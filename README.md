@@ -17,7 +17,7 @@
 haul-that
 
 ### **Description**  
-A P2P frieght delivery service that helps individuals without trucks or trailer, to move or deliver large items on demand and in a timeline favorable to the user themselves. Haul-That also provides jobs for those who are loking for additional worh throughout the day and are in possession of a hauling vehicle.
+A P2P frieght delivery service that helps those without a truck or trailer, move or deliver large items on demand and in a timeline favorable to the user themselves. Haul-That also provides jobs for those who are looking for additional employment throughout the day and are in possession of a hauling vehicle.
 
 ### **Active Site**  
 https://haul-that.herokuapp.com/
@@ -49,7 +49,8 @@ This application is covered by the Mozilla license.
 ========================
 
 ### Questions?
-##### Email: alehr45@gmail.com
+**** alehr45@gmail.com
+
 
 
 ========================
