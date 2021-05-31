@@ -1,70 +1,73 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Haul-That
 
-## Available Scripts
 
-In the project directory, you can run:
+## **Table of Contents**
+========================
+* [Description](#description)
+* [Website](#website)
+* [Contributors](#contributors)
+* [Installation](#installation)
+* [Technologies](#Technologies)
+* [Licensing](#Licenses)
+* [Contact](#questions)
 
-### `npm start`
+========================
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### **Repository Name**  
+# haul-that
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### **Description**  
+Haul that is a P2P frieght delivery service that helps those without a truck or trailer move or deliver large items on demand and in a timeline favorable to the user themselves. Haul-That also provides jobs for those who are looking for additional employment throughout the day and are in possession of a hauling vehicle.
 
-### `npm test`
+With this app users can log in, create a new booking or pick up an existing booking. Google Maps API shows the driver distance and price so they can choose whichever is most convenient or profitable to thier situation. Many features still to come in the future, including a notification system, an image uploader for the user profile, and a payment method. Stay tuned!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### **Website**  
+https://haul-that.herokuapp.com/
 
-### `npm run build`
+### **Installation**
+Currently having trouble with Heroku deployment.
+To run locally:
+clone repo, 
+run `npm install`,
+then run `npm start` from root.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### **Usage**  
+![Alt text](./screenshot1.png)
+![Alt text](./screenshot2.png)
+![Alt text](./screenshot3.png)
+![Alt text](./screenshot4.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### **Contributors**  
+##### @alehr45
+##### @Zakonik13
+##### @william-hunt88
+##### @Dustymick
+##### @hadeediqbal
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### **Technologies**  
+#### React
+#### React-Bootstrap
+#### Google Maps API
+#### JWT
+#### becrypt
+#### Apollo
+#### Figma
+#### Twillio
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### **License**  
+![badge](https://img.shields.io/badge/license-Mozilla-brightgreen)  
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This application is covered by the Mozilla license. 
 
-## Learn More
+========================
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Questions?
+alehr45@gmail.com
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+========================

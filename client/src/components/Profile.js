@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Modal,
-  Button,
-} from "react-bootstrap";
+// import Pic1 from "../images/pic1.jpg"
+import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal} from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOB } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
-import Avatar from "react-avatar";
-// import Pic1 from "../images/pic1.jpg"
+import Avatar from 'react-avatar';
+// import AcceptedJobs from '../components/AcceptedJobs'
+
+
 
 const Profile = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
@@ -104,7 +99,7 @@ const Profile = () => {
         </Card>
       </Row>
       <Row>
-        {jobs &&
+              {jobs &&
           jobs.map((job) => (
             <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
               <Card.Body>
@@ -117,8 +112,15 @@ const Profile = () => {
               </ListGroup>
             </Card>
           ))}
+
       </Row>
+      {/* <AcceptedJobs /> */}
+      
     </Container>
+
+    
+
+   
   );
 };
 

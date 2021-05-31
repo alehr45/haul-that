@@ -137,6 +137,9 @@ const BookingA = () => {
                 <option>Furniture</option>
                 <option>Scrap Metal</option>
                 <option>Yard Waste</option>
+                <option>Lawncare Materials</option>
+                <option>Mulch or Gravel</option>
+                <option>Musical Equipment</option>
                 <option>Other</option>
               </Form.Control>
             </Form.Group>

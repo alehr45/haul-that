@@ -12,6 +12,8 @@ const Map = ({ jobs, loading }) => {
   const onSelect = (job) => {
     console.log(job);
     setSelected(job[0]);
+   
+
   };
 
   const handleMapRender = (currentLocation) => {
@@ -62,6 +64,7 @@ const Map = ({ jobs, loading }) => {
               <p className="map-info">
                 <h4>Job #{selected.id}</h4>
                 {parseInt(selected.distance)} miles from A to B
+                
               </p>
             </InfoWindow>
           )}

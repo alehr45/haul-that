@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, Container, Badge } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import Auth from "../utils/auth";
 
 const NavBar = () => {
@@ -15,13 +15,13 @@ const NavBar = () => {
       <Container>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav>
+        <Nav className="mr-auto">
             {Auth.loggedIn() ? (
               <React.Fragment>
-                <Nav.Link href="/">Home</Nav.Link>
-                <Nav.Link href="/bookingA">Booking</Nav.Link>
-                <Nav.Link href="/jobs">Jobs</Nav.Link>
-                <Nav.Link href="/profile">My Profile</Nav.Link>
+                <Nav.Link className="nav1" href="/">Home</Nav.Link>
+                <Nav.Link className="nav1" href="/bookingA">Booking</Nav.Link>
+                <Nav.Link className="nav1" href="/jobs">Jobs</Nav.Link>
+                <Nav.Link className="nav1" href="/profile">My Profile</Nav.Link>
                 <Nav.Link onClick={logout}>
                   Logout
                 </Nav.Link>
