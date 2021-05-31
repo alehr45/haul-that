@@ -17,10 +17,10 @@ const [pickupJob] = useMutation(PICKUP_JOB)
     jobs = [jobsData.jobs];
   }
 
-  const handlePickup = async (id) => {
-    console.log(id)
+  const handlePickup = async (id, jobDistance, jobCategory) => {
+    console.log(typeof distance)
     await pickupJob({
-      variables: { _id: id  },
+      variables: { _id: id, distance: jobDistance, category: jobCategory  },
     })
 
     window.location.assign("/profile");
