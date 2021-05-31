@@ -41,7 +41,7 @@ then run `npm start` from root.
 
 
 ### **Contributors**  
-##### @alehr45@gmail.com
+##### @alehr45
 ##### @Zakonik13
 ##### @william-hunt88
 ##### @Dustymick
