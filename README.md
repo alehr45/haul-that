@@ -24,10 +24,10 @@ https://haul-that.herokuapp.com/
 
 
 ### **Usage**  
-![Alt text](./screenshot1.jpg)
-![Alt text](./screenshot2.jpg)
-![Alt text](./screenshot3.jpg)
-![Alt text](./screenshot4.jpg)
+![Alt text](./screenshot1.png)
+![Alt text](./screenshot2.png)
+![Alt text](./screenshot3.png)
+![Alt text](./screenshot4.png)
 
 
 ### **Contributors**  
