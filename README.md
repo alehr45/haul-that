@@ -18,7 +18,9 @@
 # haul-that
 
 ### **Description**  
-A P2P frieght delivery service that helps those without a truck or trailer, move or deliver large items on demand and in a timeline favorable to the user themselves. Haul-That also provides jobs for those who are looking for additional employment throughout the day and are in possession of a hauling vehicle.
+Haul that is a P2P frieght delivery service that helps those without a truck or trailer move or deliver large items on demand and in a timeline favorable to the user themselves. Haul-That also provides jobs for those who are looking for additional employment throughout the day and are in possession of a hauling vehicle.
+
+With this app users can log in, create a new booking or pick up an existing booking. Google Maps API shows the driver distance and price so they can choose whichever is most convenient or profitable to thier situation. Many features still to come in the future, including a notification system, an image uploader for the user profile, and a payment method. Stay tuned!
 
 ### **Website**  
 https://haul-that.herokuapp.com/
