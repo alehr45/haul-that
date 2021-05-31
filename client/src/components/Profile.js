@@ -1,16 +1,10 @@
-
-import React from "react";
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-} from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal} from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOB } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 import Avatar from 'react-avatar';
-// import Pic1 from "../images/pic1.jpg"
+// import AcceptedJobs from '../components/AcceptedJobs'
+
 
 
 const Profile = () => {
@@ -79,23 +73,15 @@ const Profile = () => {
         </Card>
       </Row>
       <Row>
-        {jobs.map((job) => {
-          console.log(job);
-          return (
-            <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
-              <Card.Body>
-                <Card.Title>Job # {job.id}</Card.Title>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
-                <ListGroupItem>Item Category: {job.category} </ListGroupItem>
-                <ListGroupItem>Price: </ListGroupItem>
-              </ListGroup>
-            </Card>
-          );
-        })}
+     
       </Row>
+      {/* <AcceptedJobs /> */}
+      
     </Container>
+
+    
+
+   
   );
 };
 
