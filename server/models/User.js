@@ -1,4 +1,5 @@
 const { Schema, model } = require("mongoose");
+const jobSchema = require('./Job.js').schema
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -13,11 +14,21 @@ const userSchema = new Schema(
       required: true,
       trim: true
     },
+    username: {
+      type: String,
+      required: true,
+      trim: true,
+      unique: true
+    },
     email: {
       type: String,
       required: true,
       unique: true,
       match: [/.+@.+\..+/, "Must match an email address!"]
+    },
+    phone: {
+      type: String,
+      required: true,
     },
     password: {
       type: String,
@@ -32,12 +43,7 @@ const userSchema = new Schema(
       type: String,
       // required: true
     },
-    jobs: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Job'
-      }
-    ]
+    jobs: [jobSchema]
   },
   {
     toJSON: {

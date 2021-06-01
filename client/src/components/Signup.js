@@ -9,10 +9,10 @@ const Signup = () => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
+    username: "",
     email: "",
-    password: "",
-    // driver: "",
-    // customer: "",
+    phone: "",
+    password: ""
   });
 
   const [addUser] = useMutation(ADD_USER);
@@ -31,8 +31,6 @@ const Signup = () => {
   //   submit form (notice the async!)
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    console.log(formState);
 
     // use try/catch instead of promises to handle errors
     try {
@@ -62,7 +60,6 @@ const Signup = () => {
                 placeholder="First name"
                 name="firstName"
                 onChange={handleChange}
-                // value={formState.firstName}
               />
             </div>
 
@@ -73,6 +70,29 @@ const Signup = () => {
                 className="form-control"
                 placeholder="Last name"
                 name="lastName"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Username</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter username"
+                name="username"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Phone Number</label>
+              <input
+                type="tel"
+                pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
+                className="form-control"
+                placeholder="123-456-7890"
+                name="phone"
                 onChange={handleChange}
               />
             </div>

@@ -18,11 +18,13 @@ code {
   left: 20px;
 }
 
+
 .signupform {
   position: relative;
   top: 200px;
   left: 20px;
 }
+
 
 .dropdown .dropbtn {
   font-size: 16px;
@@ -56,6 +58,7 @@ code {
   }
 }
 
+
 * {
   box-sizing: border-box;
 }
@@ -76,7 +79,7 @@ code {
   width: 450px;
   margin: auto;
   background: #ffffff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  /* box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2); */
   padding: 40px 55px 45px 55px;
   border-radius: 15px;
   transition: all 0.3s;
@@ -86,6 +89,7 @@ code {
   border-color: #ee1e1e;
   box-shadow: none;
 }
+
 
 .outer h3 {
   text-align: center;
@@ -108,19 +112,21 @@ code {
   text-align: center;
   font-size: 13px;
   padding-top: 10px;
-  color: #7f7d7d;
+  /* color: #7f7d7d; */
   margin: 0;
 }
 
 .login1.nav-link {
   position: fixed;
   right: 80px;
+  top: 16px;
   color: rgba(250, 235, 215, 0.858);
 }
 
 .signup1.nav-link {
   position: fixed;
   right: 5px;
+  top: 16px;
   color: rgba(250, 235, 215, 0.858);
 }
 
@@ -131,10 +137,6 @@ code {
   color: yellow;
 }
 
-.imagehome {
-  width: 100%;
-  height: 100%;
-}
 
 .jobForm {
   display: flex;
@@ -146,16 +148,40 @@ code {
   display: flex;
   justify-content: center;
   padding-top: 100px;
-  
+}
+
+.nav-align {
+  display: flex;
+  flex-direction: row;
 }
 
 .profileForm {
-  padding-top: 100px;
-  display: flex;
-  justify-content: center;
+   
+ padding-top: 100px;
+ display: flex ;
+ justify-content:center;
+  
 }
 
+.profilejob{
+  padding-left: 20px;
+  
+}
 
+.map-info {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  monospace;
+}
+
+.your-location {
+  background-color: blue;
+}
+
+.badge1{
+  position: fixed;
+  top: 18px;
+  font-weight: 100px;
+  }
 
 body {
   display: flex;
@@ -176,6 +202,10 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+
+
+
+
 body,
 html,
 .App,
@@ -193,6 +223,12 @@ html,
 .logintitle {
   text-align: center;
 }
+
+.badge.badge-light{
+  color: yellow;
+}
+
+
 
 .logout {
   color: rgba(250, 235, 215, 0.858);
@@ -224,12 +260,6 @@ html,
 @media screen and (max-width: 575px) {
   .signup1.nav-link {
     display: none;
-  }
-}
-
-@media screen and (max-width: 575px) {
-  .img-fluid {
-    background-image: src= "../";
   }
 }
 
