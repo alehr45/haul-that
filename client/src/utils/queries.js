@@ -28,7 +28,6 @@ export const QUERY_ME_BASIC = gql`
       phone
       email
       jobs {
-       
         _id
         distance
         category
@@ -70,7 +69,7 @@ export const GET_JOBS = gql`
 `;
 
 export const GET_JOB = gql`
-  query job($_id: String!) {
+  query Job($_id: String!) {
     job(_id: $_id) {
       distance
       category
