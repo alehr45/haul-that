@@ -26,7 +26,9 @@ With this app users can log in, create a new booking or pick up an existing book
 https://haul-that.herokuapp.com/
 
 ### **Installation**
-Currently having trouble with Heroku deployment.
+https://haul-that.herokuapp.com
+
+
 To run locally:
 clone repo, 
 run `npm install`,
