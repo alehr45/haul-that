@@ -12,7 +12,7 @@ function Home() {
     <div className="logo">
       <Image src={image}
         height="320px"
-        width="380px"
+        width="340px"
         
         roundedCircle
       />
