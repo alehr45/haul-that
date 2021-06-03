@@ -21,7 +21,18 @@
   }
 }
 
+.footer{
+  height: 80px;
+}
 
+.copyright{
+  font-family: "tunning";
+  padding-top: 30px;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  color: rgba(250, 235, 215, 0.762);
+}
 
 
 

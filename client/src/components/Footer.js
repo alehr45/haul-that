@@ -8,11 +8,7 @@ const Footer= () => {
    
         return(
             <div  className="footer">  
-                <Navbar color="danger" dark>
-                    <Container className="footer">
-                        <NavbarBrand>Footer</NavbarBrand>
-                    </Container>
-                </Navbar>
+                <h1  className="copyright">copyright &#169; 2021</h1>
             </div>
         )
     };
