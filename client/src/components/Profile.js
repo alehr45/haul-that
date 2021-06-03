@@ -33,6 +33,7 @@ const Profile = () => {
         id: "test",
         distance: "distance",
         category: "category",
+        
       },
     ];
   }
@@ -44,8 +45,9 @@ const Profile = () => {
       {
         _id: "",
         id: "will appear here",
-        distance: "",
-        category: "",
+        distance: "?",
+        category: "?",
+        
       },
     ];
   }
@@ -114,7 +116,7 @@ const Profile = () => {
                 <Card.Title>Job # {job.id}</Card.Title>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>Distance: {parseInt(job.distance)} miles </ListGroupItem>
+                <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
                 <ListGroupItem>Item Category: {job.category} </ListGroupItem>
                 <ListGroupItem>
                   Price: ${parseInt(job.distance * 1.2)}{" "}

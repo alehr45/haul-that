@@ -3,6 +3,11 @@
   src: url("./fonts/UbuntuMono-Regular.ttf");
 }
 
+@font-face {
+  font-family: heaters;
+  src: url("./fonts/Heaters.otf");
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -12,16 +17,31 @@ code {
   padding: 10px;
 }
 
+.logo{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
 .loginform {
   position: relative;
-  top: 200px;
+  top: 150px;
   left: 20px;
 }
+.logo.rounded-circle{
+  display: flex;
+  justify-content: center;
+}
+
+
 
 .signupform {
   position: relative;
-  top: 200px;
+  top: 100px;
   left: 20px;
+}
+
+.btn.btn-dark.btn-lg.btn-block{
+  margin-top: 20px;
+  margin-bottom: 20px
 }
 
 
@@ -43,9 +63,11 @@ code {
 }
 
 .title {
-  font-family: "ubunto";
+  font-family: "heaters";
+
+  font-size: 45px;
   color: rgba(250, 235, 215, 0.858);
-  padding-left: 10px;
+  padding-left: 40px;
 }
 
 @media screen and (max-width: 575px) {
@@ -154,6 +176,10 @@ code {
   flex-direction: row;
 }
 
+.font1{
+  font-family: "ubunto";
+}
+
 .row1{
   display: flex;
 justify-content: center;
@@ -177,6 +203,7 @@ justify-content: center;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 }
+
 
 .your-location {
   background-color: blue;
@@ -234,8 +261,6 @@ html,
   color: yellow;
 }
 
-
-
 .logout {
   color: rgba(250, 235, 215, 0.858);
 }
@@ -267,5 +292,26 @@ html,
   .signup1.nav-link {
     display: none;
   }
+}
+
+.logsign{
+  padding-top: 35px;
+}
+
+.home{
+  padding-top: 75px;
+  font-family: "heaters";
+  color: rgb(58, 58, 58);
+  font-size: 150px;
+  
+}
+
+.subtitle{
+ display: flex;
+ justify-content: center;
+  padding-bottom: 25px;
+  font-family: "ubunto";
+  font-size: 15px;
+  color: rgb(63, 63, 63);
 }
 

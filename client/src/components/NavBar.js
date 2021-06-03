@@ -12,16 +12,16 @@ const NavBar = () => {
   return (
     <Navbar collapseOnSelect fixed="top" expand="sm" bg="danger" variant="dark">
       <h1 className="title">HaulThat</h1>
-      <Container>
+      <Container >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
             {Auth.loggedIn() ? (
-              <React.Fragment>
-                <Nav.Link className="nav1" href="/">Home</Nav.Link>
-                <Nav.Link className="nav1" href="/bookingA">Booking</Nav.Link>
-                <Nav.Link className="nav1" href="/jobs">Jobs</Nav.Link>
-                <Nav.Link className="nav1" href="/profile">My Profile</Nav.Link>
+              <React.Fragment className="nav1">
+                <Nav.Link  href="/">Home</Nav.Link>
+                <Nav.Link  href="/bookingA">Booking</Nav.Link>
+                <Nav.Link  href="/jobs">Jobs</Nav.Link>
+                <Nav.Link  href="/profile">My Profile</Nav.Link>
                 <Nav.Link onClick={logout}>
                   Logout
                 </Nav.Link>
