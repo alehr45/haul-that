@@ -8,7 +8,7 @@ function Home() {
   return (
     <div>
       <h1 class="home">Haul-That</h1>
-      <h2 class="subtitle">A pickup/delivery service for larger items</h2>
+      <h2 class="subtitle">a pickup/delivery service for larger items</h2>
     <div className="logo">
       <Image src={image}
         height="320px"
@@ -18,10 +18,10 @@ function Home() {
       />
       </div>
       <div class="logsign">
-        <Button className="font1" href="/login" variant="success">
+        <Button className="font1" href="/login" variant="danger">
           Login
         </Button>{" "}
-        <Button className="font1" href="/signup" variant="success">
+        <Button className="font1" href="/signup" variant="danger">
           Sign-Up
         </Button>{" "}
       </div>

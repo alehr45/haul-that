@@ -8,6 +8,17 @@
   src: url("./fonts/Heaters.otf");
 }
 
+@font-face {
+  font-family: airstream;
+  src: url("./fonts/AIRSTREA.TTF");
+}
+
+@font-face {
+  font-family: tunning;
+  src: url("./fonts/Tunning-OxideBold.ttf");
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -59,15 +70,14 @@ code {
 /* Add a red background color to navbar links on hover */
 .navbar a:hover,
 .dropdown:hover .dropbtn {
-  background-color: red;
+  
 }
 
 .title {
-  font-family: "heaters";
-
+  font-family: "tunning";
   font-size: 45px;
   color: rgba(250, 235, 215, 0.858);
-  padding-left: 40px;
+  
 }
 
 @media screen and (max-width: 575px) {
@@ -291,14 +301,15 @@ html,
 }
 
 .logsign{
+  font-family: "ubunto";
   padding-top: 35px;
 }
 
 .home{
   padding-top: 80px;
-  font-family: "heaters";
+  font-family: "tunning";
   color: rgb(58, 58, 58);
-  font-size: 130px;
+  font-size: 65px;
   
 }
 

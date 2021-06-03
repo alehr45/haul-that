@@ -11,7 +11,7 @@ const NavBar = () => {
   
   return (
     <Navbar collapseOnSelect fixed="top" expand="sm" bg="danger" variant="dark">
-      <h1 className="title">HaulThat</h1>
+      <a href="/" className="title">HaulThat</a>
       <Container >
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
