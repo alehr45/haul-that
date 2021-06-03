@@ -173,7 +173,7 @@ code {
 
 .nav-align {
   display: flex;
-  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 .font1{
@@ -235,10 +235,6 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-
-
-
-
 body,
 html,
 .App,
@@ -299,7 +295,7 @@ html,
 }
 
 .home{
-  padding-top: 75px;
+  padding-top: 55px;
   font-family: "heaters";
   color: rgb(58, 58, 58);
   font-size: 150px;
