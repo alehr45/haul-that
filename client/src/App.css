@@ -22,16 +22,16 @@
 }
 
 .footer{
-  height: 80px;
+  height: 40px;
 }
 
 .copyright{
   font-family: "tunning";
-  padding-top: 30px;
-  font-size: 25px;
+  padding-top: 12px;
+  font-size: 15px;
   display: flex;
   justify-content: center;
-  color: rgba(250, 235, 215, 0.762);
+  color: rgba(255, 255, 255, 0.762);
 }
 
 
