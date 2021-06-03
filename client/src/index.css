@@ -37,12 +37,11 @@ code {
   top: 150px;
   left: 20px;
 }
+
 .logo.rounded-circle{
   display: flex;
   justify-content: center;
 }
-
-
 
 .signupform {
   position: relative;
@@ -67,15 +66,16 @@ code {
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-/* Add a red background color to navbar links on hover */
-.navbar a:hover,
+
+/* .navbar a:hover,
 .dropdown:hover .dropbtn {
   
-}
+} */
 
 .title {
+  padding-left: 5px;
   font-family: "tunning";
-  font-size: 45px;
+  font-size: 35px;
   color: rgba(250, 235, 215, 0.858);
   
 }
@@ -120,7 +120,6 @@ code {
   border-color: #ee1e1e;
   box-shadow: none;
 }
-
 
 .outer h3 {
   text-align: center;
@@ -186,8 +185,10 @@ code {
   justify-content: space-evenly;
 }
 
-.font1{
+.font1.btn.btn-danger{
   font-family: "ubunto";
+  font-size: 19px;
+  color: rgba(250, 235, 215, 0.707);
 }
 
 .row1{
@@ -306,7 +307,7 @@ html,
 }
 
 .home{
-  padding-top: 80px;
+  padding-top: 100px;
   font-family: "tunning";
   color: rgb(58, 58, 58);
   font-size: 65px;
