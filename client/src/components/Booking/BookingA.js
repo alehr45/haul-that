@@ -110,7 +110,7 @@ const BookingA = () => {
 
   return (
     <Container className="bookingForm">
-      <Row>
+      <Row class="booking">
         <Col xs={3} md={4} />
         <Col xs={6} md={4}>
           <Form>

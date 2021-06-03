@@ -12,18 +12,18 @@ function Home() {
     <div className="logo">
       <Image src={image}
         height="320px"
-        width="340px"
+        width="360px"
         
         roundedCircle
       />
       </div>
       <div class="logsign">
-        <Button className="font1" href="/login" variant="danger">
+        {/* <Button className="font1" href="/login" variant="danger">
           login
         </Button>{" "}
         <Button className="font1" href="/signup" variant="danger">
           sign-up
-        </Button>{" "}
+        </Button>{" "} */}
       </div>
     </div>
   );
