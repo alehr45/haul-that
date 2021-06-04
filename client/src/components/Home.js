@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Image, Button, Col } from "react-bootstrap";
-import { BrowserRouter as Router } from "react-router-dom";
+import { Image} from "react-bootstrap";
 import image from "../images/homeimage.png";
 
 function Home() {

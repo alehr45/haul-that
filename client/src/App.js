@@ -7,7 +7,6 @@ import ApolloClient from "apollo-boost";
 import Jobs from "./components/Jobs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
-import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import Signup from "./components/Signup";
 import "./App.css";
@@ -43,11 +42,15 @@ function App() {
             <Route path="/" component={Home} />
             
           </Switch>
+          
         </div>
+        
       </Router>
-      <Footer />
+     
     </ApolloProvider>
+    
   );
+ 
 }
 
 export default App;

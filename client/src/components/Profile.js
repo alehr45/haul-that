@@ -11,7 +11,7 @@ import {
 import { QUERY_ME_BASIC } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
-import { GET_JOBS } from "../utils/queries";
+
 
 const Profile = () => {
   
