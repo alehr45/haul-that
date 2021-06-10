@@ -59,7 +59,7 @@ const Profile = () => {
 
   return (
     <Container className="profileForm">
-      <Row>
+      <Row className="shiftright">
         <Card style={{ width: "18rem" }}>
           <Avatar size={262} name={user.username} />
 
@@ -97,31 +97,39 @@ const Profile = () => {
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
+
+        <div className ="profilejob">
+          {jobs && jobs.map((job) => (
+          <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
+            <Card.Body>
+              <Card.Title>Job # {job.id}</Card.Title>
+            </Card.Body>
+            <ListGroup className="list-group-flush">
+              <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
+              <ListGroupItem>Item Category: {job.category} </ListGroupItem>
+              <ListGroupItem>Price: ${parseInt(job.distance * 1.2)} </ListGroupItem>
+            </ListGroup>
+          </Card>
+        ))}
+      </div>
       </Row>
       
-      <div className ="profilejob">
-              {jobs &&
-          jobs.map((job) => (
-            <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
-              <Card.Body>
-                <Card.Title>Job # {job.id}</Card.Title>
-              </Card.Body>
-              <ListGroup className="list-group-flush">
-                <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
-                <ListGroupItem>Item Category: {job.category} </ListGroupItem>
-                <ListGroupItem>Price: ${parseInt(job.distance * 1.2)} </ListGroupItem>
-              </ListGroup>
-            </Card>
-          ))}
-
-</div>
-      {/* <AcceptedJobs /> */}
-      
+    {/* <div className ="profilejob">
+      {jobs && jobs.map((job) => (
+        <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
+          <Card.Body>
+            <Card.Title>Job # {job.id}</Card.Title>
+          </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
+            <ListGroupItem>Item Category: {job.category} </ListGroupItem>
+            <ListGroupItem>Price: ${parseInt(job.distance * 1.2)} </ListGroupItem>
+          </ListGroup>
+        </Card>
+      ))}
+    </div> */}
+    {/* <AcceptedJobs /> */}  
     </Container>
-
-    
-
-   
   );
 };
 

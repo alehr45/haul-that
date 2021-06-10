@@ -4,7 +4,9 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "if-env": "^1.0.4"
+    "cors": "^2.8.5",
+    "if-env": "^1.0.4",
+    "npm-watch": "^0.9.0"
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
