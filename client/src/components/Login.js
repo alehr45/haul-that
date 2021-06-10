@@ -6,7 +6,7 @@ import { LOGIN_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: "", password: "" });
+  const [formState, setFormState] = useState({ username: "", password: "" });
 
   const [login] = useMutation(LOGIN_USER);
 
@@ -47,12 +47,12 @@ const Login = (props) => {
             <h3 className="logintitle">Login</h3>
 
             <div className="form-group">
-              <label>Email</label>
+              <label>Username</label>
               <input
-                type="email"
+                type="username"
                 className="form-control"
-                placeholder="Enter email"
-                name="email"
+                placeholder="Enter username"
+                name="username"
                 onChange={handleChange}
               />
             </div>

@@ -71,7 +71,7 @@ const typeDefs = gql`
       driver: String
       customer: String
     ): Auth
-    login(email: String!, password: String!): Auth
+    login(username: String!, password: String!): Auth
     addJob(
       date: String!
       category: String!

@@ -27,21 +27,9 @@ const Profile = () => {
     console.log(jobs);
   }
 
-  if (!loading && data.me.jobs.length) {
-    user = data.me;
-    jobs = data.me.jobs;
-    console.log(jobs);
-  }
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  // handleImageChange = (profileImage) => {
-  //   this.setState({
-  //     profileImage
-  //   })
-  // };
 
   return (
     <Container className="profileForm">
