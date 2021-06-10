@@ -17,39 +17,10 @@ const Profile = () => {
   
   const { loading, data } = useQuery(QUERY_ME_BASIC);
   var user = {};
-  var jobs = [
-    {
-      _id: "Test",
-      id: "test",
-      distance: "distance",
-      category: "category",
-    },
-  ];
+  var jobs = [];
 
-  if (loading) {
-    jobs = [
-      {
-        _id: "Test",
-        id: "test",
-        distance: "distance",
-        category: "category",
-        
-      },
-    ];
-  }
-
-  if (!loading && !data.me.jobs.length) {
+  if(!loading && !data.me.jobs.length){
     user = data.me;
-    console.log(user);
-    jobs = [
-      {
-        _id: "",
-        id: "will appear here",
-        distance: "?",
-        category: "?",
-        
-      },
-    ];
   }
 
   if (!loading && data.me.jobs.length) {
@@ -61,12 +32,6 @@ const Profile = () => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  // handleImageChange = (profileImage) => {
-  //   this.setState({
-  //     profileImage
-  //   })
-  // };
 
   return (
     <Container className="profileForm">

@@ -28,6 +28,7 @@ export const QUERY_ME_BASIC = gql`
       phone
       email
       jobs {
+        id
         _id
         distance
         category
