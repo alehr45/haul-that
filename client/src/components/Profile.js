@@ -1,51 +1,62 @@
 import React, { useState } from "react";
-// import Pic1 from "../images/pic1.jpg"
-import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal} from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Button,
+  Modal,
+} from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
-import Avatar from 'react-avatar';
-// import AcceptedJobs from '../components/AcceptedJobs'
-
+import Avatar from "react-avatar";
 
 
 const Profile = () => {
+  
   const { loading, data } = useQuery(QUERY_ME_BASIC);
   var user = {};
-  var jobs =[{
-    _id: "Test",
-    id: "test",
-    distance: "distance",
-    category: "category"
-  }]
-
-  if(loading) {
-    jobs =[{
+  var jobs = [
+    {
       _id: "Test",
       id: "test",
       distance: "distance",
-      category: "category"
-    }]
+      category: "category",
+    },
+  ];
+
+  if (loading) {
+    jobs = [
+      {
+        _id: "Test",
+        id: "test",
+        distance: "distance",
+        category: "category",
+        
+      },
+    ];
   }
 
   if (!loading && !data.me.jobs.length) {
     user = data.me;
-    console.log(user)
-    jobs =[{
-      _id: "",
-      id: "will appear here",
-      distance: "",
-      category: ""
-    }]
+    console.log(user);
+    jobs = [
+      {
+        _id: "",
+        id: "will appear here",
+        distance: "?",
+        category: "?",
+        
+      },
+    ];
   }
 
   if (!loading && data.me.jobs.length) {
     user = data.me;
-    jobs = data.me.jobs
-    console.log(jobs)
+    jobs = data.me.jobs;
+    console.log(jobs);
   }
-
-
-
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -59,7 +70,7 @@ const Profile = () => {
 
   return (
     <Container className="profileForm">
-      <Row className="shiftright">
+      <Row className="row1">
         <Card style={{ width: "18rem" }}>
           <Avatar size={262} name={user.username} />
 
@@ -97,38 +108,28 @@ const Profile = () => {
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
-
-        <div className ="profilejob">
-          {jobs && jobs.map((job) => (
-          <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
-            <Card.Body>
-              <Card.Title>Job # {job.id}</Card.Title>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
-              <ListGroupItem>Item Category: {job.category} </ListGroupItem>
-              <ListGroupItem>Price: ${parseInt(job.distance * 1.2)} </ListGroupItem>
-            </ListGroup>
-          </Card>
-        ))}
+         <div className="profilejob">
+        {jobs &&
+          jobs.map((job) => (
+            <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card.Body>
+                <Card.Title>Job # {job.id}</Card.Title>
+              </Card.Body>
+              <ListGroup className="list-group-flush">
+                <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
+                <ListGroupItem>Item Category: {job.category} </ListGroupItem>
+                <ListGroupItem>
+                  Price: ${parseInt(job.distance * 1.2)}{" "}
+                </ListGroupItem>
+              </ListGroup>
+            </Card>
+          ))}
       </div>
-      </Row>
       
-    {/* <div className ="profilejob">
-      {jobs && jobs.map((job) => (
-        <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
-          <Card.Body>
-            <Card.Title>Job # {job.id}</Card.Title>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
-            <ListGroupItem>Item Category: {job.category} </ListGroupItem>
-            <ListGroupItem>Price: ${parseInt(job.distance * 1.2)} </ListGroupItem>
-          </ListGroup>
-        </Card>
-      ))}
-    </div> */}
-    {/* <AcceptedJobs /> */}  
+      </Row>
+
+     
+      {/* <AcceptedJobs /> */}
     </Container>
   );
 };

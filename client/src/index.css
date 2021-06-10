@@ -3,26 +3,58 @@
   src: url("./fonts/UbuntuMono-Regular.ttf");
 }
 
+@font-face {
+  font-family: heaters;
+  src: url("./fonts/Heaters.otf");
+}
+
+@font-face {
+  font-family: airstream;
+  src: url("./fonts/AIRSTREA.TTF");
+}
+
+@font-face {
+  font-family: tunning;
+  src: url("./fonts/Tunning-OxideBold.ttf");
+}
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
+
+
 .form-group {
   padding: 10px;
 }
 
-.loginform {
-  position: relative;
-  top: 200px;
-  left: 20px;
+.logo{
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
 
+.loginform {
+  position: relative;
+  top: 150px;
+  left: 20px;
+}
+
+.logo.rounded-circle{
+  display: flex;
+  justify-content: center;
+}
+
 .signupform {
   position: relative;
-  top: 200px;
+  top: 100px;
   left: 20px;
+}
+
+.btn.btn-dark.btn-lg.btn-block{
+  margin-top: 20px;
+  margin-bottom: 20px
 }
 
 
@@ -37,16 +69,18 @@ code {
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-/* Add a red background color to navbar links on hover */
-.navbar a:hover,
+
+/* .navbar a:hover,
 .dropdown:hover .dropbtn {
-  background-color: red;
-}
+  
+} */
 
 .title {
-  font-family: "ubunto";
+  padding-left: 5px;
+  font-family: "tunning";
+  font-size: 35px;
   color: rgba(250, 235, 215, 0.858);
-  padding-left: 10px;
+  
 }
 
 @media screen and (max-width: 575px) {
@@ -89,7 +123,6 @@ code {
   border-color: #ee1e1e;
   box-shadow: none;
 }
-
 
 .outer h3 {
   text-align: center;
@@ -152,30 +185,39 @@ code {
 
 .nav-align {
   display: flex;
-  flex-direction: row;
+  justify-content: space-evenly;
 }
 
+.font1.btn.btn-danger{
+  font-family: "ubunto";
+  font-size: 19px;
+  color: rgba(250, 235, 215, 0.707);
+}
+
+.row1{
+  display: flex;
+justify-content: center;
+}
+ 
 .profileForm {
-   
- padding-top: 100px;
- display: flex ;
- justify-content:center;
+  padding-top: 100px;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
   
 }
-
-.shiftright {
-  padding-left: 50px;
-}
-
 .profilejob{
-  padding-left: 20px;
-  
+  padding: 20px;
+
+  display: flex;
+  justify-content: center;
 }
 
 .map-info {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
   monospace;
 }
+
 
 .your-location {
   background-color: blue;
@@ -188,6 +230,8 @@ code {
   }
 
 body {
+  width: 100%;
+  
   display: flex;
   font-weight: 400;
   font-family: sans-serif;
@@ -206,9 +250,11 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+.names{
+  font-family: "ubunto";
+font-size: 12px;
 
-
-
+}
 
 body,
 html,
@@ -220,6 +266,7 @@ html,
 }
 
 .bookingForm {
+  
   padding-top: 70px;
   padding-bottom: 20px;
 }
@@ -231,8 +278,6 @@ html,
 .badge.badge-light{
   color: yellow;
 }
-
-
 
 .logout {
   color: rgba(250, 235, 215, 0.858);
@@ -265,5 +310,27 @@ html,
   .signup1.nav-link {
     display: none;
   }
+}
+
+.logsign{
+  font-family: "ubunto";
+  padding-top: 35px;
+}
+
+.home{
+  padding-top: 100px;
+  font-family: "tunning";
+  color: rgb(58, 58, 58);
+  font-size: 65px;
+  
+}
+
+.subtitle{
+ display: flex;
+ justify-content: center;
+  padding-bottom: 25px;
+  font-family: "ubunto";
+  font-size: 15px;
+  color: rgb(63, 63, 63);
 }
 

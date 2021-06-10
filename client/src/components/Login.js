@@ -40,7 +40,7 @@ const Login = (props) => {
 
   return (
     <Container>
-      <Row>
+      <Row className>
         <Col xs={3} md={4} />
         <Col xs={5} md={4}>
           <form className="loginform">

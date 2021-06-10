@@ -1,23 +1,31 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Image } from "react-bootstrap";
-import { BrowserRouter as Router } from "react-router-dom";
-import image from "../images/background.png"
+import { Image} from "react-bootstrap";
+import image from "../images/homeimage.png";
 
 function Home() {
-
   return (
-    <Router>
-      <header className="bg-secondary mb-4 py-2 flex-row align-center">
-        <div className="container flex-row justify-space-between-lg justify-center align-center">
-          <Link to="/">
-            <h1>Haul That</h1>
-          </Link>
-        </div>
-        <Image className="image1" src={ image } fluid />
-      </header>
-    </Router>
+    <div>
+      <h1 class="home">Haul-That</h1>
+      <h2 class="subtitle">-a pickup/delivery service for larger items-</h2>
+    <div className="logo">
+      <Image src={image}
+        height="320px"
+        width="360px"
+        
+        roundedCircle
+      />
+      </div>
+      <div class="logsign">
+        <h2 class="names">-created by: alex, william, wheeler, dustin and hadeed-</h2>
+        {/* <Button className="font1" href="/login" variant="danger">
+          login
+        </Button>{" "}
+        <Button className="font1" href="/signup" variant="danger">
+          sign-up
+        </Button>{" "} */}
+      </div>
+    </div>
   );
-};
+}
 
 export default Home;

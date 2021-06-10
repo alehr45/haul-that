@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/NavBar.js";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import Jobs from "./components/Jobs";
@@ -42,10 +42,15 @@ function App() {
             <Route path="/" component={Home} />
             
           </Switch>
+          
         </div>
+        
       </Router>
+     
     </ApolloProvider>
+    
   );
+ 
 }
 
 export default App;

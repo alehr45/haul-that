@@ -50,7 +50,7 @@ const Signup = () => {
         <Col xs={3} md={4} />
         <Col xs={5} md={4}>
           <form className="signupform">
-            <h3>SignUp</h3>
+            <h3>Sign Up</h3>
 
             <div className="form-group">
               <label>First name</label>
