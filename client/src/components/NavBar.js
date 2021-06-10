@@ -1,8 +1,10 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { Navbar, Nav, Container , Badge } from "react-bootstrap";
 import Auth from "../utils/auth";
 
 const NavBar = () => {
+
+
 
   const logout = (event) => {
     event.preventDefault();
@@ -21,6 +23,7 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/">Home</Nav.Link>
                 <Nav.Link className="nav1" href="/bookingA">Booking</Nav.Link>
                 <Nav.Link className="nav1" href="/jobs">Jobs</Nav.Link>
+                <Badge pill variant="secondary"></Badge>{' '}
                 <Nav.Link className="nav1" href="/profile">My Profile</Nav.Link>
                 <Nav.Link onClick={logout}>
                   Logout

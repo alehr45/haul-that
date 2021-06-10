@@ -334,3 +334,7 @@ html,
   color: rgb(63, 63, 63);
 }
 
+.btn.btn-warning{
+margin: 8px;
+}
+
