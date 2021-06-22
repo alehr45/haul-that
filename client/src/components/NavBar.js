@@ -1,12 +1,20 @@
 import React from "react";
 import { Navbar, Nav, Container , Badge } from "react-bootstrap";
 import Auth from "../utils/auth";
+import { GET_JOBS } from "../utils/queries";
+import { useQuery } from "@apollo/react-hooks";
 
 const NavBar = () => {
 
+  const { loading, data: jobsData } = useQuery(GET_JOBS)
 
+  var jobs = [];
+  if (!loading) {
+    jobs = jobsData.jobs;
+    
+  }
 
-  const logout = (event) => {
+const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
@@ -23,7 +31,9 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/">Home</Nav.Link>
                 <Nav.Link className="nav1" href="/bookingA">Booking</Nav.Link>
                 <Nav.Link className="nav1" href="/jobs">Jobs</Nav.Link>
-                <Badge pill variant="secondary"></Badge>{' '}
+                <div>
+                <Badge style={{paddingLeft: '0px'}} className="badge" pill variant="primary">{jobs.length}</Badge>
+                </div>
                 <Nav.Link className="nav1" href="/profile">My Profile</Nav.Link>
                 <Nav.Link onClick={logout}>
                   Logout
@@ -44,6 +54,7 @@ const NavBar = () => {
         <div></div>
       </Container>
     </Navbar>
+    
   );
 };
 

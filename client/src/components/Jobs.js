@@ -6,6 +6,9 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS } from "../utils/queries";
 import { PICKUP_JOB } from "../utils/mutation";
 import moment from "moment";
+
+
+
 const Jobs = () => {
 const { loading, data: jobsData } = useQuery(GET_JOBS)
 const [pickupJob] = useMutation(PICKUP_JOB)

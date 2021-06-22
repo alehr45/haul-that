@@ -208,8 +208,7 @@ justify-content: center;
 }
 .profilejob{
   padding: 20px;
-
-  display: flex;
+display: flex;
   justify-content: center;
 }
 
@@ -267,7 +266,7 @@ html,
 
 .bookingForm {
   
-  padding-top: 70px;
+  padding-top: 90px;
   padding-bottom: 20px;
 }
 
@@ -284,6 +283,7 @@ html,
 }
 
 .form-control {
+  
   display: flex;
   justify-content: center;
 }
@@ -334,7 +334,8 @@ html,
   color: rgb(63, 63, 63);
 }
 
-.btn.btn-warning{
-margin: 8px;
-}
 
+
+.badge.badge.badge-pill.badge-primary{
+color: yellow;
+}

@@ -24,7 +24,7 @@ const Profile = () => {
   if (!loading && data.me.jobs.length) {
     user = data.me;
     jobs = data.me.jobs;
-    console.log(jobs);
+    
   }
 
   const [show, setShow] = useState(false);

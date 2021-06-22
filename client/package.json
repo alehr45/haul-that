@@ -18,6 +18,8 @@
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
     "@react-google-maps/api": "^2.2.0",
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.15.0",
     "@types/google-maps": "^3.2.3",
     "apollo-boost": "^0.4.9",
     "apollo-server-express": "^2.24.1",

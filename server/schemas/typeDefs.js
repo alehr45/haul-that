@@ -20,6 +20,9 @@ const typeDefs = gql`
     email: String!
     username: String!
     phone: String!
+    cardnumber: String!
+    exp: String!
+    cvc: String!
     jobs: [Job]
   }
 
@@ -68,8 +71,10 @@ const typeDefs = gql`
       email: String!
       phone: String!
       password: String!
-      driver: String
-      customer: String
+      cardnumber: String!
+      exp: String!
+      cvc: String!
+      
     ): Auth
     login(username: String!, password: String!): Auth
     addJob(
