@@ -102,7 +102,7 @@ const BookingA = () => {
         variables: { ...job },
       });
 
-      window.location.assign("/jobs");
+      window.location.assign("/BookingB");
     } catch (e) {
       console.error(e);
     }
