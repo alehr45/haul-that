@@ -17,6 +17,7 @@ import CheckoutForm from "./components/Booking/BookingB";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
+
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
@@ -30,7 +31,6 @@ const client = new ApolloClient({
   uri: "/graphql",
 });
 
-
 function App() {
  
   // Make sure to call loadStripe outside of a component’s render to avoid
@@ -40,10 +40,11 @@ function App() {
   const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
   return (
+
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-          <NavBar />
+        <NavBar />
           <Switch>
           
             <Route path="/signup" component={Signup} /> 
@@ -59,7 +60,9 @@ function App() {
             <Route path="/jobs"  component={Jobs} />
             <Route path="/" component={Home} />
             
+            
           </Switch>
+        
           
         </div>
         

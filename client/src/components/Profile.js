@@ -17,56 +17,19 @@ const Profile = () => {
   
   const { loading, data } = useQuery(QUERY_ME_BASIC);
   var user = {};
-  var jobs = [
-    {
-      _id: "Test",
-      id: "test",
-      distance: "distance",
-      category: "category",
-    },
-  ];
-
-  if (loading) {
-    jobs = [
-      {
-        _id: "Test",
-        id: "test",
-        distance: "distance",
-        category: "category",
-        
-      },
-    ];
-  }
-
-  if (!loading && !data.me.jobs.length) {
+  var jobs = [];
+  if(!loading && !data.me.jobs.length){
     user = data.me;
-    console.log(user);
-    jobs = [
-      {
-        _id: "",
-        id: "will appear here",
-        distance: "?",
-        category: "?",
-        
-      },
-    ];
   }
-
   if (!loading && data.me.jobs.length) {
     user = data.me;
     jobs = data.me.jobs;
-    console.log(jobs);
+    
   }
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  // handleImageChange = (profileImage) => {
-  //   this.setState({
-  //     profileImage
-  //   })
-  // };
 
   return (
     <Container className="profileForm">
@@ -119,8 +82,9 @@ const Profile = () => {
                 <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
                 <ListGroupItem>Item Category: {job.category} </ListGroupItem>
                 <ListGroupItem>
-                  Price: ${parseInt(job.distance * 1.2)}{" "}
+                  Price: ${job.distance * 1.2}
                 </ListGroupItem>
+                <Button variant="warning">Job Completed</Button>{' '}
               </ListGroup>
             </Card>
           ))}
