@@ -34,6 +34,7 @@ const typeDefs = gql`
     createdAt: String
     description: String!
     distance: String!
+    taken: Boolean
     pickup: Address
     dropoff: Address
   }
@@ -86,6 +87,7 @@ const typeDefs = gql`
       dropoff: addressInput!
     ): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
+    updateJob(_id: ID!): Job
   }
 `;
 
