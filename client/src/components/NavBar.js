@@ -3,6 +3,8 @@ import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { GET_JOBS } from '../utils/queries';
 import { useQuery } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
+import { GET_JOBS } from "../utils/queries";
+import { useQuery } from "@apollo/react-hooks";
 
 const NavBar = () => {
   const { loading, data: jobsData } = useQuery(GET_JOBS);
@@ -11,7 +13,15 @@ const NavBar = () => {
     jobs = jobsData.jobs;
   }
 
-  const logout = (event) => {
+  const { loading, data: jobsData } = useQuery(GET_JOBS)
+
+  var jobs = [];
+  if (!loading) {
+    jobs = jobsData.jobs;
+    
+  }
+
+const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
@@ -25,14 +35,15 @@ const NavBar = () => {
           <Nav className="mr-auto">
             {Auth.loggedIn() ? (
               <React.Fragment>
-                <Nav.Link className="nav1" href="/">
-                  Home
-                </Nav.Link>
-                <Nav.Link className="nav1" href="/bookingA">
-                  Booking
-                </Nav.Link>
-                <Nav.Link className="nav1" href="/jobs">
-                  Jobs
+                <Nav.Link className="nav1" href="/">Home</Nav.Link>
+                <Nav.Link className="nav1" href="/bookingA">Booking</Nav.Link>
+                <Nav.Link className="nav1" href="/jobs">Jobs</Nav.Link>
+                <div>
+                <Badge style={{paddingLeft: '0px'}} className="badge" pill variant="primary">{jobs.length}</Badge>
+                </div>
+                <Nav.Link className="nav1" href="/profile">My Profile</Nav.Link>
+                <Nav.Link onClick={logout}>
+                  Logout
                 </Nav.Link>
                 <div>
                   <Badge
@@ -60,6 +71,7 @@ const NavBar = () => {
         <div></div>
       </Container>
     </Navbar>
+    
   );
 };
 

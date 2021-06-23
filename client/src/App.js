@@ -12,6 +12,7 @@ import Signup from "./components/Signup";
 import "./App.css";
 import BookingA from "./components/Booking/BookingA";
 
+
 const client = new ApolloClient({
   request: (operation) => {
     const token = localStorage.getItem("id_token");
@@ -25,13 +26,13 @@ const client = new ApolloClient({
   uri: "/graphql",
 });
 
-
 function App() {
   return (
+
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-          <NavBar />
+        <NavBar />
           <Switch>
           
             <Route path="/signup" component={Signup} /> 
@@ -41,7 +42,9 @@ function App() {
             <Route path="/jobs"  component={Jobs} />
             <Route path="/" component={Home} />
             
+            
           </Switch>
+        
           
         </div>
         

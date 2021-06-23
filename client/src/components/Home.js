@@ -16,7 +16,7 @@ function Home() {
       />
       </div>
       <div className="logsign">
-        <h2 className="names">-created by: alex, william, wheeler, dustin and hadeed-</h2>
+        <h2 className="names">-created by: alex, william, wheeler and dustin-</h2>
         {/* <Button className="font1" href="/login" variant="danger">
           login
         </Button>{" "}

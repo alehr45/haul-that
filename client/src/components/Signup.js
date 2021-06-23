@@ -3,6 +3,11 @@ import { Col, Row, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import CheckoutForm from "./CheckoutForm/CheckoutForm.js"
+
+const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Signup = () => {
 
@@ -119,6 +124,43 @@ const Signup = () => {
               />
             </div>
 
+            {/* <div className="form-group">
+              <label>Credit Card Number</label>
+              <input
+                type="cardnumber"
+                className="form-control"
+                placeholder="0000 0000 0000 0000"
+                name="cardnumber"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Expiration</label>
+              <input
+                type="expdate"
+                className="form-control"
+                placeholder="MM/YY"
+                name="exp"
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label>CVC</label>
+              <input
+                type="number"
+                className="form-control"
+                placeholder="CVC"
+                name="cvc"
+                onChange={handleChange}
+              />
+            </div> */}
+
+            <Elements stripe={promise}>
+                <CheckoutForm />
+              </Elements>
+
             <button
               type="submit"
               onClick={handleFormSubmit}
@@ -130,7 +172,9 @@ const Signup = () => {
         </Col>
         <Col xs={4} md={4} />
       </Row>
-    </Container>
+
+     
+</Container>
   );
 };
 

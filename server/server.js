@@ -7,7 +7,7 @@ const path = require("path");
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
-
+const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
 const PORT = process.env.PORT || 3001;
 const app = express();
 // create a new Apollo server and pass in our schema data
@@ -15,6 +15,18 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: authMiddleware,
+});
+
+app.post("/create-payment-intent", async (req, res) => {
+  const { items } = req.body;
+  // Create a PaymentIntent with the order amount and currency
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: calculateOrderAmount(items),
+    currency: "usd"
+  });
+  res.send({
+    clientSecret: paymentIntent.client_secret
+  });
 });
 
 // integrate our Apollo server with the Express application as middleware
