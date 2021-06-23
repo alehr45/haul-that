@@ -30,6 +30,7 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
+    
     pickup: addressSchema,
 
     dropoff: addressSchema,

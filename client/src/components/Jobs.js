@@ -59,9 +59,11 @@ const [pickupJob] = useMutation(PICKUP_JOB)
                 Price: ${parseInt(job.distance * 1.2)}
               </ListGroupItem>
             </ListGroup>
-            <Card.Body>
-              <Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category, job.id)} >Accept Job</Button>{" "}
-            </Card.Body>
+            {job.taken ? (
+                <Button variant="danger">Pending</Button> )
+                :
+                (<Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category, job.id)} >Accept Job</Button>)
+              }
           </Card>
         );
       });

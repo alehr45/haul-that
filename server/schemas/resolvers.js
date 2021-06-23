@@ -65,7 +65,7 @@ const resolvers = {
     addJob: async (parent, args, context) => {
       if (context.user) {
         const job = Job.create({
-          ...args,
+          ...args, 
           username: context.user.username,
         });
 

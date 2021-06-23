@@ -12,6 +12,7 @@ const typeDefs = gql`
     user(_id: String!): User
     job(_id: String!): Job
   }
+  
 
   type User {
     _id: ID
@@ -20,10 +21,7 @@ const typeDefs = gql`
     email: String!
     username: String!
     phone: String!
-    cardnumber: String!
-    exp: String!
-    cvc: String!
-    jobs: [Job]
+
   }
 
   type Job {
@@ -36,6 +34,7 @@ const typeDefs = gql`
     distance: String!
     pickup: Address
     dropoff: Address
+    
   }
 
   type Address {
@@ -71,9 +70,8 @@ const typeDefs = gql`
       email: String!
       phone: String!
       password: String!
-      cardnumber: String!
-      exp: String!
-      cvc: String!
+     }
+
       
     ): Auth
     login(username: String!, password: String!): Auth

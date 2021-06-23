@@ -46,6 +46,7 @@ export const GET_JOBS = gql`
       category
       description
       distance
+      taken
       createdAt
       pickup {
         address
@@ -68,6 +69,7 @@ export const GET_JOBS = gql`
     }
   }
 `;
+
 
 export const GET_JOB = gql`
   query Job($_id: String!) {
