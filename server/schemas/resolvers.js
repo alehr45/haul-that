@@ -92,7 +92,7 @@ const resolvers = {
     },
     updateJob: async (parent, {_id}) => {
       console.log(_id)
-      const updatedjob =  await Job.findOneAndUpdate({_id},
+      const updatedJob =  await Job.findOneAndUpdate({_id},
         {taken: true},
         {new: true}
         )

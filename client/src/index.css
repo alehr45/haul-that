@@ -24,6 +24,14 @@ code {
     monospace;
 }
 
+.badge.badge-light{
+  color: yellow;
+}
+
+.badge.badge.badge-pill.badge-primary{
+  color: yellow;
+  }
+
 
 
 .form-group {
