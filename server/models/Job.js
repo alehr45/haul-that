@@ -16,7 +16,6 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-
     description: {
       type: String,
       required: true,
@@ -29,6 +28,10 @@ const jobSchema = new Schema(
     distance: {
       type: String,
       required: true,
+    },
+    taken: {
+      type: Boolean,
+      default: false
     },
     pickup: addressSchema,
 

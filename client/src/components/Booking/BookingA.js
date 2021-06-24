@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Form, Container, Col, Row } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
+import Jobs from "../Jobs"
 
 const BookingA = () => {
   const [formState, setFormState] = useState({
@@ -102,7 +103,13 @@ const BookingA = () => {
         variables: { ...job },
       });
 
+<<<<<<< HEAD
       window.location.assign("/BookingB");
+=======
+      window.location.assign("/jobs");
+      return <Jobs distance={distance}></Jobs>
+      return 
+>>>>>>> 6d8faed77606dffade9df6480d17f2211bcc407e
     } catch (e) {
       console.error(e);
     }

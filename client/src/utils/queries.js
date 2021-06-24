@@ -46,6 +46,7 @@ export const GET_JOBS = gql`
       category
       description
       distance
+      taken
       createdAt
       pickup {
         address

@@ -66,6 +66,7 @@ const resolvers = {
       if (context.user) {
         const job = Job.create({
           ...args,
+          taken: false,
           username: context.user.username,
         });
 
@@ -88,6 +89,15 @@ const resolvers = {
 
         return updatedUser;
       }
+    },
+    updateJob: async (parent, {_id}) => {
+      console.log(_id)
+      const updatedJob =  await Job.findOneAndUpdate({_id},
+        {taken: true},
+        {new: true}
+        )
+
+        return updatedJob
     },
   },
 };
