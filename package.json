@@ -8,7 +8,9 @@
     "@stripe/stripe-js": "^1.15.0",
     "cors": "^2.8.5",
     "if-env": "^1.0.4",
-    "npm-watch": "^0.9.0"
+    "jsonwebtoken": "^8.5.1",
+    "npm-watch": "^0.9.0",
+    "stripe": "^8.156.0"
   },
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
