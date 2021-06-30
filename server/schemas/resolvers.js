@@ -90,14 +90,15 @@ const resolvers = {
         return updatedUser;
       }
     },
-    updateJob: async (parent, {_id}) => {
-      console.log(_id)
-      const updatedJob =  await Job.findOneAndUpdate({_id},
-        {taken: true},
-        {new: true}
-        )
+    updateJob: async (parent, { _id }) => {
+      console.log(_id);
+      const updatedJob = await Job.findOneAndUpdate(
+        { _id },
+        { taken: true },
+        { new: true }
+      );
 
-        return updatedJob
+      return updatedJob;
     },
   },
 };
