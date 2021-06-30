@@ -21,9 +21,9 @@ const Jobs = () => {
 
 
 
-  const handlePickup = async (id, jobDistance, jobCategory, jobId , email, name) => {
+const handlePickup = async (id, jobDistance, jobCategory, jobId , email, name, date) => {
     
-let userInfo = {name: name, email: email}
+let userInfo = {name: name, email: email, date: date}
 console.log(userInfo)
     await pickupJob({
       variables: {
@@ -87,7 +87,7 @@ console.log(userInfo)
                 <Button
                   variant="danger"
                   onClick={() =>
-                    handlePickup(job._id, job.distance, job.category, job.id, job.email, job.name)
+                    handlePickup(job._id, job.distance, job.category, job.id, job.email, job.name, job.date)
                   }
                 >
                   Accept Job
