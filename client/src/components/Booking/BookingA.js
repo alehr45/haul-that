@@ -10,10 +10,12 @@ const BookingA = () => {
 
   var phone = ""
   var email = ""
+  var name =  ""
 
-  if(!loading){
+if(!loading){
     phone = data.me.phone
     email = data.me.email
+    name = data.me.firstName
   }
 
   const [formState, setFormState] = useState({
@@ -88,6 +90,7 @@ const BookingA = () => {
       description: formState.description,
       distance: distance.toString(),
       phone: phone,
+      name: name,
       email: email,
       pickup: {
         address: formState.addressP,
@@ -124,6 +127,7 @@ const BookingA = () => {
   };
 
   return (
+
     <Container className="bookingForm">
       <Row class="booking">
         <Col xs={1} md={4} />
@@ -356,9 +360,7 @@ const BookingA = () => {
                 <Form.Control onChange={handleChange} name="zipD" />
               </Form.Group>
             </Form.Row>
-          </Form>
-          <br />
-          <Button
+            <Button
             variant="btn btn-success"
             onClick={handleFetch}
             //   onClick={() => history.push("/BookingB")}
@@ -366,9 +368,13 @@ const BookingA = () => {
           >
             Continue
           </Button>
+          </Form>
+          
+          
         </Col>
         <Col xs={3} md={4} />
       </Row>
+
     </Container>
   );
 };

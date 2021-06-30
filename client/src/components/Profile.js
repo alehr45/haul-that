@@ -84,7 +84,7 @@ const Profile = () => {
                 <ListGroupItem>
                   Price: ${job.distance * 1.2}
                 </ListGroupItem>
-                <Button variant="warning">Job Completed</Button>{' '}
+                {/* <Button variant="warning">Job Completed</Button>{' '} */}
               </ListGroup>
             </Card>
           ))}

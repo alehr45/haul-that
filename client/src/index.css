@@ -320,6 +320,8 @@ html,
   }
 }
 
+
+
 .logsign{
   font-family: "ubunto";
   padding-top: 35px;
@@ -332,6 +334,7 @@ html,
   font-size: 65px;
   
 }
+
 
 .subtitle{
  display: flex;
@@ -347,3 +350,15 @@ html,
 .badge.badge.badge-pill.badge-primary{
 color: yellow;
 }
+
+
+.btn.btn-btn.btn-success {
+  margin-top: 30px;
+}
+
+.navbar-toggler.collapsed{
+  display: flex;
+  justify-content: left;
+  border: none;
+}
+

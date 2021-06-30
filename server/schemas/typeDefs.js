@@ -33,6 +33,7 @@ const typeDefs = gql`
     distance: String!
     taken: Boolean
     phone: String!
+    name: String!
     email: String!
     pickup: Address
     dropoff: Address
@@ -79,6 +80,7 @@ const typeDefs = gql`
       description: String!
       distance: String!
       phone: String!
+      name: String!
       email: String!
       pickup: addressInput!
       dropoff: addressInput!
@@ -90,6 +92,5 @@ const typeDefs = gql`
 
 // export the typeDefs
 module.exports = typeDefs;
-
 
 //    user(_id: String!): User

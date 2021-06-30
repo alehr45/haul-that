@@ -43,6 +43,7 @@ export const ADD_JOB = gql`
     $description: String!
     $distance: String!
     $phone: String!
+    $name: String!
     $email: String!
     $pickup: addressInput!
     $dropoff: addressInput!
@@ -53,6 +54,7 @@ export const ADD_JOB = gql`
       description: $description
       distance: $distance
       phone: $phone
+      name: $name
       email: $email
       pickup: $pickup
       dropoff: $dropoff
