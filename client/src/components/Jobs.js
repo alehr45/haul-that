@@ -40,7 +40,7 @@ console.log(userInfo)
 
     
 
-    await emailjs.send("service_rvgpaz5","contact_form",userInfo,"user_ZAvEHL9UX2xiYewnTTWEa")
+    await emailjs.send("service_rvgpaz5","accept_job",userInfo,"user_ZAvEHL9UX2xiYewnTTWEa")
 
     window.location.assign("/profile");
 
