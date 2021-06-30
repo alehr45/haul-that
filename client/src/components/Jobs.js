@@ -28,7 +28,6 @@ const [updateJob] = useMutation(UPDATE_JOB)
     await updateJob({
       variables: {_id: id}
     })
-
     window.location.assign("/profile");
   }
   const handleCardRender = () => {

@@ -37,6 +37,8 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    console.log(formState)
+
     // use try/catch instead of promises to handle errors
     try {
       const { data } = await addUser({
@@ -157,9 +159,9 @@ const Signup = () => {
               />
             </div> */}
 
-            <Elements stripe={promise}>
+            {/* <Elements stripe={promise}>
                 <CheckoutForm />
-              </Elements>
+              </Elements> */}
 
             <button
               type="submit"

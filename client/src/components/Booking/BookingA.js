@@ -1,10 +1,21 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Col, Row } from "react-bootstrap";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
+import { QUERY_ME_BASIC } from "../../utils/queries";
 import Jobs from "../Jobs"
 
 const BookingA = () => {
+  const { loading, data } = useQuery(QUERY_ME_BASIC);
+
+  var phone = ""
+  var email = ""
+
+  if(!loading){
+    phone = data.me.phone
+    email = data.me.email
+  }
+
   const [formState, setFormState] = useState({
     date: "",
     category: "",
@@ -76,6 +87,8 @@ const BookingA = () => {
       category: formState.category,
       description: formState.description,
       distance: distance.toString(),
+      phone: phone,
+      email: email,
       pickup: {
         address: formState.addressP,
         address2: formState.addressP2,
@@ -105,7 +118,6 @@ const BookingA = () => {
 
       window.location.assign("/jobs");
       return <Jobs distance={distance}></Jobs>
-      return 
     } catch (e) {
       console.error(e);
     }
@@ -114,7 +126,7 @@ const BookingA = () => {
   return (
     <Container className="bookingForm">
       <Row class="booking">
-        <Col xs={3} md={4} />
+        <Col xs={1} md={4} />
         <Col xs={6} md={4}>
           <Form>
             <Form.Group controlId="dob">
