@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Form, Container, Col, Row } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
-import Jobs from "../Jobs"
 
 const BookingA = () => {
   const [formState, setFormState] = useState({
@@ -104,17 +103,16 @@ const BookingA = () => {
       });
 
       window.location.assign("/jobs");
-      return <Jobs distance={distance}></Jobs>
-      return 
     } catch (e) {
       console.error(e);
     }
   };
 
   return (
+
     <Container className="bookingForm">
       <Row class="booking">
-        <Col xs={3} md={4} />
+        <Col xs={1} md={4} />
         <Col xs={6} md={4}>
           <Form>
             <Form.Group controlId="dob">
@@ -344,9 +342,7 @@ const BookingA = () => {
                 <Form.Control onChange={handleChange} name="zipD" />
               </Form.Group>
             </Form.Row>
-          </Form>
-          <br />
-          <Button
+            <Button
             variant="btn btn-success"
             onClick={handleFetch}
             //   onClick={() => history.push("/BookingB")}
@@ -354,9 +350,13 @@ const BookingA = () => {
           >
             Continue
           </Button>
+          </Form>
+          
+          
         </Col>
         <Col xs={3} md={4} />
       </Row>
+
     </Container>
   );
 };

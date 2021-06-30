@@ -12,7 +12,6 @@ const typeDefs = gql`
     user(_id: String!): User
     job(_id: String!): Job
   }
-  
 
   type User {
     _id: ID
@@ -21,7 +20,7 @@ const typeDefs = gql`
     email: String!
     username: String!
     phone: String!
-
+    jobs: [Job]
   }
 
   type Job {
@@ -35,7 +34,6 @@ const typeDefs = gql`
     taken: Boolean
     pickup: Address
     dropoff: Address
-    
   }
 
   type Address {
@@ -71,9 +69,6 @@ const typeDefs = gql`
       email: String!
       phone: String!
       password: String!
-     }
-
-      
     ): Auth
     login(username: String!, password: String!): Auth
     addJob(
@@ -91,6 +86,5 @@ const typeDefs = gql`
 
 // export the typeDefs
 module.exports = typeDefs;
-
 
 //    user(_id: String!): User

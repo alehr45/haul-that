@@ -29,7 +29,11 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    
+    taken:{
+      type: Boolean,
+      default: false
+    },
+
     pickup: addressSchema,
 
     dropoff: addressSchema,

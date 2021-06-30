@@ -3,11 +3,11 @@ import { Col, Row, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-import CheckoutForm from "./CheckoutForm/CheckoutForm.js"
+// import { loadStripe } from "@stripe/stripe-js";
+// import { Elements } from "@stripe/react-stripe-js";
+// import CheckoutForm from "./CheckoutForm/CheckoutForm.js"
 
-const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
+// const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Signup = () => {
 
@@ -156,10 +156,10 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </div> */}
-
+{/* 
             <Elements stripe={promise}>
                 <CheckoutForm />
-              </Elements>
+              </Elements> */}
 
             <button
               type="submit"

@@ -6,6 +6,8 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS } from "../utils/queries";
 import { PICKUP_JOB, UPDATE_JOB } from "../utils/mutation";
 import moment from "moment";
+import emailjs from 'emailjs-com';
+
 
 
 
@@ -14,13 +16,27 @@ const { loading, data: jobsData } = useQuery(GET_JOBS)
 const [pickupJob] = useMutation(PICKUP_JOB)
 const [updateJob] = useMutation(UPDATE_JOB)
 
+
+
   var jobs = [];
   if (!loading) {
     jobs = [jobsData.jobs];
-    console.log(jobs[0])
+    console.log(jobs)
   }
 
-  const handlePickup = async (id, jobDistance, jobCategory, jobId) => {
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_ory4y4b', 'template_teraw94', e.target, 'user_fx2BWVE7GJsAq31R9AHJa')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  }
+
+
+const handlePickup = async (id, jobDistance, jobCategory, jobId) => {
     console.log(typeof distance)
     await pickupJob({
       variables: { _id: id, distance: jobDistance, category: jobCategory, id: jobId },
@@ -28,9 +44,14 @@ const [updateJob] = useMutation(UPDATE_JOB)
     await updateJob({
       variables: {_id: id}
     })
-
+    
     window.location.assign("/profile");
+   sendEmail();
   }
+
+
+ 
+
   const handleCardRender = () => {
     var cards = [];
    
@@ -62,11 +83,14 @@ const [updateJob] = useMutation(UPDATE_JOB)
                 Price: ${parseInt(job.distance * 1.2)}
               </ListGroupItem>
             </ListGroup>
-            {job.taken ? (
-                <Button variant="danger">Pending</Button> )
+
+            <Card.Body>
+              {job.taken ? (
+                <Button variant="secondary" disabled>Pending</Button>)
                 :
                 (<Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category, job.id)} >Accept Job</Button>)
               }
+            </Card.Body>
           </Card>
         );
       });

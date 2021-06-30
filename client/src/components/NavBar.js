@@ -1,7 +1,5 @@
 import React from "react";
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import { GET_JOBS } from '../utils/queries';
-import { useQuery } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 import { GET_JOBS } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
@@ -9,16 +7,14 @@ import { useQuery } from "@apollo/react-hooks";
 const NavBar = () => {
   const { loading, data: jobsData } = useQuery(GET_JOBS);
   var jobs = [];
+  var nonTakenJobs = [];
   if (!loading) {
     jobs = jobsData.jobs;
-  }
-
-  const { loading, data: jobsData } = useQuery(GET_JOBS)
-
-  var jobs = [];
-  if (!loading) {
-    jobs = jobsData.jobs;
-    
+    for (let i = 0; i < jobs.length; i++) {
+      if (jobs[i].taken === false) {
+        nonTakenJobs.push(i);
+      }
+    }
   }
 
 const logout = (event) => {
@@ -35,30 +31,18 @@ const logout = (event) => {
           <Nav className="mr-auto">
             {Auth.loggedIn() ? (
               <React.Fragment>
+                
                 <Nav.Link className="nav1" href="/">Home</Nav.Link>
                 <Nav.Link className="nav1" href="/bookingA">Booking</Nav.Link>
                 <Nav.Link className="nav1" href="/jobs">Jobs</Nav.Link>
                 <div>
-                <Badge style={{paddingLeft: '0px'}} className="badge" pill variant="primary">{jobs.length}</Badge>
+                <Badge style={{paddingLeft: '0px'}} className="badge" pill variant="primary">{nonTakenJobs.length}</Badge>
                 </div>
                 <Nav.Link className="nav1" href="/profile">My Profile</Nav.Link>
                 <Nav.Link onClick={logout}>
                   Logout
                 </Nav.Link>
-                <div>
-                  <Badge
-                    style={{ paddingLeft: "0px" }}
-                    className="badge"
-                    pill
-                    variant="primary"
-                  >
-                    {jobs.length}
-                  </Badge>
-                </div>
-                <Nav.Link className="nav1" href="/profile">
-                  My Profile
-                </Nav.Link>
-                <Nav.Link onClick={logout}>Logout</Nav.Link>
+              
               </React.Fragment>
             ) : (
               <React.Fragment>
@@ -68,7 +52,7 @@ const logout = (event) => {
             )}
           </Nav>
         </Navbar.Collapse>
-        <div></div>
+        
       </Container>
     </Navbar>
     
