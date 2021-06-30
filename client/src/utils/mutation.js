@@ -19,8 +19,6 @@ export const ADD_USER = gql`
     $phone: String!
     $username: String!
     $password: String!
-    $driver: String
-    $customer: String
   ) {
     addUser(
       firstName: $firstName
@@ -29,8 +27,6 @@ export const ADD_USER = gql`
       phone: $phone
       username: $username
       password: $password
-      driver: $driver
-      customer: $customer
     ) {
       token
       user {

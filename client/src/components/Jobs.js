@@ -10,9 +10,9 @@ import moment from "moment";
 
 
 const Jobs = () => {
-const { loading, data: jobsData } = useQuery(GET_JOBS)
-const [pickupJob] = useMutation(PICKUP_JOB)
-const [updateJob] = useMutation(UPDATE_JOB)
+  const { loading, data: jobsData } = useQuery(GET_JOBS)
+  const [pickupJob] = useMutation(PICKUP_JOB)
+  const [updateJob] = useMutation(UPDATE_JOB)
 
   var jobs = [];
   if (!loading) {

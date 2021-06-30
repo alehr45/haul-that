@@ -103,13 +103,8 @@ const BookingA = () => {
         variables: { ...job },
       });
 
-<<<<<<< HEAD
-      window.location.assign("/BookingB");
-=======
       window.location.assign("/jobs");
       return <Jobs distance={distance}></Jobs>
-      return 
->>>>>>> 6d8faed77606dffade9df6480d17f2211bcc407e
     } catch (e) {
       console.error(e);
     }
@@ -118,7 +113,7 @@ const BookingA = () => {
   return (
     <Container className="bookingForm">
       <Row class="booking">
-        <Col xs={3} md={4} />
+        <Col xs={1} md={4} />
         <Col xs={6} md={4}>
           <Form>
             <Form.Group controlId="dob">

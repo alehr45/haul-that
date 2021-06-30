@@ -157,9 +157,9 @@ const Signup = () => {
               />
             </div> */}
 
-            <Elements stripe={promise}>
+            {/* <Elements stripe={promise}>
                 <CheckoutForm />
-              </Elements>
+              </Elements> */}
 
             <button
               type="submit"
