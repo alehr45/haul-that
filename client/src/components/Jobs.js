@@ -6,64 +6,55 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS } from "../utils/queries";
 import { PICKUP_JOB, UPDATE_JOB } from "../utils/mutation";
 import moment from "moment";
-import emailjs from 'emailjs-com';
-
-
-
+import emailjs from "emailjs-com";
 
 const Jobs = () => {
-const { loading, data: jobsData } = useQuery(GET_JOBS)
-const [pickupJob] = useMutation(PICKUP_JOB)
-const [updateJob] = useMutation(UPDATE_JOB)
-
-
+  const { loading, data: jobsData } = useQuery(GET_JOBS);
+  const [pickupJob] = useMutation(PICKUP_JOB);
+  const [updateJob] = useMutation(UPDATE_JOB);
 
   var jobs = [];
   if (!loading) {
     jobs = [jobsData.jobs];
-    console.log(jobs)
-  }
-
-  const sendEmail = (e) => {
-    e.preventDefault();
-
-    emailjs.sendForm('service_ory4y4b', 'template_teraw94', e.target, 'user_fx2BWVE7GJsAq31R9AHJa')
-      .then((result) => {
-          console.log(result.text);
-      }, (error) => {
-          console.log(error.text);
-      });
+    console.log(jobs);
   }
 
 
-const handlePickup = async (id, jobDistance, jobCategory, jobId) => {
-    console.log(typeof distance)
-    await pickupJob({
-      variables: { _id: id, distance: jobDistance, category: jobCategory, id: jobId },
-    })
-    await updateJob({
-      variables: {_id: id}
-    })
-<<<<<<< HEAD
+
+  const handlePickup = async (id, jobDistance, jobCategory, jobId , email, name) => {
     
-=======
->>>>>>> b1241488fde9263e1f137004e81278f23aa2119c
+let userInfo = {name: name, email: email}
+console.log(userInfo)
+    await pickupJob({
+      variables: {
+        _id: id,
+        distance: jobDistance,
+        category: jobCategory,
+        id: jobId,
+
+      },
+    });
+    await updateJob({
+      variables: { _id: id },
+    });
+
+    
+
+    await emailjs.send("service_rvgpaz5","contact_form",userInfo,"user_ZAvEHL9UX2xiYewnTTWEa")
+
     window.location.assign("/profile");
-   sendEmail();
-  }
 
-
- 
+  };
 
   const handleCardRender = () => {
     var cards = [];
-   
+
     // console.log(jobs[0]);
     if (loading) {
       return <div>Loading...</div>;
     }
 
-    console.log(loading)
+   
 
     if (!loading) {
       cards = jobs[0].map((job) => {
@@ -89,10 +80,19 @@ const handlePickup = async (id, jobDistance, jobCategory, jobId) => {
 
             <Card.Body>
               {job.taken ? (
-                <Button variant="secondary" disabled>Pending</Button>)
-                :
-                (<Button variant="danger" onClick={() => handlePickup(job._id, job.distance, job.category, job.id)} >Accept Job</Button>)
-              }
+                <Button variant="secondary" disabled>
+                  Pending
+                </Button>
+              ) : (
+                <Button
+                  variant="danger"
+                  onClick={() =>
+                    handlePickup(job._id, job.distance, job.category, job.id, job.email, job.name)
+                  }
+                >
+                  Accept Job
+                </Button>
+              )}
             </Card.Body>
           </Card>
         );

@@ -48,6 +48,8 @@ export const GET_JOBS = gql`
       distance
       taken
       createdAt
+      email
+      name
       pickup {
         address
         address2
