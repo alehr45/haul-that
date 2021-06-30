@@ -19,7 +19,10 @@ export const ADD_USER = gql`
     $phone: String!
     $username: String!
     $password: String!
+<<<<<<< HEAD
     
+=======
+>>>>>>> b1241488fde9263e1f137004e81278f23aa2119c
   ) {
     addUser(
       firstName: $firstName
@@ -28,7 +31,10 @@ export const ADD_USER = gql`
       phone: $phone
       username: $username
       password: $password
+<<<<<<< HEAD
       
+=======
+>>>>>>> b1241488fde9263e1f137004e81278f23aa2119c
     ) {
       token
       user {
@@ -44,6 +50,8 @@ export const ADD_JOB = gql`
     $category: String!
     $description: String!
     $distance: String!
+    $phone: String!
+    $email: String!
     $pickup: addressInput!
     $dropoff: addressInput!
   ) {
@@ -52,6 +60,8 @@ export const ADD_JOB = gql`
       category: $category
       description: $description
       distance: $distance
+      phone: $phone
+      email: $email
       pickup: $pickup
       dropoff: $dropoff
     ) {

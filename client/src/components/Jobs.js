@@ -44,7 +44,10 @@ const handlePickup = async (id, jobDistance, jobCategory, jobId) => {
     await updateJob({
       variables: {_id: id}
     })
+<<<<<<< HEAD
     
+=======
+>>>>>>> b1241488fde9263e1f137004e81278f23aa2119c
     window.location.assign("/profile");
    sendEmail();
   }
