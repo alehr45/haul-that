@@ -36,6 +36,9 @@ const jobSchema = new Schema(
     phone: {
       type: String
     },
+    email: {
+      type: String
+    },
     pickup: addressSchema,
 
     dropoff: addressSchema,

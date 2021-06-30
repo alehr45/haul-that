@@ -9,9 +9,11 @@ const BookingA = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
 
   var phone = ""
+  var email = ""
 
   if(!loading){
     phone = data.me.phone
+    email = data.me.email
   }
 
   const [formState, setFormState] = useState({
@@ -86,6 +88,7 @@ const BookingA = () => {
       description: formState.description,
       distance: distance.toString(),
       phone: phone,
+      email: email,
       pickup: {
         address: formState.addressP,
         address2: formState.addressP2,
