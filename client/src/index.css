@@ -181,7 +181,8 @@ code {
 
 .jobForm {
   display: flex;
-  padding-top: 20px;
+  
+  padding: 10px;
   justify-content: center;
 }
 

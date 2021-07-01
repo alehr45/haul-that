@@ -66,7 +66,7 @@ const Jobs = () => {
       cards = jobs[0].map((job) => {
         // console.log(job);
         return (
-          <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
+          <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
             <Card.Body>
               <Card.Title>Job # {job.id}</Card.Title>
             </Card.Body>
