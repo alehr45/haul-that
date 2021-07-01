@@ -38,7 +38,7 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(formState)
+    await emailjs.send("service_hsdqjea","sign_up",formState,"user_VX87bNMDuxlz9E5XfnclG")
 
     // use try/catch instead of promises to handle errors
     try {
