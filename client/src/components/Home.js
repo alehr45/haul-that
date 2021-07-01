@@ -24,7 +24,11 @@ function Home() {
           sign-up
         </Button>{" "} */}
       </div>
+      <div>
+      <h1 className="footer">&copy; 2021 Haul-That, Rights Reserved</h1>
+      </div>
     </div>
+  
   );
 }
 

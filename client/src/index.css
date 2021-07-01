@@ -261,6 +261,7 @@ body {
 .names {
   font-family: "ubunto";
   font-size: 12px;
+  font-weight: 300;
 }
 
 body,
@@ -345,4 +346,10 @@ html,
 
 .btn.btn-btn.btn-success {
   margin-top: 30px;
+}
+
+.footer{
+  padding-top: 20px;
+  font-size: 10px;
+  font-family: "ubunto";
 }
