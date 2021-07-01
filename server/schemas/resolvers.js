@@ -100,6 +100,21 @@ const resolvers = {
 
       return updatedJob;
     },
+    deleteJob: async (parent, { _id }) => {
+      await Job.findOneAndDelete(
+        { _id }
+      );
+    },
+    updateUser: async (parent, { jobId, userId }) => {
+      const updatedUser = User.findOneAndUpdate(
+        { userId },
+        console.log(jobs)
+        /// jobs minus jobId (jobs.filter)
+        // {jobs = jobs.filter( _id !== jobId )},
+      )
+
+      return updatedUser;
+    }
   },
 };
 

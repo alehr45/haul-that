@@ -87,6 +87,8 @@ const typeDefs = gql`
     ): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
     updateJob(_id: ID!): Job
+    deleteJob(_id: ID!): Job
+    updateUser(userId: ID!, jobId: ID!): User
   }
 `;
 
