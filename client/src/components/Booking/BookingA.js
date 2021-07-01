@@ -130,7 +130,7 @@ if(!loading){
 
     <Container className="bookingForm">
       <Row class="booking">
-        <Col xs={1} md={4} />
+        <Col xs={3} md={4} />
         <Col xs={6} md={4}>
           <Form>
             <Form.Group controlId="dob">

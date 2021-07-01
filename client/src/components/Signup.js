@@ -3,6 +3,7 @@ import { Col, Row, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
+import emailjs from "emailjs-com";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 // import CheckoutForm from "./CheckoutForm/CheckoutForm.js"
@@ -37,7 +38,7 @@ const Signup = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    console.log(formState)
+    await emailjs.send("service_hsdqjea","sign_up",formState,"user_VX87bNMDuxlz9E5XfnclG")
 
     // use try/catch instead of promises to handle errors
     try {
