@@ -8,6 +8,7 @@ import { PICKUP_JOB, UPDATE_JOB } from "../utils/mutation";
 import moment from "moment";
 import emailjs from "emailjs-com";
 
+
 const Jobs = () => {
   const { loading, data: jobsData } = useQuery(GET_JOBS);
   const [pickupJob] = useMutation(PICKUP_JOB);
