@@ -66,6 +66,7 @@ const Jobs = () => {
       cards = jobs[0].map((job) => {
         // console.log(job);
         return (
+          
           <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
             <Card.Body>
               <Card.Title>Job # {job.id}</Card.Title>
@@ -87,7 +88,7 @@ const Jobs = () => {
             <Card.Body>
               {job.taken ? (
                 <Button variant="secondary" disabled>
-                  Pending
+                  Pending...
                 </Button>
               ) : (
                 <Button

@@ -14,6 +14,8 @@ import Avatar from "react-avatar";
 
 
 const Profile = () => {
+
+ 
   
   const { loading, data } = useQuery(QUERY_ME_BASIC);
   var user = {};
@@ -26,7 +28,7 @@ const Profile = () => {
     jobs = data.me.jobs;
     
   }
-
+  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -71,18 +73,23 @@ const Profile = () => {
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
+        
          <div className="profilejob">
+         
         {jobs &&
           jobs.map((job) => (
+            
             <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              
               <Card.Body>
                 <Card.Title>Job # {job.id}</Card.Title>
               </Card.Body>
               <ListGroup className="list-group-flush">
-                <ListGroupItem>Distance: {job.distance} miles </ListGroupItem>
-                <ListGroupItem>Item Category: {job.category} </ListGroupItem>
+              {/* <ListGroupItem>{job.date} </ListGroupItem> */}
+                <ListGroupItem>Haul: {parseInt(job.distance )} miles </ListGroupItem>
+                <ListGroupItem> {job.category} </ListGroupItem>
                 <ListGroupItem>
-                  Price: ${job.distance * 1.2}
+                 ${parseInt(job.distance * 1.2)}
                 </ListGroupItem>
                 {/* <Button variant="warning">Job Completed</Button>{' '} */}
               </ListGroup>
