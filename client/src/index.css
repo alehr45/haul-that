@@ -18,30 +18,33 @@
   src: url("./fonts/Tunning-OxideBold.ttf");
 }
 
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-.badge.badge-light{
+.badge.badge-light {
   color: yellow;
 }
 
-.badge.badge.badge-pill.badge-primary{
+.badge.badge.badge-pill.badge-primary {
   color: yellow;
-  }
+}
 
-
+.accepted {
+  font-family: "ubunto";
+  color: rgba(40, 40, 40, 0.858);
+  padding-top: 20px;
+  font-weight: 1000;
+}
 
 .form-group {
   padding: 10px;
 }
 
-.logo{
+.logo {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
-
 
 .loginform {
   position: relative;
@@ -49,7 +52,7 @@ code {
   left: 20px;
 }
 
-.logo.rounded-circle{
+.logo.rounded-circle {
   display: flex;
   justify-content: center;
 }
@@ -60,11 +63,10 @@ code {
   left: 20px;
 }
 
-.btn.btn-dark.btn-lg.btn-block{
+.btn.btn-dark.btn-lg.btn-block {
   margin-top: 20px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
-
 
 .dropdown .dropbtn {
   font-size: 16px;
@@ -77,7 +79,6 @@ code {
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-
 /* .navbar a:hover,
 .dropdown:hover .dropbtn {
   
@@ -88,7 +89,6 @@ code {
   font-family: "tunning";
   font-size: 35px;
   color: rgba(250, 235, 215, 0.858);
-  
 }
 
 @media screen and (max-width: 575px) {
@@ -100,9 +100,12 @@ code {
   }
 }
 
-
 * {
   box-sizing: border-box;
+}
+
+.pickup1{
+  padding-top: 20px;
 }
 
 .navbar-light {
@@ -178,10 +181,9 @@ code {
   color: yellow;
 }
 
-
 .jobForm {
   display: flex;
-  
+
   padding: 10px;
   justify-content: center;
 }
@@ -197,49 +199,47 @@ code {
   justify-content: space-evenly;
 }
 
-.font1.btn.btn-danger{
+.font1.btn.btn-danger {
   font-family: "ubunto";
   font-size: 19px;
   color: rgba(250, 235, 215, 0.707);
 }
 
-.row1{
+.row1 {
   display: flex;
-justify-content: center;
+  justify-content: center;
 }
- 
+
 .profileForm {
   padding-top: 100px;
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
-  
 }
-.profilejob{
+.profilejob {
   padding: 20px;
-display: flex;
+  display: flex;
   justify-content: center;
 }
 
 .map-info {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-  monospace;
+    monospace;
 }
-
 
 .your-location {
   background-color: blue;
 }
 
-.badge1{
+.badge1 {
   position: fixed;
   top: 18px;
   font-weight: 100px;
-  }
+}
 
 body {
   width: 100%;
-  
+
   display: flex;
   font-weight: 400;
   font-family: sans-serif;
@@ -258,10 +258,9 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
-.names{
+.names {
   font-family: "ubunto";
-font-size: 12px;
-
+  font-size: 12px;
 }
 
 body,
@@ -274,7 +273,6 @@ html,
 }
 
 .bookingForm {
-  
   padding-top: 90px;
   padding-bottom: 20px;
 }
@@ -283,7 +281,7 @@ html,
   text-align: center;
 }
 
-.badge.badge-light{
+.badge.badge-light {
   color: yellow;
 }
 
@@ -292,7 +290,6 @@ html,
 }
 
 .form-control {
-  
   display: flex;
   justify-content: center;
 }
@@ -321,37 +318,30 @@ html,
   }
 }
 
-
-
-.logsign{
+.logsign {
   font-family: "ubunto";
   padding-top: 35px;
 }
 
-.home{
+.home {
   padding-top: 100px;
   font-family: "tunning";
   color: rgb(58, 58, 58);
   font-size: 65px;
-  
 }
 
-
-.subtitle{
- display: flex;
- justify-content: center;
+.subtitle {
+  display: flex;
+  justify-content: center;
   padding-bottom: 25px;
   font-family: "ubunto";
   font-size: 15px;
   color: rgb(63, 63, 63);
 }
 
-
-
-.badge.badge.badge-pill.badge-primary{
-color: yellow;
+.badge.badge.badge-pill.badge-primary {
+  color: yellow;
 }
-
 
 .btn.btn-btn.btn-success {
   margin-top: 30px;
