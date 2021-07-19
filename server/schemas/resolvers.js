@@ -99,6 +99,15 @@ const resolvers = {
 
       return updatedJob;
     },
+    completeJob: async (parent, { _id }) => {
+      const completedJob = await Job.findOneAndUpdate(
+        { _id },
+        { completed: true},
+        { new: true }
+      );
+
+      return completedJob;
+    },
     deleteJob: async (parent, { _id }) => {
       await Job.findOneAndDelete(
         { _id }

@@ -95,3 +95,12 @@ mutation deleteJob($_id: ID!){
   }
   }
 `
+
+export const COMPLETE_JOB = gql`
+mutation completeJob($_id: ID!){
+  completeJob(_id: $_id) {
+    _id
+	completed
+  }
+  }
+`

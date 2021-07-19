@@ -32,6 +32,7 @@ const typeDefs = gql`
     description: String!
     distance: String!
     taken: Boolean
+    completed: Boolean
     phone: String!
     name: String!
     email: String!
@@ -87,6 +88,7 @@ const typeDefs = gql`
     ): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
     updateJob(_id: ID!): Job
+    completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
     updateUser(userId: ID!, jobId: ID!): User
   }
