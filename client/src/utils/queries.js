@@ -47,6 +47,7 @@ export const GET_JOBS = gql`
       description
       distance
       taken
+      completed
       createdAt
       email
       name

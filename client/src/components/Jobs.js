@@ -16,12 +16,16 @@ const Jobs = () => {
   const [deleteJob] = useMutation(DELETE_JOB)
 
   var jobs = [];
+  var activeJobs = []
   var me = [];
   if (!loading) {
     jobs = [jobsData.jobs];
-    console.log(jobs);
+    for (let i = 0; i < jobs[0].length; i++) {
+      if (jobs[0][i].completed === false) {
+        activeJobs.push(jobs[0][i]);
+      }
+    }
   }
-
 
   if (!meLoading) {
     me = [meData.me];
@@ -89,9 +93,8 @@ const Jobs = () => {
 
     if (!loading && !meLoading) {
 
-      cards = jobs[0].map((job) => {
-        console.log(me[0].email);
-        console.log(job.email);
+      console.log(activeJobs)
+      cards = activeJobs.map((job) => {
         return (
           
           <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
@@ -145,7 +148,11 @@ const Jobs = () => {
                   Delete
                 </Button>
               ) : (
+<<<<<<< HEAD
                null
+=======
+                null
+>>>>>>> 2a05f4b395d96a1d89a362fe27d0db009eef605a
               )}
             </Card.Body>
           </Card>
