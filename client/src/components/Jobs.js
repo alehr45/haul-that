@@ -47,9 +47,6 @@ const Jobs = () => {
       meName: meData.me.firstName,
     };
 
-    console.log(meData.me.firstName)
-    let userInfo = { name: name, email: email, date: date, meName: meData.me.firstName};
-
     console.log(userInfo);
     await pickupJob({
       variables: {
@@ -148,7 +145,7 @@ const Jobs = () => {
                   Delete
                 </Button>
               ) : (
-                <Button></Button>
+                null
               )}
             </Card.Body>
           </Card>
