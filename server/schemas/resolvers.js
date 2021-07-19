@@ -18,7 +18,6 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id });
-        console.log(userData);
         return userData;
       }
 
@@ -106,16 +105,14 @@ const resolvers = {
       );
     },
     updateUser: async (parent, { jobId, userId }) => {
-      const updatedUser = User.findOneAndUpdate(
-        { userId },
-        console.log(jobs)
-        /// jobs minus jobId (jobs.filter)
-        // {jobs = jobs.filter( _id !== jobId )},
-      )
+      const updatedUser = User.findByIdAndUpdate(
+        {_id: userId},
+        {$pull: {jobs: {_id: jobId}}},
+        {new: true}
+      );
 
       return updatedUser;
-    }
-  },
-};
+  }}}
+
 
 module.exports = resolvers;

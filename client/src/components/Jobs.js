@@ -4,7 +4,7 @@ import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
-import { PICKUP_JOB, UPDATE_JOB } from "../utils/mutation";
+import { PICKUP_JOB, UPDATE_JOB, DELETE_JOB } from "../utils/mutation";
 import moment from "moment";
 import emailjs from "emailjs-com";
 
@@ -13,11 +13,17 @@ const Jobs = () => {
   const { loading: meLoading, data: meData } = useQuery(QUERY_ME_BASIC);
   const [pickupJob] = useMutation(PICKUP_JOB);
   const [updateJob] = useMutation(UPDATE_JOB);
+  const [deleteJob] = useMutation(DELETE_JOB)
 
   var jobs = [];
+  var me = [];
   if (!loading) {
     jobs = [jobsData.jobs];
     console.log(jobs);
+  }
+
+  if (!meLoading) {
+    me = [meData.me];
   }
 
   const handlePickup = async (
@@ -29,8 +35,13 @@ const Jobs = () => {
     name,
     date
   ) => {
-    console.log(meData.me.firstName)
-    let userInfo = { name: name, email: email, date: date, meName: meData.me.firstName};
+    console.log(meData.me.firstName);
+    let userInfo = {
+      name: name,
+      email: email,
+      date: date,
+      meName: meData.me.firstName,
+    };
     console.log(userInfo);
     await pickupJob({
       variables: {
@@ -54,6 +65,14 @@ const Jobs = () => {
     window.location.assign("/profile");
   };
 
+  const handleDelete = async (_id) => {
+    await deleteJob({
+      variables: {_id: _id }
+    })
+
+    window.location.reload()
+  }
+
   const handleCardRender = () => {
     var cards = [];
 
@@ -62,9 +81,10 @@ const Jobs = () => {
       return <div>Loading...</div>;
     }
 
-    if (!loading) {
+    if (!loading && !meLoading) {
       cards = jobs[0].map((job) => {
-        // console.log(job);
+        console.log(me[0].email);
+        console.log(job.email);
         return (
           <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
             <Card.Body>
@@ -91,7 +111,7 @@ const Jobs = () => {
                 </Button>
               ) : (
                 <Button
-                  variant="danger"
+                  variant="success"
                   onClick={() =>
                     handlePickup(
                       job._id,
@@ -106,6 +126,18 @@ const Jobs = () => {
                 >
                   Accept Job
                 </Button>
+              )}
+              {job.email === me[0].email ? (
+                <Button variant="danger"
+                onClick={() =>
+                  handleDelete(
+                    job._id
+                  )
+                }>
+                  Delete
+                </Button>
+              ) : (
+                <Button></Button>
               )}
             </Card.Body>
           </Card>
