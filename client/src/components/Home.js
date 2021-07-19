@@ -1,5 +1,5 @@
 import React from "react";
-import { Image} from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import image from "../images/homeimage.png";
 
 function Home() {
@@ -25,8 +25,16 @@ function Home() {
         </Button>{" "} */}
       </div>
       <div>
-      <h1 className="footer">&copy; 2021 Haul-That, Rights Reserved</h1>
+      <h1 className="footer"></h1>
       </div>
+      <div class="d-flex flex-column">
+  <footer class="footer">
+    <div>
+     <span>&copy; 2021 Haul-That, Rights Reserved</span>
+    </div>
+   
+  </footer>
+</div>
     </div>
   
   );
