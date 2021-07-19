@@ -22,9 +22,12 @@ const Jobs = () => {
     console.log(jobs);
   }
 
+
   if (!meLoading) {
     me = [meData.me];
   }
+
+
 
   const handlePickup = async (
     id,
@@ -35,6 +38,7 @@ const Jobs = () => {
     name,
     date
   ) => {
+
     console.log(meData.me.firstName);
     let userInfo = {
       name: name,
@@ -42,6 +46,10 @@ const Jobs = () => {
       date: date,
       meName: meData.me.firstName,
     };
+
+    console.log(meData.me.firstName)
+    let userInfo = { name: name, email: email, date: date, meName: meData.me.firstName};
+
     console.log(userInfo);
     await pickupJob({
       variables: {
@@ -81,12 +89,15 @@ const Jobs = () => {
       return <div>Loading...</div>;
     }
 
+
     if (!loading && !meLoading) {
+
       cards = jobs[0].map((job) => {
         console.log(me[0].email);
         console.log(job.email);
         return (
-          <Card className="cardbody" key={job._id} style={{ width: "17rem" }}>
+          
+          <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
             <Card.Body>
               <Card.Title>Job # {job.id}</Card.Title>
             </Card.Body>
@@ -107,7 +118,7 @@ const Jobs = () => {
             <Card.Body>
               {job.taken ? (
                 <Button variant="secondary" disabled>
-                  Pending
+                  Pending...
                 </Button>
               ) : (
                 <Button

@@ -130,8 +130,8 @@ if(!loading){
 
     <Container className="bookingForm">
       <Row class="booking">
-        <Col xs={1} md={4} />
-        <Col xs={6} md={4}>
+        <Col xs={2} md={4} />
+        <Col xs={8} md={4}>
           <Form>
             <Form.Group controlId="dob">
               <Form.Label>Select Date</Form.Label>
@@ -175,7 +175,7 @@ if(!loading){
             </Form.Group>
 
             {/* Starting Address */}
-            <h3>Pick-up Address</h3>
+            <h3 className="pickup1">Pick-up Address</h3>
             <Form.Group controlId="formGridAddress1">
               <Form.Label>Address</Form.Label>
               <Form.Control
@@ -372,7 +372,7 @@ if(!loading){
           
           
         </Col>
-        <Col xs={3} md={4} />
+       
       </Row>
 
     </Container>
