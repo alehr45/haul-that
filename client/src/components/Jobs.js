@@ -27,7 +27,6 @@ const Jobs = () => {
     }
   }
 
-
   if (!meLoading) {
     me = [meData.me];
   }
