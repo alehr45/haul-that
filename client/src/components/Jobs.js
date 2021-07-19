@@ -16,10 +16,15 @@ const Jobs = () => {
   const [deleteJob] = useMutation(DELETE_JOB)
 
   var jobs = [];
+  var activeJobs = []
   var me = [];
   if (!loading) {
     jobs = [jobsData.jobs];
-    console.log(jobs);
+    for (let i = 0; i < jobs[0].length; i++) {
+      if (jobs[0][i].completed === false) {
+        activeJobs.push(jobs[0][i]);
+      }
+    }
   }
 
 
@@ -46,9 +51,6 @@ const Jobs = () => {
       date: date,
       meName: meData.me.firstName,
     };
-
-    console.log(meData.me.firstName)
-    let userInfo = { name: name, email: email, date: date, meName: meData.me.firstName};
 
     console.log(userInfo);
     await pickupJob({
@@ -92,9 +94,8 @@ const Jobs = () => {
 
     if (!loading && !meLoading) {
 
-      cards = jobs[0].map((job) => {
-        console.log(me[0].email);
-        console.log(job.email);
+      console.log(activeJobs)
+      cards = activeJobs.map((job) => {
         return (
           
           <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
@@ -148,7 +149,7 @@ const Jobs = () => {
                   Delete
                 </Button>
               ) : (
-                <Button></Button>
+                null
               )}
             </Card.Body>
           </Card>
