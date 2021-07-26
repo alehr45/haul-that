@@ -32,6 +32,7 @@ const Profile = () => {
   const handleShow = () => setShow(true);
 
   const handleComplete = async (_id) => {
+    console.log(_id)
     await completeJob({
       variables: {
         _id: _id

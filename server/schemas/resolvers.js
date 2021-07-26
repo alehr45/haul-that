@@ -73,14 +73,20 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    pickupJob: async (parent, { _id, distance, category, id }, context) => {
+    pickupJob: async (
+      parent,
+      { driverEmail, _id, distance, category, id },
+      context
+    ) => {
+      console.log(driverEmail);
       if (context.user) {
         console.log(id);
+        await Job.findOneAndUpdate({ _id: _id }, { driverEmail: driverEmail });
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $push: {
-              jobs: { _id, distance, category, id },
+              jobs: { driverEmail, _id, distance, category, id },
             },
           },
           { new: true }
@@ -99,29 +105,42 @@ const resolvers = {
 
       return updatedJob;
     },
-    completeJob: async (parent, { _id }) => {
-      const completedJob = await Job.findOneAndUpdate(
+    updateJobDriver: async (parent, { _id, driverEmail }) => {
+      console.log(_id, driverEmail);
+      const updatedJob = await Job.findOneAndUpdate(
         { _id },
-        { completed: true},
+        { driverEmail: driverEmail},
         { new: true }
       );
+
+      return updatedJob;
+    },
+
+    completeJob: async (parent, { _id }) => {
+      console.log(_id);
+      const completedJob = await Job.findOneAndUpdate(
+        { _id },
+        { completed: true },
+        { new: true }
+      );
+
+      console.log(completedJob);
 
       return completedJob;
     },
     deleteJob: async (parent, { _id }) => {
-      await Job.findOneAndDelete(
-        { _id }
-      );
+      await Job.findOneAndDelete({ _id });
     },
     updateUser: async (parent, { jobId, userId }) => {
       const updatedUser = User.findByIdAndUpdate(
-        {_id: userId},
-        {$pull: {jobs: {_id: jobId}}},
-        {new: true}
+        { _id: userId },
+        { $pull: { jobs: { _id: jobId } } },
+        { new: true }
       );
 
       return updatedUser;
-  }}}
-
+    },
+  },
+};
 
 module.exports = resolvers;
