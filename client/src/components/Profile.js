@@ -7,11 +7,13 @@ import {
   Row,
   Button,
   Modal,
+  Form,
 } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
+import PictureUploader from "./PictureUploader"
 
 const Profile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
@@ -69,8 +71,8 @@ const Profile = () => {
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>
             <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
+            <ListGroupItem>Lorem Ipsum</ListGroupItem>
+
             </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
@@ -103,14 +105,13 @@ const Profile = () => {
                     onClick={() => handleComplete(job._id)}
                   >
                     Job Completed
-                  </Button>{" "}
+                  </Button>
                 </ListGroup>
               </Card>
             ))}
         </div>
       </Row>
-
-      {/* <AcceptedJobs /> */}
+      {/* <PictureUploader></PictureUploader> */}
     </Container>
   );
 };

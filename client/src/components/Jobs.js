@@ -148,11 +148,7 @@ const Jobs = () => {
                   Delete
                 </Button>
               ) : (
-<<<<<<< HEAD
                null
-=======
-                null
->>>>>>> 2a05f4b395d96a1d89a362fe27d0db009eef605a
               )}
             </Card.Body>
           </Card>
