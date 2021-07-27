@@ -131,11 +131,11 @@ const resolvers = {
     deleteJob: async (parent, { _id }) => {
       await Job.findOneAndDelete({ _id });
     },
-    updateUser: async (parent, { jobId, userId }) => {
-      const updatedUser = User.findByIdAndUpdate(
-        { _id: userId },
-        { $pull: { jobs: { _id: jobId } } },
-        { new: true }
+    updateUser: async (parent, { _id, firstName, lastName, username, email, phone }) => {
+      const updatedUser = await User.findOneAndUpdate(
+        {_id: _id},
+        { firstName: firstName, lastName: lastName, username: username, email: email, phone: phone },
+        {new: true}
       );
 
       return updatedUser;

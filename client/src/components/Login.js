@@ -14,8 +14,6 @@ const Login = (props) => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
-    console.log(formState)
-
     setFormState({
       ...formState,
       [name]: value,

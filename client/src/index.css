@@ -216,6 +216,22 @@ code {
   justify-content: center;
   padding-bottom: 20px;
 }
+
+/* edit profile */
+.edit {
+  position: absolute;
+  margin-left: 80%;
+  height: 30px;
+  width: 30px;
+  font-size: 1px;
+  background-image: url("../src/images/pencil_icon.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0.7;
+}
+
 .profilejob {
   padding: 20px;
   display: flex;
@@ -346,6 +362,7 @@ html,
 
 .btn.btn-btn.btn-success {
   margin-top: 30px;
+<<<<<<< HEAD
 }
 
 .footer{
@@ -353,4 +370,6 @@ html,
   padding-top: 20px;
   font-size: 10px;
   font-family: "ubunto";
+=======
+>>>>>>> 60dc5269c77111e770c0ea6219278a889f4e6ec3
 }
