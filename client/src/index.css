@@ -216,6 +216,22 @@ code {
   justify-content: center;
   padding-bottom: 20px;
 }
+
+/* edit profile */
+.edit {
+  position: absolute;
+  margin-left: 80%;
+  height: 30px;
+  width: 30px;
+  font-size: 1px;
+  background-image: url("../src/images/pencil_icon.png");
+  background-size: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  opacity: 0.7;
+}
+
 .profilejob {
   padding: 20px;
   display: flex;
