@@ -125,3 +125,12 @@ export const UPDATE_USER = gql`
     }
   }
 `
+
+export const UPDATE_JOB_DRIVER = gql`
+  mutation updateJobDriver($_id: ID!, $driverEmail: String!) {
+    updateJobDriver(_id: $_id, driverEmail: $driverEmail) {
+      _id
+      driverEmail
+    }
+  }
+`;

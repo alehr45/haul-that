@@ -4,7 +4,7 @@ import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
-import { PICKUP_JOB, UPDATE_JOB, DELETE_JOB } from "../utils/mutation";
+import { PICKUP_JOB, UPDATE_JOB, DELETE_JOB, UPDATE_JOB_DRIVER } from "../utils/mutation";
 import moment from "moment";
 import emailjs from "emailjs-com";
 
@@ -14,6 +14,7 @@ const Jobs = () => {
   const [pickupJob] = useMutation(PICKUP_JOB);
   const [updateJob] = useMutation(UPDATE_JOB);
   const [deleteJob] = useMutation(DELETE_JOB)
+  const [updateJobDriver] = useMutation(UPDATE_JOB_DRIVER)
 
   var jobs = [];
   var activeJobs = []
@@ -29,6 +30,10 @@ const Jobs = () => {
 
   if (!meLoading) {
     me = [meData.me];
+
+    var meEmail = me[0].email
+
+    console.log(me[0].email)
   }
 
 
@@ -43,17 +48,18 @@ const Jobs = () => {
     date
   ) => {
 
-    console.log(meData.me.firstName);
+    console.log(meEmail);
     let userInfo = {
       name: name,
       email: email,
       date: date,
-      meName: meData.me.firstName,
+      meName: meEmail,
     };
 
     console.log(userInfo);
     await pickupJob({
       variables: {
+        driverEmail: meEmail,
         _id: id,
         distance: jobDistance,
         category: jobCategory,
@@ -63,7 +69,9 @@ const Jobs = () => {
     await updateJob({
       variables: { _id: id },
     });
-
+    await updateJobDriver({
+      variables: {_id: id, driverEmail: meEmail},
+    });
     await emailjs.send(
       "service_rvgpaz5",
       "accept_job",
