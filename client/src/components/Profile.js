@@ -7,9 +7,14 @@ import {
   Row,
   Button,
   Modal,
+  ModalBody,
 } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
+import { ADD_USER } from "../utils/mutation";
+import { UPDATE_USER } from "../utils/mutation";
+import Auth from "../utils/auth";
+import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
 
@@ -39,17 +44,106 @@ const Profile = () => {
     })
   };
 
+  const [formState, setFormState] = useState({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    username: user.username,
+    email: user.email,
+    phone: user.phone
+  });
+
+  const [updateUser] = useMutation(UPDATE_USER);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+  
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+    console.log(formState.firstName)
+  };
+
+  //   submit form (notice the async!)
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+
+    // await emailjs.send("service_hsdqjea","sign_up",formState,"user_VX87bNMDuxlz9E5XfnclG")
+
+    // use try/catch instead of promises to handle errors
+    await updateUser({
+        variables: { ...formState, _id: user._id },
+      });
+
+      window.location.assign("/profile");
+  };
+
   return (
     <Container className="profileForm">
       <Row className="row1">
         <Card style={{ width: "18rem" }}>
-          <Avatar size={262} name={user.username} />
 
-          <Button variant="primary" onClick={handleShow}>
-            Add Profile Pic
+          {/* button to open editing modal */}
+          <Button variant="primary" className="edit" onClick={handleShow}>
           </Button>
 
+          {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Edit Profile</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <form className="editform">
+              
+              <div className="form-group">
+                <label>First name</label>
+                <input type="text" className="form-control" value={formState.firstName} name="firstName" onChange={handleChange} />
+              </div>
+
+              <div className="form-group">
+                <label>Last name</label>
+                <input type="text" className="form-control" value={formState.lastName} name="lastName" onChange={handleChange} />
+              </div>
+
+              <div className="form-group">
+                <label>Username</label>
+                <input type="text" className="form-control" value={formState.username} name="username" onChange={handleChange} />
+              </div>
+
+              <div className="form-group">
+                <label>Phone Number</label>
+                <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" value={formState.phone} name="phone" onChange={handleChange} />
+              </div>
+
+              <div className="form-group">
+                <label>Email</label>
+                <input type="email" className="form-control" value={formState.email} name="email" onChange={handleChange} />
+              </div>
+
+              {/* <div className="form-group">
+                <label>Password</label>
+                <input type="password" className="form-control" placeholder="password" name="password" onChange={handleChange} />
+              </div> */}
+
+              <div className="form-group about">
+                <label>About Me</label>
+                <input type="text" className="form-control aboutInput" name="about" onChange={handleChange} />
+              </div>
+              <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">
+                Save
+              </button>
+            </form>
+            </Modal.Body>
+          </Modal>
+          {/* edit profile end */}
+
+          <Avatar size={262} name={user.username} />
+
+          
+
+          {/* <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Cant import picture</Modal.Title>
             </Modal.Header>
@@ -64,7 +158,7 @@ const Profile = () => {
                 Save Changes
               </Button>
             </Modal.Footer>
-          </Modal>
+          </Modal> */}
           {/* <img src={ Pic1 }></img> */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>
@@ -102,7 +196,7 @@ const Profile = () => {
                     variant="warning"
                     onClick={() => handleComplete(job._id)}
                   >
-                    Job Completed
+                    Complete Job
                   </Button>{" "}
                 </ListGroup>
               </Card>

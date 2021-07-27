@@ -113,15 +113,20 @@ const resolvers = {
         { _id }
       );
     },
-    updateUser: async (parent, { jobId, userId }) => {
-      const updatedUser = User.findByIdAndUpdate(
-        {_id: userId},
-        {$pull: {jobs: {_id: jobId}}},
+    updateUser: async (parent, { _id, firstName, lastName, username, email, phone }) => {
+      const updatedUser = await User.findOneAndUpdate(
+        {_id: _id},
+        { firstName: firstName, lastName: lastName, username: username, email: email, phone: phone },
         {new: true}
       );
 
       return updatedUser;
-  }}}
+    },
+    // editUser: async (parent, args) => {
+    //   User.findOneAndUpdate({ firstName: args.firstName }, { lastName: args.lastName }, { username: args.username }, { email: args.email }, { phone: args.phone }, { password: args.password }, { new: true })
+    // }
+  }
+};
 
 
 module.exports = resolvers;

@@ -90,7 +90,14 @@ const typeDefs = gql`
     updateJob(_id: ID!): Job
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
-    updateUser(userId: ID!, jobId: ID!): User
+    updateUser(
+      _id: ID!
+      firstName: String
+      lastName: String
+      username: String
+      email: String
+      phone: String
+    ): User
   }
 `;
 
