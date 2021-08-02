@@ -157,7 +157,7 @@ const Jobs = () => {
                   Delete
                 </Button>
               ) : (
-                null
+               null
               )}
             </Card.Body>
           </Card>

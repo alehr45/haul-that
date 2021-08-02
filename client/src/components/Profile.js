@@ -14,19 +14,17 @@ import { UPDATE_USER } from "../utils/mutation";
 import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
-
 const Profile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
-
+  
   var user = {};
   var jobs = [];
   var completedJobs = [];
   var incompleteJobs = [];
-
   if (!userLoading) {
-    console.log(jobsData)
+    console.log(jobsData);
     user = data.me;
   }
 
@@ -54,6 +52,7 @@ if(jobs){
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
   const handleComplete = async (_id) => {
     console.log(_id);
     await completeJob({
@@ -61,8 +60,8 @@ if(jobs){
         _id: _id
       }
     });
+    window.location.assign("/profile");
   };
-
   const [formState, setFormState] = useState({
     firstName: user.firstName,
     lastName: user.lastName,
@@ -76,7 +75,6 @@ if(jobs){
   
 
   const [updateUser] = useMutation(UPDATE_USER);
-
   // update state based on form input changes
   const handleChange = (event) => {
     if (event.target.name == firstName && event.target.value == undefined || "") {
@@ -115,6 +113,7 @@ if(jobs){
       window.location.assign("/profile");
   };
 
+
   return (
     <Container className="profileForm">
       <Row className="row1">
@@ -130,79 +129,83 @@ if(jobs){
               <Modal.Title>Edit Profile</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-            <form className="editform">
-              
-              <div className="form-group">
-                <label>First name</label>
-                <input type="text" className="form-control" placeholder={user.firstName} defaultValue={firstName} name="firstName" onBlur={handleChange} />
-              </div>
-              {errorMessage && (
-                <div>
-                  <p className="error-text">{errorMessage}</p>
+              <form className="editform">
+                <div className="form-group">
+                  <label>First name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder={user.firstName}
+                    name="firstName"
+                    onChange={handleChange}
+                  />
                 </div>
-              )}
-
-              <div className="form-group">
-                <label>Last name</label>
-                <input type="text" className="form-control" placeholder={user.lastName} defaultValue={lastName} name="lastName" onBlur={handleChange} />
-              </div>
-              {errorMessage && (
-                <div>
-                  <p className="error-text">{errorMessage}</p>
+                <div className="form-group">
+                  <label>Last name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder={user.lastName}
+                    name="lastName"
+                    onChange={handleChange}
+                  />
                 </div>
-              )}
-
-              <div className="form-group">
-                <label>Username</label>
-                <input type="text" className="form-control" placeholder={user.username} defaultValue={username} name="username" onBlur={handleChange} />
-              </div>
-              {errorMessage && (
-                <div>
-                  <p className="error-text">{errorMessage}</p>
+                <div className="form-group">
+                  <label>Username</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder={user.username}
+                    name="username"
+                    onChange={handleChange}
+                  />
                 </div>
-              )}
-
-              <div className="form-group">
-                <label>Phone Number</label>
-                <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" placeholder={user.phone} defaultValue={phone} name="phone" onBlur={handleChange} />
-              </div>
-              {errorMessage && (
-                <div>
-                  <p className="error-text">{errorMessage}</p>
+                <div className="form-group">
+                  <label>Phone Number</label>
+                  <input
+                    type="tel"
+                    pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
+                    className="form-control"
+                    placeholder={user.phone}
+                    name="phone"
+                    onChange={handleChange}
+                  />
                 </div>
-              )}
-
-              <div className="form-group">
-                <label>Email</label>
-                <input type="email" className="form-control" placeholder={user.email} defaultValue={email} name="email" onBlur={handleChange} />
-              </div>
-              {errorMessage && (
-                <div>
-                  <p className="error-text">{errorMessage}</p>
+                <div className="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder={user.email}
+                    name="email"
+                    onChange={handleChange}
+                  />
                 </div>
-              )}
-
-              {/* <div className="form-group">
+                {/* <div className="form-group">
                 <label>Password</label>
                 <input type="password" className="form-control" placeholder="password" name="password" onChange={handleChange} />
               </div> */}
-
-              <div className="form-group about">
-                <label>About Me</label>
-                <textarea className="form-control aboutInput" name="about" rows="5" onChange={handleChange} />
-              </div>
-              <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">
-                Save
-              </button>
-            </form>
+                <div className="form-group about">
+                  <label>About Me</label>
+                  <input
+                    type="text"
+                    className="form-control aboutInput"
+                    name="about"
+                    onChange={handleChange}
+                  />
+                </div>
+                <button
+                  type="submit"
+                  onClick={handleFormSubmit}
+                  className="btn btn-dark btn-lg btn-block"
+                >
+                  Save
+                </button>
+              </form>
             </Modal.Body>
           </Modal>
           {/* edit profile end */}
-
           <Avatar size={262} name={user.username} />
-
-          
-
           {/* <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
               <Modal.Title>Cant import picture</Modal.Title>
@@ -262,11 +265,31 @@ if(jobs){
               </Card>
             ))}
         </div>
+        <h1> Completed Jobs</h1>
+        <div className="profilejob">
+          {completedJobs &&
+            completedJobs.map((job) => (
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
+                <Card.Body>
+                  <Card.Title>Job # {job.id}</Card.Title>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
+                  <ListGroupItem>
+                    Haul: {parseInt(job.distance)} miles{" "}
+                  </ListGroupItem>
+                  <ListGroupItem> {job.category} </ListGroupItem>
+                  <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
+                </ListGroup>
+              </Card>
+            ))}
+        </div>
       </Row>
-
-      {/* <AcceptedJobs /> */}
     </Container>
   );
 };
-
 export default Profile;
