@@ -21,6 +21,7 @@ const Jobs = () => {
   var me = [];
   if (!loading) {
     jobs = [jobsData.jobs];
+    console.log(jobs)
     for (let i = 0; i < jobs[0].length; i++) {
       if (jobs[0][i].completed === false) {
         activeJobs.push(jobs[0][i]);

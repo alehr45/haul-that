@@ -21,6 +21,7 @@ const Profile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
+  
   var user = {};
   var jobs = [];
   var completedJobs = [];
