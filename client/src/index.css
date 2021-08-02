@@ -104,7 +104,7 @@ code {
   box-sizing: border-box;
 }
 
-.pickup1{
+.pickup1 {
   padding-top: 20px;
 }
 
@@ -215,6 +215,10 @@ code {
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
+}
+
+.profile2Form {
+  padding-top: 100px;
 }
 
 /* edit profile */
@@ -371,9 +375,22 @@ html,
   margin-top: 30px;
 }
 
-.footer{
-
+.footer {
   padding-top: 20px;
   font-size: 10px;
+  font-family: "ubunto";
+}
+
+.active {
+  font-weight: 700;
+  padding-top: 20px;
+  font-size: 20px;
+  font-family: "ubunto";
+}
+
+.completed {
+  font-weight: 700;
+  padding-top: 20px;
+  font-size: 20px;
   font-family: "ubunto";
 }
