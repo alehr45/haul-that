@@ -32,10 +32,6 @@ export const QUERY_ME_BASIC = gql`
         _id
         distance
         category
-<<<<<<< HEAD
-       
-=======
->>>>>>> 1710bea01c387be88160396dac9c497ce911a139
       }
     }
   }
