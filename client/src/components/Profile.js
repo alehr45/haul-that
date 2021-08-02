@@ -8,7 +8,7 @@ import {
   Button,
   Modal,
 } from "react-bootstrap";
-import { QUERY_ME_BASIC } from "../utils/queries";
+import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
 import { UPDATE_USER } from "../utils/mutation";
 import emailjs from "emailjs-com";
@@ -17,16 +17,37 @@ import Avatar from "react-avatar";
 
 const Profile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
-  const { loading, data } = useQuery(QUERY_ME_BASIC);
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+  const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
 
   var user = {};
   var jobs = [];
-  if (!loading && !data.me.jobs.length) {
+  var completedJobs = [];
+  var incompleteJobs = [];
+
+  if (!userLoading) {
+    console.log(jobsData)
     user = data.me;
   }
-  if (!loading && data.me.jobs.length) {
-    user = data.me;
-    jobs = data.me.jobs;
+
+if(!jobsLoading){
+  jobs = jobsData.jobs
+}
+
+if(jobs){
+  console.log(jobs)
+
+  for (let i = 0; i < jobs.length; i++) {
+    if (jobs[i].completed === false && jobs[i].driverEmail === user.email) {
+      incompleteJobs.push(jobs[i]);
+    }
+  }
+
+  for (let i = 0; i < jobs.length; i++) {
+    if (jobs[i].completed === true && jobs[i].driverEmail === user.email) {
+      completedJobs.push(jobs[i]);
+    }
+  }
   }
 
   const [show, setShow] = useState(false);
@@ -34,12 +55,12 @@ const Profile = () => {
   const handleShow = () => setShow(true);
 
   const handleComplete = async (_id) => {
-    console.log(_id)
+    console.log(_id);
     await completeJob({
       variables: {
         _id: _id
       }
-    })
+    });
   };
 
   const [formState, setFormState] = useState({
@@ -58,7 +79,7 @@ const Profile = () => {
 
   // update state based on form input changes
   const handleChange = (event) => {
-    if (event.target.name == {firstName} && event.target.value == undefined || "") {
+    if (event.target.name == firstName && event.target.value == undefined || "") {
       event.target.value = "John"
     } else {
     // if (event.target.value == "") {
