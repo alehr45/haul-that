@@ -40,6 +40,7 @@ const Profile = () => {
       }
     }
   }
+  
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -52,7 +53,7 @@ const Profile = () => {
         _id: _id,
       },
     });
-    // window.location.assign("/profile");
+    window.location.assign("/profile");
   };
   const [formState, setFormState] = useState({
     firstName: user.firstName,
