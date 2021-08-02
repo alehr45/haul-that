@@ -41,7 +41,7 @@ export default class PictureUploader extends React.Component {
     formData.append("file", this.state.picture);
 
     $.ajax({
-      url: "https://api.imgur.com/3/image",
+      url: "/some/api/endpoint",
       method: "POST",
       data: formData,
       cache: false,
