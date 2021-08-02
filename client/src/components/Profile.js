@@ -33,14 +33,19 @@ const Profile = () => {
   if (!jobsLoading) {
     jobs = jobsData.jobs;
   }
-  if (jobs) {
-    console.log(jobs);
+  if(jobs){
+    console.log(jobs)
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === false) {
+      if (jobs[i].completed === false && jobs[i].driverEmail === user.email) {
         incompleteJobs.push(jobs[i]);
       }
     }
-  }
+    for (let i = 0; i < jobs.length; i++) {
+      if (jobs[i].completed === true && jobs[i].driverEmail === user.email) {
+        completedJobs.push(jobs[i]);
+      }
+    }
+  };
   
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -213,7 +218,7 @@ const Profile = () => {
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
-        <h1> Active Jobs</h1>
+        <h1 className="active">--Active Jobs--</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -242,7 +247,7 @@ const Profile = () => {
               </Card>
             ))}
         </div>
-        <h1> Completed Jobs</h1>
+        <h1 className="completed">--Completed Jobs--</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
