@@ -114,15 +114,16 @@ if(jobs){
   };
 
 
-  return (
+   return (
     <Container className="profileForm">
       <Row className="row1">
         <Card style={{ width: "18rem" }}>
-
           {/* button to open editing modal */}
-          <Button variant="primary" className="edit" onClick={handleShow}>
-          </Button>
-
+          <Button
+            variant="primary"
+            className="edit"
+            onClick={handleShow}
+          ></Button>
           {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>
@@ -132,54 +133,23 @@ if(jobs){
               <form className="editform">
                 <div className="form-group">
                   <label>First name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user.firstName}
-                    name="firstName"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" placeholder={user.firstName} name="firstName" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label>Last name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user.lastName}
-                    name="lastName"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" placeholder={user.lastName} name="lastName" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label>Username</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={user.username}
-                    name="username"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" placeholder={user.username} name="username" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label>Phone Number</label>
-                  <input
-                    type="tel"
-                    pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
-                    className="form-control"
-                    placeholder={user.phone}
-                    name="phone"
-                    onChange={handleChange}
-                  />
+                  <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" placeholder={user.phone} name="phone" onChange={handleChange} />
                 </div>
                 <div className="form-group">
                   <label>Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    placeholder={user.email}
-                    name="email"
-                    onChange={handleChange}
-                  />
+                  <input type="email" className="form-control" placeholder={user.email} name="email" onChange={handleChange} />
                 </div>
                 {/* <div className="form-group">
                 <label>Password</label>
@@ -236,10 +206,10 @@ if(jobs){
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
-
+        <h1 className="active">--Active Jobs--</h1>
         <div className="profilejob">
-          {jobs &&
-            jobs.map((job) => (
+          {incompleteJobs &&
+            incompleteJobs.map((job) => (
               <Card
                 className="cardbody"
                 key={job._id}
@@ -265,7 +235,7 @@ if(jobs){
               </Card>
             ))}
         </div>
-        <h1> Completed Jobs</h1>
+        <h1 className="completed">--Completed Jobs--</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
