@@ -217,6 +217,10 @@ code {
   padding-bottom: 20px;
 }
 
+.profile2Form {
+  padding-top: 100px;
+}
+
 /* edit profile */
 .edit {
   position: absolute;
