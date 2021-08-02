@@ -12,11 +12,13 @@ import {
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
 import { ADD_USER } from "../utils/mutation";
-import { UPDATE_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
 import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
+import UserProfile from "./UserProfile";
+
+
 const Profile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
@@ -46,10 +48,12 @@ const Profile = () => {
       }
     }
   };
-  
+
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
 
   
   const handleComplete = async (_id) => {
@@ -61,6 +65,16 @@ const Profile = () => {
     });
     window.location.assign("/profile");
   };
+
+
+  return (
+    <Container className = "profile2Form">
+      <UserProfile
+      user = {user}
+      ></UserProfile>
+      <Row>
+        <h1> Active Jobs</h1>
+
   const [formState, setFormState] = useState({
     firstName: user.firstName,
     lastName: user.lastName,
@@ -219,6 +233,7 @@ const Profile = () => {
           </ListGroup>
         </Card>
         <h1 className="active">--Active Jobs--</h1>
+
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
