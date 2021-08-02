@@ -32,46 +32,46 @@ export const QUERY_ME_BASIC = gql`
         _id
         distance
         category
-        completed
       }
     }
   }
 `;
 
 export const GET_JOBS = gql`
-  {
-    jobs {
-      id
-      _id
-      date
-      category
-      description
-      distance
-      taken
-      completed
-      createdAt
-      email
-      name
-      pickup {
-        address
-        address2
-        city
-        state
-        zip
-        lat
-        lng
-      }
-      dropoff {
-        address
-        address2
-        city
-        state
-        zip
-        lat
-        lng
-      }
+{
+  jobs {
+    id
+    _id
+    date
+    category
+    description
+    distance
+    taken
+    completed
+    phone
+    email
+    driverEmail
+    createdAt
+    pickup {
+      address
+      address2
+      city
+      state
+      zip
+      lat
+      lng
+    }
+    dropoff {
+      address
+      address2
+      city
+      state
+      zip
+      lat
+      lng
     }
   }
+}
 `;
 
 
