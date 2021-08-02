@@ -7,13 +7,10 @@ import {
   Row,
   Button,
   Modal,
-  ModalBody,
 } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
-import { ADD_USER } from "../utils/mutation";
 import { UPDATE_USER } from "../utils/mutation";
-import Auth from "../utils/auth";
 import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
@@ -53,19 +50,35 @@ const Profile = () => {
     phone: user.phone
   });
 
+  const [errorMessage, setErrorMessage] = useState('');
+  const { firstName, lastName, username, email, phone } = formState;
+  
+
   const [updateUser] = useMutation(UPDATE_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
+    if (event.target.name == {firstName} && event.target.value == undefined || "") {
+      event.target.value = "John"
+    } else {
+    // if (event.target.value == "") {
+    //   setErrorMessage('Field is required.');
+    // } else {setErrorMessage('')
+    // } else {
+      setFormState({ ...formState, [event.target.name]: event.target.value });
+    }
   
-    const { name, value } = event.target;
 
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-    console.log(formState.firstName)
+    // const { name, value } = event.target;
+    
+    // setFormState({
+    //   ...formState,
+    //   [event.target.name]: event.target.value,
+    // });
+    
   };
+
+  console.log(formState)
 
   //   submit form (notice the async!)
   const handleFormSubmit = async (event) => {
@@ -100,28 +113,53 @@ const Profile = () => {
               
               <div className="form-group">
                 <label>First name</label>
-                <input type="text" className="form-control" value={formState.firstName} name="firstName" onChange={handleChange} />
+                <input type="text" className="form-control" placeholder={user.firstName} defaultValue={firstName} name="firstName" onBlur={handleChange} />
               </div>
+              {errorMessage && (
+                <div>
+                  <p className="error-text">{errorMessage}</p>
+                </div>
+              )}
 
               <div className="form-group">
                 <label>Last name</label>
-                <input type="text" className="form-control" value={formState.lastName} name="lastName" onChange={handleChange} />
+                <input type="text" className="form-control" placeholder={user.lastName} defaultValue={lastName} name="lastName" onBlur={handleChange} />
               </div>
+              {errorMessage && (
+                <div>
+                  <p className="error-text">{errorMessage}</p>
+                </div>
+              )}
 
               <div className="form-group">
                 <label>Username</label>
-                <input type="text" className="form-control" value={formState.username} name="username" onChange={handleChange} />
+                <input type="text" className="form-control" placeholder={user.username} defaultValue={username} name="username" onBlur={handleChange} />
               </div>
+              {errorMessage && (
+                <div>
+                  <p className="error-text">{errorMessage}</p>
+                </div>
+              )}
 
               <div className="form-group">
                 <label>Phone Number</label>
-                <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" value={formState.phone} name="phone" onChange={handleChange} />
+                <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" placeholder={user.phone} defaultValue={phone} name="phone" onBlur={handleChange} />
               </div>
+              {errorMessage && (
+                <div>
+                  <p className="error-text">{errorMessage}</p>
+                </div>
+              )}
 
               <div className="form-group">
                 <label>Email</label>
-                <input type="email" className="form-control" value={formState.email} name="email" onChange={handleChange} />
+                <input type="email" className="form-control" placeholder={user.email} defaultValue={email} name="email" onBlur={handleChange} />
               </div>
+              {errorMessage && (
+                <div>
+                  <p className="error-text">{errorMessage}</p>
+                </div>
+              )}
 
               {/* <div className="form-group">
                 <label>Password</label>
@@ -130,7 +168,7 @@ const Profile = () => {
 
               <div className="form-group about">
                 <label>About Me</label>
-                <input type="text" className="form-control aboutInput" name="about" onChange={handleChange} />
+                <textarea className="form-control aboutInput" name="about" rows="5" onChange={handleChange} />
               </div>
               <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">
                 Save

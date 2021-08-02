@@ -232,6 +232,13 @@ code {
   opacity: 0.7;
 }
 
+.error-text {
+  color: #ee1e1e;
+  margin-left: 5%;
+}
+
+/* edit profile end */
+
 .profilejob {
   padding: 20px;
   display: flex;
