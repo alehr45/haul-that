@@ -73,11 +73,10 @@ const UserProfile = ({ user }) => {
 
           {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Edit Profile</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <form className="editform">
+    
+          <Modal.Body className="modalbody">
+              <form>
+              <h1 className="editprofile">Edit Profile</h1>
                 <div className="form-group">
                   <label>First name</label>
                   <input
@@ -149,14 +148,26 @@ const UserProfile = ({ user }) => {
                   />
                 </div>
                 <button
+                  variant="danger"
                   type="submit"
+                  className="savebutton"
                   onClick={handleFormSubmit}
                   className="btn btn-dark btn-lg btn-block"
                 >
                   Save
                 </button>
+                <button
+                variant="danger"
+                  
+                  onClick={handleClose}
+                  
+                >
+                  Close
+                </button>
               </form>
+           
             </Modal.Body>
+          
           </Modal>
           {/* edit profile end */}
 

@@ -386,3 +386,27 @@ html,
   font-size: 20px;
   font-family: "ubunto";
 }
+
+.modalbody{
+  display: flex;
+  justify-content: center;
+  background-color: rgb(206, 206, 206);
+}
+
+
+.editprofile{
+  color: rgb(164, 6, 6);
+
+  font-family: "tunning";
+  padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.savebutton{
+  font-size: 15px;
+}
+
+.modalbody.modal-body {
+padding: 0px;
+
+}
