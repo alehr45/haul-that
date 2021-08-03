@@ -33,6 +33,7 @@ const Jobs = () => {
     me = [meData.me];
 
     var meEmail = me[0].email
+    var driverUsername = me[0].username
 
     console.log(me[0].email)
   }
@@ -48,16 +49,12 @@ const Jobs = () => {
     name,
     date
   ) => {
-
-    console.log(meEmail);
     let userInfo = {
       name: name,
       email: email,
       date: date,
       meName: meEmail,
     };
-
-    console.log(userInfo);
     await pickupJob({
       variables: {
         driverEmail: meEmail,
@@ -71,7 +68,7 @@ const Jobs = () => {
       variables: { _id: id },
     });
     await updateJobDriver({
-      variables: {_id: id, driverEmail: meEmail},
+      variables: {_id: id, driverUsername: driverUsername},
     });
     await emailjs.send(
       "service_rvgpaz5",

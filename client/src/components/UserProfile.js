@@ -25,10 +25,9 @@ const UserProfile = ({ user }) => {
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
-    username: "",
     email: "",
     phone: "",
-    aboutMe: "Bio"
+    aboutMe: ""
   });
 
   // Handles form submission via save button
@@ -43,9 +42,6 @@ const UserProfile = ({ user }) => {
       }
       if (formState.lastName === "") {
         formState.lastName = user.lastName;
-      }
-      if (formState.username === "") {
-        formState.username = user.username;
       }
       if (formState.email === "") {
         formState.email = user.email;
@@ -105,11 +101,6 @@ const UserProfile = ({ user }) => {
                 <div className="form-group">
                   <label>Last name</label>
                   <input type="text" className="form-control" defaultValue={user.lastName} name="lastName" onChange={handleChange} />
-                </div>
-
-                <div className="form-group">
-                  <label>Username</label>
-                  <input type="text" className="form-control" defaultValue={user.username} name="username" onChange={handleChange} />
                 </div>
 
                 <div className="form-group">

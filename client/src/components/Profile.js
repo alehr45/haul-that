@@ -32,12 +32,12 @@ const Profile = () => {
 
   if(jobs){
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === false && jobs[i].driverEmail === user.email) {
+      if (jobs[i].completed === false && jobs[i].driverUsername === user.username) {
         incompleteJobs.push(jobs[i]);
       }
     }
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === true && jobs[i].driverEmail === user.email) {
+      if (jobs[i].completed === true && jobs[i].driverUsername === user.username) {
         completedJobs.push(jobs[i]);
       }
     }
@@ -59,21 +59,13 @@ const Profile = () => {
     window.location.assign("/profile");
   };
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   return (
     <Container className = "profile2Form">
       <UserProfile
       user = {user}
       ></UserProfile>
       <Row>
-<<<<<<< HEAD
-        <h1 className="active">--Active Jobs--</h1>
-=======
         <h1> Active Jobs</h1>
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
