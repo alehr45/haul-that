@@ -105,11 +105,11 @@ const resolvers = {
 
       return updatedJob;
     },
-    updateJobDriver: async (parent, { _id, driverEmail }) => {
-      console.log(_id, driverEmail);
+    updateJobDriver: async (parent, { _id, driverUsername }) => {
+      console.log(_id, driverUsername);
       const updatedJob = await Job.findOneAndUpdate(
         { _id },
-        { driverEmail: driverEmail},
+        { driverUsername: driverUsername},
         { new: true }
       );
 
@@ -131,10 +131,10 @@ const resolvers = {
     deleteJob: async (parent, { _id }) => {
       await Job.findOneAndDelete({ _id });
     },
-    updateUser: async (parent, { _id, firstName, lastName, username, email, phone, aboutMe }) => {
+    updateUser: async (parent, { _id, firstName, lastName, email, phone, aboutMe }) => {
       const updatedUser = await User.findOneAndUpdate(
         {_id: _id},
-        { firstName: firstName, lastName: lastName, username: username, email: email, phone: phone, aboutMe: aboutMe },
+        { firstName: firstName, lastName: lastName, email: email, phone: phone, aboutMe: aboutMe },
         {new: true}
       );
 

@@ -113,7 +113,6 @@ export const UPDATE_USER = gql`
     $lastName: String!
     $email: String!
     $phone: String!
-    $username: String!
     $aboutMe: String
   ) {
     updateUser(
@@ -122,7 +121,6 @@ export const UPDATE_USER = gql`
       lastName: $lastName
       email: $email
       phone: $phone
-      username: $username
       aboutMe: $aboutMe
     ) {
       _id
@@ -131,10 +129,10 @@ export const UPDATE_USER = gql`
 `
 
 export const UPDATE_JOB_DRIVER = gql`
-  mutation updateJobDriver($_id: ID!, $driverEmail: String!) {
-    updateJobDriver(_id: $_id, driverEmail: $driverEmail) {
+  mutation updateJobDriver($_id: ID!, $driverUsername: String!) {
+    updateJobDriver(_id: $_id, driverUsername: $driverUsername) {
       _id
-      driverEmail
+      driverUsername
     }
   }
 `;
