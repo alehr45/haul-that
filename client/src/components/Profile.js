@@ -12,34 +12,20 @@ import { COMPLETE_JOB } from "../utils/mutation";
 // import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import UserProfile from "./UserProfile";
-<<<<<<< HEAD
-=======
-
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
 const Profile = () => {
 
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
-<<<<<<< HEAD
-=======
-
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   var user = {};
   var jobs = [];
   var completedJobs = [];
   var incompleteJobs = [];
 
   if (!userLoading) {
-<<<<<<< HEAD
-    console.log(jobsData)
-    user = data.me;
-  }
-=======
     user = data.me;
   }
 
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   if(!jobsLoading){
     jobs = jobsData.jobs
   }
@@ -56,10 +42,6 @@ const Profile = () => {
       }
     }
   };
-<<<<<<< HEAD
-=======
-
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   const handleComplete = async (_id) => {
     await completeJob({
       variables: {
@@ -148,8 +130,4 @@ const Profile = () => {
     </Container>
   );
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
 export default Profile;

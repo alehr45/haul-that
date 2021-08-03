@@ -122,8 +122,28 @@ const UserProfile = ({ user }) => {
                   <label>About Me</label>
                   <input type="text" className="form-control aboutInput" name="about" onChange={handleChange} />
                 </div>
+
+                <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">Save</button>
+              </form>
+           
+            </Modal.Body>
+          
+          </Modal>
+          {/* edit profile end */}
+
+          <Avatar size={262} name={user.username} />
+
+          {/* <Modal show={show} onHide={handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Cant import picture</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              Whoa! This feature is not ready yet. Coming Soon!
+            </Modal.Body>
+            <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
+              </Button>
               <Button variant="primary" onClick={handleClose}>
                 Save Changes
               </Button>
