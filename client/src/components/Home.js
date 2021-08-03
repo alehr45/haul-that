@@ -25,10 +25,10 @@ function Home() {
         </Button>{" "} */}
       </div>
       <div>
-      <h1 className="footer"></h1>
+      {/* <h1 className="footer"></h1> */}
       </div>
-      <div class="d-flex flex-column">
-  <footer class="footer">
+      <div className="d-flex flex-column">
+  <footer className="footer">
     <div>
      <span>&copy; 2021 Haul-That, Rights Reserved</span>
     </div>

@@ -107,11 +107,11 @@ mutation completeJob($_id: ID!){
 export const UPDATE_USER = gql`
   mutation updateUser(
     $_id: ID!
-    $firstName: String
-    $lastName: String
-    $email: String
-    $phone: String
-    $username: String
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $phone: String!
+    $username: String!
   ) {
     updateUser(
       _id: $_id

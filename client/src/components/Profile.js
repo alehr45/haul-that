@@ -5,35 +5,46 @@ import {
   ListGroup,
   Container,
   Row,
-  Button,
-  Modal,
-  ModalBody,
+  Button
 } from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
-import { ADD_USER } from "../utils/mutation";
-import Auth from "../utils/auth";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import Avatar from "react-avatar";
 import UserProfile from "./UserProfile";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
 const Profile = () => {
+
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   var user = {};
   var jobs = [];
   var completedJobs = [];
   var incompleteJobs = [];
+
   if (!userLoading) {
+<<<<<<< HEAD
     console.log(jobsData)
     user = data.me;
   }
+=======
+    user = data.me;
+  }
+
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   if(!jobsLoading){
     jobs = jobsData.jobs
   }
+
   if(jobs){
-    console.log(jobs)
     for (let i = 0; i < jobs.length; i++) {
       if (jobs[i].completed === false && jobs[i].driverEmail === user.email) {
         incompleteJobs.push(jobs[i]);
@@ -45,8 +56,11 @@ const Profile = () => {
       }
     }
   };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   const handleComplete = async (_id) => {
-    console.log(_id);
     await completeJob({
       variables: {
         _id: _id,
@@ -63,14 +77,21 @@ const Profile = () => {
     window.location.assign("/profile");
   };
 
+<<<<<<< HEAD
   
+=======
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   return (
     <Container className = "profile2Form">
       <UserProfile
       user = {user}
       ></UserProfile>
       <Row>
+<<<<<<< HEAD
         <h1 className="active">--Active Jobs--</h1>
+=======
+        <h1> Active Jobs</h1>
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -99,7 +120,7 @@ const Profile = () => {
               </Card>
             ))}
         </div>
-        <h1 className="completed">--Completed Jobs--</h1>
+        <h1> Complete Jobs</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
@@ -127,4 +148,8 @@ const Profile = () => {
     </Container>
   );
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
 export default Profile;
