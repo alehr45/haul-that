@@ -5,35 +5,34 @@ import {
   ListGroup,
   Container,
   Row,
-  Button,
-  Modal,
-  ModalBody,
+  Button
 } from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
-import { ADD_USER } from "../utils/mutation";
-import Auth from "../utils/auth";
-import emailjs from "emailjs-com";
+// import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import Avatar from "react-avatar";
 import UserProfile from "./UserProfile";
+
 const Profile = () => {
+
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
+
   var user = {};
   var jobs = [];
   var completedJobs = [];
   var incompleteJobs = [];
+
   if (!userLoading) {
-    console.log(jobsData)
     user = data.me;
   }
+
   if(!jobsLoading){
     jobs = jobsData.jobs
   }
+
   if(jobs){
-    console.log(jobs)
     for (let i = 0; i < jobs.length; i++) {
       if (jobs[i].completed === false && jobs[i].driverEmail === user.email) {
         incompleteJobs.push(jobs[i]);
@@ -45,8 +44,8 @@ const Profile = () => {
       }
     }
   };
+
   const handleComplete = async (_id) => {
-    console.log(_id);
     await completeJob({
       variables: {
         _id: _id,
@@ -54,6 +53,7 @@ const Profile = () => {
     });
     window.location.assign("/profile");
   };
+
   return (
     <Container className = "profile2Form">
       <UserProfile
@@ -117,4 +117,5 @@ const Profile = () => {
     </Container>
   );
 };
+
 export default Profile;
