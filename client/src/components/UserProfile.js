@@ -27,7 +27,8 @@ const UserProfile = ({ user }) => {
     lastName: "",
     username: "",
     email: "",
-    phone: ""
+    phone: "",
+    aboutMe: "Bio"
   });
 
   // Handles form submission via save button
@@ -51,6 +52,9 @@ const UserProfile = ({ user }) => {
       }
       if (formState.phone === "") {
         formState.phone = user.phone;
+      }
+      if (formState.aboutMe === "") {
+        formState.aboutMe = user.aboutMe;
       }
     }
 
@@ -120,7 +124,7 @@ const UserProfile = ({ user }) => {
 
                 <div className="form-group about">
                   <label>About Me</label>
-                  <input type="text" className="form-control aboutInput" name="about" onChange={handleChange} />
+                  <textarea rows="5" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
                 </div>
 
                 <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">Save</button>
@@ -153,12 +157,9 @@ const UserProfile = ({ user }) => {
           {/* <img src={ Pic1 }></img> */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>
-            <Card.Text>
-              Some quick example text to build on the card title and make up the
-              bulk of the card's content.
-            </Card.Text>
           </Card.Body>
           <ListGroup className="list-group-flush">
+            <ListGroupItem><h5>About Me</h5> <br />{user.aboutMe}</ListGroupItem> 
             <ListGroupItem>Rating ☆☆☆☆☆</ListGroupItem>
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>

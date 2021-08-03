@@ -30,6 +30,12 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    aboutMe: {
+      type: String,
+      required: false,
+      minlength: 10,
+      maxlength: 400
+    },
     password: {
       type: String,
       required: true,

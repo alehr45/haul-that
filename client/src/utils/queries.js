@@ -27,6 +27,7 @@ export const QUERY_ME_BASIC = gql`
       lastName
       phone
       email
+      aboutMe
       jobs {
         id
         _id

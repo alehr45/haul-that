@@ -19,12 +19,14 @@ export const ADD_USER = gql`
     $phone: String!
     $username: String!
     $password: String!
+    $aboutMe: String
   ) {
     addUser(
       firstName: $firstName
       lastName: $lastName
       email: $email
       phone: $phone
+      aboutMe: $aboutMe
       username: $username
       password: $password
     ) {
@@ -112,6 +114,7 @@ export const UPDATE_USER = gql`
     $email: String!
     $phone: String!
     $username: String!
+    $aboutMe: String
   ) {
     updateUser(
       _id: $_id
@@ -120,6 +123,7 @@ export const UPDATE_USER = gql`
       email: $email
       phone: $phone
       username: $username
+      aboutMe: $aboutMe
     ) {
       _id
     }
