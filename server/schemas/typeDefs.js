@@ -37,7 +37,7 @@ const typeDefs = gql`
     phone: String!
     name: String!
     email: String!
-    driverEmail: String
+    driverUsername: String
     pickup: Address
     dropoff: Address
   }
@@ -91,14 +91,13 @@ const typeDefs = gql`
     ): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
     updateJob(_id: ID!): Job
-    updateJobDriver(_id: ID!, driverEmail: String!): Job
+    updateJobDriver(_id: ID!, driverUsername: String!): Job
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
     updateUser(
       _id: ID!
       firstName: String
       lastName: String
-      username: String
       email: String
       phone: String
       aboutMe: String

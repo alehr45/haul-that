@@ -7,13 +7,8 @@ function Home() {
     <div>
       <h1 className="home">Haul-That</h1>
       <h2 className="subtitle">-a pickup/delivery service for larger items-</h2>
-    <div className="logo">
-      <Image src={image}
-        height="320px"
-        width="360px"
-        
-        roundedCircle
-      />
+      <div className="logo">
+        <Image src={image} height="320px" width="360px" roundedCircle />
       </div>
       <div className="logsign">
         <h2 className="names">-created by: Alex Lehr, William Hunt and Alex Wheeler-</h2>
@@ -25,18 +20,16 @@ function Home() {
         </Button>{" "} */}
       </div>
       <div>
-      {/* <h1 className="footer"></h1> */}
+        {/* <h1 className="footer"></h1> */}
       </div>
       <div className="d-flex flex-column">
-  <footer className="footer">
-    <div>
-     <span>&copy; 2021 Haul-That, Rights Reserved</span>
+        <footer className="footer">
+          <div>
+            <span>&copy; 2021 Haul-That, Rights Reserved</span>
+          </div>
+        </footer>
+      </div>
     </div>
-   
-  </footer>
-</div>
-    </div>
-  
   );
 }
 

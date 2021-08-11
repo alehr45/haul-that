@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem, Button } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Button, Row, Col } from "react-bootstrap";
 import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -33,6 +33,7 @@ const Jobs = () => {
     me = [meData.me];
 
     var meEmail = me[0].email
+    var driverUsername = me[0].username
 
     console.log(me[0].email)
   }
@@ -48,16 +49,12 @@ const Jobs = () => {
     name,
     date
   ) => {
-
-    console.log(meEmail);
     let userInfo = {
       name: name,
       email: email,
       date: date,
       meName: meEmail,
     };
-
-    console.log(userInfo);
     await pickupJob({
       variables: {
         driverEmail: meEmail,
@@ -71,7 +68,7 @@ const Jobs = () => {
       variables: { _id: id },
     });
     await updateJobDriver({
-      variables: {_id: id, driverEmail: meEmail},
+      variables: {_id: id, driverUsername: driverUsername},
     });
     await emailjs.send(
       "service_rvgpaz5",
@@ -105,62 +102,96 @@ const Jobs = () => {
       console.log(activeJobs)
       cards = activeJobs.map((job) => {
         return (
-          
-          <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
-            <Card.Body>
-              <Card.Title>Job # {job.id}</Card.Title>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem>
-                {moment(job.date).format("MMMM Do YYYY")}
-              </ListGroupItem>
-              <ListGroupItem>
-                Dropoff Distance: {parseInt(job.distance)} miles{" "}
-              </ListGroupItem>
-              <ListGroupItem>{job.description}</ListGroupItem>
-              <ListGroupItem>Item Category: {job.category}</ListGroupItem>
-              <ListGroupItem>
-                Price: ${parseInt(job.distance * 1.2)}
-              </ListGroupItem>
-            </ListGroup>
+          <Container fluid>
+            <Row class="row">
+              <Col class="col-1 hour">{job.id}</Col>
+              <Col class="col-3 hour">{moment(job.date).format("MMMM Do YYYY")}</Col>
+              <Col class="col-3 hour"> Distance: {parseInt(job.distance)} miles{" "}</Col>
+            
+              <Col class="col-1 hour">{job.category}</Col>
+              <Col class="col-1 hour">${parseInt(job.distance * 1.2)}</Col>
+              {/* <Col class="col-8" data-hour="08" id="08"></Col> */}
 
-            <Card.Body>
-              {job.taken ? (
-                <Button variant="secondary" disabled>
-                  Pending...
-                </Button>
-              ) : (
-                <Button
-                  variant="success"
-                  onClick={() =>
-                    handlePickup(
-                      job._id,
-                      job.distance,
-                      job.category,
-                      job.id,
-                      job.email,
-                      job.name,
-                      job.date
-                    )
-                  }
-                >
-                  Accept Job
-                </Button>
-              )}
-              {job.email === me[0].email ? (
-                <Button variant="danger"
-                onClick={() =>
-                  handleDelete(
-                    job._id
-                  )
-                }>
-                  Delete
-                </Button>
-              ) : (
-               null
-              )}
-            </Card.Body>
-          </Card>
+                {job.taken ? (
+                  <Button variant="secondary" disabled>
+                    Pending...
+                  </Button>
+                ) : (
+                  <Button
+                    variant="success" href="/details"
+                    // onClick={() =>
+                    //   handlePickup(
+                    //     job._id,
+                    //     job.distance,
+                    //     job.category,
+                    //     job.id,
+                    //     job.email,
+                    //     job.name,
+                    //     job.date
+                    //   )
+                    // }
+                  >
+                    Accept Job
+                  </Button>)}
+                  
+              <Col class="col-1"></Col>
+            </Row>
+          </Container>
+          // <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
+          //   <Card.Body>
+          //     <Card.Title>Job # {job.id}</Card.Title>
+          //   </Card.Body>
+          //   <ListGroup className="list-group-flush">
+          //     <ListGroupItem>
+          //       {moment(job.date).format("MMMM Do YYYY")}
+          //     </ListGroupItem>
+          //     <ListGroupItem>
+          //       Dropoff Distance: {parseInt(job.distance)} miles{" "}
+          //     </ListGroupItem>
+          //     <ListGroupItem>{job.description}</ListGroupItem>
+          //     <ListGroupItem>Item Category: {job.category}</ListGroupItem>
+          //     <ListGroupItem>
+          //       Price: ${parseInt(job.distance * 1.2)}
+          //     </ListGroupItem>
+          //   </ListGroup>
+
+          //   <Card.Body>
+          //     {job.taken ? (
+          //       <Button variant="secondary" disabled>
+          //         Pending...
+          //       </Button>
+          //     ) : (
+          //       <Button
+          //         variant="success"
+          //         onClick={() =>
+          //           handlePickup(
+          //             job._id,
+          //             job.distance,
+          //             job.category,
+          //             job.id,
+          //             job.email,
+          //             job.name,
+          //             job.date
+          //           )
+          //         }
+          //       >
+          //         Accept Job
+          //       </Button>
+          //     )}
+          //     {job.email === me[0].email ? (
+          //       <Button variant="danger"
+          //       onClick={() =>
+          //         handleDelete(
+          //           job._id
+          //         )
+          //       }>
+          //         Delete
+          //       </Button>
+          //     ) : (
+          //      null
+          //     )}
+          //   </Card.Body>
+          // </Card>
         );
       });
     }
@@ -171,7 +202,11 @@ const Jobs = () => {
   return (
     <div>
       <Map jobs={jobs} loading={loading} />
+<<<<<<< HEAD
       <div>{handleCardRender()}</div>
+=======
+      <Container>{handleCardRender()}</Container>
+>>>>>>> ef12086a4627c4809398fb9470a779d9570639df
     </div>
   );
 };

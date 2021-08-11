@@ -51,7 +51,7 @@ export const GET_JOBS = gql`
     completed
     phone
     email
-    driverEmail
+    driverUsername
     createdAt
     pickup {
       address

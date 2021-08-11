@@ -43,7 +43,7 @@ const jobSchema = new Schema(
     email: {
       type: String
     },
-    driverEmail: {
+    driverUsername: {
       type: String
     },
     name: {
