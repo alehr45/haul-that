@@ -42,7 +42,9 @@ const Profile = () => {
       }
     }
   };
-  const handleComplete = async (_id) => {
+
+
+const handleComplete = async (_id) => {
     await completeJob({
       variables: {
         _id: _id,
@@ -59,21 +61,13 @@ const Profile = () => {
     window.location.assign("/profile");
   };
 
-<<<<<<< HEAD
-  
-=======
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
   return (
     <Container className = "profile2Form">
       <UserProfile
       user = {user}
       ></UserProfile>
       <Row>
-<<<<<<< HEAD
-        <h1 className="active">--Active Jobs--</h1>
-=======
-        <h1> Active Jobs</h1>
->>>>>>> 4eebc1ba863d0e70cd3d6b17ab0d8e42719b2300
+        <h1 className="active">Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -102,7 +96,7 @@ const Profile = () => {
               </Card>
             ))}
         </div>
-        <h1> Complete Jobs</h1>
+        <h1 className="completed">Completed Jobs</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (

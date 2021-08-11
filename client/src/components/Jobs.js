@@ -171,7 +171,7 @@ const Jobs = () => {
   return (
     <div>
       <Map jobs={jobs} loading={loading} />
-      <Container className="jobForm">{handleCardRender()}</Container>
+      <div>{handleCardRender()}</div>
     </div>
   );
 };
