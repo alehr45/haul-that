@@ -1,12 +1,4 @@
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Button,
-  Modal
-} from "react-bootstrap";
+import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal } from "react-bootstrap";
 import React, { useState } from "react";
 import { UPDATE_USER } from "../utils/mutation";
 // import emailjs from "emailjs-com";
@@ -89,10 +81,9 @@ const UserProfile = ({ user }) => {
 
           {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
-    
-          <Modal.Body className="modalbody">
+            <Modal.Body className="modalbody">
               <form>
-              <h1 className="editprofile">Edit Profile</h1>
+                <h1 className="editprofile">Edit Profile</h1>
                 <div className="form-group">
                   <label>First name</label>
                   <input type="text" className="form-control" defaultValue={user.firstName} name="firstName" onChange={handleChange} />
@@ -120,9 +111,7 @@ const UserProfile = ({ user }) => {
 
                 <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">Save</button>
               </form>
-           
             </Modal.Body>
-          
           </Modal>
           {/* edit profile end */}
 
