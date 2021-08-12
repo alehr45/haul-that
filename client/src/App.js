@@ -47,7 +47,7 @@ function App() {
         <div className="App">
         <NavBar />
           <Switch>
-            <Route path="/details" component={Details} />
+            <Route path="/details/:job_Id" component={Details} />
             <Route path="/signup" component={Signup} /> 
             <Route path="/profile" component={Profile} /> 
             <Route path="/BookingA" component={BookingA} />
