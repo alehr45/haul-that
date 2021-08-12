@@ -105,14 +105,13 @@ const Jobs = () => {
         const _id = job._id
         return (
           <Container fluid>
-            <Row class="row">
-              <Col class="col-1 hour">{job.id}</Col>
-              <Col class="col-3 hour">{moment(job.date).format("MMMM Do YYYY")}</Col>
-              <Col class="col-3 hour"> Distance: {parseInt(job.distance)} miles{" "}</Col>
-            
-              <Col class="col-1 hour">{job.category}</Col>
-              <Col class="col-1 hour">${parseInt(job.distance * 1.2)}</Col>
-              {/* <Col class="col-8" data-hour="08" id="08"></Col> */}
+            <Row className="row">
+              <Col className="col-1 hour">{job.id}</Col>
+              <Col className="col-3 hour">{moment(job.date).format("MMMM Do YYYY")}</Col>
+              <Col className="col-3 hour"> Distance: {parseInt(job.distance)} miles{" "}</Col>
+              <Col className="col-1 hour">{job.category}</Col>
+              <Col className="col-1 hour">${parseInt(job.distance * 1.2)}</Col>
+              {/* <Col className="col-8" data-hour="08" id="08"></Col> */}
 
                 {job.taken ? (
                   <Button variant="secondary" disabled>
@@ -136,7 +135,7 @@ const Jobs = () => {
                     <Link to={'/details/'+_id}>Job Details</Link>
                   </Button>)}
                   
-              <Col class="col-1"></Col>
+              <Col className="col-1"></Col>
             </Row>
           </Container>
           // <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
