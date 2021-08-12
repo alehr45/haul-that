@@ -37,14 +37,8 @@ const Profile = () => {
       }
     }
   };
-<<<<<<< HEAD
-
-
-const handleComplete = async (_id) => {
-=======
   
   const handleComplete = async (_id) => {
->>>>>>> ef12086a4627c4809398fb9470a779d9570639df
     await completeJob({
       variables: {
         _id: _id,
@@ -60,11 +54,7 @@ const handleComplete = async (_id) => {
     <Container className = "profile2Form">
       <UserProfile user = {user}></UserProfile>
       <Row>
-<<<<<<< HEAD
-        <h1 className="active">Active Jobs</h1>
-=======
         <h1> Active Jobs</h1>
->>>>>>> ef12086a4627c4809398fb9470a779d9570639df
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
