@@ -146,7 +146,7 @@ const Jobs = () => {
                 </Button>
               )}
 
-              <Col class="col-1"></Col>
+             
             </Row>
           </Container>
           // <Card className="cardbody" key={job._id} style={{ width: "100%" }}>
