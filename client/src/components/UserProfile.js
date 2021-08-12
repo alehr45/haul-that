@@ -139,7 +139,7 @@ const UserProfile = ({ user }) => {
             <Card.Title>{user.username}</Card.Title>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroupItem><h5>About Me</h5> <br />{user.aboutMe}</ListGroupItem> 
+            <ListGroupItem>About Me: <br />{user.aboutMe}</ListGroupItem> 
             <ListGroupItem>Rating ☆☆☆☆☆</ListGroupItem>
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>

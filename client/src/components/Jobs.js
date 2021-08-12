@@ -1,12 +1,24 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem, Button, Row, Col } from "react-bootstrap";
-import {Link} from 'react-router-dom'
+import {
+  Card,
+  ListGroup,
+  ListGroupItem,
+  Button,
+  Row,
+  Col,
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
-import { PICKUP_JOB, UPDATE_JOB, DELETE_JOB, UPDATE_JOB_DRIVER } from "../utils/mutation";
-import Details from "./Details"
+import {
+  PICKUP_JOB,
+  UPDATE_JOB,
+  DELETE_JOB,
+  UPDATE_JOB_DRIVER,
+} from "../utils/mutation";
+import Details from "./Details";
 import moment from "moment";
 import emailjs from "emailjs-com";
 
@@ -15,15 +27,15 @@ const Jobs = () => {
   const { loading: meLoading, data: meData } = useQuery(QUERY_ME_BASIC);
   const [pickupJob] = useMutation(PICKUP_JOB);
   const [updateJob] = useMutation(UPDATE_JOB);
-  const [deleteJob] = useMutation(DELETE_JOB)
-  const [updateJobDriver] = useMutation(UPDATE_JOB_DRIVER)
+  const [deleteJob] = useMutation(DELETE_JOB);
+  const [updateJobDriver] = useMutation(UPDATE_JOB_DRIVER);
 
   var jobs = [];
-  var activeJobs = []
+  var activeJobs = [];
   var me = [];
   if (!loading) {
     jobs = [jobsData.jobs];
-    console.log(jobs)
+    console.log(jobs);
     for (let i = 0; i < jobs[0].length; i++) {
       if (jobs[0][i].completed === false) {
         activeJobs.push(jobs[0][i]);
@@ -34,13 +46,11 @@ const Jobs = () => {
   if (!meLoading) {
     me = [meData.me];
 
-    var meEmail = me[0].email
-    var driverUsername = me[0].username
+    var meEmail = me[0].email;
+    var driverUsername = me[0].username;
 
-    console.log(me[0].email)
+    console.log(me[0].email);
   }
-
-
 
   const handleDetails = async (
     id,
@@ -51,7 +61,7 @@ const Jobs = () => {
     name,
     date
   ) => {
-    return <Details date={date}></Details>
+    return <Details date={date}></Details>;
     // let userInfo = {
     //   name: name,
     //   email: email,
@@ -85,11 +95,11 @@ const Jobs = () => {
 
   const handleDelete = async (_id) => {
     await deleteJob({
-      variables: {_id: _id }
-    })
+      variables: { _id: _id },
+    });
 
-    window.location.reload()
-  }
+    window.location.reload();
+  };
 
   const handleCardRender = () => {
     var cards = [];
@@ -99,43 +109,44 @@ const Jobs = () => {
       return <div>Loading...</div>;
     }
 
-
     if (!loading && !meLoading) {
       cards = activeJobs.map((job) => {
-        const _id = job._id
+        const _id = job._id;
         return (
           <Container fluid>
-            <Row className="row">
-              <Col className="col-1 hour">{job.id}</Col>
-              <Col className="col-3 hour">{moment(job.date).format("MMMM Do YYYY")}</Col>
-              <Col className="col-3 hour"> Distance: {parseInt(job.distance)} miles{" "}</Col>
-              <Col className="col-1 hour">{job.category}</Col>
-              <Col className="col-1 hour">${parseInt(job.distance * 1.2)}</Col>
-              {/* <Col className="col-8" data-hour="08" id="08"></Col> */}
+            <Row className="row5">
+              {/* <Col class="col-8" data-hour="08" id="08"></Col> */}
 
-                {job.taken ? (
-                  <Button variant="secondary" disabled>
-                    Pending...
-                  </Button>
-                ) : (
-                  <Button
-                    variant="success" 
-                    onClick={() =>
-                      handleDetails(
-                        job._id,
-                        job.distance,
-                        job.category,
-                        job.id,
-                        job.email,
-                        job.name,
-                        job.date
-                      )
-                    }
-                  >
-                    <Link to={'/details/'+_id}>Job Details</Link>
-                  </Button>)}
+              {job.taken ? (
+                <Button variant="secondary" disabled>
+                  Pending...
+                </Button>
+              ) : (
+                <Button
+                className="button6"
+                  variant="text-white-20"
+                  onClick={() =>
+                    handleDetails(
+                      job._id,
+                      job.distance,
+                      job.category,
+                      job.id,
+                      job.email,
+                      job.name,
+                      job.date
+                    )
+                  }
+                >
                   
-              <Col className="col-1"></Col>
+                  <Link className="link" to={"/details/" + _id}>
+                  <h2>Active Job #{job.id} </h2>
+                    Haul: {parseInt(job.distance)} miles {job.category} for $
+                    {parseInt(job.distance * 1.2)}
+                  </Link>
+                </Button>
+              )}
+
+              <Col class="col-1"></Col>
             </Row>
           </Container>
           // <Card className="cardbody" key={job._id} style={{ width: "100%" }}>

@@ -76,7 +76,7 @@ const Profile = () => {
               </Card>
             ))}
         </div>
-        <h1> Complete Jobs</h1>
+        <h1 className="completed">Completed Jobs</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
