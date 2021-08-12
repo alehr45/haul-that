@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, ListGroup, ListGroupItem, Button, Row, Col } from "react-bootstrap";
+import { Button, Row, Col } from "react-bootstrap";
 import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -202,11 +202,7 @@ const Jobs = () => {
   return (
     <div>
       <Map jobs={jobs} loading={loading} />
-<<<<<<< HEAD
-      <div>{handleCardRender()}</div>
-=======
       <Container>{handleCardRender()}</Container>
->>>>>>> ef12086a4627c4809398fb9470a779d9570639df
     </div>
   );
 };
