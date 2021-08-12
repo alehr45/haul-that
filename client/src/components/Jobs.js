@@ -1,10 +1,12 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem, Button, Row, Col } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 import Map from "./Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
 import { PICKUP_JOB, UPDATE_JOB, DELETE_JOB, UPDATE_JOB_DRIVER } from "../utils/mutation";
+import Details from "./Details"
 import moment from "moment";
 import emailjs from "emailjs-com";
 
@@ -40,7 +42,7 @@ const Jobs = () => {
 
 
 
-  const handlePickup = async (
+  const handleDetails = async (
     id,
     jobDistance,
     jobCategory,
@@ -49,35 +51,36 @@ const Jobs = () => {
     name,
     date
   ) => {
-    let userInfo = {
-      name: name,
-      email: email,
-      date: date,
-      meName: meEmail,
-    };
-    await pickupJob({
-      variables: {
-        driverEmail: meEmail,
-        _id: id,
-        distance: jobDistance,
-        category: jobCategory,
-        id: jobId,
-      },
-    });
-    await updateJob({
-      variables: { _id: id },
-    });
-    await updateJobDriver({
-      variables: {_id: id, driverUsername: driverUsername},
-    });
-    await emailjs.send(
-      "service_rvgpaz5",
-      "accept_job",
-      userInfo,
-      "user_ZAvEHL9UX2xiYewnTTWEa"
-    );
+    return <Details date={date}></Details>
+    // let userInfo = {
+    //   name: name,
+    //   email: email,
+    //   date: date,
+    //   meName: meEmail,
+    // };
+    // await pickupJob({
+    //   variables: {
+    //     driverEmail: meEmail,
+    //     _id: id,
+    //     distance: jobDistance,
+    //     category: jobCategory,
+    //     id: jobId,
+    //   },
+    // });
+    // await updateJob({
+    //   variables: { _id: id },
+    // });
+    // await updateJobDriver({
+    //   variables: {_id: id, driverUsername: driverUsername},
+    // });
+    // await emailjs.send(
+    //   "service_rvgpaz5",
+    //   "accept_job",
+    //   userInfo,
+    //   "user_ZAvEHL9UX2xiYewnTTWEa"
+    // );
 
-    window.location.assign("/profile");
+    // window.location.assign("/profile");
   };
 
   const handleDelete = async (_id) => {
@@ -98,9 +101,8 @@ const Jobs = () => {
 
 
     if (!loading && !meLoading) {
-
-      console.log(activeJobs)
       cards = activeJobs.map((job) => {
+        const _id = job._id
         return (
           <Container fluid>
             <Row class="row">
@@ -118,20 +120,20 @@ const Jobs = () => {
                   </Button>
                 ) : (
                   <Button
-                    variant="success" href="/details"
-                    // onClick={() =>
-                    //   handlePickup(
-                    //     job._id,
-                    //     job.distance,
-                    //     job.category,
-                    //     job.id,
-                    //     job.email,
-                    //     job.name,
-                    //     job.date
-                    //   )
-                    // }
+                    variant="success" 
+                    onClick={() =>
+                      handleDetails(
+                        job._id,
+                        job.distance,
+                        job.category,
+                        job.id,
+                        job.email,
+                        job.name,
+                        job.date
+                      )
+                    }
                   >
-                    Accept Job
+                    <Link to={'/details/'+_id}>Job Details</Link>
                   </Button>)}
                   
               <Col class="col-1"></Col>
