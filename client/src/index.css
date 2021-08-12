@@ -417,3 +417,28 @@ html,
 padding: 0px;
 
 }
+
+.currentjob {
+  padding-top: 100px;
+}
+
+.goback{
+  color: white;
+  text-decoration: none;
+}
+
+.link{
+  color:rgb(55, 55, 55);
+  font-family: "ubunto";
+  text-decoration: none;
+  
+}
+.button6{
+  padding-top: 20px;
+  box-shadow: 3px  3px 3px 3px rgba(46, 46, 46, 0.536);
+}
+
+.row5{
+  padding-top:10px;
+  
+}

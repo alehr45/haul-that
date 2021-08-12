@@ -5,12 +5,14 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+import { Link } from 'react-router-dom'
+
 
 const Map = ({ jobs, loading }) => {
   const [selected, setSelected] = useState({});
 
   const onSelect = (job) => {
-    console.log(job);
+  
     setSelected(job[0]);
    
 
@@ -18,9 +20,14 @@ const Map = ({ jobs, loading }) => {
 
   const handleMapRender = (currentLocation) => {
     if (!loading) {
+      const jobSelected= jobs[0][0]._id
       const locations = jobs[0].map((location) => {
-
+     
+       
+       
         return [
+      
+          
           {
             name: location._id,
             location: {
@@ -63,7 +70,8 @@ const Map = ({ jobs, loading }) => {
             >
               <p className="map-info">
                 <h4>Job #{selected.id}</h4>
-                {parseInt(selected.distance)} miles from A to B
+                {parseInt(selected.distance)} miles from A to B<br></br>
+                <Link to={'/details/'+jobSelected}>Link</Link>
                 
               </p>
             </InfoWindow>
@@ -96,6 +104,7 @@ const Map = ({ jobs, loading }) => {
     lat: position.lat,
     lng: position.lng,
   };
+  
 
   return (
     <div className="map-container">
