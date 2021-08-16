@@ -8,7 +8,7 @@ import {
   Col,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Map from "./Map";
+import Map from "./Map/Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
@@ -62,35 +62,6 @@ const Jobs = () => {
     date
   ) => {
     return <Details date={date}></Details>;
-    // let userInfo = {
-    //   name: name,
-    //   email: email,
-    //   date: date,
-    //   meName: meEmail,
-    // };
-    // await pickupJob({
-    //   variables: {
-    //     driverEmail: meEmail,
-    //     _id: id,
-    //     distance: jobDistance,
-    //     category: jobCategory,
-    //     id: jobId,
-    //   },
-    // });
-    // await updateJob({
-    //   variables: { _id: id },
-    // });
-    // await updateJobDriver({
-    //   variables: {_id: id, driverUsername: driverUsername},
-    // });
-    // await emailjs.send(
-    //   "service_rvgpaz5",
-    //   "accept_job",
-    //   userInfo,
-    //   "user_ZAvEHL9UX2xiYewnTTWEa"
-    // );
-
-    // window.location.assign("/profile");
   };
 
   const handleDelete = async (_id) => {
