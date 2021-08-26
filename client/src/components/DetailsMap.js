@@ -2,8 +2,8 @@ import * as React from 'react'
 import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api'
 
 const mapStyles = {
-  height: "50vh",
-  width: "80%",
+  height: "60vh",
+  width: "70%",
 };
 
 const ExampleDirections = ({ start, end }) => {
@@ -15,7 +15,7 @@ const ExampleDirections = ({ start, end }) => {
     lng: start.lng,
   };
 
-  // running multiple times
+  // returns object to receive a response
   const directionsServiceOptions = React.useMemo(() => {
     return {
       destination: destination,
@@ -24,8 +24,9 @@ const ExampleDirections = ({ start, end }) => {
     }
   })
 
-  // running multiple times
+  // receives response, updates state with response
   const directionsCallback = React.useCallback((res) => {
+    // updates state to prevent multiple rerenders
     setOrigin('')
     setDestination('')
 
@@ -38,7 +39,7 @@ const ExampleDirections = ({ start, end }) => {
     }
   })
 
-  // running multiple times
+  // sets directions with response
   const directionsRendererOptions = React.useMemo(() => {
     if (response !== null) {
       return {
@@ -50,7 +51,7 @@ const ExampleDirections = ({ start, end }) => {
   return (
     <div className='map'>
       <div className='map-settings'>
-        <div className='map-container' id="map">
+        <div className='map-container details-map' id="map">
           <LoadScript googleMapsApiKey="AIzaSyB_c7GFN8Edf79UFOfpLna7LNX4X7MALHM">
             <GoogleMap
               id='direction-example'
