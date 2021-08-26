@@ -2,12 +2,6 @@ import React from "react";
 import { Container, Col, Card, ListGroupItem, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
-import { GET_JOBS } from "../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
-import DetailsMap from "./DetailsMap"
-
-=======
 import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
@@ -17,7 +11,6 @@ import {
   UPDATE_JOB_DRIVER,
 } from "../utils/mutation";
 import DetailsMap from "./DetailsMap";
->>>>>>> 393cb630d49fa8fe6c67edc19038b9f1f1aba38c
 import moment from "moment";
 import emailjs from "emailjs-com";
 
@@ -82,11 +75,7 @@ const Details = () => {
 
   return (
     <Container className="currentjob">
-<<<<<<< HEAD
-    <DetailsMap></DetailsMap>
-=======
-      <DetailsMap />
->>>>>>> 393cb630d49fa8fe6c67edc19038b9f1f1aba38c
+    <DetailsMap job={currentJob} loading={loading} />
       <Card className="cardbody" style={{ width: "100%" }}>
         <Card.Body>
           <Card.Title>Job # {currentJob.id}</Card.Title>
@@ -98,29 +87,6 @@ const Details = () => {
             Date: {moment(currentJob.date).format("MMMM Do YYYY")}
           </ListGroupItem>
         </Card.Body>
-<<<<<<< HEAD
-        <Link>
-          <Button
-            variant="success"
-            // onClick={() =>
-            //   handlePickup(
-            //     job._id,
-            //     job.distance,
-            //     job.category,
-            //     job.id,
-            //     job.email,
-            //     job.name,
-            //     job.date
-            //   )
-            // }
-          >
-            Accept Job
-          </Button>
-        </Link>
-        <Link className="goback" to={"/jobs"}>
-          <Button variant="primary">Go Back</Button>
-        </Link>
-=======
         <Button variant="success" onClick={() => handlePickup()}>
           Accept Job
         </Button>
@@ -130,7 +96,6 @@ const Details = () => {
             Go Back
           </Link>
         </Button>
->>>>>>> 393cb630d49fa8fe6c67edc19038b9f1f1aba38c
       </Card>
     </Container>
   );
