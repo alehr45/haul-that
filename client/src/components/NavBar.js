@@ -51,7 +51,7 @@ const NavBar = () => {
                     {nonTakenJobs.length}
                   </Badge>
                 </div>
-                <Nav.Link className="nav1" href="/profile">
+                <Nav.Link className="nav1" href="/driverprofile">
                   My Profile
                 </Nav.Link>
                 <Nav.Link onClick={logout}>Logout</Nav.Link>

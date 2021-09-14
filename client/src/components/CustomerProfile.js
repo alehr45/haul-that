@@ -14,7 +14,7 @@ import { COMPLETE_JOB } from "../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import UserProfile from "./UserProfile";
 
-const Profile = () => {
+const CustomerProfile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
@@ -60,14 +60,14 @@ const Profile = () => {
 
     // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
 
-    window.location.assign("/profile");
+    window.location.assign("/driverprofile");
   };
 
   return (
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
       <Row>
-        <Link to={"/profile"}>Go to Driver Profile</Link>
+        <Link to={"/driverprofile"}>Go to Driver Profile</Link>
         <h1 className="active">My Deliveries in Progress</h1>
         <div className="profilejob">
           {incompleteJobs &&
@@ -126,4 +126,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default CustomerProfile;

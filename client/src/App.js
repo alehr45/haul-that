@@ -7,7 +7,7 @@ import ApolloClient from "apollo-boost";
 import Jobs from "./components/Jobs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
-import Profile from "./components/Profile";
+import DriverProfile from "./components/DriverProfile";
 import Signup from "./components/Signup";
 import "./App.css";
 import BookingA from "./components/Booking/BookingA";
@@ -48,7 +48,7 @@ function App() {
             <Route path="/details/:job_Id" component={Details} />
             <Route path="/signup" component={Signup} />
             <Route path="/customerprofile" component={CustomerProfile} />
-            <Route path="/profile" component={Profile} />
+            <Route path="/driverprofile" component={DriverProfile} />
             <Route path="/BookingA" component={BookingA} />
 
             <Route path="/BookingB" component={CheckoutForm}>
