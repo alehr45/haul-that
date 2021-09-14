@@ -67,8 +67,8 @@ const Profile = () => {
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
       <Row>
-        <Link to={"/customerprofile"}>Go to Customer Profile</Link>
-        <h1 className="active"> Active Jobs</h1>
+        <Link to={"/profile"}>Go to Driver Profile</Link>
+        <h1 className="active">My Deliveries in Progress</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -91,13 +91,13 @@ const Profile = () => {
                     variant="warning"
                     onClick={() => handleComplete(job._id)}
                   >
-                    Complete Job
+                    Delivery Status
                   </Button>{" "}
                 </ListGroup>
               </Card>
             ))}
         </div>
-        <h1 className="completed">Completed Jobs</h1>
+        <h1 className="completed">My Completed Deliveries</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (

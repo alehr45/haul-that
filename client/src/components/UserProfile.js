@@ -1,4 +1,13 @@
-import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal } from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Button,
+  Modal,
+  ToggleButton,
+} from "react-bootstrap";
 import React, { useState } from "react";
 import { UPDATE_USER } from "../utils/mutation";
 // import emailjs from "emailjs-com";
@@ -7,7 +16,6 @@ import Avatar from "react-avatar";
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user }) => {
-
   const [updateUser] = useMutation(UPDATE_USER);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -19,7 +27,7 @@ const UserProfile = ({ user }) => {
     lastName: "",
     email: "",
     phone: "",
-    aboutMe: ""
+    aboutMe: "",
   });
 
   // Handles form submission via save button
@@ -75,9 +83,12 @@ const UserProfile = ({ user }) => {
     <Container className="profileForm">
       <Row className="row1">
         <Card style={{ width: "18rem" }}>
-
           {/* button to open editing modal */}
-          <Button variant="primary" className="edit" onClick={handleShow}></Button>
+          <Button
+            variant="primary"
+            className="edit"
+            onClick={handleShow}
+          ></Button>
 
           {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
@@ -86,30 +97,68 @@ const UserProfile = ({ user }) => {
                 <h1 className="editprofile">Edit Profile</h1>
                 <div className="form-group">
                   <label>First name</label>
-                  <input type="text" className="form-control" defaultValue={user.firstName} name="firstName" onChange={handleChange} />
+                  <input
+                    type="text"
+                    className="form-control"
+                    defaultValue={user.firstName}
+                    name="firstName"
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="form-group">
                   <label>Last name</label>
-                  <input type="text" className="form-control" defaultValue={user.lastName} name="lastName" onChange={handleChange} />
+                  <input
+                    type="text"
+                    className="form-control"
+                    defaultValue={user.lastName}
+                    name="lastName"
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="form-group">
                   <label>Phone Number</label>
-                  <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" defaultValue={user.phone} name="phone" onChange={handleChange} />
+                  <input
+                    type="tel"
+                    pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
+                    className="form-control"
+                    defaultValue={user.phone}
+                    name="phone"
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="form-group">
                   <label>Email</label>
-                  <input type="email" className="form-control" defaultValue={user.email} name="email" onChange={handleChange} />
+                  <input
+                    type="email"
+                    className="form-control"
+                    defaultValue={user.email}
+                    name="email"
+                    onChange={handleChange}
+                  />
                 </div>
 
                 <div className="form-group about">
                   <label>About Me</label>
-                  <textarea rows="5" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
+                  <textarea
+                    rows="5"
+                    type="text"
+                    className="form-control aboutInput"
+                    defaultValue={user.aboutMe}
+                    name="aboutMe"
+                    onChange={handleChange}
+                  />
                 </div>
 
-                <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">Save</button>
+                <button
+                  type="submit"
+                  onClick={handleFormSubmit}
+                  className="btn btn-dark btn-lg btn-block"
+                >
+                  Save
+                </button>
               </form>
             </Modal.Body>
           </Modal>
@@ -139,7 +188,10 @@ const UserProfile = ({ user }) => {
             <Card.Title>{user.username}</Card.Title>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroupItem>About Me: <br />{user.aboutMe}</ListGroupItem> 
+            <ListGroupItem>
+              About Me: <br />
+              {user.aboutMe}
+            </ListGroupItem>
             <ListGroupItem>Rating ☆☆☆☆☆</ListGroupItem>
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>

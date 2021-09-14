@@ -407,7 +407,7 @@ html,
 
 .editprofile {
   color: rgb(164, 6, 6);
-
+  font-size: 30px;
   font-family: "tunning";
   padding-top: 10px;
   display: flex;

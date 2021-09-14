@@ -37,7 +37,7 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/bookingA">
                   Booking
                 </Nav.Link>
-            
+
                 <Nav.Link className="nav1" href="/jobs">
                   Jobs
                 </Nav.Link>
@@ -50,7 +50,6 @@ const NavBar = () => {
                   >
                     {nonTakenJobs.length}
                   </Badge>
-                  
                 </div>
                 <Nav.Link className="nav1" href="/profile">
                   My Profile
@@ -65,7 +64,6 @@ const NavBar = () => {
             )}
           </Nav>
         </Navbar.Collapse>
-        
       </Container>
     </Navbar>
   );
