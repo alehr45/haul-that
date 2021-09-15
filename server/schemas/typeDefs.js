@@ -107,5 +107,3 @@ const typeDefs = gql`
 
 // export the typeDefs
 module.exports = typeDefs;
-
-//    user(_id: String!): User

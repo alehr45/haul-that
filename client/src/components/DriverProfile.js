@@ -1,18 +1,10 @@
 import React, { useState } from "react";
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Button,
-  ProgressBar,
-} from "react-bootstrap";
+import { Card, ListGroupItem, ListGroup, Container, Row, Button } from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
-const CustomerProfile = () => {
+const DriverProfile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
@@ -26,29 +18,23 @@ const CustomerProfile = () => {
     user = data.me;
   }
 
-  if (!jobsLoading) {
-    jobs = jobsData.jobs;
+  if(!jobsLoading){
+    jobs = jobsData.jobs
   }
 
-  if (jobs) {
+  if(jobs){
     for (let i = 0; i < jobs.length; i++) {
-      if (
-        jobs[i].completed === false &&
-        jobs[i].driverUsername === user.username
-      ) {
+      if (jobs[i].completed === false && jobs[i].driverUsername === user.username) {
         incompleteJobs.push(jobs[i]);
       }
     }
     for (let i = 0; i < jobs.length; i++) {
-      if (
-        jobs[i].completed === true &&
-        jobs[i].driverUsername === user.username
-      ) {
+      if (jobs[i].completed === true && jobs[i].driverUsername === user.username) {
         completedJobs.push(jobs[i]);
       }
     }
-  }
-
+  };
+  
   const handleComplete = async (_id) => {
     await completeJob({
       variables: {
@@ -62,17 +48,13 @@ const CustomerProfile = () => {
   };
 
   return (
-    <Container className="profile2Form">
+    <Container className = "profile2Form">    
       <Row>
         <h1> Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
-              <Card
-                className="cardbody"
-                key={job._id}
-                style={{ width: "12rem" }}
-              >
+              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
@@ -83,27 +65,9 @@ const CustomerProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <ListGroupItem>{"Progress"}</ListGroupItem>
-                  <ProgressBar>
-                    <ProgressBar
-                      variant="primary"
-                      now={33}
-                      key={1}
-                      label={"Picked-up"}
-                    />
-                    <ProgressBar
-                      variant="info"
-                      now={66}
-                      key={2}
-                      label={"En route"}
-                    />
-                    <ProgressBar
-                      variant="success"
-                      now={99}
-                      key={3}
-                      label={"Delivered"}
-                    />
-                  </ProgressBar>
+                  <Button variant="warning" onClick={() => handleComplete(job._id)}>
+                    Complete Job
+                  </Button>{" "}
                 </ListGroup>
               </Card>
             ))}
@@ -112,11 +76,7 @@ const CustomerProfile = () => {
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
-              <Card
-                className="cardbody"
-                key={job._id}
-                style={{ width: "12rem" }}
-              >
+              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
@@ -134,7 +94,7 @@ const CustomerProfile = () => {
       </Row>
       {/* <AcceptedJobs /> */}
     </Container>
-  );
-};
+  )
+}
 
-export default CustomerProfile;
+export default DriverProfile;
