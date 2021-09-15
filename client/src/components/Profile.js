@@ -67,7 +67,6 @@ const Profile = () => {
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
       <Row>
-        <Link to={"/customerprofile"}>Go to Customer Profile</Link>
         <h1 className="active"> Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
