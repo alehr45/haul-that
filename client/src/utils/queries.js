@@ -39,42 +39,42 @@ export const QUERY_ME_BASIC = gql`
 `;
 
 export const GET_JOBS = gql`
-{
-  jobs {
-    id
-    _id
-    date
-    category
-    description
-    distance
-    taken
-    completed
-    phone
-    email
-    driverUsername
-    createdAt
-    pickup {
-      address
-      address2
-      city
-      state
-      zip
-      lat
-      lng
-    }
-    dropoff {
-      address
-      address2
-      city
-      state
-      zip
-      lat
-      lng
+  {
+    jobs {
+      id
+      _id
+      date
+      category
+      description
+      distance
+      taken
+      status
+      completed
+      phone
+      email
+      driverUsername
+      createdAt
+      pickup {
+        address
+        address2
+        city
+        state
+        zip
+        lat
+        lng
+      }
+      dropoff {
+        address
+        address2
+        city
+        state
+        zip
+        lat
+        lng
+      }
     }
   }
-}
 `;
-
 
 export const GET_JOB = gql`
   query Job($_id: String!) {

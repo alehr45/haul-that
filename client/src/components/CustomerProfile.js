@@ -67,7 +67,7 @@ const CustomerProfile = () => {
   return (
     <Container className="profile2Form">
       <Row>
-        <h1 className="active"> Active Jobs</h1>
+        <h1 className="active"> Current Deliveries</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
