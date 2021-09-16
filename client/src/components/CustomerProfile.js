@@ -67,7 +67,7 @@ const CustomerProfile = () => {
   return (
     <Container className="profile2Form">
       <Row>
-        <h1 className="active"> Current Deliveries</h1>
+        <h1 className="active">-Current Deliveries-</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -113,7 +113,7 @@ const CustomerProfile = () => {
               </Card>
             ))}
         </div>
-        <h1 className="completed">Completed Jobs</h1>
+        <h1 className="completed">-Completed Deliveries-</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
