@@ -33,6 +33,7 @@ const typeDefs = gql`
     description: String!
     distance: String!
     taken: Boolean
+    status: Int
     completed: Boolean
     phone: String!
     name: String!

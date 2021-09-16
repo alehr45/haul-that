@@ -60,6 +60,16 @@ const DriverProfile = () => {
     window.location.assign("/profile");
   };
 
+  // const handleButton = () => {
+  //   if (variant == "secondary") {
+  //     setVariant("primary");
+  //   } else if (variant == "primary") {
+  //     setVariant("warning");
+  //   } else if (variant == "warning") {
+  //     setVariant("success");
+  //   }
+  // };
+
   return (
     <Container className="profile2Form">
       <Row>
@@ -88,6 +98,7 @@ const DriverProfile = () => {
                   >
                     Complete Job
                   </Button>{" "}
+                  {/* <Button variant={variant} onClick={() => handleButton()}/> */}
                 </ListGroup>
               </Card>
             ))}
