@@ -223,7 +223,7 @@ code {
 }
 
 .profile2Form {
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 /* edit profile */
@@ -271,6 +271,10 @@ code {
   position: fixed;
   top: 18px;
   font-weight: 100px;
+}
+
+.progress2 {
+  font-size: 15px;
 }
 
 body {
@@ -391,7 +395,6 @@ html,
 
 .active {
   font-weight: 700;
-  padding-top: 20px;
   font-size: 20px;
   font-family: "ubunto";
 }
@@ -403,51 +406,52 @@ html,
   font-family: "ubunto";
 }
 
-.modalbody{
+.modalbody {
   display: flex;
   justify-content: center;
   background-color: rgb(206, 206, 206);
 }
 
-
-.editprofile{
+.editprofile {
   color: rgb(164, 6, 6);
-
+  font-size: 30px;
   font-family: "tunning";
   padding-top: 10px;
   display: flex;
   justify-content: center;
 }
-.savebutton{
+
+.mb-3 {
+  display: flex;
+  justify-content: center;
+}
+.savebutton {
   font-size: 15px;
 }
 
 .modalbody.modal-body {
-padding: 0px;
-
+  padding: 0px;
 }
 
 .currentjob {
   padding-top: 100px;
 }
 
-.goback{
+.goback {
   color: white;
   text-decoration: none;
 }
 
-.link{
-  color:rgb(55, 55, 55);
+.link {
+  color: rgb(55, 55, 55);
   font-family: "ubunto";
   text-decoration: none;
-  
 }
-.button6{
+.button6 {
   padding-top: 20px;
-  box-shadow: 3px  3px 3px 3px rgba(46, 46, 46, 0.536);
+  box-shadow: 3px 3px 3px 3px rgba(46, 46, 46, 0.536);
 }
 
-.row5{
-  padding-top:10px;
-  
+.row5 {
+  padding-top: 10px;
 }

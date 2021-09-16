@@ -112,14 +112,14 @@ const Jobs = () => {
                 >
                   
                   <Link className="link" to={"/details/" + _id}>
-                  <h2>Active Job #{job.id} </h2>
+                  <h5>Active Job #{job.id} </h5>
                     Haul: {parseInt(job.distance)} miles {job.category} for $
                     {parseInt(job.distance * 1.2)}
                   </Link>
                 </Button>
               )}
 
-              <Col class="col-1"></Col>
+             
             </Row>
           </Container>
           // <Card className="cardbody" key={job._id} style={{ width: "100%" }}>

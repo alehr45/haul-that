@@ -29,29 +29,29 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
-    taken:{
-      type: Boolean,
-      default: false
-    },
-    status:{
+    status: {
       type: Number,
-      default: 1
+      default: 1,
     },
-    completed:{
+    taken: {
       type: Boolean,
-      default: false
+      default: false,
+    },
+    completed: {
+      type: Boolean,
+      default: false,
     },
     phone: {
-      type: String
+      type: String,
     },
     email: {
-      type: String
+      type: String,
     },
     driverUsername: {
-      type: String
+      type: String,
     },
     name: {
-      type: String
+      type: String,
     },
     pickup: addressSchema,
 
@@ -67,6 +67,5 @@ const jobSchema = new Schema(
 jobSchema.plugin(AutoIncrement, { inc_field: "id" });
 
 const Job = mongoose.model("Job", jobSchema);
-
 
 module.exports = Job;

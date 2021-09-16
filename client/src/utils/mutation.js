@@ -100,22 +100,31 @@ export const UPDATE_STATUS = gql`
   }
 `;
 
+export const UPDATE_STATUS = gql`
+  mutation updateStatus($_id: ID!) {
+    updateStatus(_id: $_id) {
+      _id
+      status
+    }
+  }
+`;
+
 export const DELETE_JOB = gql`
-mutation deleteJob($_id: ID!){
-  deleteJob(_id: $_id) {
-    _id
+  mutation deleteJob($_id: ID!) {
+    deleteJob(_id: $_id) {
+      _id
+    }
   }
-  }
-`
+`;
 
 export const COMPLETE_JOB = gql`
-mutation completeJob($_id: ID!){
-  completeJob(_id: $_id) {
-    _id
-	completed
+  mutation completeJob($_id: ID!) {
+    completeJob(_id: $_id) {
+      _id
+      completed
+    }
   }
-  }
-`
+`;
 export const UPDATE_USER = gql`
   mutation updateUser(
     $_id: ID!
@@ -136,7 +145,7 @@ export const UPDATE_USER = gql`
       _id
     }
   }
-`
+`;
 
 export const UPDATE_JOB_DRIVER = gql`
   mutation updateJobDriver($_id: ID!, $driverUsername: String!) {

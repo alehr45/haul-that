@@ -72,17 +72,23 @@ const Details = () => {
 
     window.location.assign("/profile");
   };
-  
+
   // to be passed to detailsMap component
-  const start = {lat: parseFloat(currentJob.pickup.lat), lng: parseFloat(currentJob.pickup.lng)};
-  const end = {lat: parseFloat(currentJob.dropoff.lat), lng: parseFloat(currentJob.dropoff.lng)};  
+  const start = {
+    lat: parseFloat(currentJob.pickup.lat),
+    lng: parseFloat(currentJob.pickup.lng),
+  };
+  const end = {
+    lat: parseFloat(currentJob.dropoff.lat),
+    lng: parseFloat(currentJob.dropoff.lng),
+  };
 
   return (
     <Container className="currentjob">
       <DetailsMap start={start} end={end} />
       <Card className="cardbody" style={{ width: "100%" }}>
         <Card.Body>
-          <Card.Title>Job #: {currentJob.id}</Card.Title>
+          <Card.Title>Job # {currentJob.id}</Card.Title>
           <ListGroupItem>Description: {currentJob.description}</ListGroupItem>
           <ListGroupItem>Email: {currentJob.email}</ListGroupItem>
           <ListGroupItem>Distance: {currentJob.distance} miles</ListGroupItem>

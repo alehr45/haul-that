@@ -13,11 +13,11 @@ import "./App.css";
 import BookingA from "./components/Booking/BookingA";
 import CheckoutForm from "./components/Booking/BookingB";
 import Details from "./components/Details";
+import CustomerProfile from "./components/CustomerProfile";
 
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
-
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -33,7 +33,6 @@ const client = new ApolloClient({
 });
 
 function App() {
- 
   // Make sure to call loadStripe outside of a component’s render to avoid
   // recreating the Stripe object on every render.
   // loadStripe is initialized with a fake API key.
@@ -41,38 +40,30 @@ function App() {
   const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
   return (
-
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
-        <NavBar />
+          <NavBar />
           <Switch>
             <Route path="/details/:job_Id" component={Details} />
-            <Route path="/signup" component={Signup} /> 
-            <Route path="/profile" component={Profile} /> 
+            <Route path="/signup" component={Signup} />
+            <Route path="/customerprofile" component={CustomerProfile} />
+            <Route path="/profile" component={Profile} />
             <Route path="/BookingA" component={BookingA} />
-            
+
             <Route path="/BookingB" component={CheckoutForm}>
               <Elements stripe={promise}>
                 <CheckoutForm />
               </Elements>
             </Route>
             <Route path="/login" component={Login} />
-            <Route path="/jobs"  component={Jobs} />
+            <Route path="/jobs" component={Jobs} />
             <Route path="/" component={Home} />
-            
-            
           </Switch>
-        
-          
         </div>
-        
       </Router>
-     
     </ApolloProvider>
-    
   );
- 
 }
 
 export default App;

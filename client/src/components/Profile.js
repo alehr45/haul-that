@@ -1,6 +1,17 @@
 import React, { useState } from "react";
-import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal, Tab, Tabs } from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Button,
+  Modal,
+  Tab,
+  Tabs,
+} from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
+import { Link } from "react-router-dom";
 import { COMPLETE_JOB } from "../utils/mutation";
 // import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -9,7 +20,6 @@ import DriverProfile from "./DriverProfile";
 import CustomerProfile from "./CustomerProfile";
 
 const Profile = () => {
-
   // const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
@@ -39,7 +49,7 @@ const Profile = () => {
   //     }
   //   }
   // };
-  
+
   // const handleComplete = async (_id) => {
   //   await completeJob({
   //     variables: {
@@ -53,8 +63,8 @@ const Profile = () => {
   // };
 
   return (
-    <Container className = "profile2Form">
-      <UserProfile user = {user}></UserProfile>
+    <Container className="profile2Form">
+      <UserProfile user={user}></UserProfile>
 
       <Tabs defaultActiveKey="driver" id="uncontrolled-tab-example" className="mb-3">
         <Tab eventKey="customer" title="Customer">
@@ -64,24 +74,31 @@ const Profile = () => {
           <DriverProfile />
         </Tab>
       </Tabs>
-      
+
       {/* <Row>
         <h1> Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
                 <ListGroup className="list-group-flush"> */}
-                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
-                  {/* <ListGroupItem>
+      {/* <ListGroupItem>{job.date} </ListGroupItem> */}
+      {/* <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles{" "}
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <Button variant="warning" onClick={() => handleComplete(job._id)}>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleComplete(job._id)}
+                  >
                     Complete Job
                   </Button>{" "}
                 </ListGroup>
@@ -92,13 +109,17 @@ const Profile = () => {
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
                 <ListGroup className="list-group-flush"> */}
-                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
-                  {/* <ListGroupItem>
+      {/* <ListGroupItem>{job.date} </ListGroupItem> */}
+      {/* <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles{" "}
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>

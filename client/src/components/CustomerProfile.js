@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Card, ListGroupItem, ListGroup, Container, Row, Button, ProgressBar } from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Button,
+  ProgressBar,
+} from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -18,23 +26,29 @@ const CustomerProfile = () => {
     user = data.me;
   }
 
-  if(!jobsLoading){
-    jobs = jobsData.jobs
+  if (!jobsLoading) {
+    jobs = jobsData.jobs;
   }
 
-  if(jobs){
+  if (jobs) {
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === false && jobs[i].driverUsername === user.username) {
+      if (
+        jobs[i].completed === false &&
+        jobs[i].driverUsername === user.username
+      ) {
         incompleteJobs.push(jobs[i]);
       }
     }
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === true && jobs[i].driverUsername === user.username) {
+      if (
+        jobs[i].completed === true &&
+        jobs[i].driverUsername === user.username
+      ) {
         completedJobs.push(jobs[i]);
       }
     }
-  };
-  
+  }
+
   const handleComplete = async (_id) => {
     await completeJob({
       variables: {
@@ -47,21 +61,23 @@ const CustomerProfile = () => {
     window.location.assign("/profile");
   };
 
-
-  let label = [1, 2, 3, 4];
-
-  let now = 50;
+  let label = "en route";
+  let now = "33";
 
   return (
-    <Container className = "profile2Form">    
+    <Container className="profile2Form">
       <Row>
-        <h1> Active Jobs</h1>
+        <h1 className="active"> Current Deliveries</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
-                  <Card.Title>Job # {job.id}</Card.Title>
+                  <ListGroupItem>Job # {job.id}</ListGroupItem>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
@@ -70,9 +86,28 @@ const CustomerProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <ListGroupItem className="progress2">{"Progress: " + label[0]}</ListGroupItem>
+                  <ListGroupItem className="progress2">
+                    {"Progress: " + label}
+                  </ListGroupItem>
                   <ProgressBar>
-                    <ProgressBar variant="primary" now={now} key={1} />
+                    <ProgressBar
+                      variant="primary"
+                      now={33}
+                      key={1}
+                      // label={"Picked-up"}
+                    />
+                    <ProgressBar
+                      variant="primary"
+                      now={33}
+                      key={2}
+                      // label={"En route"}
+                    />
+                    <ProgressBar
+                      variant="success"
+                      now={0}
+                      key={3}
+                      // label={"Delivered"}
+                    />
                   </ProgressBar>
                 </ListGroup>
               </Card>
@@ -82,7 +117,11 @@ const CustomerProfile = () => {
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
@@ -100,7 +139,7 @@ const CustomerProfile = () => {
       </Row>
       {/* <AcceptedJobs /> */}
     </Container>
-  )
-}
+  );
+};
 
 export default CustomerProfile;
