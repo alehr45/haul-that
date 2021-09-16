@@ -48,6 +48,7 @@ export const GET_JOBS = gql`
     description
     distance
     taken
+    status
     completed
     phone
     email

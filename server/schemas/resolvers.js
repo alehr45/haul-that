@@ -66,6 +66,7 @@ const resolvers = {
         const job = Job.create({
           ...args,
           taken: false,
+          status: 1,
           username: context.user.username,
         });
 
@@ -104,6 +105,15 @@ const resolvers = {
       );
 
       return updatedJob;
+    },
+    updateStatus: async (parent, { _id }) => {
+      const updatedStatus = await Job.findOneAndUpdate(
+      { _id },
+      { $inc: { status: 1 }},
+      { new: true }
+      );
+
+      return updatedStatus;
     },
     updateJobDriver: async (parent, { _id, driverUsername }) => {
       console.log(_id, driverUsername);

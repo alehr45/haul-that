@@ -248,6 +248,10 @@ code {
 
 /* edit profile end */
 
+.progress2 {
+  font-size: 15px;
+}
+
 .profilejob {
   padding: 20px;
   display: flex;

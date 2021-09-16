@@ -43,6 +43,8 @@ const Jobs = () => {
     }
   }
 
+  console.log(jobs)
+
   if (!meLoading) {
     me = [meData.me];
 

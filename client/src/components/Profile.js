@@ -56,11 +56,11 @@ const Profile = () => {
     <Container className = "profile2Form">
       <UserProfile user = {user}></UserProfile>
 
-      <Tabs defaultActiveKey="home" id="uncontrolled-tab-example" className="mb-3">
-        <Tab eventKey="home" title="Customer">
+      <Tabs defaultActiveKey="driver" id="uncontrolled-tab-example" className="mb-3">
+        <Tab eventKey="customer" title="Customer">
           <CustomerProfile jobs={jobs} />
         </Tab>
-        <Tab eventKey="profile" title="Driver">
+        <Tab eventKey="driver" title="Driver">
           <DriverProfile />
         </Tab>
       </Tabs>

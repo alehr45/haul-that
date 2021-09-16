@@ -47,6 +47,11 @@ const CustomerProfile = () => {
     window.location.assign("/profile");
   };
 
+
+  let label = [1, 2, 3, 4];
+
+  let now = 50;
+
   return (
     <Container className = "profile2Form">    
       <Row>
@@ -65,11 +70,9 @@ const CustomerProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <ListGroupItem>{"Progress"}</ListGroupItem>
+                  <ListGroupItem className="progress2">{"Progress: " + label[0]}</ListGroupItem>
                   <ProgressBar>
-                    <ProgressBar variant="primary" now={33} key={1} label={"Picked-up"} />
-                    <ProgressBar variant="info" now={66} key={2} label={"En route"} />
-                    <ProgressBar variant="success" now={99} key={3} label={"Delivered"} />
+                    <ProgressBar variant="primary" now={now} key={1} />
                   </ProgressBar>
                 </ListGroup>
               </Card>

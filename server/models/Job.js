@@ -33,6 +33,10 @@ const jobSchema = new Schema(
       type: Boolean,
       default: false
     },
+    status:{
+      type: Number,
+      default: 1
+    },
     completed:{
       type: Boolean,
       default: false

@@ -86,6 +86,16 @@ export const UPDATE_JOB = gql`
     updateJob(_id: $_id) {
       _id
       taken
+      status
+    }
+  }
+`;
+
+export const UPDATE_STATUS = gql`
+  mutation updateStatus($_id: ID!){
+    updateStatus(_id: $_id) {
+      _id
+      status
     }
   }
 `;
