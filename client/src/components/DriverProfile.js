@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Card, ListGroupItem, ListGroup, Container, Row, Button } from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  Button,
+} from "react-bootstrap";
 import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
 import { COMPLETE_JOB } from "../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -18,23 +25,29 @@ const DriverProfile = () => {
     user = data.me;
   }
 
-  if(!jobsLoading){
-    jobs = jobsData.jobs
+  if (!jobsLoading) {
+    jobs = jobsData.jobs;
   }
 
-  if(jobs){
+  if (jobs) {
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === false && jobs[i].driverUsername === user.username) {
+      if (
+        jobs[i].completed === false &&
+        jobs[i].driverUsername === user.username
+      ) {
         incompleteJobs.push(jobs[i]);
       }
     }
     for (let i = 0; i < jobs.length; i++) {
-      if (jobs[i].completed === true && jobs[i].driverUsername === user.username) {
+      if (
+        jobs[i].completed === true &&
+        jobs[i].driverUsername === user.username
+      ) {
         completedJobs.push(jobs[i]);
       }
     }
-  };
-  
+  }
+
   const handleComplete = async (_id) => {
     await completeJob({
       variables: {
@@ -48,15 +61,19 @@ const DriverProfile = () => {
   };
 
   return (
-    <Container className = "profile2Form">    
+    <Container className="profile2Form">
       <Row>
-        <h1> Active Jobs</h1>
+        <h1 className="active"> Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
-                  <Card.Title>Job # {job.id}</Card.Title>
+                  <ListGroupItem>Job # {job.id}</ListGroupItem>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
@@ -65,7 +82,10 @@ const DriverProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <Button variant="warning" onClick={() => handleComplete(job._id)}>
+                  <Button
+                    variant="warning"
+                    onClick={() => handleComplete(job._id)}
+                  >
                     Complete Job
                   </Button>{" "}
                 </ListGroup>
@@ -76,7 +96,11 @@ const DriverProfile = () => {
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
@@ -94,7 +118,7 @@ const DriverProfile = () => {
       </Row>
       {/* <AcceptedJobs /> */}
     </Container>
-  )
-}
+  );
+};
 
 export default DriverProfile;

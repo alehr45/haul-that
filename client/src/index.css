@@ -223,7 +223,7 @@ code {
 }
 
 .profile2Form {
-  padding-top: 100px;
+  padding-top: 20px;
 }
 
 /* edit profile */
@@ -267,6 +267,10 @@ code {
   position: fixed;
   top: 18px;
   font-weight: 100px;
+}
+
+.progress2 {
+  font-size: 15px;
 }
 
 body {
@@ -387,7 +391,6 @@ html,
 
 .active {
   font-weight: 700;
-  padding-top: 20px;
   font-size: 20px;
   font-family: "ubunto";
 }
@@ -410,6 +413,11 @@ html,
   font-size: 30px;
   font-family: "tunning";
   padding-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.mb-3 {
   display: flex;
   justify-content: center;
 }

@@ -61,10 +61,13 @@ const CustomerProfile = () => {
     window.location.assign("/profile");
   };
 
+  let label = "en route";
+  let now = "33";
+
   return (
     <Container className="profile2Form">
       <Row>
-        <h1> Active Jobs</h1>
+        <h1 className="active"> Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -74,7 +77,7 @@ const CustomerProfile = () => {
                 style={{ width: "12rem" }}
               >
                 <Card.Body>
-                  <Card.Title>Job # {job.id}</Card.Title>
+                  <ListGroupItem>Job # {job.id}</ListGroupItem>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
@@ -83,25 +86,27 @@ const CustomerProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <ListGroupItem>{"Progress"}</ListGroupItem>
+                  <ListGroupItem className="progress2">
+                    {"Progress: " + label}
+                  </ListGroupItem>
                   <ProgressBar>
                     <ProgressBar
                       variant="primary"
                       now={33}
                       key={1}
-                      label={"Picked-up"}
+                      // label={"Picked-up"}
                     />
                     <ProgressBar
-                      variant="info"
-                      now={66}
+                      variant="primary"
+                      now={33}
                       key={2}
-                      label={"En route"}
+                      // label={"En route"}
                     />
                     <ProgressBar
                       variant="success"
-                      now={99}
+                      now={0}
                       key={3}
-                      label={"Delivered"}
+                      // label={"Delivered"}
                     />
                   </ProgressBar>
                 </ListGroup>
