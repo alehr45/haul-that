@@ -100,15 +100,6 @@ export const UPDATE_STATUS = gql`
   }
 `;
 
-export const UPDATE_STATUS = gql`
-  mutation updateStatus($_id: ID!) {
-    updateStatus(_id: $_id) {
-      _id
-      status
-    }
-  }
-`;
-
 export const DELETE_JOB = gql`
   mutation deleteJob($_id: ID!) {
     deleteJob(_id: $_id) {

@@ -74,7 +74,7 @@ const DriverProfile = () => {
   return (
     <Container className="profile2Form">
       <Row>
-        <h1> Active Jobs</h1>
+        <h1 className="active">Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
