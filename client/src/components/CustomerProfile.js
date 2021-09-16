@@ -90,24 +90,17 @@ const CustomerProfile = () => {
                     {"Progress: " + label}
                   </ListGroupItem>
                   <ProgressBar>
-                    <ProgressBar
-                      variant="primary"
-                      now={33}
-                      key={1}
-                      // label={"Picked-up"}
-                    />
-                    <ProgressBar
-                      variant="primary"
-                      now={33}
-                      key={2}
-                      // label={"En route"}
-                    />
-                    <ProgressBar
-                      variant="success"
-                      now={0}
-                      key={3}
-                      // label={"Delivered"}
-                    />
+                    {job.status === 1 ? (
+                      <ProgressBar variant="primary" now={0} key={1} />
+                    ) : job.status === 2 ? (
+                      <ProgressBar variant="primary" now={20} key={1} />
+                    ) : job.status === 3 ? (
+                      <ProgressBar variant="primary" now={40} key={2} />
+                    ) : job.status === 4 ? (
+                      <ProgressBar variant="primary" now={60} key={3} />
+                    ) : (
+                      <ProgressBar variant="primary" now={80} key={3} />
+                    )}
                   </ProgressBar>
                 </ListGroup>
               </Card>

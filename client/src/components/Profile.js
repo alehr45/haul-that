@@ -20,7 +20,6 @@ import DriverProfile from "./DriverProfile";
 import CustomerProfile from "./CustomerProfile";
 
 const Profile = () => {
-  // const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
 
@@ -42,7 +41,10 @@ const Profile = () => {
         <Tab eventKey="customer" title="Customer">
           <CustomerProfile jobs={jobs} />
         </Tab>
+<<<<<<< HEAD
 
+=======
+>>>>>>> ad145daf85edc4d66d4af2f2ab2a6628b78a4e56
         <Tab eventKey="driver" title="Driver">
           <DriverProfile />
         </Tab>
