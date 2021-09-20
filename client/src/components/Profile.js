@@ -25,26 +25,42 @@ const Profile = () => {
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
   var user = {};
   var jobs = [];
-  const [defaultKey, setDefaultKey] = useState("");
+  const [key, setKey] = useState("");
+  console.log(key)
 
   if (!userLoading) {
     user = data.me;
   }
 
+  // const handleTab = (choice) => {
+  //   console.log(typeof choice)
+  //   setKey(choice)
+  // }
+  
   return (
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
-
-      <Tabs defaultActiveKey={defaultKey} id="uncontrolled-tab-example" className="mb-3">
-        <Tab eventKey="customer" title="Customer" onClick={() => {setDefaultKey("customer")}}>
+      <Tabs activeKey={key} onSelect={(k) => setKey(k)} id="controlled-tab-example" className="mb-3">
+        <Tab eventKey="customer" title="customer">
           <CustomerProfile jobs={jobs} />
         </Tab>
-        <Tab eventKey="driver" title="Driver" onClick={() => {setDefaultKey("driver")}}>
+        <Tab eventKey="driver" title="driver">
           <DriverProfile />
-        </Tab>
+        </Tab>   
       </Tabs>
+
+      {/* <Tabs defaultActiveKey={key} id="controlled-tab-example" className="mb-3">
+        <Tab eventKey="customer" title="customer" onSelect={() => handleTab("customer")}>
+          <CustomerProfile jobs={jobs} />
+        </Tab>
+        <Tab eventKey="driver" title="driver" onClick={() => handleTab("driver")}>
+          <DriverProfile />
+        </Tab>   
+      </Tabs> */}
     </Container>
   );
 };
+
+
 
 export default Profile;

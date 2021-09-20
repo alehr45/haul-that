@@ -14,6 +14,7 @@ import BookingA from "./components/Booking/BookingA";
 import CheckoutForm from "./components/Booking/BookingB";
 import Details from "./components/Details";
 import CustomerProfile from "./components/CustomerProfile";
+import DriverProfile from "./components/DriverProfile";
 
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
@@ -47,8 +48,10 @@ function App() {
           <Switch>
             <Route path="/details/:job_Id" component={Details} />
             <Route path="/signup" component={Signup} />
-            <Route path="/customerprofile" component={CustomerProfile} />
+            {/* <Route path="/customerprofile" component={CustomerProfile} /> */}
             <Route path="/profile" component={Profile} />
+            <Route path="/profile/customer" component={CustomerProfile} />
+            <Route path="/profile/driver" component={DriverProfile} />
             <Route path="/BookingA" component={BookingA} />
 
             <Route path="/BookingB" component={CheckoutForm}>

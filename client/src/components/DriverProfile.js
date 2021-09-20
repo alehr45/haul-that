@@ -94,10 +94,9 @@ const DriverProfile = () => {
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
                   {(job.status === 1) ? <Button variant="secondary" onClick={() => handleStatus(job._id, job.status)}>Start Job</Button>
-                    : (job.status === 2) ? <Button variant="primary" onClick={() => handleStatus(job._id, job.status)}>Heading to pickup</Button>
-                    : (job.status === 3) ? <Button variant="info" onClick={() => handleStatus(job._id, job.status)}>At pickup location</Button>
-                    : (job.status === 4) ? <Button variant="warning" onClick={() => handleStatus(job._id, job.status)}>Delivering</Button>
-                    : (job.status === 5) ? <Button variant="danger" onClick={() => handleStatus(job._id, job.status)}>At dropoff location</Button>
+                    : (job.status === 2) ? <Button variant="info" onClick={() => handleStatus(job._id, job.status)}>At pickup location</Button>
+                    : (job.status === 3) ? <Button variant="warning" onClick={() => handleStatus(job._id, job.status)}>Delivering</Button>
+                    : (job.status === 4) ? <Button variant="danger" onClick={() => handleStatus(job._id, job.status)}>At dropoff location</Button>
                     : <Button variant="success" onClick={() => handleComplete(job._id)}>Complete Job</Button>
                   }
                 </ListGroup>
