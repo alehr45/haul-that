@@ -1,22 +1,13 @@
 import React, { useState } from "react";
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Button,
-  ProgressBar,
-} from "react-bootstrap";
-import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
-import { COMPLETE_JOB } from "../utils/mutation";
+import { Card, ListGroupItem, ListGroup, Container, Row, ProgressBar } from "react-bootstrap";
+import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
+import { COMPLETE_JOB } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
 const CustomerProfile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
-
   var user = {};
   var jobs = [];
   var completedJobs = [];
@@ -55,9 +46,7 @@ const CustomerProfile = () => {
         _id: _id,
       },
     });
-
     // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
-
     window.location.assign("/profile");
   };
 
@@ -68,21 +57,17 @@ const CustomerProfile = () => {
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
-              <Card
-                className="cardbody"
-                key={job._id}
-                style={{ width: "12rem" }}
-              >
+              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <ListGroupItem>Job # {job.id}</ListGroupItem>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
-                  <ListGroupItem>
-                    Haul: {parseInt(job.distance)} miles{" "}
+                  <ListGroupItem> Haul: {parseInt(job.distance)} miles{" "}
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
+                  {/* Updates job.status as Driver clicks each button on DriverProfile */}
                   {job.status === 2 ? (
                       <ListGroupItem className="progress2">
                         {"Heading to pickup"}
@@ -103,8 +88,9 @@ const CustomerProfile = () => {
                       <ListGroupItem className="progress2">
                         {"Pending"}
                       </ListGroupItem>
-                    )}
-                  
+                    )
+                  }
+                  {/* Displays progress bar as job.status receives updates */}
                   <ProgressBar>
                     {job.status === 1 ? (
                       <ProgressBar animated variant="primary" now={0} key={1} />
@@ -126,11 +112,7 @@ const CustomerProfile = () => {
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
-              <Card
-                className="cardbody"
-                key={job._id}
-                style={{ width: "12rem" }}
-              >
+              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>

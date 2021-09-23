@@ -1,10 +1,5 @@
 import * as React from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  DirectionsService,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
+import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from "@react-google-maps/api";
 
 const mapStyles = {
   height: "40vh",
@@ -58,19 +53,10 @@ const ExampleDirections = ({ start, end }) => {
       <div className="map-settings">
         <div className="map-container details-map" id="map">
           <LoadScript googleMapsApiKey="AIzaSyB_c7GFN8Edf79UFOfpLna7LNX4X7MALHM">
-            <GoogleMap
-              id="direction-example"
-              mapContainerStyle={mapStyles}
-              zoom={11}
-              center={defaultCenter}
-            >
+            <GoogleMap id="direction-example" mapContainerStyle={mapStyles} zoom={11} center={defaultCenter}>
               {destination !== "" && origin !== "" && (
-                <DirectionsService
-                  options={directionsServiceOptions}
-                  callback={directionsCallback}
-                />
+                <DirectionsService options={directionsServiceOptions} callback={directionsCallback} />
               )}
-
               {response !== null && (
                 <DirectionsRenderer options={directionsRendererOptions} />
               )}

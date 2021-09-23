@@ -7,11 +7,12 @@ import {
   Button,
   Modal,
   ToggleButton,
+  ButtonGroup
 } from "react-bootstrap";
 import React, { useState } from "react";
-import { UPDATE_USER } from "../utils/mutation";
+import { UPDATE_USER } from "../../utils/mutation";
 // import emailjs from "emailjs-com";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
 
 // Displays user info card for profile and opens modal for editing user information
@@ -21,6 +22,11 @@ const UserProfile = ({ user }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // try setting (on signup) a value to equal customer or driver
+  
+  const [checked1, setChecked1] = useState(user.customer);
+  const [checked2, setChecked2] = useState(user.driver);
+
   // Initializing formstate for input fields
   const [formState, setFormState] = useState({
     firstName: "",
@@ -28,7 +34,29 @@ const UserProfile = ({ user }) => {
     email: "",
     phone: "",
     aboutMe: "",
+    customer: "",
+    driver: "",
+    position: ""
   });
+
+  const checkedInput = () => {
+    if (checked1 === false) {
+      setChecked1(true)
+      setChecked2(false)
+      formState.customer = true
+      formState.driver = false
+    } else {
+      setChecked1(false)
+      setChecked2(true)
+      formState.driver = true
+      formState.customer = false
+    }
+    if (formState.driver === true) {
+      formState.position = "driver"
+    } else {
+      formState.position = "customer"
+    }
+  }
 
   // Handles form submission via save button
   const handleFormSubmit = async (event) => {
@@ -51,6 +79,15 @@ const UserProfile = ({ user }) => {
       }
       if (formState.aboutMe === "") {
         formState.aboutMe = user.aboutMe;
+      }
+      if (formState.customer === "") {
+        formState.customer = user.customer;
+      }
+      if (formState.driver === "") {
+        formState.driver = user.driver;
+      }
+      if (formState.position === "") {
+        formState.position = user.position;
       }
     }
 
@@ -95,6 +132,22 @@ const UserProfile = ({ user }) => {
             <Modal.Body className="modalbody">
               <form>
                 <h1 className="editprofile">Edit Profile</h1>
+
+                <div className="form-group">
+                  <label>Preferred Use</label>
+                  <br />
+                  <ButtonGroup className="mb-2">
+                    <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked1} onChange={(e) => checkedInput()}>
+                      Customer
+                    </ToggleButton>
+                  </ButtonGroup>
+                  <ButtonGroup className="mb-2">
+                    <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked2} onChange={(e) => checkedInput()}>
+                      Driver
+                    </ToggleButton>
+                  </ButtonGroup>
+                </div>
+
                 <div className="form-group">
                   <label>First name</label>
                   <input
@@ -166,24 +219,9 @@ const UserProfile = ({ user }) => {
 
           <Avatar size={262} name={user.username} />
 
-          {/* <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>Cant import picture</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              Whoa! This feature is not ready yet. Coming Soon!
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={handleClose}>
-                Save Changes
-              </Button>
-            </Modal.Footer>
-          </Modal> */}
-
           {/* <img src={ Pic1 }></img> */}
+          
+          {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>
           </Card.Body>

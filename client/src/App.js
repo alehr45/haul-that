@@ -4,17 +4,17 @@ import Home from "./components/Home";
 import NavBar from "./components/NavBar.js";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import Jobs from "./components/Jobs";
+import Jobs from "./components/Jobs/Job";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
-import Profile from "./components/Profile";
+import Profile from "./components/Profiles/Profile";
 import Signup from "./components/Signup";
 import "./App.css";
 import BookingA from "./components/Booking/BookingA";
 import CheckoutForm from "./components/Booking/BookingB";
-import Details from "./components/Details";
-import CustomerProfile from "./components/CustomerProfile";
-import DriverProfile from "./components/DriverProfile";
+import Details from "./components/Jobs/Details";
+import CustomerProfile from "./components/Profiles/CustomerProfile";
+import DriverProfile from "./components/Profiles/DriverProfile";
 
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";

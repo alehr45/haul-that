@@ -42,12 +42,16 @@ const userSchema = new Schema(
       minlength: 5
     },
     driver: {
-      type: String,
-      // required: true
+      type: Boolean,
+      required: true
     },
     customer: {
+      type: Boolean,
+      required: true
+    },
+    position: {
       type: String,
-      // required: true
+      required: true
     },
     jobs: [jobSchema]
   },

@@ -7,8 +7,8 @@ import {
   Row,
   Button,
 } from "react-bootstrap";
-import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
-import { COMPLETE_JOB, UPDATE_STATUS } from "../utils/mutation";
+import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
+import { COMPLETE_JOB, UPDATE_STATUS } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
 const DriverProfile = () => {
