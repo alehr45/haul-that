@@ -96,15 +96,24 @@ const Details = () => {
             Date: {moment(currentJob.date).format("MMMM Do YYYY")}
           </ListGroupItem>
         </Card.Body>
-        <Button variant="success" onClick={() => handlePickup()}>
-          Accept Job
-        </Button>
-
-        <Button variant="primary">
-          <Link className="goback" to={"/jobs"}>
-            Go Back
-          </Link>
-        </Button>
+        {currentJob.taken ? (
+          <Button variant="primary">
+            <Link className="goback" to={"/profile"}>
+              Go Back
+            </Link>
+          </Button>
+        ) : (
+          <div>
+            <Button variant="success" onClick={() => handlePickup()}>
+              Accept Job
+            </Button>
+            <Button variant="primary">
+              <Link className="goback" to={"/jobs"}>
+                Go Back
+              </Link>
+            </Button>
+          </div>
+        )}
       </Card>
     </Container>
   );
