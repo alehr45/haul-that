@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container, ButtonGroup, ToggleButton } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
 import emailjs from "emailjs-com";
+import Profile from "./Profiles/Profile";
 // import { loadStripe } from "@stripe/stripe-js";
 // import { Elements } from "@stripe/react-stripe-js";
 // import CheckoutForm from "./CheckoutForm/CheckoutForm.js"
@@ -12,14 +13,42 @@ import emailjs from "emailjs-com";
 
 const Signup = () => {
 
+  const [checked1, setChecked1] = useState(true);
+  const [checked2, setChecked2] = useState(false);
+
+  const checkedInput = () => {
+    if (checked1 === false) {
+      setChecked1(true)
+      setChecked2(false)
+      formState.customer = true
+      formState.driver = false
+    } else {
+      setChecked1(false)
+      setChecked2(true)
+      formState.driver = true
+      formState.customer = false
+    }
+
+    if (formState.driver === true) {
+      formState.position = "driver"
+    } else {
+      formState.position = "customer"
+    }   
+  }
+
   const [formState, setFormState] = useState({
     firstName: "",
     lastName: "",
     username: "",
     email: "",
     phone: "",
-    password: ""
+    password: "",
+    customer: false,
+    driver: false,
+    position: ""
   });
+
+  console.log(checked1, checked2, formState)
 
   const [addUser] = useMutation(ADD_USER);
 
@@ -59,6 +88,21 @@ const Signup = () => {
         <Col xs={5} md={4}>
           <form className="signupform">
             <h3>Sign Up</h3>
+
+            <div className="form-group">
+              <label>Preferred Use</label>
+              <br />
+              <ButtonGroup className="mb-2">
+                <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked1} onChange={(e) => checkedInput()}>
+                  Customer
+                </ToggleButton>
+              </ButtonGroup>
+              <ButtonGroup className="mb-2">
+                <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked2} onChange={(e) => checkedInput()}>
+                  Driver
+                </ToggleButton>
+              </ButtonGroup>
+            </div>
 
             <div className="form-group">
               <label>First name</label>

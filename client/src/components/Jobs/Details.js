@@ -1,15 +1,15 @@
 import React from "react";
-import { Container, Col, Card, ListGroupItem, Button } from "react-bootstrap";
+import { Container, Card, ListGroupItem, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { GET_JOBS, QUERY_ME_BASIC } from "../utils/queries";
+import { GET_JOBS, QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
   PICKUP_JOB,
   UPDATE_JOB,
-  DELETE_JOB,
+  // DELETE_JOB,
   UPDATE_JOB_DRIVER,
-} from "../utils/mutation";
+} from "../../utils/mutation";
 import DetailsMap from "./DetailsMap";
 import moment from "moment";
 import emailjs from "emailjs-com";
@@ -69,7 +69,6 @@ const Details = () => {
       userInfo,
       "user_ZAvEHL9UX2xiYewnTTWEa"
     );
-
     window.location.assign("/profile");
   };
 

@@ -20,6 +20,9 @@ export const ADD_USER = gql`
     $username: String!
     $password: String!
     $aboutMe: String
+    $customer: Boolean!
+    $driver: Boolean!
+    $position: String!
   ) {
     addUser(
       firstName: $firstName
@@ -27,6 +30,9 @@ export const ADD_USER = gql`
       email: $email
       phone: $phone
       aboutMe: $aboutMe
+      customer: $customer
+      driver: $driver
+      position: $position
       username: $username
       password: $password
     ) {
@@ -86,12 +92,13 @@ export const UPDATE_JOB = gql`
     updateJob(_id: $_id) {
       _id
       taken
+      status
     }
   }
 `;
 
 export const UPDATE_STATUS = gql`
-  mutation updateStatus($_id: ID!) {
+  mutation updateStatus($_id: ID!){
     updateStatus(_id: $_id) {
       _id
       status
@@ -123,6 +130,9 @@ export const UPDATE_USER = gql`
     $email: String!
     $phone: String!
     $aboutMe: String
+    $customer: Boolean!
+    $driver: Boolean!
+    $position: String!
   ) {
     updateUser(
       _id: $_id
@@ -131,6 +141,9 @@ export const UPDATE_USER = gql`
       email: $email
       phone: $phone
       aboutMe: $aboutMe
+      customer: $customer
+      driver: $driver
+      position: $position
     ) {
       _id
     }
