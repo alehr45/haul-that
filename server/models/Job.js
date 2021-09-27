@@ -29,6 +29,9 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
+    realTime: {
+      type: Number
+    },
     status: {
       type: Number,
       default: 1,

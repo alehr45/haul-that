@@ -50,6 +50,7 @@ export const GET_JOBS = gql`
       category
       description
       distance
+      realTime
       taken
       status
       completed

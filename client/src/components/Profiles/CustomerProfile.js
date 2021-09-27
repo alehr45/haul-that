@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Card, ListGroupItem, ListGroup, Container, Row, ProgressBar } from "react-bootstrap";
+import {
+  Card,
+  ListGroupItem,
+  ListGroup,
+  Container,
+  Row,
+  ProgressBar,
+  Button
+} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
 import { COMPLETE_JOB } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -57,51 +66,77 @@ const CustomerProfile = () => {
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
-                  <ListGroupItem>Job # {job.id}</ListGroupItem>
+                  <Card.Title>Job # {job.id}</Card.Title>
+                  <Button size="sm" variant="outline-info"><Link className="link" to={"/details/" + job._id}>
+                      Details
+                    </Link></Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
-                  <ListGroupItem> Haul: {parseInt(job.distance)} miles{" "}
+                  <ListGroupItem>
+                    Haul: {parseInt(job.distance)} miles
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
                   {/* Updates job.status as Driver clicks each button on DriverProfile */}
                   {job.status === 2 ? (
-                      <ListGroupItem className="progress2">
-                        {"Heading to pickup"}
-                      </ListGroupItem>
-                    ) : job.status === 3 ? (
-                      <ListGroupItem className="progress2">
-                        {"At pickup location"}
-                      </ListGroupItem>
-                    ) : job.status === 4 ? (
-                      <ListGroupItem className="progress2">
-                        {"Delivering"}
-                      </ListGroupItem>
-                    ) : job.status === 5 ? (
-                      <ListGroupItem className="progress2">
-                        {"At dropoff location"}
-                      </ListGroupItem>
-                    ) : (
-                      <ListGroupItem className="progress2">
-                        {"Pending"}
-                      </ListGroupItem>
-                    )
-                  }
+                    <ListGroupItem className="progress2">
+                      {"Heading to pickup"}
+                    </ListGroupItem>
+                  ) : job.status === 3 ? (
+                    <ListGroupItem className="progress2">
+                      {"At pickup location"}
+                    </ListGroupItem>
+                  ) : job.status === 4 ? (
+                    <ListGroupItem className="progress2">
+                      {"Delivering"}
+                    </ListGroupItem>
+                  ) : job.status === 5 ? (
+                    <ListGroupItem className="progress2">
+                      {"At dropoff location"}
+                    </ListGroupItem>
+                  ) : (
+                    <ListGroupItem className="progress2">
+                      {"Pending"}
+                    </ListGroupItem>
+                  )}
                   {/* Displays progress bar as job.status receives updates */}
                   <ProgressBar>
                     {job.status === 1 ? (
                       <ProgressBar animated variant="primary" now={0} key={1} />
                     ) : job.status === 2 ? (
-                      <ProgressBar animated variant="primary" now={25} key={1} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={25}
+                        key={1}
+                      />
                     ) : job.status === 3 ? (
-                      <ProgressBar animated variant="primary" now={45} key={2} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={45}
+                        key={2}
+                      />
                     ) : job.status === 4 ? (
-                      <ProgressBar animated variant="primary" now={75} key={3} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={75}
+                        key={3}
+                      />
                     ) : (
-                      <ProgressBar animated variant="primary" now={95} key={3} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={95}
+                        key={3}
+                      />
                     )}
                   </ProgressBar>
                 </ListGroup>
@@ -112,7 +147,11 @@ const CustomerProfile = () => {
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
-              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
+              <Card
+                className="cardbody"
+                key={job._id}
+                style={{ width: "12rem" }}
+              >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>

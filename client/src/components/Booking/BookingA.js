@@ -61,7 +61,9 @@ if(!loading){
           const pickupLng = routeInfo.route.locations[0].latLng.lng;
           const dropoffLat = routeInfo.route.locations[1].latLng.lat;
           const dropoffLng = routeInfo.route.locations[1].latLng.lng;
+          const realTime = parseInt(routeInfo.route.realTime / 60);
 
+          console.log(realTime)
           setFormState({
             ...formState,
           });
@@ -70,7 +72,8 @@ if(!loading){
             pickupLat,
             pickupLng,
             dropoffLat,
-            dropoffLng
+            dropoffLng,
+            realTime
           );
         });
       }
@@ -82,13 +85,15 @@ if(!loading){
     pickupLat,
     pickupLng,
     dropoffLat,
-    dropoffLng
+    dropoffLng, 
+    realTime
   ) => {
     let job = {
       date: formState.date,
       category: formState.category,
       description: formState.description,
       distance: distance.toString(),
+      realTime: realTime,
       phone: phone,
       name: name,
       email: email,
