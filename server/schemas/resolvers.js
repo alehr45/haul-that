@@ -117,6 +117,18 @@ const resolvers = {
 
       return updatedStatus;
     },
+
+    updatePosition: async (parent, { _id }) => {
+      console.log(_id);
+      const updatedPosition = await Job.findOneAndUpdate(
+        { _id },
+        { $inc: { isDriver: false } },
+        { new: true }
+      );
+
+      return updatedPosition;
+    },
+
     updateJobDriver: async (parent, { _id, driverUsername }) => {
       console.log(_id, driverUsername);
       const updatedJob = await Job.findOneAndUpdate(

@@ -74,11 +74,7 @@ const DriverProfile = () => {
   return (
     <Container className="profile2Form">
       <Row>
-<<<<<<< HEAD
-        <h1 className="active">-Active Jobs-</h1>
-=======
-        <h1 className="active"> Active Jobs</h1>
->>>>>>> ad145daf85edc4d66d4af2f2ab2a6628b78a4e56
+        <h1 className="active">Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -88,15 +84,20 @@ const DriverProfile = () => {
                 style={{ width: "12rem" }}
               >
                 <Card.Body>
-                  <Card.Title>Job # {job.id}</Card.Title>
+                  <Card.Title className="card2">Job # {job.id}</Card.Title>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
                   <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles{" "}
                   </ListGroupItem>
-                  <ListGroupItem> {job.category} </ListGroupItem>
-                  <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
+                  <ListGroupItem className="card2">
+                    {" "}
+                    {job.category}{" "}
+                  </ListGroupItem>
+                  <ListGroupItem className="card2">
+                    ${parseInt(job.distance * 1.2)}
+                  </ListGroupItem>
                   {job.status === 1 ? (
                     <Button
                       variant="secondary"
@@ -106,26 +107,19 @@ const DriverProfile = () => {
                     </Button>
                   ) : job.status === 2 ? (
                     <Button
-                      variant="primary"
-                      onClick={() => handleStatus(job._id, job.status)}
-                    >
-                      Heading to pickup
-                    </Button>
-                  ) : job.status === 3 ? (
-                    <Button
                       variant="info"
                       onClick={() => handleStatus(job._id, job.status)}
                     >
                       At pickup location
                     </Button>
-                  ) : job.status === 4 ? (
+                  ) : job.status === 3 ? (
                     <Button
                       variant="warning"
                       onClick={() => handleStatus(job._id, job.status)}
                     >
                       Delivering
                     </Button>
-                  ) : job.status === 5 ? (
+                  ) : job.status === 4 ? (
                     <Button
                       variant="danger"
                       onClick={() => handleStatus(job._id, job.status)}
@@ -140,14 +134,11 @@ const DriverProfile = () => {
                       Complete Job
                     </Button>
                   )}
-                  {/* <Button variant="warning" onClick={() => handleComplete(job._id)}>
-                    Complete Job
-                  </Button>{" "} */}
                 </ListGroup>
               </Card>
             ))}
         </div>
-        <h1 className="completed">-Completed Jobs-</h1>
+        <h1 className="completed">Completed Jobs</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (

@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const jobSchema = require('./Job.js').schema
+const jobSchema = require("./Job.js").schema;
 const bcrypt = require("bcrypt");
 
 const userSchema = new Schema(
@@ -7,24 +7,24 @@ const userSchema = new Schema(
     firstName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     lastName: {
       type: String,
       required: true,
-      trim: true
+      trim: true,
     },
     username: {
       type: String,
       required: true,
       trim: true,
-      unique: true
+      unique: true,
     },
     email: {
       type: String,
       required: true,
       unique: true,
-      match: [/.+@.+\..+/, "Must match an email address!"]
+      match: [/.+@.+\..+/, "Must match an email address!"],
     },
     phone: {
       type: String,
@@ -34,26 +34,22 @@ const userSchema = new Schema(
       type: String,
       required: false,
       minlength: 10,
-      maxlength: 400
+      maxlength: 400,
     },
     password: {
       type: String,
       required: true,
-      minlength: 5
+      minlength: 5,
     },
-    driver: {
-      type: String,
-      // required: true
+    isDriver: {
+      type: Boolean,
+      default: true,
     },
-    customer: {
-      type: String,
-      // required: true
-    },
-    jobs: [jobSchema]
-  },
+    jobs: [jobSchema],
+  },``
   {
     toJSON: {
-      virtuals: true
+      virtuals: true,
     },
   }
 );

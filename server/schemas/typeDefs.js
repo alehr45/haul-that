@@ -22,6 +22,7 @@ const typeDefs = gql`
     phone: String!
     aboutMe: String
     jobs: [Job]
+    isDriver: Boolean
   }
 
   type Job {

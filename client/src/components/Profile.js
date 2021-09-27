@@ -28,23 +28,21 @@ const Profile = () => {
 
   if (!userLoading) {
     user = data.me;
+    console.log(user);
   }
 
   return (
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
+
       <Tabs
-        defaultActiveKey="customer"
-        id="uncontrolled-tab-example"
+        defaultActiveKey="driver"
+        id="controlled-tab-example"
         className="mb-3"
       >
         <Tab eventKey="customer" title="Customer">
           <CustomerProfile jobs={jobs} />
         </Tab>
-<<<<<<< HEAD
-
-=======
->>>>>>> ad145daf85edc4d66d4af2f2ab2a6628b78a4e56
         <Tab eventKey="driver" title="Driver">
           <DriverProfile />
         </Tab>

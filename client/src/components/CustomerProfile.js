@@ -61,13 +61,10 @@ const CustomerProfile = () => {
     window.location.assign("/profile");
   };
 
-  let label = "en route";
-  let now = "33";
-
   return (
     <Container className="profile2Form">
       <Row>
-        <h1 className="active">-Current Deliveries-</h1>
+        <h1 className="active"> Current Deliveries</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -86,27 +83,66 @@ const CustomerProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  <ListGroupItem className="progress2">
-                    {"Progress: " + label}
-                  </ListGroupItem>
+                  {job.status === 2 ? (
+                    <ListGroupItem className="progress2">
+                      {"Heading to pickup"}
+                    </ListGroupItem>
+                  ) : job.status === 3 ? (
+                    <ListGroupItem className="progress2">
+                      {"At pickup location"}
+                    </ListGroupItem>
+                  ) : job.status === 4 ? (
+                    <ListGroupItem className="progress2">
+                      {"Delivering"}
+                    </ListGroupItem>
+                  ) : job.status === 5 ? (
+                    <ListGroupItem className="progress2">
+                      {"At dropoff location"}
+                    </ListGroupItem>
+                  ) : (
+                    <ListGroupItem className="progress2">
+                      {"Pending"}
+                    </ListGroupItem>
+                  )}
+
                   <ProgressBar>
                     {job.status === 1 ? (
-                      <ProgressBar variant="primary" now={0} key={1} />
+                      <ProgressBar animated variant="primary" now={0} key={1} />
                     ) : job.status === 2 ? (
-                      <ProgressBar variant="primary" now={20} key={1} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={35}
+                        key={1}
+                      />
                     ) : job.status === 3 ? (
-                      <ProgressBar variant="primary" now={40} key={2} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={45}
+                        key={2}
+                      />
                     ) : job.status === 4 ? (
-                      <ProgressBar variant="primary" now={60} key={3} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={75}
+                        key={3}
+                      />
                     ) : (
-                      <ProgressBar variant="primary" now={80} key={3} />
+                      <ProgressBar
+                        animated
+                        variant="primary"
+                        now={95}
+                        key={3}
+                      />
                     )}
                   </ProgressBar>
                 </ListGroup>
               </Card>
             ))}
         </div>
-        <h1 className="completed">-Completed Deliveries-</h1>
+        <h1 className="completed">Completed Jobs</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (
