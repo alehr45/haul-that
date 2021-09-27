@@ -62,6 +62,11 @@ const BookingA = () => {
           const dropoffLat = routeInfo.route.locations[1].latLng.lat;
           const dropoffLng = routeInfo.route.locations[1].latLng.lng;
           const realTime = parseInt(routeInfo.route.realTime / 60);
+<<<<<<< HEAD
+=======
+
+          console.log(realTime)
+>>>>>>> fb96286575bef70f3f685d0308c798fa6c5deee0
           setFormState({
             ...formState,
           });
@@ -70,7 +75,8 @@ const BookingA = () => {
             pickupLat,
             pickupLng,
             dropoffLat,
-            dropoffLng
+            dropoffLng,
+            realTime
           );
         });
       }
@@ -82,13 +88,15 @@ const BookingA = () => {
     pickupLat,
     pickupLng,
     dropoffLat,
-    dropoffLng
+    dropoffLng, 
+    realTime
   ) => {
     let job = {
       date: formState.date,
       category: formState.category,
       description: formState.description,
       distance: distance.toString(),
+      realTime: realTime,
       phone: phone,
       name: name,
       email: email,

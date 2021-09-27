@@ -35,6 +35,7 @@ const typeDefs = gql`
     createdAt: String
     description: String!
     distance: String!
+    realTime: Int 
     taken: Boolean
     status: Int
     completed: Boolean
@@ -90,6 +91,7 @@ const typeDefs = gql`
       category: String!
       description: String!
       distance: String!
+      realTime: Int
       phone: String!
       name: String!
       email: String!
