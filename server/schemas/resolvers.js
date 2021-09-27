@@ -157,7 +157,7 @@ const resolvers = {
     },
     updateUser: async (
       parent,
-      { _id, firstName, lastName, email, phone, aboutMe }
+      { _id, firstName, lastName, email, phone, aboutMe, customer, driver, position }
     ) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: _id },
@@ -167,6 +167,9 @@ const resolvers = {
           email: email,
           phone: phone,
           aboutMe: aboutMe,
+          customer: customer,
+          driver: driver,
+          position: position
         },
         { new: true }
       );

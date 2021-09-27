@@ -6,22 +6,22 @@ import {
   Container,
   Row,
   Button,
-  ProgressBar,
 } from "react-bootstrap";
-import { QUERY_ME_BASIC, GET_JOBS } from "../utils/queries";
-import { COMPLETE_JOB } from "../utils/mutation";
+import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
+import { COMPLETE_JOB, UPDATE_STATUS } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
-const CustomerProfile = () => {
+const DriverProfile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
+  const [updateStatus] = useMutation(UPDATE_STATUS);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
 
   var user = {};
   var jobs = [];
   var completedJobs = [];
-  var incompleteJobs = [];
-
+  var incompleteJobs = [];  
+  
   if (!userLoading) {
     user = data.me;
   }
@@ -61,10 +61,23 @@ const CustomerProfile = () => {
     window.location.assign("/profile");
   };
 
+<<<<<<< HEAD:client/src/components/CustomerProfile.js
+=======
+  const handleStatus = async (_id, status) => {
+    await updateStatus({
+      variables: {
+        _id: _id,
+      },
+    });
+
+    window.location.assign("/profile");
+  };
+
+>>>>>>> 9144f34a1632c0edae3c7cb01b02ffee320f1cd1:client/src/components/Profiles/DriverProfile.js
   return (
     <Container className="profile2Form">
       <Row>
-        <h1 className="active"> Current Deliveries</h1>
+        <h1 className="active">Active Jobs</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -74,7 +87,7 @@ const CustomerProfile = () => {
                 style={{ width: "12rem" }}
               >
                 <Card.Body>
-                  <ListGroupItem>Job # {job.id}</ListGroupItem>
+                  <Card.Title>Job # {job.id}</Card.Title>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
@@ -83,6 +96,7 @@ const CustomerProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
+<<<<<<< HEAD:client/src/components/CustomerProfile.js
                   {job.status === 2 ? (
                     <ListGroupItem className="progress2">
                       {"Heading to pickup"}
@@ -138,6 +152,14 @@ const CustomerProfile = () => {
                       />
                     )}
                   </ProgressBar>
+=======
+                  {(job.status === 1) ? <Button variant="secondary" onClick={() => handleStatus(job._id, job.status)}>Start Job</Button>
+                    : (job.status === 2) ? <Button variant="info" onClick={() => handleStatus(job._id, job.status)}>At pickup location</Button>
+                    : (job.status === 3) ? <Button variant="warning" onClick={() => handleStatus(job._id, job.status)}>Delivering</Button>
+                    : (job.status === 4) ? <Button variant="danger" onClick={() => handleStatus(job._id, job.status)}>At dropoff location</Button>
+                    : <Button variant="success" onClick={() => handleComplete(job._id)}>Complete Job</Button>
+                  }
+>>>>>>> 9144f34a1632c0edae3c7cb01b02ffee320f1cd1:client/src/components/Profiles/DriverProfile.js
                 </ListGroup>
               </Card>
             ))}
@@ -171,4 +193,4 @@ const CustomerProfile = () => {
   );
 };
 
-export default CustomerProfile;
+export default DriverProfile;

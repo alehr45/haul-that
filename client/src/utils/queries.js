@@ -29,6 +29,9 @@ export const QUERY_ME_BASIC = gql`
       isDriver
       email
       aboutMe
+      customer
+      driver
+      position
       jobs {
         id
         _id

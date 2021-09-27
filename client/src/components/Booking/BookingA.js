@@ -3,7 +3,7 @@ import { Button, Form, Container, Col, Row } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
 import { QUERY_ME_BASIC } from "../../utils/queries";
-import Jobs from "../Jobs"
+import Jobs from "../Jobs/Job"
 
 const BookingA = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
