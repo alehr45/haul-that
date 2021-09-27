@@ -98,19 +98,10 @@ export const UPDATE_JOB = gql`
 `;
 
 export const UPDATE_STATUS = gql`
-  mutation updateStatus($_id: ID!){
+  mutation updateStatus($_id: ID!) {
     updateStatus(_id: $_id) {
       _id
       status
-    }
-  }
-`;
-
-export const UPDATE_POSITION = gql`
-  mutation updatePosition($_id: ID!) {
-    updatePosition(_id: $_id) {
-      _id
-      isDriver
     }
   }
 `;

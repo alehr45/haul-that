@@ -41,26 +41,20 @@ const userSchema = new Schema(
       required: true,
       minlength: 5,
     },
-<<<<<<< HEAD
-    isDriver: {
-      type: Boolean,
-      default: true,
-=======
     driver: {
       type: Boolean,
-      required: true
+      required: true,
     },
     customer: {
       type: Boolean,
-      required: true
+      required: true,
     },
     position: {
       type: String,
-      required: true
->>>>>>> 9144f34a1632c0edae3c7cb01b02ffee320f1cd1
+      required: true,
     },
     jobs: [jobSchema],
-  },``
+  },
   {
     toJSON: {
       virtuals: true,

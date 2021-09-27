@@ -25,7 +25,6 @@ const typeDefs = gql`
     driver: Boolean!
     position: String!
     jobs: [Job]
-    isDriver: Boolean
   }
 
   type Job {

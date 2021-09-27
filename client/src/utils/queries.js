@@ -26,7 +26,6 @@ export const QUERY_ME_BASIC = gql`
       firstName
       lastName
       phone
-      isDriver
       email
       aboutMe
       customer

@@ -20,8 +20,8 @@ const DriverProfile = () => {
   var user = {};
   var jobs = [];
   var completedJobs = [];
-  var incompleteJobs = [];  
-  
+  var incompleteJobs = [];
+
   if (!userLoading) {
     user = data.me;
   }
@@ -61,8 +61,6 @@ const DriverProfile = () => {
     window.location.assign("/profile");
   };
 
-<<<<<<< HEAD:client/src/components/CustomerProfile.js
-=======
   const handleStatus = async (_id, status) => {
     await updateStatus({
       variables: {
@@ -73,7 +71,6 @@ const DriverProfile = () => {
     window.location.assign("/profile");
   };
 
->>>>>>> 9144f34a1632c0edae3c7cb01b02ffee320f1cd1:client/src/components/Profiles/DriverProfile.js
   return (
     <Container className="profile2Form">
       <Row>
@@ -96,70 +93,42 @@ const DriverProfile = () => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-<<<<<<< HEAD:client/src/components/CustomerProfile.js
-                  {job.status === 2 ? (
-                    <ListGroupItem className="progress2">
-                      {"Heading to pickup"}
-                    </ListGroupItem>
+                  {job.status === 1 ? (
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      Start Job
+                    </Button>
+                  ) : job.status === 2 ? (
+                    <Button
+                      variant="info"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      At pickup location
+                    </Button>
                   ) : job.status === 3 ? (
-                    <ListGroupItem className="progress2">
-                      {"At pickup location"}
-                    </ListGroupItem>
+                    <Button
+                      variant="warning"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      Delivering
+                    </Button>
                   ) : job.status === 4 ? (
-                    <ListGroupItem className="progress2">
-                      {"Delivering"}
-                    </ListGroupItem>
-                  ) : job.status === 5 ? (
-                    <ListGroupItem className="progress2">
-                      {"At dropoff location"}
-                    </ListGroupItem>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      At dropoff location
+                    </Button>
                   ) : (
-                    <ListGroupItem className="progress2">
-                      {"Pending"}
-                    </ListGroupItem>
+                    <Button
+                      variant="success"
+                      onClick={() => handleComplete(job._id)}
+                    >
+                      Complete Job
+                    </Button>
                   )}
-
-                  <ProgressBar>
-                    {job.status === 1 ? (
-                      <ProgressBar animated variant="primary" now={0} key={1} />
-                    ) : job.status === 2 ? (
-                      <ProgressBar
-                        animated
-                        variant="primary"
-                        now={35}
-                        key={1}
-                      />
-                    ) : job.status === 3 ? (
-                      <ProgressBar
-                        animated
-                        variant="primary"
-                        now={45}
-                        key={2}
-                      />
-                    ) : job.status === 4 ? (
-                      <ProgressBar
-                        animated
-                        variant="primary"
-                        now={75}
-                        key={3}
-                      />
-                    ) : (
-                      <ProgressBar
-                        animated
-                        variant="primary"
-                        now={95}
-                        key={3}
-                      />
-                    )}
-                  </ProgressBar>
-=======
-                  {(job.status === 1) ? <Button variant="secondary" onClick={() => handleStatus(job._id, job.status)}>Start Job</Button>
-                    : (job.status === 2) ? <Button variant="info" onClick={() => handleStatus(job._id, job.status)}>At pickup location</Button>
-                    : (job.status === 3) ? <Button variant="warning" onClick={() => handleStatus(job._id, job.status)}>Delivering</Button>
-                    : (job.status === 4) ? <Button variant="danger" onClick={() => handleStatus(job._id, job.status)}>At dropoff location</Button>
-                    : <Button variant="success" onClick={() => handleComplete(job._id)}>Complete Job</Button>
-                  }
->>>>>>> 9144f34a1632c0edae3c7cb01b02ffee320f1cd1:client/src/components/Profiles/DriverProfile.js
                 </ListGroup>
               </Card>
             ))}

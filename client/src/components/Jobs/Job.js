@@ -12,13 +12,13 @@ import Map from "../Map/Map";
 import { Container } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_JOBS, QUERY_ME_BASIC } from "../../utils/queries";
-import {
-  // PICKUP_JOB,
-  // UPDATE_JOB,
-  // DELETE_JOB,
-  // UPDATE_JOB_DRIVER,
-} from "../../utils/mutation";
+import // PICKUP_JOB,
+// UPDATE_JOB,
+// DELETE_JOB,
+// UPDATE_JOB_DRIVER,
+"../../utils/mutation";
 import Details from "./Details";
+
 // import moment from "moment";
 // import emailjs from "emailjs-com";
 
@@ -89,16 +89,21 @@ const Jobs = () => {
                   Pending...
                 </Button>
               ) : (
-                <Button className="button6" variant="text-white-20"
-                  onClick={() => handleDetails(
-                    job._id,
-                    job.distance,
-                    job.category,
-                    job.id,
-                    job.email,
-                    job.name,
-                    job.date
-                  )}>
+                <Button
+                  className="button6"
+                  variant="text-white-20"
+                  onClick={() =>
+                    handleDetails(
+                      job._id,
+                      job.distance,
+                      job.category,
+                      job.id,
+                      job.email,
+                      job.name,
+                      job.date
+                    )
+                  }
+                >
                   <Link className="link" to={"/details/" + _id}>
                     <h5>Active Job #{job.id} </h5>
                     Haul: {parseInt(job.distance)} miles {job.category} for $
