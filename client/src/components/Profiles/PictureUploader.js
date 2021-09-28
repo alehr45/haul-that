@@ -37,11 +37,11 @@ export default class PictureUploader extends React.Component {
     $.ajax({
       url: "https://api.imgur.com/3/image",
       type: "POST",
-      // datatype: "json",
+      datatype: "json",
       data: formData,
-      // headers: {
-      //   Authorization: "Client-ID d05e445a9bc224b ",
-      // },
+      headers: {
+        Authorization: "Client-ID d05e445a9bc224b ",
+      },
       success: function (response) {
         // Code to handle a succesful upload
         console.log(response);
