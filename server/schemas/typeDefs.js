@@ -24,6 +24,7 @@ const typeDefs = gql`
     customer: Boolean!
     driver: Boolean!
     position: String!
+    image: String
     jobs: [Job]
   }
 
@@ -35,7 +36,7 @@ const typeDefs = gql`
     createdAt: String
     description: String!
     distance: String!
-    realTime: Int 
+    realTime: Int
     taken: Boolean
     status: Int
     completed: Boolean
@@ -83,6 +84,7 @@ const typeDefs = gql`
       aboutMe: String
       customer: Boolean!
       driver: Boolean!
+      image: String
       position: String!
     ): Auth
     login(username: String!, password: String!): Auth
@@ -111,6 +113,7 @@ const typeDefs = gql`
       email: String
       phone: String
       aboutMe: String
+      image: String
       customer: Boolean
       driver: Boolean
       position: String

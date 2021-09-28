@@ -20,6 +20,7 @@ export const ADD_USER = gql`
     $username: String!
     $password: String!
     $aboutMe: String
+    $image: String
     $customer: Boolean!
     $driver: Boolean!
     $position: String!
@@ -32,6 +33,7 @@ export const ADD_USER = gql`
       aboutMe: $aboutMe
       customer: $customer
       driver: $driver
+      image: $image
       position: $position
       username: $username
       password: $password
@@ -104,6 +106,15 @@ export const UPDATE_STATUS = gql`
     updateStatus(_id: $_id) {
       _id
       status
+    }
+  }
+`;
+
+export const UPDATE_IMAGE = gql`
+  mutation updateImage($_id: ID!) {
+    updateStatus(_id: $_id) {
+      _id
+      image
     }
   }
 `;

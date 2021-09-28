@@ -49,6 +49,10 @@ const userSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    image: {
+      type: String,
+      required: false,
+    },
     position: {
       type: String,
       required: true,

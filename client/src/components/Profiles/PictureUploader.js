@@ -1,5 +1,7 @@
 import React from "react";
 import $ from "jquery";
+import { UPDATE_IMAGE } from "../../utils/mutation";
+import { useMutation } from "@apollo/react-hooks";
 
 export default class PictureUploader extends React.Component {
   constructor(props) {
@@ -42,13 +44,16 @@ export default class PictureUploader extends React.Component {
         Authorization: "Client-ID 3bd0a7ed5554183 ",
       },
       success: function (response) {
-        // Code to handle a succesful upload
-        console.log(response);
+        // Code to handle a succesfull upload
+        console.log(response.data.link);
       },
+
       cache: false,
       contentType: false,
       processData: false,
     });
+
+    // var uploadedImage = response.data.link;
   }
 
   render() {
@@ -56,11 +61,7 @@ export default class PictureUploader extends React.Component {
       <div>
         <h5>Picture Uploader</h5>
 
-        <input
-          className="uploadimage"
-          type="file"
-          onChange={this.handlePictureSelected.bind(this)}
-        />
+        <input type="file" onChange={this.handlePictureSelected.bind(this)} />
         <br />
         <div>{this.renderPreview()}</div>
         <hr />

@@ -8,6 +8,7 @@ import {
   Modal,
   ToggleButton,
   ButtonGroup,
+  Image,
 } from "react-bootstrap";
 import React, { useState } from "react";
 import { UPDATE_USER } from "../../utils/mutation";
@@ -230,7 +231,11 @@ const UserProfile = ({ user }) => {
           </Modal>
           {/* edit profile end */}
 
-          <Avatar size={262} name={user.username} />
+          <Image
+            src="https://i.imgur.com/Vrv67LX.jpg"
+            size={262}
+            name={user.username}
+          />
 
           {/* <img src={ Pic1 }></img> */}
           <PictureUploader></PictureUploader>
