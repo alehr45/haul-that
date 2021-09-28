@@ -7,13 +7,14 @@ import {
   Button,
   Modal,
   ToggleButton,
-  ButtonGroup
+  ButtonGroup,
 } from "react-bootstrap";
 import React, { useState } from "react";
 import { UPDATE_USER } from "../../utils/mutation";
 // import emailjs from "emailjs-com";
 import { useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
+import PictureUploader from "./PictureUploader";
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user }) => {
@@ -23,7 +24,7 @@ const UserProfile = ({ user }) => {
   const handleShow = () => setShow(true);
 
   // try setting (on signup) a value to equal customer or driver
-  
+
   const [checked1, setChecked1] = useState(user.customer);
   const [checked2, setChecked2] = useState(user.driver);
 
@@ -36,27 +37,27 @@ const UserProfile = ({ user }) => {
     aboutMe: "",
     customer: "",
     driver: "",
-    position: ""
+    position: "",
   });
 
   const checkedInput = () => {
     if (checked1 === false) {
-      setChecked1(true)
-      setChecked2(false)
-      formState.customer = true
-      formState.driver = false
+      setChecked1(true);
+      setChecked2(false);
+      formState.customer = true;
+      formState.driver = false;
     } else {
-      setChecked1(false)
-      setChecked2(true)
-      formState.driver = true
-      formState.customer = false
+      setChecked1(false);
+      setChecked2(true);
+      formState.driver = true;
+      formState.customer = false;
     }
     if (formState.driver === true) {
-      formState.position = "driver"
+      formState.position = "driver";
     } else {
-      formState.position = "customer"
+      formState.position = "customer";
     }
-  }
+  };
 
   // Handles form submission via save button
   const handleFormSubmit = async (event) => {
@@ -137,12 +138,24 @@ const UserProfile = ({ user }) => {
                   <label>Preferred Use</label>
                   <br />
                   <ButtonGroup className="mb-2">
-                    <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked1} onChange={(e) => checkedInput()}>
+                    <ToggleButton
+                      id="toggle-check"
+                      type="checkbox"
+                      variant="outline-dark"
+                      checked={checked1}
+                      onChange={(e) => checkedInput()}
+                    >
                       Customer
                     </ToggleButton>
                   </ButtonGroup>
                   <ButtonGroup className="mb-2">
-                    <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked2} onChange={(e) => checkedInput()}>
+                    <ToggleButton
+                      id="toggle-check"
+                      type="checkbox"
+                      variant="outline-dark"
+                      checked={checked2}
+                      onChange={(e) => checkedInput()}
+                    >
                       Driver
                     </ToggleButton>
                   </ButtonGroup>
@@ -220,7 +233,7 @@ const UserProfile = ({ user }) => {
           <Avatar size={262} name={user.username} />
 
           {/* <img src={ Pic1 }></img> */}
-          
+          <PictureUploader></PictureUploader>
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

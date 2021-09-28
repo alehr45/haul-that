@@ -6,13 +6,9 @@ import {
   Container,
   Row,
   ProgressBar,
-<<<<<<< HEAD
-} from "react-bootstrap";
-=======
-  Button
+  Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
->>>>>>> fb96286575bef70f3f685d0308c798fa6c5deee0
 import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
 import { COMPLETE_JOB } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -77,20 +73,15 @@ const CustomerProfile = () => {
               >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
-                  <Button size="sm" variant="outline-info"><Link className="link" to={"/details/" + job._id}>
+                  <Button size="sm" variant="outline-info">
+                    <Link className="link" to={"/details/" + job._id}>
                       Details
-                    </Link></Button>
+                    </Link>
+                  </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-<<<<<<< HEAD
-                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
-                  <ListGroupItem>
-                    {" "}
-                    Haul: {parseInt(job.distance)} miles{" "}
-=======
                   <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles
->>>>>>> fb96286575bef70f3f685d0308c798fa6c5deee0
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>

@@ -5,7 +5,7 @@ import {
   ListGroup,
   Container,
   Row,
-  Button
+  Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
@@ -86,17 +86,22 @@ const DriverProfile = () => {
               >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
-                  <Button size="sm" variant="outline-info"><Link className="link" to={"/details/" + job._id}>
+                  <Button size="sm" variant="outline-info">
+                    <Link className="link" to={"/details/" + job._id}>
                       Details
-                    </Link></Button>
+                    </Link>
+                  </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
                   <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles
                   </ListGroupItem>
-                  <ListGroupItem>Time: {job.realTime} minutes</ListGroupItem>
+                  <ListGroupItem>
+                    Drive Time: {job.realTime} minutes
+                  </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
+                  <ListGroupItem> {job.date} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
                   {job.status === 1 ? (
                     <Button
