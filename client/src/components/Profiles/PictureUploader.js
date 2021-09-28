@@ -32,15 +32,14 @@ export default class PictureUploader extends React.Component {
   upload() {
     var formData = new FormData();
 
-    formData.append("file", this.state.picture);
+    formData.append("image", this.state.picture);
 
     $.ajax({
       url: "https://api.imgur.com/3/image",
       type: "POST",
-      datatype: "json",
       data: formData,
       headers: {
-        Authorization: "Client-ID d05e445a9bc224b ",
+        Authorization: "Client-ID 3bd0a7ed5554183 ",
       },
       success: function (response) {
         // Code to handle a succesful upload
