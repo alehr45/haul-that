@@ -47,15 +47,11 @@ const PictureUploader = (props) => {
       success: function (response) {
         // Code to handle a succesfull upload
         console.log(response.data.link);
-       
       },
-      
+
       cache: false,
       contentType: false,
       processData: false,
-      updateUser({
-        variables: { _id: user._id, image: response.data.link },
-      });
     });
   };
 
