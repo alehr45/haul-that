@@ -13,12 +13,14 @@ import {
 import React, { useState } from "react";
 import { UPDATE_USER } from "../../utils/mutation";
 // import emailjs from "emailjs-com";
-import { useMutation } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import { QUERY_ME_BASIC } from "../../utils/queries";
 import Avatar from "react-avatar";
 import PictureUploader from "./PictureUploader";
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user }) => {
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const [updateUser] = useMutation(UPDATE_USER);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -59,6 +61,7 @@ const UserProfile = ({ user }) => {
       formState.position = "customer";
     }
   };
+  console.log(data);
 
   // Handles form submission via save button
   const handleFormSubmit = async (event) => {
@@ -90,6 +93,9 @@ const UserProfile = ({ user }) => {
       }
       if (formState.position === "") {
         formState.position = user.position;
+      }
+      if (formState.image === "") {
+        formState.image = user.image;
       }
     }
 
@@ -231,11 +237,7 @@ const UserProfile = ({ user }) => {
           </Modal>
           {/* edit profile end */}
 
-          <Image
-            src="https://i.imgur.com/Vrv67LX.jpg"
-            size={262}
-            name={user.username}
-          />
+          <Image src="" size={262} name={user.username} />
 
           {/* <img src={ Pic1 }></img> */}
           <PictureUploader></PictureUploader>

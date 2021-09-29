@@ -169,6 +169,7 @@ const resolvers = {
           customer: customer,
           driver: driver,
           position: position,
+          image: image,
         },
         { new: true }
       );
@@ -178,16 +179,16 @@ const resolvers = {
   },
 };
 
-updateImage: async (parent, { _id, image }) => {
-  const updatedImage = await User.findOneAndUpdate(
-    { _id: _id },
-    {
-      image: image,
-    },
-    { new: true }
-  );
+// updateImage: async (parent, { _id, image }) => {
+//   const updatedImage = await User.findOneAndUpdate(
+//     { _id: _id },
+//     {
+//       image: image,
+//     },
+//     { new: true }
+//   );
 
-  return updatedImage;
-};
+//   return updatedImage;
+// };
 
 module.exports = resolvers;

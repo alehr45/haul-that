@@ -1,72 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
 import $ from "jquery";
-import { UPDATE_IMAGE } from "../../utils/mutation";
-import { useMutation } from "@apollo/react-hooks";
+import { QUERY_ME_BASIC } from "../../utils/queries";
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import { UPDATE_USER } from "../../utils/mutation";
 
-export default class PictureUploader extends React.Component {
-  constructor(props) {
-    super(props);
+const PictureUploader = (props) => {
+  const [updateUser] = useMutation(UPDATE_USER);
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+  const [picture, setPicture] = useState(false);
+  const [src, setSRC] = useState(false);
+  let user = {};
 
-    this.state = {
-      picture: false,
-      src: false,
-    };
+  if (!userLoading) {
+    user = data.me;
+    console.log(user);
   }
 
-  handlePictureSelected(event) {
+  const handlePictureSelected = (event) => {
     var picture = event.target.files[0];
     var src = URL.createObjectURL(picture);
 
-    this.setState({
-      picture: picture,
-      src: src,
-    });
-  }
+    setPicture(picture);
+    setSRC(src);
+  };
 
-  renderPreview() {
-    if (this.state.src) {
-      return <img src={this.state.src} />;
+  const renderPreview = () => {
+    if (src) {
+      return <img src={src} />;
     } else {
       return <p>No Preview</p>;
     }
-  }
+  };
 
-  upload() {
+  const upload = () => {
     var formData = new FormData();
 
-    formData.append("image", this.state.picture);
+    formData.append("image", picture);
 
     $.ajax({
       url: "https://api.imgur.com/3/image",
       type: "POST",
       data: formData,
       headers: {
-        Authorization: "Client-ID 3bd0a7ed5554183 ",
+        Authorization: "Client-ID 3bd0a7ed5554183",
       },
       success: function (response) {
         // Code to handle a succesfull upload
         console.log(response.data.link);
+        updateUser({
+          variables: { _id: user._id, image: response.data.link },
+        });
       },
-
       cache: false,
       contentType: false,
       processData: false,
     });
+  };
 
-    // var uploadedImage = response.data.link;
-  }
+  return (
+    <div>
+      <h5>Picture Uploader</h5>
 
-  render() {
-    return (
-      <div>
-        <h5>Picture Uploader</h5>
+      <input type="file" onChange={handlePictureSelected} />
+      <br />
+      <div>{renderPreview()}</div>
+      <hr />
+      <button onClick={upload}>Upload</button>
+    </div>
+  );
+};
 
-        <input type="file" onChange={this.handlePictureSelected.bind(this)} />
-        <br />
-        <div>{this.renderPreview()}</div>
-        <hr />
-        <button onClick={this.upload.bind(this)}>Upload</button>
-      </div>
-    );
-  }
-}
+export default PictureUploader;
