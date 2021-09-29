@@ -31,6 +31,7 @@ export const QUERY_ME_BASIC = gql`
       customer
       driver
       position
+      image
       jobs {
         id
         _id

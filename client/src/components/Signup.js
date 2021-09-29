@@ -13,7 +13,7 @@ import Profile from "./Profiles/Profile";
 
 const Signup = () => {
 
-  const [checked1, setChecked1] = useState(true);
+  const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
 
   const checkedInput = () => {
@@ -45,7 +45,8 @@ const Signup = () => {
     password: "",
     customer: false,
     driver: false,
-    position: ""
+    position: "",
+    image: "https://i.imgur.com/mn6sKRv.png"
   });
 
   console.log(checked1, checked2, formState)

@@ -24,6 +24,7 @@ const typeDefs = gql`
     customer: Boolean!
     driver: Boolean!
     position: String!
+    image: String
     jobs: [Job]
   }
 
@@ -84,6 +85,7 @@ const typeDefs = gql`
       customer: Boolean!
       driver: Boolean!
       position: String!
+      image: String
     ): Auth
     login(username: String!, password: String!): Auth
     addJob(
@@ -114,6 +116,7 @@ const typeDefs = gql`
       customer: Boolean
       driver: Boolean
       position: String
+      image: String
     ): User
   }
 `;

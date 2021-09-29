@@ -7,13 +7,15 @@ import {
   Button,
   Modal,
   ToggleButton,
-  ButtonGroup
+  ButtonGroup,
+  Image
 } from "react-bootstrap";
 import React, { useState } from "react";
 import { UPDATE_USER } from "../../utils/mutation";
 // import emailjs from "emailjs-com";
 import { useMutation } from "@apollo/react-hooks";
 import Avatar from "react-avatar";
+import PictureUploader from "./PictureUploader";
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user }) => {
@@ -36,7 +38,8 @@ const UserProfile = ({ user }) => {
     aboutMe: "",
     customer: "",
     driver: "",
-    position: ""
+    position: "",
+    image: ""
   });
 
   const checkedInput = () => {
@@ -88,6 +91,9 @@ const UserProfile = ({ user }) => {
       }
       if (formState.position === "") {
         formState.position = user.position;
+      }
+      if (formState.image === "") {
+        formState.image = user.image;
       }
     }
 
@@ -205,6 +211,10 @@ const UserProfile = ({ user }) => {
                   />
                 </div>
 
+                <div>
+                  <PictureUploader />
+                </div>
+
                 <button
                   type="submit"
                   onClick={handleFormSubmit}
@@ -217,7 +227,9 @@ const UserProfile = ({ user }) => {
           </Modal>
           {/* edit profile end */}
 
-          <Avatar size={262} name={user.username} />
+          <Image src={user.image} size={262} name={user.username} />
+          {/* "https://i.imgur.com/Vrv67LX.jpg" */}
+          
 
           {/* <img src={ Pic1 }></img> */}
           

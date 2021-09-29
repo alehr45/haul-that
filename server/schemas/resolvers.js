@@ -145,7 +145,7 @@ const resolvers = {
     },
     updateUser: async (
       parent,
-      { _id, firstName, lastName, email, phone, aboutMe, customer, driver, position }
+      { _id, firstName, lastName, email, phone, aboutMe, customer, driver, position, image }
     ) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: _id },
@@ -157,13 +157,23 @@ const resolvers = {
           aboutMe: aboutMe,
           customer: customer,
           driver: driver,
-          position: position
+          position: position,
+          image: image
         },
         { new: true }
       );
 
       return updatedUser;
     },
+    // updateImage: async (parent, { _id, image }) => {
+    //   const updatedImage = await User.findOneAndUpdate(
+    //     { _id: _id },
+    //     { image: image },
+    //     { new: true }
+    //   );
+
+    //   return updatedImage;
+    // },
   },
 };
 

@@ -25,15 +25,16 @@ const Profile = () => {
   
   if (!userLoading) {
     user = data.me;
+    console.log(user)
     // Sets default view based on User's preference: customer/driver
     if (user.position === "customer") {
       defaultProfile = customerChoice;
-      window.history.pushState(nextState, nextTitle, customerURL);
-      window.history.replaceState(nextState, nextTitle, customerURL);
+      // window.history.pushState(nextState, nextTitle, customerURL);
+      // window.history.replaceState(nextState, nextTitle, customerURL);
     } else {
       defaultProfile = driverChoice;
-      window.history.pushState(nextState, nextTitle, driverURL);
-      window.history.replaceState(nextState, nextTitle, driverURL);
+      // window.history.pushState(nextState, nextTitle, driverURL);
+      // window.history.replaceState(nextState, nextTitle, driverURL);
     } 
   }
 
