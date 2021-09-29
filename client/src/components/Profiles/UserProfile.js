@@ -94,9 +94,6 @@ const UserProfile = ({ user }) => {
       if (formState.position === "") {
         formState.position = user.position;
       }
-      if (formState.image === "") {
-        formState.image = user.image;
-      }
     }
 
     // await emailjs.send(
