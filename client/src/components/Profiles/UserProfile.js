@@ -38,8 +38,7 @@ const UserProfile = ({ user }) => {
     aboutMe: "",
     customer: "",
     driver: "",
-    position: "",
-    image: ""
+    position: ""
   });
 
   const checkedInput = () => {
@@ -91,9 +90,6 @@ const UserProfile = ({ user }) => {
       }
       if (formState.position === "") {
         formState.position = user.position;
-      }
-      if (formState.image === "") {
-        formState.image = user.image;
       }
     }
 

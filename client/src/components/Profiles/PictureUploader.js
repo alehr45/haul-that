@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import $ from "jquery";
+import { UPDATE_USER } from "../../utils/mutation";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 
@@ -46,7 +47,7 @@ const PictureUploader = (props) => {
       success: function (response) {
         // Code to handle a succesfull upload
         console.log(response.data.link);
-        await updateUser({
+        updateUser({
           variables: { _id: user._id, image: response.data.link },
         });
       },
