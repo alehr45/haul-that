@@ -156,6 +156,7 @@ const resolvers = {
         customer,
         driver,
         position,
+        image,
       }
     ) => {
       const updatedUser = await User.findOneAndUpdate(
