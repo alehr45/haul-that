@@ -24,13 +24,13 @@ const PictureUploader = (props) => {
     setSRC(src);
   }
 
-  const renderPreview = () => {
-    if (src) {
-      return <img src={src} />;
-    } else {
-      return <p>No Preview</p>;
-    }
-  }
+  // const renderPreview = () => {
+  //   if (src) {
+  //     return <img src={src} />;
+  //   } else {
+  //     return <p>No Preview</p>;
+  //   }
+  // }
 
   const upload = async () => {
     var formData = new FormData();
@@ -62,9 +62,11 @@ const PictureUploader = (props) => {
     <div>
       <h5>Picture Uploader</h5>
 
-      <input type="file" onChange={handlePictureSelected} />
+      <input type="file" 
+      onChange={handlePictureSelected} 
+      />
       <br />
-      <div>{renderPreview()}</div>
+      {/* <div>{renderPreview()}</div> */}
       <hr />
       <button onClick={upload}>Upload</button>
     </div>
