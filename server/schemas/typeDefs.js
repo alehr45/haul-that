@@ -106,6 +106,7 @@ const typeDefs = gql`
     updateJobDriver(_id: ID!, driverUsername: String!): Job
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
+    updateImage(_id: ID!, image: String!): User
     updateUser(
       _id: ID!
       firstName: String
@@ -113,7 +114,6 @@ const typeDefs = gql`
       email: String
       phone: String
       aboutMe: String
-      image: String
       customer: Boolean
       driver: Boolean
       position: String

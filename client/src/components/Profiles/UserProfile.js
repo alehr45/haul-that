@@ -61,7 +61,6 @@ const UserProfile = ({ user }) => {
       formState.position = "customer";
     }
   };
-  console.log(data);
 
   // Handles form submission via save button
   const handleFormSubmit = async (event) => {
@@ -233,9 +232,7 @@ const UserProfile = ({ user }) => {
             </Modal.Body>
           </Modal>
           {/* edit profile end */}
-
-          <Image src="" size={262} name={user.username} />
-
+          <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
           <PictureUploader></PictureUploader>
           {/* User's profile card - displays user's info */}

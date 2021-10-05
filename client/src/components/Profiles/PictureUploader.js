@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import $ from "jquery";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { UPDATE_USER } from "../../utils/mutation";
+import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
 const PictureUploader = (props) => {
   const [updateUser] = useMutation(UPDATE_USER);
+  const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const [picture, setPicture] = useState(false);
   const [src, setSRC] = useState(false);
@@ -36,23 +37,31 @@ const PictureUploader = (props) => {
     var formData = new FormData();
 
     formData.append("image", picture);
-
+    var result = null;
     $.ajax({
       url: "https://api.imgur.com/3/image",
+
       type: "POST",
       data: formData,
       headers: {
         Authorization: "Client-ID 3bd0a7ed5554183",
       },
-      success: function (response) {
-        // Code to handle a succesfull upload
-        console.log(response.data.link);
-      },
-
       cache: false,
       contentType: false,
       processData: false,
+      async: false,
+      success: function (response) {
+        result = data;
+        console.log(typeof response.data.link);
+
+        updateImage({
+          variables: { image: response.data.link, _id: user._id },
+        });
+
+        // Code to handle a succesfull upload
+      },
     });
+    return result;
   };
 
   return (

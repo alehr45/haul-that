@@ -111,8 +111,8 @@ export const UPDATE_STATUS = gql`
 `;
 
 export const UPDATE_IMAGE = gql`
-  mutation updateImage($_id: ID!) {
-    updateStatus(_id: $_id) {
+  mutation updateImage($_id: ID!, $image: String!) {
+    updateImage(_id: $_id, image: $image) {
       _id
       image
     }

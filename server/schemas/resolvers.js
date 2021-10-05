@@ -130,7 +130,6 @@ const resolvers = {
     },
 
     completeJob: async (parent, { _id }) => {
-      console.log(_id);
       const completedJob = await Job.findOneAndUpdate(
         { _id },
         { completed: true },
@@ -144,6 +143,17 @@ const resolvers = {
     deleteJob: async (parent, { _id }) => {
       await Job.findOneAndDelete({ _id });
     },
+
+    updateImage: async (parent, { _id, image }) => {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: _id },
+        { image: image },
+        { new: true }
+      );
+
+      return updatedUser;
+    },
+
     updateUser: async (
       parent,
       {
@@ -156,7 +166,6 @@ const resolvers = {
         customer,
         driver,
         position,
-        image,
       }
     ) => {
       const updatedUser = await User.findOneAndUpdate(
