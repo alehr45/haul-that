@@ -145,6 +145,7 @@ export const UPDATE_USER = gql`
     $aboutMe: String
     $customer: Boolean!
     $driver: Boolean!
+    $image: String
     $position: String!
   ) {
     updateUser(
@@ -153,6 +154,7 @@ export const UPDATE_USER = gql`
       lastName: $lastName
       email: $email
       phone: $phone
+      image: $image
       aboutMe: $aboutMe
       customer: $customer
       driver: $driver

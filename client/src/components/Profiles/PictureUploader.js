@@ -58,8 +58,6 @@ const PictureUploader = (props) => {
         updateImage({
           variables: { image: response.data.link, _id: user._id },
         });
-
-        // Code to handle a succesfull upload
       },
     });
     return result;
