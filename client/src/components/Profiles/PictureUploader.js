@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import $ from "jquery";
+import { Button, Form } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
@@ -66,13 +67,10 @@ const PictureUploader = (props) => {
 
   return (
     <div>
-      <h5>Picture Uploader</h5>
-
-      <input type="file" onChange={handlePictureSelected} />
-      <br />
-      <div>{renderPreview()}</div>
-      <hr />
-      <button onClick={upload}>Upload</button>
+      <Form.Group controlId="formFileSm" className="mb-3">
+        <Form.Control type="file" onChange={handlePictureSelected} />
+      </Form.Group>
+      <Button onClick={upload}>Upload</Button>
     </div>
   );
 };
