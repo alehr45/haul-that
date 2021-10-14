@@ -35,6 +35,7 @@ const typeDefs = gql`
     category: String!
     createdAt: String
     description: String!
+    image: String
     distance: String!
     realTime: Int
     taken: Boolean
@@ -92,6 +93,7 @@ const typeDefs = gql`
       date: String!
       category: String!
       description: String!
+      image: String
       distance: String!
       realTime: Int
       phone: String!
@@ -107,6 +109,7 @@ const typeDefs = gql`
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
     updateImage(_id: ID!, image: String!): User
+    updateJobImage(_id: ID!, image: String!): Job
     updateUser(
       _id: ID!
       firstName: String

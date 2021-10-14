@@ -153,6 +153,15 @@ const resolvers = {
 
       return updatedUser;
     },
+    updateJobImage: async (parent, { _id, image }) => {
+      const updatedJob = await Job.findOneAndUpdate(
+        { _id: _id },
+        { image: image },
+        { new: true }
+      );
+
+      return updatedJob;
+    },
 
     updateUser: async (
       parent,
