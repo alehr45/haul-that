@@ -5,25 +5,27 @@ import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
-const PictureUploader = (props) => {
+const PictureUploader = ({type, setImage}) => {
   const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const [picture, setPicture] = useState(false);
+  // const [picture, setPicture] = useState(false);
   const [src, setSRC] = useState(false);
   let user = {};
+  let picture = ""
 
   if (!userLoading) {
     user = data.me;
     console.log(user);
   }
 
-  const handlePictureSelected = (event) => {
-    var picture = event.target.files[0];
+  const handlePictureSelected = async (event) => {
+    picture = event.target.files[0];
     var src = URL.createObjectURL(picture);
 
-    setPicture(picture);
+    // setPicture(picture);
     setSRC(src);
+    upload()
   };
 
   const renderPreview = () => {
@@ -35,6 +37,7 @@ const PictureUploader = (props) => {
   };
   const upload = () => {
     var formData = new FormData();
+
 
     formData.append("image", picture);
     var result = null;
@@ -54,9 +57,21 @@ const PictureUploader = (props) => {
         result = data;
         console.log(typeof response.data.link);
 
+<<<<<<< HEAD
         updateImage({
           variables: { image: response.data.link, _id: user._id },
         });
+=======
+        if (type==="job") {
+          setImage(response.data.link)
+        } else {
+          updateImage({
+            variables: { image: response.data.link, _id: user._id },
+          });
+        }
+
+        // Code to handle a succesfull upload
+>>>>>>> 2e3718a6d3eebdc179e180ac19ff4a6809c48d6d
       },
     });
     return result;
@@ -67,7 +82,7 @@ const PictureUploader = (props) => {
       <Form.Group controlId="formFileSm" className="mb-3">
         <Form.Control type="file" onChange={handlePictureSelected} />
       </Form.Group>
-      <Button onClick={upload}>Upload</Button>
+      {/* <Button onClick={upload}>Upload</Button> */}
     </div>
   );
 };

@@ -25,6 +25,7 @@ const Profile = () => {
 
   if (!userLoading) {
     user = data.me;
+    console.log(data.me)
     // Sets default view based on User's preference: customer/driver
     if (user.position === "customer") {
       defaultProfile = customerChoice;
