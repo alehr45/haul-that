@@ -33,7 +33,6 @@ const PictureUploader = (props) => {
       return <p>No Preview</p>;
     }
   };
-
   const upload = () => {
     var formData = new FormData();
 
