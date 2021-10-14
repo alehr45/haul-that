@@ -1,77 +1,85 @@
 import React, { useState } from "react";
 import $ from "jquery";
-import { UPDATE_USER } from "../../utils/mutation";
-// import { QUERY_ME_BASIC } from "../../utils/queries";
+import { Button, Form } from "react-bootstrap";
+import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
-const PictureUploader = (user) => {
-  // const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+const PictureUploader = ({type, setImage}) => {
   const [updateUser] = useMutation(UPDATE_USER);
-  const [picture, setPicture] = useState("");
-  const [src, setSRC] = useState("");
-  const [newImage, setNewImage] = useState(user.image);
-  console.log(picture.name, picture)
-  // if (!userLoading) {
-  //   user = data.me;
-  //   console.log(user);
-  // }
+  const [updateImage] = useMutation(UPDATE_IMAGE);
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+  // const [picture, setPicture] = useState(false);
+  const [src, setSRC] = useState(false);
+  let user = {};
+  let picture = ""
 
-  const handlePictureSelected = (event) => {
-    var picture = event.target.files[0];
-    var src = URL.createObjectURL(picture);
-    setPicture(picture);
-    setSRC(src);
+  if (!userLoading) {
+    user = data.me;
+    console.log(user);
   }
 
-  // const renderPreview = () => {
-  //   if (src) {
-  //     return <img src={src} />;
-  //   } else {
-  //     return <p>No Preview</p>;
-  //   }
-  // }
+  const handlePictureSelected = async (event) => {
+    picture = event.target.files[0];
+    var src = URL.createObjectURL(picture);
 
-  const upload = (event) => {
+    // setPicture(picture);
+    setSRC(src);
+    upload()
+  };
+
+  const renderPreview = () => {
+    if (src) {
+      return <img src={src} />;
+    } else {
+      return <p>No Preview</p>;
+    }
+  };
+
+  const upload = () => {
     var formData = new FormData();
-    formData.append("image", picture);
 
+
+    formData.append("image", picture);
+    var result = null;
     $.ajax({
-      url: "https://api.imgur.com/3/image/",
+      url: "https://api.imgur.com/3/image",
+
       type: "POST",
       data: formData,
       headers: {
-        Authorization: "Client-ID b186c5a61203c69",
-      },
-      success: function (response) {
-        // Code to handle a succesfull upload
-        console.log(response);        
+        Authorization: "Client-ID 3bd0a7ed5554183",
       },
       cache: false,
       contentType: false,
       processData: false,
+      async: false,
+      success: function (response) {
+        result = data;
+        console.log(typeof response.data.link);
+
+        if (type==="job") {
+          setImage(response.data.link)
+        } else {
+          updateImage({
+            variables: { image: response.data.link, _id: user._id },
+          });
+        }
+
+        // Code to handle a succesfull upload
+      },
     });
-  }
-  
-  // const updateUserImage = async () => {
-    // await updateUser({
-    //   variables: { newImage, _id: user._id },
-    // });
-  // }
+    return result;
+  };
 
   return (
     <div>
-      <h5>Picture Uploader</h5>
-
-      <input type="file" onChange={handlePictureSelected} />
-      <br />
-      {/* <div>{renderPreview()}</div> */}
-      <hr />
-      <button onClick={() => {
-        upload()
-        // updateUserImage()
-        }}>Upload</button>
+      <Form.Group controlId="formFileSm" className="mb-3">
+        <Form.Control type="file" onChange={handlePictureSelected} />
+      </Form.Group>
+      {/* <Button onClick={upload}>Upload</Button> */}
     </div>
   );
-}
+};
 
 export default PictureUploader;

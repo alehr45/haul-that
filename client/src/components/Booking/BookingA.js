@@ -3,19 +3,21 @@ import { Button, Form, Container, Col, Row } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
 import { QUERY_ME_BASIC } from "../../utils/queries";
-import Jobs from "../Jobs/Job"
+import PictureUploader from "../Profiles/PictureUploader";
+import Jobs from "../Jobs/Job";
 
 const BookingA = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
+  const [image, setImage] = useState("")
 
-  var phone = ""
-  var email = ""
-  var name =  ""
+  var phone = "";
+  var email = "";
+  var name = "";
 
-if(!loading){
-    phone = data.me.phone
-    email = data.me.email
-    name = data.me.firstName
+  if (!loading) {
+    phone = data.me.phone;
+    email = data.me.email;
+    name = data.me.firstName;
   }
 
   const [formState, setFormState] = useState({
@@ -63,7 +65,7 @@ if(!loading){
           const dropoffLng = routeInfo.route.locations[1].latLng.lng;
           const realTime = parseInt(routeInfo.route.realTime / 60);
 
-          console.log(realTime)
+          console.log(realTime);
           setFormState({
             ...formState,
           });
@@ -85,13 +87,14 @@ if(!loading){
     pickupLat,
     pickupLng,
     dropoffLat,
-    dropoffLng, 
+    dropoffLng,
     realTime
   ) => {
     let job = {
       date: formState.date,
       category: formState.category,
       description: formState.description,
+      image: image,
       distance: distance.toString(),
       realTime: realTime,
       phone: phone,
@@ -125,14 +128,13 @@ if(!loading){
       });
 
       window.location.assign("/jobs");
-      return <Jobs distance={distance}></Jobs>
+      return <Jobs distance={distance}></Jobs>;
     } catch (e) {
       console.error(e);
     }
   };
 
   return (
-
     <Container className="bookingForm">
       <Row className="booking">
         <Col xs={2} md={4} />
@@ -177,6 +179,11 @@ if(!loading){
                 as="textarea"
                 placeholder="Type here"
               />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Upload Picture</Form.Label>
+              <PictureUploader type= "job" setImage={setImage}/>
             </Form.Group>
 
             {/* Starting Address */}
@@ -366,20 +373,16 @@ if(!loading){
               </Form.Group>
             </Form.Row>
             <Button
-            variant="btn btn-success"
-            onClick={handleFetch}
-            //   onClick={() => history.push("/BookingB")}
-            //
-          >
-            Continue
-          </Button>
+              variant="btn btn-success"
+              onClick={handleFetch}
+              //   onClick={() => history.push("/BookingB")}
+              //
+            >
+              Continue
+            </Button>
           </Form>
-          
-          
         </Col>
-       
       </Row>
-
     </Container>
   );
 };

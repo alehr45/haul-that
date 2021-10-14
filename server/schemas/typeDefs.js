@@ -35,8 +35,9 @@ const typeDefs = gql`
     category: String!
     createdAt: String
     description: String!
+    image: String
     distance: String!
-    realTime: Int 
+    realTime: Int
     taken: Boolean
     status: Int
     completed: Boolean
@@ -84,6 +85,7 @@ const typeDefs = gql`
       aboutMe: String
       customer: Boolean!
       driver: Boolean!
+      image: String
       position: String!
       image: String
     ): Auth
@@ -92,6 +94,7 @@ const typeDefs = gql`
       date: String!
       category: String!
       description: String!
+      image: String
       distance: String!
       realTime: Int
       phone: String!
@@ -106,6 +109,8 @@ const typeDefs = gql`
     updateJobDriver(_id: ID!, driverUsername: String!): Job
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
+    updateImage(_id: ID!, image: String!): User
+    updateJobImage(_id: ID!, image: String!): Job
     updateUser(
       _id: ID!
       firstName: String

@@ -29,6 +29,7 @@ export const QUERY_ME_BASIC = gql`
       email
       aboutMe
       customer
+      image
       driver
       position
       image

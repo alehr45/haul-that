@@ -20,6 +20,7 @@ export const ADD_USER = gql`
     $username: String!
     $password: String!
     $aboutMe: String
+    $image: String
     $customer: Boolean!
     $driver: Boolean!
     $position: String!
@@ -33,6 +34,7 @@ export const ADD_USER = gql`
       aboutMe: $aboutMe
       customer: $customer
       driver: $driver
+      image: $image
       position: $position
       image: $image
       username: $username
@@ -51,6 +53,7 @@ export const ADD_JOB = gql`
     $date: String!
     $category: String!
     $description: String!
+    $image: String
     $distance: String!
     $realTime: Int
     $phone: String!
@@ -63,6 +66,7 @@ export const ADD_JOB = gql`
       date: $date
       category: $category
       description: $description
+      image: $image
       distance: $distance
       realTime: $realTime
       phone: $phone
@@ -102,10 +106,19 @@ export const UPDATE_JOB = gql`
 `;
 
 export const UPDATE_STATUS = gql`
-  mutation updateStatus($_id: ID!){
+  mutation updateStatus($_id: ID!) {
     updateStatus(_id: $_id) {
       _id
       status
+    }
+  }
+`;
+
+export const UPDATE_IMAGE = gql`
+  mutation updateImage($_id: ID!, $image: String!) {
+    updateImage(_id: $_id, image: $image) {
+      _id
+      image
     }
   }
 `;

@@ -117,6 +117,7 @@ const resolvers = {
 
       return updatedStatus;
     },
+
     updateJobDriver: async (parent, { _id, driverUsername }) => {
       console.log(_id, driverUsername);
       const updatedJob = await Job.findOneAndUpdate(
@@ -129,7 +130,6 @@ const resolvers = {
     },
 
     completeJob: async (parent, { _id }) => {
-      console.log(_id);
       const completedJob = await Job.findOneAndUpdate(
         { _id },
         { completed: true },
@@ -143,9 +143,39 @@ const resolvers = {
     deleteJob: async (parent, { _id }) => {
       await Job.findOneAndDelete({ _id });
     },
+
+    updateImage: async (parent, { _id, image }) => {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: _id },
+        { image: image },
+        { new: true }
+      );
+
+      return updatedUser;
+    },
+    updateJobImage: async (parent, { _id, image }) => {
+      const updatedJob = await Job.findOneAndUpdate(
+        { _id: _id },
+        { image: image },
+        { new: true }
+      );
+
+      return updatedJob;
+    },
+
     updateUser: async (
       parent,
-      { _id, firstName, lastName, email, phone, aboutMe, customer, driver, position, image }
+      {
+        _id,
+        firstName,
+        lastName,
+        email,
+        phone,
+        aboutMe,
+        customer,
+        driver,
+        position,
+      }
     ) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: _id },
@@ -158,7 +188,7 @@ const resolvers = {
           customer: customer,
           driver: driver,
           position: position,
-          image: image
+          image: image,
         },
         { new: true }
       );
@@ -176,5 +206,17 @@ const resolvers = {
     },
   },
 };
+
+// updateImage: async (parent, { _id, image }) => {
+//   const updatedImage = await User.findOneAndUpdate(
+//     { _id: _id },
+//     {
+//       image: image,
+//     },
+//     { new: true }
+//   );
+
+//   return updatedImage;
+// };
 
 module.exports = resolvers;

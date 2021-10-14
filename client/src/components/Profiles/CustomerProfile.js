@@ -6,7 +6,7 @@ import {
   Container,
   Row,
   ProgressBar,
-  Button
+  Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
@@ -73,9 +73,11 @@ const CustomerProfile = () => {
               >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
-                  <Button size="sm" variant="outline-info"><Link className="link" to={"/details/" + job._id}>
+                  <Button size="sm" variant="outline-info">
+                    <Link className="link" to={"/details/" + job._id}>
                       Details
-                    </Link></Button>
+                    </Link>
+                  </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroupItem>
@@ -143,7 +145,7 @@ const CustomerProfile = () => {
               </Card>
             ))}
         </div>
-        <h1 className="completed">Completed Jobs</h1>
+        <h1 className="completed">Completed Deliveries</h1>
         <div className="profilejob">
           {completedJobs &&
             completedJobs.map((job) => (

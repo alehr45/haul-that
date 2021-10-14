@@ -5,7 +5,7 @@ import {
   ListGroup,
   Container,
   Row,
-  Button
+  Button,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
@@ -21,8 +21,8 @@ const DriverProfile = () => {
   var user = {};
   var jobs = [];
   var completedJobs = [];
-  var incompleteJobs = [];  
-  
+  var incompleteJobs = [];
+
   if (!userLoading) {
     user = data.me;
   }
@@ -86,24 +86,59 @@ const DriverProfile = () => {
               >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
-                  <Button size="sm" variant="outline-info"><Link className="link" to={"/details/" + job._id}>
+                  <Button size="sm" variant="outline-info">
+                    <Link className="link" to={"/details/" + job._id}>
                       Details
-                    </Link></Button>
+                    </Link>
+                  </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   {/* <ListGroupItem>{job.date} </ListGroupItem> */}
                   <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles
                   </ListGroupItem>
-                  <ListGroupItem>Time: {job.realTime} minutes</ListGroupItem>
+                  <ListGroupItem>
+                    Drive Time: {job.realTime} minutes
+                  </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
+                  <ListGroupItem> {job.date} </ListGroupItem>
                   <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
-                  {(job.status === 1) ? <Button variant="secondary" onClick={() => handleStatus(job._id, job.status)}>Start Job</Button>
-                    : (job.status === 2) ? <Button variant="info" onClick={() => handleStatus(job._id, job.status)}>At pickup location</Button>
-                    : (job.status === 3) ? <Button variant="warning" onClick={() => handleStatus(job._id, job.status)}>Delivering</Button>
-                    : (job.status === 4) ? <Button variant="danger" onClick={() => handleStatus(job._id, job.status)}>At dropoff location</Button>
-                    : <Button variant="success" onClick={() => handleComplete(job._id)}>Complete Job</Button>
-                  }
+                  {job.status === 1 ? (
+                    <Button
+                      variant="secondary"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      Start Job
+                    </Button>
+                  ) : job.status === 2 ? (
+                    <Button
+                      variant="info"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      At pickup location
+                    </Button>
+                  ) : job.status === 3 ? (
+                    <Button
+                      variant="warning"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      Delivering
+                    </Button>
+                  ) : job.status === 4 ? (
+                    <Button
+                      variant="danger"
+                      onClick={() => handleStatus(job._id, job.status)}
+                    >
+                      At dropoff location
+                    </Button>
+                  ) : (
+                    <Button
+                      variant="success"
+                      onClick={() => handleComplete(job._id)}
+                    >
+                      Complete Job
+                    </Button>
+                  )}
                 </ListGroup>
               </Card>
             ))}
