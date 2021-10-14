@@ -234,7 +234,7 @@ const UserProfile = ({ user }) => {
           {/* edit profile end */}
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
-          <PictureUploader></PictureUploader>
+          <PictureUploader props={false}></PictureUploader>
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

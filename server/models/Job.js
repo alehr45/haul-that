@@ -20,6 +20,9 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String
+    },
     createdAt: {
       type: Date,
       default: Date.now,

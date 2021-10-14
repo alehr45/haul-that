@@ -3,10 +3,12 @@ import { Button, Form, Container, Col, Row } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
 import { QUERY_ME_BASIC } from "../../utils/queries";
+import PictureUploader from "../Profiles/PictureUploader";
 import Jobs from "../Jobs/Job";
 
 const BookingA = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
+  const [image, setImage] = useState("")
 
   var phone = "";
   var email = "";
@@ -92,6 +94,7 @@ const BookingA = () => {
       date: formState.date,
       category: formState.category,
       description: formState.description,
+      image: image,
       distance: distance.toString(),
       realTime: realTime,
       phone: phone,
@@ -176,6 +179,11 @@ const BookingA = () => {
                 as="textarea"
                 placeholder="Type here"
               />
+            </Form.Group>
+
+            <Form.Group>
+              <Form.Label>Upload Picture</Form.Label>
+              <PictureUploader type= "job" setImage={setImage}/>
             </Form.Group>
 
             {/* Starting Address */}
