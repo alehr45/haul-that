@@ -118,6 +118,10 @@ const typeDefs = gql`
       position: String
       image: String
     ): User
+    updateImage(
+      _id: ID!
+      image: String
+    ): User
   }
 `;
 

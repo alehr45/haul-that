@@ -165,11 +165,11 @@ export const UPDATE_JOB_DRIVER = gql`
   }
 `;
 
-// export const UPDATE_IMAGE = gql`
-//   mutation updateImage($_id: ID!, $image: String) {
-//     updateImage(_id: $id) {
-//       _id
-//       image
-//     }
-//   }
-// `;
+export const UPDATE_IMAGE = gql`
+  mutation updateImage($_id: ID!, $image: String) {
+    updateImage(_id: $id) {
+      _id
+      image
+    }
+  }
+`;
