@@ -41,6 +41,7 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
+    image: "https://i.imgur.com/mn6sKRv.png"
   });
 
   const checkedInput = () => {
