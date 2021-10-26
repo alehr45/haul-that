@@ -45,7 +45,8 @@ const Signup = () => {
     password: "",
     customer: false,
     driver: false,
-    position: ""
+    position: "",
+    image: "https://i.imgur.com/mn6sKRv.png"
   });
 
   console.log(checked1, checked2, formState)
