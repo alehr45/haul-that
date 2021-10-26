@@ -50,6 +50,7 @@ export const GET_JOBS = gql`
       date
       category
       description
+      image
       distance
       realTime
       taken

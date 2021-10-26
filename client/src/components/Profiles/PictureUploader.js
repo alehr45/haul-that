@@ -5,14 +5,14 @@ import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
-const PictureUploader = ({type, setImage}) => {
+const PictureUploader = ({ type, setImage }) => {
   const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   // const [picture, setPicture] = useState(false);
   const [src, setSRC] = useState(false);
   let user = {};
-  let picture = ""
+  let picture = "";
 
   if (!userLoading) {
     user = data.me;
@@ -25,7 +25,7 @@ const PictureUploader = ({type, setImage}) => {
 
     // setPicture(picture);
     setSRC(src);
-    upload()
+    upload();
   };
 
   const renderPreview = () => {
@@ -37,7 +37,6 @@ const PictureUploader = ({type, setImage}) => {
   };
   const upload = () => {
     var formData = new FormData();
-
 
     formData.append("image", picture);
     var result = null;
@@ -57,13 +56,8 @@ const PictureUploader = ({type, setImage}) => {
         result = data;
         console.log(typeof response.data.link);
 
-<<<<<<< HEAD
-        updateImage({
-          variables: { image: response.data.link, _id: user._id },
-        });
-=======
-        if (type==="job") {
-          setImage(response.data.link)
+        if (type === "job") {
+          setImage(response.data.link);
         } else {
           updateImage({
             variables: { image: response.data.link, _id: user._id },
@@ -71,7 +65,6 @@ const PictureUploader = ({type, setImage}) => {
         }
 
         // Code to handle a succesfull upload
->>>>>>> 2e3718a6d3eebdc179e180ac19ff4a6809c48d6d
       },
     });
     return result;

@@ -41,6 +41,7 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
+    image: "",
   });
 
   const checkedInput = () => {
@@ -232,6 +233,7 @@ const UserProfile = ({ user }) => {
             </Modal.Body>
           </Modal>
           {/* edit profile end */}
+
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
           <PictureUploader props={false}></PictureUploader>
