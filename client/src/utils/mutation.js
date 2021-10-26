@@ -24,7 +24,6 @@ export const ADD_USER = gql`
     $customer: Boolean!
     $driver: Boolean!
     $position: String!
-    $image: String
   ) {
     addUser(
       firstName: $firstName
@@ -36,7 +35,6 @@ export const ADD_USER = gql`
       driver: $driver
       image: $image
       position: $position
-      image: $image
       username: $username
       password: $password
     ) {
@@ -150,7 +148,6 @@ export const UPDATE_USER = gql`
     $customer: Boolean!
     $driver: Boolean!
     $position: String!
-    $image: String
   ) {
     updateUser(
       _id: $_id
@@ -162,7 +159,6 @@ export const UPDATE_USER = gql`
       customer: $customer
       driver: $driver
       position: $position
-      image: $image
     ) {
       _id
     }
@@ -174,15 +170,6 @@ export const UPDATE_JOB_DRIVER = gql`
     updateJobDriver(_id: $_id, driverUsername: $driverUsername) {
       _id
       driverUsername
-    }
-  }
-`;
-
-export const UPDATE_IMAGE = gql`
-  mutation updateImage($_id: ID!, $image: String) {
-    updateImage(_id: $id) {
-      _id
-      image
     }
   }
 `;

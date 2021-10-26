@@ -25,8 +25,6 @@ const UserProfile = ({ user }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  let myImage = user.image;
-  console.log(myImage)
 
   // try setting (on signup) a value to equal customer or driver
 
@@ -221,10 +219,6 @@ const UserProfile = ({ user }) => {
                     name="aboutMe"
                     onChange={handleChange}
                   />
-                </div>
-
-                <div>
-                  <PictureUploader user={user} />
                 </div>
 
                 <button

@@ -52,6 +52,7 @@ const userSchema = new Schema(
     image: {
       type: String,
       required: false,
+      default: '../../../images/default-avatar.jpg'
     },
     position: {
       type: String,

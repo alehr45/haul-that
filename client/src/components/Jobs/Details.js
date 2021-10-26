@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Card, ListGroupItem, Button } from "react-bootstrap";
+import { Container, Card, ListGroupItem, Button, Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { GET_JOBS, QUERY_ME_BASIC } from "../../utils/queries";
@@ -89,6 +89,7 @@ const Details = () => {
         <Card.Body>
           <Card.Title>Job # {currentJob.id}</Card.Title>
           <ListGroupItem>Description: {currentJob.description}</ListGroupItem>
+          <ListGroupItem><a href={currentJob.Image}><Image style={{ height: 100, width: 100 }} src={currentJob.image} /></a></ListGroupItem>
           <ListGroupItem>Email: {currentJob.email}</ListGroupItem>
           <ListGroupItem>Distance: {currentJob.distance} miles</ListGroupItem>
           <ListGroupItem>Phone: {currentJob.phone}</ListGroupItem>

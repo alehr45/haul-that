@@ -32,7 +32,6 @@ export const QUERY_ME_BASIC = gql`
       image
       driver
       position
-      image
       jobs {
         id
         _id
@@ -51,6 +50,7 @@ export const GET_JOBS = gql`
       date
       category
       description
+      image
       distance
       realTime
       taken

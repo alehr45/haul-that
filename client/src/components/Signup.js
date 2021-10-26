@@ -182,7 +182,6 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </div>
-
             <div className="form-group">
               <label>Expiration</label>
               <input
@@ -193,7 +192,6 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </div>
-
             <div className="form-group">
               <label>CVC</label>
               <input

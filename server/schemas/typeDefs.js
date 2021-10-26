@@ -73,7 +73,7 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
-
+  
   type Mutation {
     addUser(
       firstName: String!
@@ -87,7 +87,6 @@ const typeDefs = gql`
       driver: Boolean!
       image: String
       position: String!
-      image: String
     ): Auth
     login(username: String!, password: String!): Auth
     addJob(
@@ -121,11 +120,6 @@ const typeDefs = gql`
       customer: Boolean
       driver: Boolean
       position: String
-      image: String
-    ): User
-    updateImage(
-      _id: ID!
-      image: String
     ): User
   }
 `;
