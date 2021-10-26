@@ -56,7 +56,7 @@ const PictureUploader = ({type, setImage}) => {
       async: false,
       success: function (response) {
         result = data;
-        console.log(typeof response.data.link);
+        console.log(response.data.link);
 
         if (type==="job") {
           setImage(response.data.link)
