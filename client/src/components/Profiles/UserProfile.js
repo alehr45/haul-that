@@ -41,7 +41,7 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
-    image: "",
+    image: "https://i.imgur.com/mn6sKRv.png",
   });
 
   const checkedInput = () => {
@@ -236,7 +236,7 @@ const UserProfile = ({ user }) => {
 
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
-          <PictureUploader props={false}></PictureUploader>
+          <PictureUploader type="user"></PictureUploader>
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

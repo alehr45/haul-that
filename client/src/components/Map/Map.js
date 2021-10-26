@@ -20,8 +20,8 @@ const Map = ({ jobs, loading }) => {
 
   const handleMapRender = (currentLocation) => {
     if (!loading) {
-      const jobSelected= jobs[0][0]._id
-      const locations = jobs[0].map((location) => {
+      const jobSelected= jobs._id
+      const locations = jobs.map((location) => {
      
        
        
