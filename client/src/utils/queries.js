@@ -85,8 +85,39 @@ export const GET_JOBS = gql`
 export const GET_JOB = gql`
   query Job($_id: String!) {
     job(_id: $_id) {
-      distance
+      id
+      _id
+      date
       category
+      description
+      image
+      distance
+      realTime
+      taken
+      status
+      completed
+      phone
+      email
+      driverUsername
+      createdAt
+      pickup {
+        address
+        address2
+        city
+        state
+        zip
+        lat
+        lng
+      }
+      dropoff {
+        address
+        address2
+        city
+        state
+        zip
+        lat
+        lng
+      }
     }
   }
 `;

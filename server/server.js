@@ -29,6 +29,7 @@ app.post("/create-payment-intent", async (req, res) => {
   });
 });
 
+
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
