@@ -155,6 +155,7 @@ export const UPDATE_USER = gql`
       lastName: $lastName
       email: $email
       phone: $phone
+
       aboutMe: $aboutMe
       customer: $customer
       driver: $driver

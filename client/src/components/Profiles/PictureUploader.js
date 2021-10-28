@@ -6,7 +6,7 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
 const PictureUploader = ({ type, setImage }) => {
-  const inputRef = React.createRef();
+  const inputRef = useRef();
   const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
@@ -30,9 +30,16 @@ const PictureUploader = ({ type, setImage }) => {
 
   const renderPreview = () => {
     if (src) {
-      return <img src={src} />;
+      return (
+        <img
+          height="auto"
+          width="150
+      "
+          src={src}
+        />
+      );
     } else {
-      return <p>No Preview</p>;
+      return;
     }
   };
 
@@ -86,23 +93,17 @@ const PictureUploader = ({ type, setImage }) => {
   };
 
   return (
-    <div>
-      <div className="m-3">
-        <label className="mx-3">Choose file: </label>
-        <input
-          ref={inputRef}
-          className="d-none"
-          type="file"
-          onChange={handlePictureSelected}
-        />
-        <button onClick={handleUpload} className="btn btn-outline-primary">
-          Upload
-        </button>
-      </div>
-      {/* <Form.Group controlId="formFileSm" className="mb-3">
-        <Form.Control id="file" type="file" onChange={handlePictureSelected} />
-      </Form.Group> */}
-      {/* <Button onClick={upload}>Upload</Button> */}
+    <div className="m-3">
+      <input
+        ref={inputRef}
+        type="file"
+        className="d-none"
+        onChange={handlePictureSelected}
+      />
+      <button className="btn btn-outline-primary" onClick={handleUpload}>
+        <div>{renderPreview()}</div>
+        Add Profile Image
+      </button>
     </div>
   );
 };
