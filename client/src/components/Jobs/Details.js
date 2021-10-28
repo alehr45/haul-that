@@ -26,7 +26,8 @@ const Details = () => {
   const currentJob = jobsData?.job || {};
   const meEmail = meData?.me.email || "";
   const driverUsername = meData?.me.username || "";
-  const name = meData?.me.name || "" 
+  const name = meData?.me.name || "";
+  console.log(currentJob);
 
   const handlePickup = async () => {
     let userInfo = {
@@ -51,7 +52,7 @@ const Details = () => {
       variables: { _id: job_Id, driverUsername: driverUsername },
     });
 
-    console.log(userInfo)
+    console.log(userInfo);
     await emailjs.send(
       "service_rvgpaz5",
       "accept_job",
@@ -63,7 +64,7 @@ const Details = () => {
 
   return (
     <Container className="currentjob">
-      {loading ? (<p>...loading</p>) : (<DetailsMap currentJob={currentJob}/>)}
+      {loading ? <p>...loading</p> : <DetailsMap currentJob={currentJob} />}
       <Card className="cardbody" style={{ width: "100%" }}>
         <Card.Body>
           <Card.Title>Job # {currentJob.id}</Card.Title>

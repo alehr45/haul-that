@@ -138,31 +138,28 @@ const UserProfile = ({ user }) => {
               <form>
                 <h1 className="editprofile">Edit Profile</h1>
 
-                <div className="form-group">
-                  <label>Preferred Use</label>
-                  <br />
-                  <ButtonGroup className="mb-2">
-                    <ToggleButton
-                      id="toggle-check"
-                      type="checkbox"
-                      variant="outline-dark"
-                      checked={checked1}
-                      onChange={(e) => checkedInput()}
-                    >
-                      Customer
-                    </ToggleButton>
-                  </ButtonGroup>
-                  <ButtonGroup className="mb-2">
-                    <ToggleButton
-                      id="toggle-check"
-                      type="checkbox"
-                      variant="outline-dark"
-                      checked={checked2}
-                      onChange={(e) => checkedInput()}
-                    >
-                      Driver
-                    </ToggleButton>
-                  </ButtonGroup>
+                <div className="form-group6">
+                  <ToggleButton
+                    id="toggle-check"
+                    type="checkbox"
+                    variant="white"
+                    checked={checked1}
+                    onChange={(e) => checkedInput()}
+                  >
+                    Customer
+                  </ToggleButton>
+
+                  {/* <ButtonGroup className="mb-2"> */}
+                  <ToggleButton
+                    id="toggle-check"
+                    type="checkbox"
+                    variant="white"
+                    checked={checked2}
+                    onChange={(e) => checkedInput()}
+                  >
+                    Driver
+                  </ToggleButton>
+                  {/* </ButtonGroup> */}
                 </div>
 
                 <div className="form-group">
@@ -222,6 +219,8 @@ const UserProfile = ({ user }) => {
                   />
                 </div>
 
+                <PictureUploader type="user"></PictureUploader>
+
                 <button
                   type="submit"
                   onClick={handleFormSubmit}
@@ -236,7 +235,7 @@ const UserProfile = ({ user }) => {
 
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
-          <PictureUploader type="user"></PictureUploader>
+
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

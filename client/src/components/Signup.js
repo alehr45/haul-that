@@ -18,7 +18,7 @@ import Profile from "./Profiles/Profile";
 // const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Signup = () => {
-  const [checked1, setChecked1] = useState(true);
+  const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
 
   const checkedInput = () => {
