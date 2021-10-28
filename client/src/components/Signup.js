@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { Col, Row, Container, ButtonGroup, ToggleButton } from "react-bootstrap";
+import {
+  Col,
+  Row,
+  Container,
+  ButtonGroup,
+  ToggleButton,
+} from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
@@ -12,29 +18,28 @@ import Profile from "./Profiles/Profile";
 // const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Signup = () => {
-
-  const [checked1, setChecked1] = useState(true);
+  const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
 
   const checkedInput = () => {
     if (checked1 === false) {
-      setChecked1(true)
-      setChecked2(false)
-      formState.customer = true
-      formState.driver = false
+      setChecked1(true);
+      setChecked2(false);
+      formState.customer = true;
+      formState.driver = false;
     } else {
-      setChecked1(false)
-      setChecked2(true)
-      formState.driver = true
-      formState.customer = false
+      setChecked1(false);
+      setChecked2(true);
+      formState.driver = true;
+      formState.customer = false;
     }
 
     if (formState.driver === true) {
-      formState.position = "driver"
+      formState.position = "driver";
     } else {
-      formState.position = "customer"
-    }   
-  }
+      formState.position = "customer";
+    }
+  };
 
   const [formState, setFormState] = useState({
     firstName: "",
@@ -46,29 +51,34 @@ const Signup = () => {
     customer: false,
     driver: false,
     position: "",
-    image: "https://i.imgur.com/mn6sKRv.png"
+    image: "https://i.imgur.com/mn6sKRv.png",
   });
 
-  console.log(checked1, checked2, formState)
+  console.log(checked1, checked2, formState);
 
   const [addUser] = useMutation(ADD_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
     // }
-        const { name, value } = event.target;
+    const { name, value } = event.target;
 
-        setFormState({
-          ...formState,
-          [name]: value,
-        });
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
   };
 
   //   submit form (notice the async!)
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    await emailjs.send("service_hsdqjea","sign_up",formState,"user_VX87bNMDuxlz9E5XfnclG")
+    await emailjs.send(
+      "service_hsdqjea",
+      "sign_up",
+      formState,
+      "user_VX87bNMDuxlz9E5XfnclG"
+    );
 
     // use try/catch instead of promises to handle errors
     try {
@@ -94,12 +104,24 @@ const Signup = () => {
               <label>Preferred Use</label>
               <br />
               <ButtonGroup className="mb-2">
-                <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked1} onChange={(e) => checkedInput()}>
+                <ToggleButton
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-dark"
+                  checked={checked1}
+                  onChange={(e) => checkedInput()}
+                >
                   Customer
                 </ToggleButton>
               </ButtonGroup>
               <ButtonGroup className="mb-2">
-                <ToggleButton id="toggle-check" type="checkbox" variant="outline-dark" checked={checked2} onChange={(e) => checkedInput()}>
+                <ToggleButton
+                  id="toggle-check"
+                  type="checkbox"
+                  variant="outline-dark"
+                  checked={checked2}
+                  onChange={(e) => checkedInput()}
+                >
                   Driver
                 </ToggleButton>
               </ButtonGroup>
@@ -220,9 +242,7 @@ const Signup = () => {
         </Col>
         <Col xs={4} md={4} />
       </Row>
-
-     
-</Container>
+    </Container>
   );
 };
 
