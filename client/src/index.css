@@ -276,8 +276,8 @@ code {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 .slider:before {
@@ -288,16 +288,16 @@ code {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  -webkit-transition: .4s;
-  transition: .4s;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #2196f3;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 1px #2196f3;
 }
 
 input:checked + .slider:before {
@@ -487,7 +487,11 @@ html,
 .modalbody {
   display: flex;
   justify-content: center;
-  background-color: rgb(206, 206, 206);
+  background-color: rgb(255, 255, 255);
+}
+.preview {
+  height: 40px;
+  width: 40px;
 }
 
 .editprofile {
@@ -531,5 +535,10 @@ html,
 }
 
 .row5 {
-  padding-top: 10px;
+  padding-top: 5px;
+}
+
+.form-group6 {
+  display: flex;
+  justify-content: center;
 }

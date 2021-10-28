@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import $ from "jquery";
 import { Button, Form } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../../utils/queries";
@@ -6,6 +6,7 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
 const PictureUploader = ({ type, setImage }) => {
+  const inputRef = useRef();
   const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
@@ -30,11 +31,19 @@ const PictureUploader = ({ type, setImage }) => {
 
   const renderPreview = () => {
     if (src) {
-      return <img src={src} />;
+      return (
+        <img
+          height="auto"
+          width="150
+      "
+          src={src}
+        />
+      );
     } else {
-      return <p>No Preview</p>;
+      return;
     }
   };
+
   const upload = () => {
     var formData = new FormData();
 
@@ -70,12 +79,22 @@ const PictureUploader = ({ type, setImage }) => {
     return result;
   };
 
+  const handleUpload = () => {
+    inputRef.current?.click();
+  };
+
   return (
-    <div>
-      <Form.Group controlId="formFileSm" className="mb-3">
-        <Form.Control type="file" onChange={handlePictureSelected} />
-      </Form.Group>
-      {/* <Button onClick={upload}>Upload</Button> */}
+    <div className="m-3">
+      <input
+        ref={inputRef}
+        type="file"
+        className="d-none"
+        onChange={handlePictureSelected}
+      />
+      <button className="btn btn-outline-primary" onClick={handleUpload}>
+        <div>{renderPreview()}</div>
+        Add Profile Image
+      </button>
     </div>
   );
 };

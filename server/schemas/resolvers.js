@@ -188,7 +188,6 @@ const resolvers = {
           customer: customer,
           driver: driver,
           position: position,
-          image: image,
         },
         { new: true }
       );
