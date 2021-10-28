@@ -41,7 +41,7 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
-    image: "https://i.imgur.com/mn6sKRv.png"
+    image: "https://i.imgur.com/mn6sKRv.png",
   });
 
   const checkedInput = () => {
@@ -221,6 +221,7 @@ const UserProfile = ({ user }) => {
                     onChange={handleChange}
                   />
                 </div>
+                <PictureUploader type="user"></PictureUploader>
 
                 <button
                   type="submit"
@@ -235,7 +236,6 @@ const UserProfile = ({ user }) => {
           {/* edit profile end */}
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
-          <PictureUploader type="user" ></PictureUploader>
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

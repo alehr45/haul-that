@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import $ from "jquery";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Input, Label } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
 
-const PictureUploader = ({type, setImage}) => {
+const PictureUploader = ({ type, setImage }) => {
+  const inputRef = React.createRef();
   const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   // const [picture, setPicture] = useState(false);
   const [src, setSRC] = useState(false);
   let user = {};
-  let picture = ""
+  let picture = "";
 
   if (!userLoading) {
     user = data.me;
-    console.log(user);
   }
 
   const handlePictureSelected = async (event) => {
@@ -25,7 +25,7 @@ const PictureUploader = ({type, setImage}) => {
 
     // setPicture(picture);
     setSRC(src);
-    upload()
+    upload();
   };
 
   const renderPreview = () => {
@@ -36,9 +36,18 @@ const PictureUploader = ({type, setImage}) => {
     }
   };
 
-  const upload = () => {
-    var formData = new FormData();
+  const check = () => {
+    inputRef.current.addEventListener("load", setRef);
+  };
 
+  const setRef = () => {
+    console.log(inputRef);
+  };
+
+  const upload = () => {
+    check();
+    inputRef.current?.click();
+    var formData = new FormData();
 
     formData.append("image", picture);
     var result = null;
@@ -58,8 +67,8 @@ const PictureUploader = ({type, setImage}) => {
         result = data;
         console.log(response.data.link);
 
-        if (type==="job") {
-          setImage(response.data.link)
+        if (type === "job") {
+          setImage(response.data.link);
         } else {
           updateImage({
             variables: { image: response.data.link, _id: user._id },
@@ -72,11 +81,27 @@ const PictureUploader = ({type, setImage}) => {
     return result;
   };
 
+  const handleUpload = () => {
+    inputRef.current?.click();
+  };
+
   return (
     <div>
-      <Form.Group controlId="formFileSm" className="mb-3">
-        <Form.Control type="file" onChange={handlePictureSelected} />
-      </Form.Group>
+      <div className="m-3">
+        <label className="mx-3">Choose file: </label>
+        <input
+          ref={inputRef}
+          className="d-none"
+          type="file"
+          onChange={handlePictureSelected}
+        />
+        <button onClick={handleUpload} className="btn btn-outline-primary">
+          Upload
+        </button>
+      </div>
+      {/* <Form.Group controlId="formFileSm" className="mb-3">
+        <Form.Control id="file" type="file" onChange={handlePictureSelected} />
+      </Form.Group> */}
       {/* <Button onClick={upload}>Upload</Button> */}
     </div>
   );
