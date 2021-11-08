@@ -94,107 +94,102 @@ const Signup = () => {
 
   return (
     <Container>
-      <Row>
-        <Col xs={3} md={4} />
-        <Col xs={5} md={4}>
-          <form className="signupform">
-            <h3>Sign Up</h3>
+      <Row className="signup-row">
+        <form className="signupform">
+          <h3>Sign Up</h3>
 
-            <div className="form-group">
-              <label>Preferred Use</label>
-              <br />
-              <ButtonGroup className="mb-2">
-                <ToggleButton
-                  id="toggle-check"
-                  type="checkbox"
-                  variant="outline-dark"
-                  checked={checked1}
-                  onChange={(e) => checkedInput()}
-                >
-                  Customer
-                </ToggleButton>
-              </ButtonGroup>
-              <ButtonGroup className="mb-2">
-                <ToggleButton
-                  id="toggle-check"
-                  type="checkbox"
-                  variant="outline-dark"
-                  checked={checked2}
-                  onChange={(e) => checkedInput()}
-                >
-                  Driver
-                </ToggleButton>
-              </ButtonGroup>
-            </div>
+          <div className="form-group">
+            <label>First name</label>
+            <input
+              type="first-name"
+              className="form-control"
+              placeholder="First name"
+              name="firstName"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>First name</label>
-              <input
-                type="first-name"
-                className="form-control"
-                placeholder="First name"
-                name="firstName"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="form-group">
+            <label>Last name</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Last name"
+              name="lastName"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Last name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Last name"
-                name="lastName"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="form-group">
+            <label>Username</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Enter username"
+              name="username"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Username</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter username"
-                name="username"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="form-group">
+            <label>Phone Number</label>
+            <input
+              type="tel"
+              pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
+              className="form-control"
+              placeholder="123-456-7890"
+              name="phone"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Phone Number</label>
-              <input
-                type="tel"
-                pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
-                className="form-control"
-                placeholder="123-456-7890"
-                name="phone"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter email"
+              name="email"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Enter email"
-                name="email"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Enter password"
+              name="password"
+              onChange={handleChange}
+            />
+          </div>
 
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Enter password"
-                name="password"
-                onChange={handleChange}
-              />
-            </div>
+          <div className="form-group6">
+            <ToggleButton
+              id="toggle-check"
+              type="checkbox"
+              variant="white"
+              checked={checked1}
+              onChange={(e) => checkedInput()}
+            >
+              Customer
+            </ToggleButton>
 
-            {/* <div className="form-group">
+            {/* <ButtonGroup className="mb-2"> */}
+            <ToggleButton
+              id="toggle-check"
+              type="checkbox"
+              variant="white"
+              checked={checked2}
+              onChange={(e) => checkedInput()}
+            >
+              Driver
+            </ToggleButton>
+            {/* </ButtonGroup> */}
+          </div>
+
+          {/* <div className="form-group">
               <label>Credit Card Number</label>
               <input
                 type="cardnumber"
@@ -227,20 +222,18 @@ const Signup = () => {
               />
             </div> */}
 
-            {/* <Elements stripe={promise}>
+          {/* <Elements stripe={promise}>
                 <CheckoutForm />
               </Elements> */}
 
-            <button
-              type="submit"
-              onClick={handleFormSubmit}
-              className="btn btn-dark btn-lg btn-block"
-            >
-              Register
-            </button>
-          </form>
-        </Col>
-        <Col xs={4} md={4} />
+          <button
+            type="submit"
+            onClick={handleFormSubmit}
+            className="btn btn-dark btn-lg btn-block"
+          >
+            Register
+          </button>
+        </form>
       </Row>
     </Container>
   );
