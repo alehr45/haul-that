@@ -23,7 +23,14 @@ const NavBar = () => {
   };
 
   return (
-    <Navbar collapseOnSelect fixed="top" expand="sm" bg="danger" variant="dark">
+    <Navbar
+      className="nav9"
+      collapseOnSelect
+      fixed="top"
+      expand="sm"
+      bg="danger"
+      variant="dark"
+    >
       <h1 className="title">HaulThat</h1>
       <Container className="nav3">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />

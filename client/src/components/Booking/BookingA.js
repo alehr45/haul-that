@@ -182,6 +182,7 @@ const BookingA = () => {
             </Form.Group>
 
             <Form.Group>
+              <Form.Label>Upload Picture</Form.Label>
               <PictureUploader type="job" setImage={setImage} />
             </Form.Group>
 
