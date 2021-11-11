@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Profile from "./components/Profiles/Profile";
 import Signup from "./components/Signup";
-import "./App.css";
+
 import BookingA from "./components/Booking/BookingA";
 import CheckoutForm from "./components/Booking/BookingB";
 import Details from "./components/Jobs/Details";
