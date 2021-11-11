@@ -25,7 +25,7 @@ const Profile = () => {
 
   if (!userLoading) {
     user = data.me;
-    console.log(data.me)
+    console.log(data.me);
     // Sets default view based on User's preference: customer/driver
     if (user.position === "customer") {
       defaultProfile = customerChoice;
@@ -59,7 +59,7 @@ const Profile = () => {
   return (
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
-      <Row>
+      <Row className="row7">
         {/* Decides which set of buttons to show: default (on page load) or User's selection */}
         <Col>
           {currentProfile === "" && user.position === "customer" ? (

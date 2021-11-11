@@ -138,6 +138,21 @@ code {
     padding-left: 50px;
     padding-right: 50px;
   }
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+.use.btn.btn-white {
+  font-size: 15px;
 }
 
 .pickup1 {
@@ -250,6 +265,11 @@ code {
   display: flex;
   justify-content: center;
 }
+.row7 {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
 
 .profileForm {
   padding-top: 60px;
@@ -260,6 +280,7 @@ code {
 
 .profile2Form {
   padding-top: 20px;
+
   padding-bottom: 20px;
 }
 .description1 {

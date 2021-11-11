@@ -167,6 +167,7 @@ const Signup = () => {
 
           <div className="form-group6">
             <ToggleButton
+              className="use"
               id="toggle-check"
               type="checkbox"
               variant="white"
@@ -178,6 +179,7 @@ const Signup = () => {
 
             {/* <ButtonGroup className="mb-2"> */}
             <ToggleButton
+              className="use"
               id="toggle-check"
               type="checkbox"
               variant="white"
