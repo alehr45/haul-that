@@ -80,10 +80,61 @@ code {
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
+.App {
+  text-align: center;
+}
 
-/* .navbar a:hover,
-.dropdown:hover .dropbtn {
-  
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: ubunto;
+  src: url("./fonts/UbuntuMono-Regular.ttf");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.copyright {
+  font-family: "tunning";
+  padding-top: 12px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  color: rgba(58, 58, 58, 0.762);
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 
+.image1 {
+ 
+
 } */
 
 .title {
