@@ -59,7 +59,7 @@ const Profile = () => {
   return (
     <Container className="profile2Form">
       <UserProfile user={user}></UserProfile>
-      <Row>
+      <Row className="row7">
         {/* Decides which set of buttons to show: default (on page load) or User's selection */}
         <Col>
           {currentProfile === "" && user.position === "customer" ? (

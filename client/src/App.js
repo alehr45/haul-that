@@ -9,12 +9,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Profile from "./components/Profiles/Profile";
 import Signup from "./components/Signup";
-import "./App.css";
+import "./index.css";
 import BookingA from "./components/Booking/BookingA";
-import CheckoutForm from "./components/Booking/BookingB";
+import CheckoutForm from "./components/CheckoutForm";
 import Details from "./components/Jobs/Details";
 import CustomerProfile from "./components/Profiles/CustomerProfile";
 import DriverProfile from "./components/Profiles/DriverProfile";
+import Payment from "./components/Payment"
 
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
@@ -54,14 +55,16 @@ function App() {
             <Route path="/profile/driver" component={DriverProfile} />
             <Route path="/BookingA" component={BookingA} />
 
-            <Route path="/BookingB" component={CheckoutForm}>
+            <Route path="/checkoutform" component={CheckoutForm}>
               <Elements stripe={promise}>
                 <CheckoutForm />
               </Elements>
             </Route>
             <Route path="/login" component={Login} />
             <Route path="/jobs" component={Jobs} />
+            <Route path="/payment/:job_Id" component={Payment} />
             <Route path="/" component={Home} />
+            {/* <Route path="/checkoutform" component={CheckoutForm} /> */}
           </Switch>
         </div>
       </Router>

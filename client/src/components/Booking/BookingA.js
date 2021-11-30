@@ -137,8 +137,6 @@ const BookingA = () => {
   return (
     <Container className="bookingForm">
       <Row className="booking">
-        <Col xs={2} md={4} />
-        <Col xs={8} md={4}>
           <Form>
             <Form.Group controlId="dob">
               <Form.Label>Select Date</Form.Label>
@@ -381,7 +379,6 @@ const BookingA = () => {
               Continue
             </Button>
           </Form>
-        </Col>
       </Row>
     </Container>
   );

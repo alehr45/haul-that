@@ -34,7 +34,7 @@ const CustomerProfile = () => {
     for (let i = 0; i < jobs.length; i++) {
       if (
         jobs[i].completed === false &&
-        jobs[i].driverUsername === user.username
+        jobs[i].email === user.email
       ) {
         incompleteJobs.push(jobs[i]);
       }
@@ -42,7 +42,7 @@ const CustomerProfile = () => {
     for (let i = 0; i < jobs.length; i++) {
       if (
         jobs[i].completed === true &&
-        jobs[i].driverUsername === user.username
+        jobs[i].email === user.email
       ) {
         completedJobs.push(jobs[i]);
       }
@@ -133,12 +133,9 @@ const CustomerProfile = () => {
                         key={3}
                       />
                     ) : (
-                      <ProgressBar
-                        animated
-                        variant="primary"
-                        now={95}
-                        key={3}
-                      />
+                      <Link className="link" to={"/payment/" + job._id}>
+                      Payment
+                    </Link>
                     )}
                   </ProgressBar>
                 </ListGroup>
