@@ -43,16 +43,7 @@ const PictureUploader = ({ type, setImage }) => {
     }
   };
 
-  const check = () => {
-    inputRef.current.addEventListener("load", setRef);
-  };
-
-  const setRef = () => {
-    console.log(inputRef);
-  };
-
   const upload = () => {
-    check();
     inputRef.current?.click();
     var formData = new FormData();
 
@@ -88,7 +79,8 @@ const PictureUploader = ({ type, setImage }) => {
     return result;
   };
 
-  const handleUpload = () => {
+  const handleUpload = (e) => {
+    e.preventDefault();
     inputRef.current?.click();
   };
 
@@ -100,9 +92,15 @@ const PictureUploader = ({ type, setImage }) => {
         className="d-none"
         onChange={handlePictureSelected}
       />
-      <button className="btn btn-outline-primary" onClick={handleUpload}>
+
+      <button
+        className="btn btn-outline-primary"
+        onClick={(e) => {
+          handleUpload();
+        }}
+      >
         <div>{renderPreview()}</div>
-        Add Profile Image
+        {type === "job" ? "Add Job Image" : "Add Profile Image"}
       </button>
     </div>
   );

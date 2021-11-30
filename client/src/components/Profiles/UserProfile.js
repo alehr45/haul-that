@@ -220,8 +220,6 @@ const UserProfile = ({ user }) => {
                 </div>
                 <PictureUploader type="user"></PictureUploader>
 
-                <PictureUploader type="user"></PictureUploader>
-
                 <button
                   type="submit"
                   onClick={handleFormSubmit}

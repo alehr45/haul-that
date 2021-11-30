@@ -8,7 +8,7 @@ import Jobs from "../Jobs/Job";
 
 const BookingA = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
-  const [image, setImage] = useState("")
+  const [image, setImage] = useState("");
 
   var phone = "";
   var email = "";
@@ -183,7 +183,7 @@ const BookingA = () => {
 
             <Form.Group>
               <Form.Label>Upload Picture</Form.Label>
-              <PictureUploader type= "job" setImage={setImage}/>
+              <PictureUploader type={"job"} setImage={setImage} />
             </Form.Group>
 
             {/* Starting Address */}
