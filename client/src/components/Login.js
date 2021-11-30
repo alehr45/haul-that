@@ -29,7 +29,6 @@ const Login = (props) => {
         variables: { ...formState },
       });
 
-
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
@@ -38,53 +37,53 @@ const Login = (props) => {
 
   return (
     <Container>
-      <Row className>
-        <Col xs={3} md={4} />
-        <Col xs={5} md={4}>
-          <form className="loginform">
-            <h3 className="logintitle">Login</h3>
+      <Row className="login-row">
+        <form className="loginform">
+          <h3 className="logintitle">Login</h3>
 
-            <div className="form-group">
-              <label>Username</label>
+          <div className="form-group">
+            <label>Username</label>
+            <input
+              type="username"
+              className="form-control"
+              placeholder="Enter username"
+              name="username"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              placeholder="Enter password"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <div className="custom-control custom-checkbox">
               <input
-                type="username"
-                className="form-control"
-                placeholder="Enter username"
-                name="username"
-                onChange={handleChange}
+                type="checkbox"
+                className="custom-control-input"
+                id="customCheck1"
               />
+              <label className="custom-control-label" htmlFor="customCheck1">
+                Remember me
+              </label>
             </div>
+          </div>
 
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="password"
-                placeholder="Enter password"
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="form-group">
-              <div className="custom-control custom-checkbox">
-                <input
-                  type="checkbox"
-                  className="custom-control-input"
-                  id="customCheck1"
-                />
-                <label className="custom-control-label" htmlFor="customCheck1">
-                  Remember me
-                </label>
-              </div>
-            </div>
-
-            <button onClick={handleFormSubmit} type="submit" className="btn btn-dark btn-lg btn-block">
-              Sign in
-            </button>
-          </form>
-        </Col>
-        <Col xs={4} md={4} />
+          <button
+            onClick={handleFormSubmit}
+            type="submit"
+            className="btn btn-dark btn-lg btn-block"
+          >
+            Sign in
+          </button>
+        </form>
       </Row>
     </Container>
   );

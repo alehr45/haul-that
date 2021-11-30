@@ -107,7 +107,15 @@ export const UPDATE_STATUS = gql`
   mutation updateStatus($_id: ID!) {
     updateStatus(_id: $_id) {
       _id
-      status
+    }
+  }
+`;
+
+export const ADD_VERIFICATION = gql`
+  mutation addVerification($_id: ID!) {
+    addVerification(_id: $_id) {
+      _id
+      verificationCode
     }
   }
 `;
@@ -137,6 +145,7 @@ export const COMPLETE_JOB = gql`
     }
   }
 `;
+
 export const UPDATE_USER = gql`
   mutation updateUser(
     $_id: ID!

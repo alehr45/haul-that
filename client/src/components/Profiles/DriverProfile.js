@@ -9,12 +9,18 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
-import { COMPLETE_JOB, UPDATE_STATUS } from "../../utils/mutation";
+import {
+  COMPLETE_JOB,
+  UPDATE_STATUS,
+  ADD_VERIFICATION,
+} from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
+import Payment from "../Payment.js";
 
 const DriverProfile = () => {
   const [completeJob] = useMutation(COMPLETE_JOB);
   const [updateStatus] = useMutation(UPDATE_STATUS);
+  const [addVerification] = useMutation(ADD_VERIFICATION);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
 
@@ -51,6 +57,8 @@ const DriverProfile = () => {
   }
 
   const handleComplete = async (_id) => {
+    // return <Payment></Payment>;
+
     await completeJob({
       variables: {
         _id: _id,
@@ -58,11 +66,25 @@ const DriverProfile = () => {
     });
 
     // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
-
-    window.location.assign("/profile");
   };
 
   const handleStatus = async (_id, status) => {
+    await updateStatus({
+      variables: {
+        _id: _id,
+      },
+    });
+    window.location.assign("/profile");
+  };
+
+  const handleVerification = async (_id) => {
+    console.log("here");
+    await addVerification({
+      variables: {
+        _id: _id,
+      },
+    });
+
     await updateStatus({
       variables: {
         _id: _id,
@@ -131,13 +153,17 @@ const DriverProfile = () => {
                     >
                       At dropoff location
                     </Button>
-                  ) : (
+                  ) : job.status === 5 ? (
                     <Button
                       variant="success"
-                      onClick={() => handleComplete(job._id)}
+                      onClick={() => handleVerification(job._id)}
                     >
-                      Complete Job
+                      Generate Code
                     </Button>
+                  ) : (
+                    <Link className="link" to={"/payment/" + job._id}>
+                      Payment
+                    </Link>
                   )}
                 </ListGroup>
               </Card>
@@ -167,7 +193,6 @@ const DriverProfile = () => {
             ))}
         </div>
       </Row>
-      {/* <AcceptedJobs /> */}
     </Container>
   );
 };

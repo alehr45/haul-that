@@ -99,6 +99,7 @@ export const GET_JOB = gql`
       phone
       email
       driverUsername
+      verificationCode
       createdAt
       pickup {
         address

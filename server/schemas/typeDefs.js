@@ -45,6 +45,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     driverUsername: String
+    verificationCode: Float
     pickup: Address
     dropoff: Address
   }
@@ -105,6 +106,7 @@ const typeDefs = gql`
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
     updateJob(_id: ID!): Job
     updateStatus(_id: ID!): Job
+    addVerification(_id: ID!): Job
     updateJobDriver(_id: ID!, driverUsername: String!): Job
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job

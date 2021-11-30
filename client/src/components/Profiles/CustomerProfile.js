@@ -127,12 +127,9 @@ const CustomerProfile = () => {
                         key={3}
                       />
                     ) : (
-                      <ProgressBar
-                        animated
-                        variant="primary"
-                        now={95}
-                        key={3}
-                      />
+                      <Link className="link" to={"/payment/" + job._id}>
+                        Payment
+                      </Link>
                     )}
                   </ProgressBar>
                 </ListGroup>

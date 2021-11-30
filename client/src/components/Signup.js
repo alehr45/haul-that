@@ -95,8 +95,6 @@ const Signup = () => {
   return (
     <Container>
       <Row>
-        <Col xs={3} md={4} />
-        <Col xs={5} md={4}>
           <form className="signupform">
             <h3>Sign Up</h3>
 
@@ -237,8 +235,6 @@ const Signup = () => {
               Register
             </button>
           </form>
-        </Col>
-        <Col xs={4} md={4} />
       </Row>
     </Container>
   );
