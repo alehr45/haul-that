@@ -107,7 +107,7 @@ const resolvers = {
       return updatedJob;
     },
 
-    updateStatus: async (parent, { _id }) => {
+    updateStatus: async (parent, { _id, status }) => {
       console.log(_id);
       const updatedStatus = await Job.findOneAndUpdate(
         { _id },
@@ -116,6 +116,17 @@ const resolvers = {
       );
 
       return updatedStatus;
+    },
+
+    addVerification: async (parent, {_id}) => {
+      console.log("tittes")
+      const updatedJob = await Job.findOneAndUpdate(
+        { _id },
+        { verificationCode: Math.floor(Math.random() * 10000000)},
+        { new: true }
+      );
+
+      return updatedJob;
     },
 
     updateJobDriver: async (parent, { _id, driverUsername }) => {

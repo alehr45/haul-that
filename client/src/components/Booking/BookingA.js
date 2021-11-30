@@ -137,6 +137,7 @@ const BookingA = () => {
   return (
     <Container className="bookingForm">
       <Row className="booking">
+<<<<<<< HEAD
         <Form>
           <Form.Group controlId="dob">
             <Form.Label>Select Date</Form.Label>
@@ -206,6 +207,17 @@ const BookingA = () => {
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>City</Form.Label>
               <Form.Control onChange={handleChange} name="cityP" />
+=======
+          <Form>
+            <Form.Group controlId="dob">
+              <Form.Label>Select Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="date"
+                placeholder="Day of Delivery"
+                onChange={handleChange}
+              />
+>>>>>>> eaa4db3f765a615ecc0dae1296d6385c6558d4b1
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridState">
@@ -369,6 +381,7 @@ const BookingA = () => {
               <Form.Label>Zip</Form.Label>
               <Form.Control onChange={handleChange} name="zipD" />
             </Form.Group>
+<<<<<<< HEAD
           </Form.Row>
           <Button
             variant="btn btn-success"
@@ -379,6 +392,99 @@ const BookingA = () => {
             Continue
           </Button>
         </Form>
+=======
+            <Form.Group controlId="formGridAddress2">
+              <Form.Label>Address 2</Form.Label>
+              <Form.Control
+                placeholder="Apartment, studio, or floor"
+                onChange={handleChange}
+                name="addressD2"
+              />
+            </Form.Group>
+            <Form.Row>
+              <Form.Group as={Col} controlId="formGridCity">
+                <Form.Label>City</Form.Label>
+                <Form.Control onChange={handleChange} name="cityD" />
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridState">
+                <Form.Label>State</Form.Label>
+                <Form.Control
+                  as="select"
+                  defaultValue="Choose..."
+                  onChange={handleChange}
+                  name="stateD"
+                >
+                  <option>Choose...</option>
+                  <option>Tennessee</option>
+                  <option>Alabama</option>
+                  <option>Alaska</option>
+                  <option>Arizona</option>
+                  <option>Arkansas</option>
+                  <option>California</option>
+                  <option>Colorado</option>
+                  <option>Connecticut</option>
+                  <option>Delaware</option>
+                  <option>Florida</option>
+                  <option>Georgia</option>
+                  <option>Hawaii</option>
+                  <option>Idaho</option>
+                  <option>Illinois</option>
+                  <option>Indiana</option>
+                  <option>Iowa</option>
+                  <option>Kansas</option>
+                  <option>Kentucky</option>
+                  <option>Louisiana</option>
+                  <option>Maine</option>
+                  <option>Maryland</option>
+                  <option>Massachusetts</option>
+                  <option>Michigan</option>
+                  <option>Minnesota</option>
+                  <option>Mississippi</option>
+                  <option>Missouri</option>
+                  <option>Montana</option>
+                  <option>Nebraska</option>
+                  <option>Nevada</option>
+                  <option>New Hampshire</option>
+                  <option>New Jersey</option>
+                  <option>New Mexico</option>
+                  <option>New York</option>
+                  <option>North Carolina</option>
+                  <option>North Dakota</option>
+                  <option>Ohio</option>
+                  <option>Oklahoma</option>
+                  <option>Oregon</option>
+                  <option>Pennsylvania</option>
+                  <option>Rhode Island</option>
+                  <option>South Carolina</option>
+                  <option>South Dakota</option>
+                  <option>Tennessee</option>
+                  <option>Texas</option>
+                  <option>Utah</option>
+                  <option>Vermont</option>
+                  <option>Virginia</option>
+                  <option>Washington</option>
+                  <option>West Virginia</option>
+                  <option>Wisconsin</option>
+                  <option>Wyoming</option>
+                </Form.Control>
+              </Form.Group>
+
+              <Form.Group as={Col} controlId="formGridZip">
+                <Form.Label>Zip</Form.Label>
+                <Form.Control onChange={handleChange} name="zipD" />
+              </Form.Group>
+            </Form.Row>
+            <Button
+              variant="btn btn-success"
+              onClick={handleFetch}
+              //   onClick={() => history.push("/BookingB")}
+              //
+            >
+              Continue
+            </Button>
+          </Form>
+>>>>>>> eaa4db3f765a615ecc0dae1296d6385c6558d4b1
       </Row>
     </Container>
   );

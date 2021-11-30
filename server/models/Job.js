@@ -21,7 +21,7 @@ const jobSchema = new Schema(
       required: true,
     },
     image: {
-      type: String
+      type: String,
     },
     createdAt: {
       type: Date,
@@ -33,7 +33,7 @@ const jobSchema = new Schema(
       required: true,
     },
     realTime: {
-      type: Number
+      type: Number,
     },
     status: {
       type: Number,
@@ -55,6 +55,9 @@ const jobSchema = new Schema(
     },
     driverUsername: {
       type: String,
+    },
+    verificationCode: {
+      type: Number,
     },
     name: {
       type: String,
