@@ -32,18 +32,12 @@ const CustomerProfile = () => {
 
   if (jobs) {
     for (let i = 0; i < jobs.length; i++) {
-      if (
-        jobs[i].completed === false &&
-        jobs[i].driverUsername === user.username
-      ) {
+      if (jobs[i].completed === false && jobs[i].email === user.email) {
         incompleteJobs.push(jobs[i]);
       }
     }
     for (let i = 0; i < jobs.length; i++) {
-      if (
-        jobs[i].completed === true &&
-        jobs[i].driverUsername === user.username
-      ) {
+      if (jobs[i].completed === true && jobs[i].email === user.email) {
         completedJobs.push(jobs[i]);
       }
     }

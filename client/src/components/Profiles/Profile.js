@@ -10,8 +10,8 @@ import CustomerProfile from "./CustomerProfile";
 const Profile = () => {
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   let user = {};
-  let [customer, setCustomer] = useState("outline-dark");
-  let [driver, setDriver] = useState("outline-dark");
+  let [customer, setCustomer] = useState("outline-danger");
+  let [driver, setDriver] = useState("outline-danger");
   let [currentProfile, setCurrentProfile] = useState("");
   let defaultProfile;
   let customerChoice = <CustomerProfile />;
@@ -40,8 +40,8 @@ const Profile = () => {
 
   // onClick updates profile to display customer view and update URL
   const updateCustomer = () => {
-    setCustomer("dark");
-    setDriver("outline-dark");
+    setCustomer("danger");
+    setDriver("outline-danger");
     setCurrentProfile(customerChoice);
     window.history.pushState(nextState, nextTitle, customerURL);
     window.history.replaceState(nextState, nextTitle, customerURL);
@@ -49,8 +49,8 @@ const Profile = () => {
 
   // onClick updates profile to display driver view and update URL
   const updateDriver = () => {
-    setDriver("dark");
-    setCustomer("outline-dark");
+    setDriver("danger");
+    setCustomer("outline-danger");
     setCurrentProfile(driverChoice);
     window.history.pushState(nextState, nextTitle, driverURL);
     window.history.replaceState(nextState, nextTitle, driverURL);
@@ -63,7 +63,7 @@ const Profile = () => {
         {/* Decides which set of buttons to show: default (on page load) or User's selection */}
         <Col>
           {currentProfile === "" && user.position === "customer" ? (
-            <Button onClick={updateCustomer} variant="dark">
+            <Button onClick={updateCustomer} variant="danger">
               Customer
             </Button>
           ) : (
@@ -74,7 +74,7 @@ const Profile = () => {
         </Col>
         <Col>
           {currentProfile === "" && user.position === "driver" ? (
-            <Button onClick={updateDriver} variant="dark">
+            <Button onClick={updateDriver} variant="danger">
               Driver
             </Button>
           ) : (
