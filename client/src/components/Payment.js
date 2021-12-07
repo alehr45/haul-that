@@ -10,9 +10,11 @@ import {
   FormControl,
 } from "react-bootstrap";
 import { useQuery } from "@apollo/react-hooks";
+import CheckoutForm from "./CheckoutForm";
 
 const Payment = () => {
   const [code, setCode] = useState(0);
+  const [verified, setVerified] = useState(false);
   let { job_Id } = useParams();
   const { loading, data: jobData } = useQuery(GET_JOB, {
     variables: { _id: job_Id },
@@ -22,32 +24,47 @@ const Payment = () => {
   const currentJob = jobData?.job || {};
   const currentUser = data?.me || {};
 
+  console.log(currentJob);
+
   const checkCode = () => {
-    console.log(currentJob.verificationCode, code)
-    if(code == currentJob.verificationCode){
-      window.location.assign("/checkoutform")
+    console.log(currentJob.verificationCode, code);
+    if (code == currentJob.verificationCode) {
+      setVerified(true);
+      // window.location.assign("/checkoutform");
       // Stripe
       // CompleteJob
     } else {
-      console.log("incorrect")
+      console.log("incorrect");
     }
   };
 
   // Get Job
   return (
-    <Container style={{ margin: "100px" }}>
-      {currentJob.email === currentUser.email ? (
-        <InputGroup>
-          <FormControl placeholder="enter code" value={code} onChange={(event) => {
-            console.log(code)
-            setCode(event.target.value)
-          }}></FormControl>
-          <Button type="submit" onClick={checkCode}>Submit</Button>
-        </InputGroup>
+    <div>
+      {verified === false ? (
+        <Container style={{ margin: "100px" }}>
+          {currentJob.email === currentUser.email ? (
+            <InputGroup>
+              <FormControl
+                placeholder="enter code"
+                value={code}
+                onChange={(event) => {
+                  console.log(code);
+                  setCode(event.target.value);
+                }}
+              ></FormControl>
+              <Button type="submit" onClick={checkCode}>
+                Submit
+              </Button>
+            </InputGroup>
+          ) : (
+            <h1> {currentJob.verificationCode} </h1>
+          )}
+        </Container>
       ) : (
-        <h1> {currentJob.verificationCode} </h1>
+        <CheckoutForm />
       )}
-    </Container>
+    </div>
   );
 };
 
