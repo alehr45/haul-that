@@ -218,7 +218,6 @@ const UserProfile = ({ user }) => {
                     onChange={handleChange}
                   />
                 </div>
-
                 <PictureUploader type="user"></PictureUploader>
 
                 <button
@@ -235,7 +234,6 @@ const UserProfile = ({ user }) => {
 
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
-
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

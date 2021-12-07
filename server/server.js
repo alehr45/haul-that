@@ -4,10 +4,15 @@ const { ApolloServer } = require("apollo-server-express");
 const { authMiddleware } = require("./utils/auth");
 const path = require("path");
 
+const { User } = require(".datadb");
+console.log(User);
+
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
-const stripe = require("stripe")("sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+const stripe = require("stripe")(
+  "sk_test_51K2IcuHwCWKZ1Esp9PCUJLdyhTPgcHm0Nozuz3MmWqHNi5xV9Ps0X8um2mzZhNZEj29z7Vvtu59QyF4SG4hOYdTK00UvP7zBDM"
+);
 const PORT = process.env.PORT || 3001;
 const app = express();
 // create a new Apollo server and pass in our schema data
@@ -17,25 +22,34 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
-    currency: "usd"
+// Creates session for user payment
+app.post("/create-checkout-session", async (req, res) => {
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: "usd",
+          product_data: {
+            name: "T-shirt",
+          },
+          unit_amount: 2000,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: "payment",
+    success_url: "http://localhost:3000/success",
+    cancel_url: "http://localhost:3000/checkoutform",
   });
-  res.send({
-    clientSecret: paymentIntent.client_secret
-  });
-});
 
+  res.redirect(303, session.url);
+});
 
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {

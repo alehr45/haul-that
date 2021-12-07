@@ -27,7 +27,6 @@ const Details = () => {
   const meEmail = meData?.me.email || "";
   const driverUsername = meData?.me.username || "";
   const name = meData?.me.name || "";
-  console.log(currentJob);
 
   const handlePickup = async () => {
     let userInfo = {

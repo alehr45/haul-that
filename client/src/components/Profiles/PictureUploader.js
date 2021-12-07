@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import $ from "jquery";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Input, Label } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
@@ -17,7 +17,6 @@ const PictureUploader = ({ type, setImage }) => {
 
   if (!userLoading) {
     user = data.me;
-    console.log(user);
   }
 
   const handlePictureSelected = async (event) => {
@@ -45,6 +44,7 @@ const PictureUploader = ({ type, setImage }) => {
   };
 
   const upload = () => {
+    inputRef.current?.click();
     var formData = new FormData();
 
     formData.append("image", picture);
@@ -79,7 +79,8 @@ const PictureUploader = ({ type, setImage }) => {
     return result;
   };
 
-  const handleUpload = () => {
+  const handleUpload = (e) => {
+    e.preventDefault();
     inputRef.current?.click();
   };
 
@@ -91,9 +92,10 @@ const PictureUploader = ({ type, setImage }) => {
         className="d-none"
         onChange={handlePictureSelected}
       />
+
       <button className="btn btn-outline-primary" onClick={handleUpload}>
         <div>{renderPreview()}</div>
-        Add Profile Image
+        {type === "job" ? "Add Job Image" : "Add Profile Image"}
       </button>
     </div>
   );

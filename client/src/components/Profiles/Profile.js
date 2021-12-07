@@ -14,8 +14,26 @@ const Profile = () => {
   let [driver, setDriver] = useState("outline-dark");
   let [currentProfile, setCurrentProfile] = useState("");
   let defaultProfile;
-  let customerChoice = <CustomerProfile />;
-  let driverChoice = <DriverProfile />;
+
+  const title = [
+    "Start Job",
+    "At Pickup",
+    "Delivering",
+    "At Dropoff",
+    "Generate Code",
+    "Payment",
+  ];
+  const newTitle = [
+    "Job Starting",
+    "At Pickup",
+    "Delivering",
+    "At Dropoff",
+    "Get CODE from Driver",
+  ];
+  const options = ["secondary", "info", "warning", "danger", "success"];
+
+  let customerChoice = <CustomerProfile newTitle={newTitle} title={title} />;
+  let driverChoice = <DriverProfile options={options} title={title} />;
 
   // Used in updateCustomer/updateDriver with window.history to change URL without reloading page
   const customerURL = "/profile/customer";
@@ -25,7 +43,6 @@ const Profile = () => {
 
   if (!userLoading) {
     user = data.me;
-    console.log(data.me)
     // Sets default view based on User's preference: customer/driver
     if (user.position === "customer") {
       defaultProfile = customerChoice;

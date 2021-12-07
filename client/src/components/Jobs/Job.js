@@ -23,7 +23,7 @@ const Jobs = () => {
       cards = activeJobs.map((job) => {
         const _id = job._id;
         return (
-          <Container fluid>
+          <Container key={job._id} fluid>
             <Row className="row5">
               {job.taken ? (
                 <Button variant="secondary" disabled>

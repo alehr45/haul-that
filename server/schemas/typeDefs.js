@@ -74,7 +74,7 @@ const typeDefs = gql`
     token: ID!
     user: User
   }
-
+  
   type Mutation {
     addUser(
       firstName: String!
