@@ -3,9 +3,7 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const { authMiddleware } = require("./utils/auth");
 const path = require("path");
-
-const { User } = require(".datadb");
-console.log(User);
+const cors = require("cors")
 
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
@@ -22,8 +20,18 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+// integrate our Apollo server with the Express application as middleware
+server.applyMiddleware({ app });
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors())
+
 // Creates session for user payment
 app.post("/create-checkout-session", async (req, res) => {
+  console.log(req.body);
+  console.log("here");
+  // console.log(req)
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -32,7 +40,7 @@ app.post("/create-checkout-session", async (req, res) => {
           product_data: {
             name: "T-shirt",
           },
-          unit_amount: 2000,
+          unit_amount: req.body.amount,
         },
         quantity: 1,
       },
@@ -42,14 +50,8 @@ app.post("/create-checkout-session", async (req, res) => {
     cancel_url: "http://localhost:3000/checkoutform",
   });
 
-  res.redirect(303, session.url);
+  res.json({url: session.url})
 });
-
-// integrate our Apollo server with the Express application as middleware
-server.applyMiddleware({ app });
-
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
