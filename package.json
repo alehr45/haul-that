@@ -4,8 +4,9 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@stripe/react-stripe-js": "^1.4.1",
-    "@stripe/stripe-js": "^1.15.0",
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.21.2",
+    "axios": "^0.24.0",
     "bootstrap-icons": "^1.6.0",
     "cors": "^2.8.5",
     "emailjs-com": "^3.1.0",
