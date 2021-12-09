@@ -1,14 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { GET_JOB, QUERY_ME_BASIC } from "../utils/queries";
-import {
-  Container,
-  Row,
-  Col,
-  Button,
-  InputGroup,
-  FormControl,
-} from "react-bootstrap";
+import { Container, Button, InputGroup, FormControl } from "react-bootstrap";
 import { useQuery } from "@apollo/react-hooks";
 import CheckoutForm from "./CheckoutForm";
 

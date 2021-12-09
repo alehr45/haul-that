@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Card, ListGroupItem, Button, Image } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { QUERY_ME_BASIC, GET_JOB } from "../../utils/queries";
+import { QUERY_ME_BASIC, GET_JOB, GET_JOBS } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
   PICKUP_JOB,
@@ -10,6 +10,7 @@ import {
   UPDATE_JOB_DRIVER,
 } from "../../utils/mutation";
 import DetailsMap from "./DetailsMap";
+import NavBar from "../NavBar";
 import moment from "moment";
 import emailjs from "emailjs-com";
 
@@ -18,17 +19,26 @@ const Details = () => {
   const [updateJobDriver] = useMutation(UPDATE_JOB_DRIVER);
   const [pickupJob] = useMutation(PICKUP_JOB);
   const [updateJob] = useMutation(UPDATE_JOB);
+  const { data: jobsData } = useQuery(GET_JOBS);
   let { job_Id } = useParams();
-  const { loading, data: jobsData } = useQuery(GET_JOB, {
+  const { loading, data: jobData } = useQuery(GET_JOB, {
     variables: { _id: job_Id },
   });
 
-  const currentJob = jobsData?.job || {};
+  const nonTakenJobs =
+    jobsData?.jobs.filter((job) => job.taken === false) || [];
+  const currentJob = jobData?.job || {};
   const meEmail = meData?.me.email || "";
   const driverUsername = meData?.me.username || "";
   const name = meData?.me.name || "";
 
+  console.log(nonTakenJobs);
+
   const handlePickup = async () => {
+    const updateTaken = () => {
+      return <NavBar nonTakenJobs={nonTakenJobs} />;
+    };
+
     let userInfo = {
       name: name,
       email: meEmail,

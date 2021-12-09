@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Profile from "./components/Profiles/Profile";
 import Signup from "./components/Signup";
 import "./index.css";
-import BookingA from "./components/Booking/BookingA";
+import Booking from "./components/Booking";
 import CheckoutForm from "./components/CheckoutForm";
 import Details from "./components/Jobs/Details";
 import CustomerProfile from "./components/Profiles/CustomerProfile";
@@ -44,7 +44,7 @@ function App() {
             <Route path="/profile" component={Profile} />
             <Route path="/profile/customer" component={CustomerProfile} />
             <Route path="/profile/driver" component={DriverProfile} />
-            <Route path="/BookingA" component={BookingA} />
+            <Route path="/booking" component={Booking} />
             <Route path="/success" component={Success} />
             <Route path="/checkoutform" component={CheckoutForm} />
             <Route path="/login" component={Login} />

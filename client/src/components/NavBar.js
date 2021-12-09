@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import { GET_JOBS } from "../utils/queries";
 import { useQuery } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
 
-const NavBar = () => {
-  const { loading, data: jobsData } = useQuery(GET_JOBS);
-  const nonTakenJobs = jobsData?.jobs.filter((job) => job.taken === false) || [];
+const NavBar = (nonTakenJobs) => {
+  const { data: jobsData } = useQuery(GET_JOBS);
+  const currentNonTakenJobs =
+    jobsData?.jobs.filter((job) => job.taken === false) || [];
+  const [jobsArray, setJobsArray] = useState(null);
+
+  useEffect(() => {
+    if (nonTakenJobs === {}) {
+      setJobsArray(currentNonTakenJobs.length);
+    } else {
+      setJobsArray(nonTakenJobs.length);
+    }
+  }, []);
+
+  console.log(jobsArray);
 
   const logout = (event) => {
     event.preventDefault();
@@ -32,7 +44,7 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/">
                   Home
                 </Nav.Link>
-                <Nav.Link className="nav1" href="/bookingA">
+                <Nav.Link className="nav1" href="/booking">
                   Booking
                 </Nav.Link>
 
@@ -46,7 +58,7 @@ const NavBar = () => {
                     pill
                     variant="primary"
                   >
-                    {nonTakenJobs.length}
+                    {jobsArray}
                   </Badge>
                 </div>
                 <Nav.Link className="nav1" href="/profile">

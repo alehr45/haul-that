@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   ListGroupItem,
@@ -15,7 +15,6 @@ import {
   ADD_VERIFICATION,
 } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import Payment from "../Payment.js";
 
 const DriverProfile = ({ title, options }) => {
   const [completeJob] = useMutation(COMPLETE_JOB);
@@ -56,17 +55,17 @@ const DriverProfile = ({ title, options }) => {
     }
   }
 
-  const handleComplete = async (_id) => {
-    // return <Payment></Payment>;
+  // const handleComplete = async (_id) => {
+  //   // return <Payment></Payment>;
 
-    await completeJob({
-      variables: {
-        _id: _id,
-      },
-    });
+  //   await completeJob({
+  //     variables: {
+  //       _id: _id,
+  //     },
+  //   });
 
-    // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
-  };
+  //   // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
+  // };
 
   const handleStatus = async (_id, status) => {
     await updateStatus({

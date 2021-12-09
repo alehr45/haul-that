@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Card,
   ListGroupItem,
@@ -25,6 +25,7 @@ const CustomerProfile = ({ title, newTitle }) => {
   if (!userLoading) {
     user = data.me;
   }
+  console.log(user);
 
   if (!jobsLoading) {
     jobs = jobsData.jobs;
@@ -45,15 +46,15 @@ const CustomerProfile = ({ title, newTitle }) => {
 
   console.log(jobs, completedJobs, incompleteJobs);
 
-  const handleComplete = async (_id) => {
-    await completeJob({
-      variables: {
-        _id: _id,
-      },
-    });
-    // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
-    window.location.assign("/profile");
-  };
+  // const handleComplete = async (_id) => {
+  //   await completeJob({
+  //     variables: {
+  //       _id: _id,
+  //     },
+  //   });
+  //   // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
+  //   window.location.assign("/profile");
+  // };
 
   const progressList = (title) => {
     return <ListGroupItem className="progress2">{title}</ListGroupItem>;

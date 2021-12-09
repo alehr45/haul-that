@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 import $ from "jquery";
-import { Button, Form, Input, Label } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
+import { UPDATE_IMAGE } from "../../utils/mutation";
 
 const PictureUploader = ({ type, setImage }) => {
   const inputRef = useRef();
-  const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   // const [picture, setPicture] = useState(false);

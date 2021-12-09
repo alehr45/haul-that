@@ -1,17 +1,27 @@
 import React from "react";
-import Success from "../Success";
+import axios from "axios";
 
 const CheckoutForm = () => {
-  const handleCompletion = () => {
-    return <Success />;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const response = await axios({
+      method: "post",
+      url: "/create-checkout-session",
+      data: {
+        amount: 420,
+      },
+    });
+
+    const amount = response.data.amount;
+    window.location.href = response.data.url;
   };
+
   return (
     <div style={{ margin: 300 }}>
-      <form action="/create-checkout-session" method="POST">
-        <h4>Price: $200</h4>
-        <button type="submit" onClick={handleCompletion}>
-          Checkout
-        </button>
+      <form onClick={handleSubmit}>
+        <h4>Price:</h4>
+        <button type="submit">Checkout</button>
       </form>
     </div>
   );
