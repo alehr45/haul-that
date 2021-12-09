@@ -31,6 +31,9 @@ app.use(cors());
 
 // Creates session for user payment
 app.post("/create-checkout-session", async (req, res) => {
+  console.log(req.body);
+  console.log("here");
+  // console.log(req)
   const session = await stripe.checkout.sessions.create({
     line_items: [
       {
@@ -49,7 +52,7 @@ app.post("/create-checkout-session", async (req, res) => {
     cancel_url: "http://localhost:3000/checkoutform",
   });
 
-  res.redirect({ url: session.url });
+  res.json({ url: session.url });
 });
 
 // Serve up static assets
