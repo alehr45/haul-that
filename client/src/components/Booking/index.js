@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { Button, Form, Container, Col, Row } from "react-bootstrap";
 import { useMutation, useQuery } from "@apollo/react-hooks";
 import { ADD_JOB } from "../../utils/mutation";
-import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
+import { QUERY_ME_BASIC } from "../../utils/queries";
 import PictureUploader from "../Profiles/PictureUploader";
-import Jobs from "../Jobs/Job";
-import NavBar from "../NavBar";
+import Jobs from "../Jobs/Jobs";
 
 const Booking = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
-  const { data: jobsData } = useQuery(GET_JOBS);
-  const nonTakenJobs =
-    jobsData?.jobs.filter((job) => job.taken === false) || [];
   const [image, setImage] = useState("");
 
   var phone = "";
@@ -38,6 +34,7 @@ const Booking = () => {
     cityD: "",
     stateD: "",
     zipD: "",
+    price: "",
   });
 
   const [addJob] = useMutation(ADD_JOB);
@@ -45,8 +42,6 @@ const Booking = () => {
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
-    console.log(name);
-    console.log(typeof value);
     setFormState({
       ...formState,
       [name]: value,
@@ -68,8 +63,8 @@ const Booking = () => {
           const dropoffLat = routeInfo.route.locations[1].latLng.lat;
           const dropoffLng = routeInfo.route.locations[1].latLng.lng;
           const realTime = parseInt(routeInfo.route.realTime / 60);
+          const price = Math.round(distance.toString() * 100);
 
-          console.log(realTime);
           setFormState({
             ...formState,
           });
@@ -79,7 +74,8 @@ const Booking = () => {
             pickupLng,
             dropoffLat,
             dropoffLng,
-            realTime
+            realTime,
+            price
           );
         });
       }
@@ -92,18 +88,16 @@ const Booking = () => {
     pickupLng,
     dropoffLat,
     dropoffLng,
-    realTime
+    realTime,
+    price
   ) => {
-    const updateTaken = () => {
-      return <NavBar nonTakenJobs={nonTakenJobs} />;
-    };
-
     let job = {
       date: formState.date,
       category: formState.category,
       description: formState.description,
       image: image,
       distance: distance.toString(),
+      price: price,
       realTime: realTime,
       phone: phone,
       name: name,
@@ -130,7 +124,6 @@ const Booking = () => {
 
     // use try/catch instead of promises to handle errors
     try {
-      console.log(job);
       await addJob({
         variables: { ...job },
       });

@@ -52,6 +52,7 @@ export const GET_JOBS = gql`
       description
       image
       distance
+      price
       realTime
       taken
       status
@@ -92,6 +93,7 @@ export const GET_JOB = gql`
       description
       image
       distance
+      price
       realTime
       taken
       status

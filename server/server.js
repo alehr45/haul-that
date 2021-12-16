@@ -49,7 +49,7 @@ app.post("/create-checkout-session", async (req, res) => {
     ],
     mode: "payment",
     success_url: "http://localhost:3000/success",
-    cancel_url: "http://localhost:3000/checkoutform",
+    cancel_url: "http://localhost:3000/profile",
   });
 
   res.json({ url: session.url });

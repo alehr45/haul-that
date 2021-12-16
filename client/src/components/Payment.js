@@ -16,6 +16,7 @@ const Payment = () => {
 
   const currentJob = jobData?.job || {};
   const currentUser = data?.me || {};
+  const price = currentJob.price;
 
   console.log(currentJob);
 
@@ -55,7 +56,7 @@ const Payment = () => {
           )}
         </Container>
       ) : (
-        <CheckoutForm />
+        <CheckoutForm currentJob={currentJob} />
       )}
     </div>
   );

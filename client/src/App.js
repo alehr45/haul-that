@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./components/Home";
 import NavBar from "./components/NavBar.js";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
-import Jobs from "./components/Jobs/Job";
+import Jobs from "./components/Jobs/Jobs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "./components/Login";
 import Profile from "./components/Profiles/Profile";
@@ -12,11 +12,12 @@ import Signup from "./components/Signup";
 import "./index.css";
 import Booking from "./components/Booking";
 import CheckoutForm from "./components/CheckoutForm";
-import Details from "./components/Jobs/Details";
+import Job from "./components/Jobs/Job";
 import CustomerProfile from "./components/Profiles/CustomerProfile";
 import DriverProfile from "./components/Profiles/DriverProfile";
 import Payment from "./components/Payment";
 import Success from "./components/Success";
+import Details from "./components/Jobs/Details";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -38,7 +39,8 @@ function App() {
         <div className="App">
           <NavBar />
           <Switch>
-            <Route path="/details/:job_Id" component={Details} />
+            <Route path="/details" component={Details} />
+            <Route path="/job/:job_Id" component={Job} />
             <Route path="/signup" component={Signup} />
             {/* <Route path="/customerprofile" component={CustomerProfile} /> */}
             <Route path="/profile" component={Profile} />

@@ -32,6 +32,9 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
+    price: {
+      type: Number,
+    },
     realTime: {
       type: Number,
     },
