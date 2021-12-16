@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
+import { QUERY_ME_BASIC } from "../../utils/queries";
 // import emailjs from "emailjs-com";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/react-hooks";
 import UserProfile from "./UserProfile";
 import DriverProfile from "./DriverProfile";
 import CustomerProfile from "./CustomerProfile";

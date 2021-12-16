@@ -3,13 +3,15 @@ const express = require("express");
 const { ApolloServer } = require("apollo-server-express");
 const { authMiddleware } = require("./utils/auth");
 const path = require("path");
-const cors = require("cors")
+const cors = require("cors");
 
 // import our typeDefs and resolvers
 const { typeDefs, resolvers } = require("./schemas");
 const db = require("./config/connection");
+
+// Stripe
 const stripe = require("stripe")(
-  "sk_test_51K2IcuHwCWKZ1Esp9PCUJLdyhTPgcHm0Nozuz3MmWqHNi5xV9Ps0X8um2mzZhNZEj29z7Vvtu59QyF4SG4hOYdTK00UvP7zBDM"
+  "sk_test_51J5FyiBb3XyTBbshdI9GIRcPh3hm5QsfFlJQ6KvhC9qA06tDerZSu6MffyfI6MdC1HTsbmqop8RWCatHizZB4Zbv00ylMKUOvm"
 );
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -25,7 +27,7 @@ server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 // Creates session for user payment
 app.post("/create-checkout-session", async (req, res) => {
@@ -47,10 +49,10 @@ app.post("/create-checkout-session", async (req, res) => {
     ],
     mode: "payment",
     success_url: "http://localhost:3000/success",
-    cancel_url: "http://localhost:3000/checkoutform",
+    cancel_url: "http://localhost:3000/profile",
   });
 
-  res.json({url: session.url})
+  res.json({ url: session.url });
 });
 
 // Serve up static assets

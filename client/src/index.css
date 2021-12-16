@@ -46,6 +46,11 @@ code {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
+.logo2 {
+  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2),
+    6px 6px 10px 6px rgba(0, 0, 0, 0.19);
+}
+
 .loginform {
   position: relative;
   top: 150px;
@@ -117,7 +122,6 @@ code {
     padding-left: 50px;
     padding-right: 50px;
   }
-
 }
 
 @media screen and (min-width: 766px) {
@@ -608,14 +612,8 @@ html,
   justify-content: center;
 }
 
-
-
-
-
-
 .App {
   text-align: center;
-  
 }
 
 .App-logo {
@@ -625,10 +623,8 @@ html,
 
 @font-face {
   font-family: ubunto;
-  src: url('./fonts/UbuntuMono-Regular.ttf');
+  src: url("./fonts/UbuntuMono-Regular.ttf");
 }
-
-
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -636,8 +632,7 @@ html,
   }
 }
 
-
-.copyright{
+.copyright {
   font-family: "tunning";
   padding-top: 12px;
   font-size: 15px;
@@ -646,10 +641,7 @@ html,
   color: rgba(58, 58, 58, 0.762);
 }
 
-
-
 .App-header {
- 
   min-height: 100vh;
   display: flex;
   flex-direction: column;

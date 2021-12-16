@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Col, Row, Container } from "react-bootstrap";
+import { Row, Container } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { LOGIN_USER } from "../utils/mutation";
 

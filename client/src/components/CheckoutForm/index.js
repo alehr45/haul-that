@@ -1,35 +1,47 @@
-import React from "react";
-import Success from "../Success";
+import React, { useState } from "react";
+import {
+  Button,
+  Container,
+  Card,
+  ListGroup,
+  Item,
+  Image,
+} from "react-bootstrap";
 import axios from "axios";
-import Stripe from "stripe";
+import Details from "../Jobs/Details";
 
-const CheckoutForm = () => {
-
+const CheckoutForm = ({ currentJob }) => {
+  console.log(currentJob._id);
+  const amount = "$" + currentJob.price / 100;
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const response = await axios({
-      method: 'post',
+      method: "post",
       url: "/create-checkout-session",
       data: {
-        amount: 420
-      }
-    })
+        amount: currentJob.price,
+      },
+    });
 
-    console.log(response)
-    // const body = await response.json()
-    window.location.href = response.data.url
-  }
+    window.location.href = response.data.url;
+  };
   return (
-    <div style={{ margin: 300 }}>
-      {/* <form action="/create-checkout-session" method="POST"> */}
-      <form onClick={handleSubmit}>
-        <h4>Price: $200</h4>
-        <button type="submit">
-          Checkout
-        </button>
-      </form>
-    </div>
+    <Container>
+      <div style={{ margin: 300 }}>
+        {/* <form action="/create-checkout-session" method="POST"> */}
+        <form className="logo2" onClick={handleSubmit}>
+          <h2 className="logo">Job Summary</h2>
+          <Card className="cardbody" style={{ width: "100%" }}>
+            <Details currentJob={currentJob} />
+            <ListGroup.Item>Price: {amount}</ListGroup.Item>
+            <Button variant="primary" type="submit">
+              Checkout
+            </Button>
+          </Card>
+        </form>
+      </div>
+    </Container>
   );
 };
 
