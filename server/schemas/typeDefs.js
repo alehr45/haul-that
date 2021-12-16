@@ -37,6 +37,7 @@ const typeDefs = gql`
     description: String!
     image: String
     distance: String!
+    price: Int
     realTime: Int
     taken: Boolean
     status: Int
@@ -96,6 +97,7 @@ const typeDefs = gql`
       description: String!
       image: String
       distance: String!
+      price: Int
       realTime: Int
       phone: String!
       name: String!

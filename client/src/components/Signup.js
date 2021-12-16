@@ -1,21 +1,9 @@
 import React, { useState } from "react";
-import {
-  Col,
-  Row,
-  Container,
-  ButtonGroup,
-  ToggleButton,
-} from "react-bootstrap";
+import { Row, Container, ButtonGroup, ToggleButton } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_USER } from "../utils/mutation";
 import Auth from "../utils/auth";
 import emailjs from "emailjs-com";
-import Profile from "./Profiles/Profile";
-// import { loadStripe } from "@stripe/stripe-js";
-// import { Elements } from "@stripe/react-stripe-js";
-// import CheckoutForm from "./CheckoutForm/CheckoutForm.js"
-
-// const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 const Signup = () => {
   const [checked1, setChecked1] = useState(false);
@@ -202,7 +190,6 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </div>
-
             <div className="form-group">
               <label>Expiration</label>
               <input
@@ -213,7 +200,6 @@ const Signup = () => {
                 onChange={handleChange}
               />
             </div>
-
             <div className="form-group">
               <label>CVC</label>
               <input

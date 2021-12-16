@@ -5,29 +5,19 @@ import {
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
-import { Link } from 'react-router-dom'
-
+import { Link } from "react-router-dom";
 
 const Map = ({ jobs, loading }) => {
   const [selected, setSelected] = useState({});
-
   const onSelect = (job) => {
-  
     setSelected(job[0]);
-   
-
   };
 
   const handleMapRender = (currentLocation) => {
     if (!loading) {
-      const jobSelected= jobs._id
+      const jobSelected = jobs._id;
       const locations = jobs.map((location) => {
-     
-       
-       
         return [
-      
-          
           {
             name: location._id,
             location: {
@@ -49,7 +39,7 @@ const Map = ({ jobs, loading }) => {
           {locations.map((item) => {
             return (
               <Marker
-              icon="http://maps.google.com/mapfiles/ms/micons/truck.png"
+                icon="http://maps.google.com/mapfiles/ms/micons/truck.png"
                 key={item[0].name}
                 position={item[0].location}
                 onClick={() => onSelect(item)}
@@ -71,8 +61,7 @@ const Map = ({ jobs, loading }) => {
               <p className="map-info">
                 <h4>Job #{selected.id}</h4>
                 {parseInt(selected.distance)} miles from A to B<br></br>
-                <Link to={'/details/'+jobSelected}>Link</Link>
-                
+                <Link to={"/details/" + jobSelected}>Link</Link>
               </p>
             </InfoWindow>
           )}
@@ -104,7 +93,6 @@ const Map = ({ jobs, loading }) => {
     lat: position.lat,
     lng: position.lng,
   };
-  
 
   return (
     <div className="map-container">
@@ -114,4 +102,5 @@ const Map = ({ jobs, loading }) => {
     </div>
   );
 };
+
 export default Map;

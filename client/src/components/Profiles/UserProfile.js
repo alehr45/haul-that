@@ -7,7 +7,6 @@ import {
   Button,
   Modal,
   ToggleButton,
-  ButtonGroup,
   Image,
 } from "react-bootstrap";
 import React, { useState } from "react";
@@ -15,7 +14,6 @@ import { UPDATE_USER } from "../../utils/mutation";
 // import emailjs from "emailjs-com";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { QUERY_ME_BASIC } from "../../utils/queries";
-import Avatar from "react-avatar";
 import PictureUploader from "./PictureUploader";
 
 // Displays user info card for profile and opens modal for editing user information
@@ -218,7 +216,6 @@ const UserProfile = ({ user }) => {
                     onChange={handleChange}
                   />
                 </div>
-
                 <PictureUploader type="user"></PictureUploader>
 
                 <button
@@ -235,7 +232,6 @@ const UserProfile = ({ user }) => {
 
           <Image src={user.image} />
           {/* <img src={ Pic1 }></img> */}
-
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>

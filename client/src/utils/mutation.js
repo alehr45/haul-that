@@ -53,6 +53,7 @@ export const ADD_JOB = gql`
     $description: String!
     $image: String
     $distance: String!
+    $price: Int
     $realTime: Int
     $phone: String!
     $name: String!
@@ -66,6 +67,7 @@ export const ADD_JOB = gql`
       description: $description
       image: $image
       distance: $distance
+      price: $price
       realTime: $realTime
       phone: $phone
       name: $name

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import { GET_JOBS } from "../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
 import Auth from "../utils/auth";
+import NavBadge from "./NavBadge";
 
 const NavBar = () => {
+<<<<<<< HEAD
   const { loading, data: jobsData } = useQuery(GET_JOBS);
   const nonTakenJobs =
     jobsData?.jobs.filter((job) => job.taken === false) || [];
+=======
+  const [jobsArr, setJobsArr] = useState(13);
+>>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
 
   const logout = (event) => {
     event.preventDefault();
@@ -30,26 +33,16 @@ const NavBar = () => {
           <Nav className="mr-auto">
             {Auth.loggedIn() ? (
               <React.Fragment>
-                <Nav.Link className="nav1" href="/">
+                <Nav.Link className="nav1" href="/home">
                   Home
                 </Nav.Link>
-                <Nav.Link className="nav1" href="/bookingA">
+                <Nav.Link className="nav1" href="/booking">
                   Booking
                 </Nav.Link>
-
                 <Nav.Link className="nav1" href="/jobs">
                   Jobs
                 </Nav.Link>
-                <div>
-                  <Badge
-                    style={{ paddingLeft: "0px" }}
-                    className="badge"
-                    pill
-                    variant="primary"
-                  >
-                    {nonTakenJobs.length}
-                  </Badge>
-                </div>
+                <NavBadge setJobsArr={setJobsArr} jobsArr={jobsArr} />
                 <Nav.Link className="nav1" href="/profile">
                   My Profile
                 </Nav.Link>

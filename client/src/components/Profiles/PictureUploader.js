@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 import $ from "jquery";
-import { Button, Form } from "react-bootstrap";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import { useQuery, useMutation } from "@apollo/react-hooks";
-import { UPDATE_USER, UPDATE_IMAGE } from "../../utils/mutation";
+import { UPDATE_IMAGE } from "../../utils/mutation";
 
 const PictureUploader = ({ type, setImage }) => {
   const inputRef = useRef();
-  const [updateUser] = useMutation(UPDATE_USER);
   const [updateImage] = useMutation(UPDATE_IMAGE);
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   // const [picture, setPicture] = useState(false);
@@ -17,7 +15,6 @@ const PictureUploader = ({ type, setImage }) => {
 
   if (!userLoading) {
     user = data.me;
-    console.log(user);
   }
 
   const handlePictureSelected = async (event) => {
@@ -45,6 +42,7 @@ const PictureUploader = ({ type, setImage }) => {
   };
 
   const upload = () => {
+    inputRef.current?.click();
     var formData = new FormData();
 
     formData.append("image", picture);
@@ -92,6 +90,7 @@ const PictureUploader = ({ type, setImage }) => {
         className="d-none"
         onChange={handlePictureSelected}
       />
+<<<<<<< HEAD
       {type === "job" ? (
         <button className="btn btn-outline-primary" onClick={handleUpload}>
           <div>{renderPreview()}</div>
@@ -103,6 +102,13 @@ const PictureUploader = ({ type, setImage }) => {
           Add Profile Image
         </button>
       )}
+=======
+
+      <button className="btn btn-outline-primary" onClick={handleUpload}>
+        <div>{renderPreview()}</div>
+        {type === "job" ? "Add Job Image" : "Add Profile Image"}
+      </button>
+>>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
     </div>
   );
 };
