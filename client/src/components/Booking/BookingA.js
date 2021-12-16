@@ -5,21 +5,17 @@ import { ADD_JOB } from "../../utils/mutation";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import PictureUploader from "../Profiles/PictureUploader";
 import Jobs from "../Jobs/Job";
-
 const BookingA = () => {
   const { loading, data } = useQuery(QUERY_ME_BASIC);
   const [image, setImage] = useState("");
-
   var phone = "";
   var email = "";
   var name = "";
-
   if (!loading) {
     phone = data.me.phone;
     email = data.me.email;
     name = data.me.firstName;
   }
-
   const [formState, setFormState] = useState({
     date: "",
     category: "",
@@ -35,9 +31,7 @@ const BookingA = () => {
     stateD: "",
     zipD: "",
   });
-
   const [addJob] = useMutation(ADD_JOB);
-
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -48,7 +42,6 @@ const BookingA = () => {
       [name]: value,
     });
   };
-
   // submit form (notice the async!)
   const handleFetch = () => {
     fetch(
@@ -64,7 +57,6 @@ const BookingA = () => {
           const dropoffLat = routeInfo.route.locations[1].latLng.lat;
           const dropoffLng = routeInfo.route.locations[1].latLng.lng;
           const realTime = parseInt(routeInfo.route.realTime / 60);
-
           console.log(realTime);
           setFormState({
             ...formState,
@@ -81,7 +73,6 @@ const BookingA = () => {
       }
     });
   };
-
   const handleFormSubmit = async (
     distance,
     pickupLat,
@@ -119,25 +110,21 @@ const BookingA = () => {
         lng: dropoffLng.toString(),
       },
     };
-
     // use try/catch instead of promises to handle errors
     try {
       console.log(job);
       await addJob({
         variables: { ...job },
       });
-
       window.location.assign("/jobs");
       return <Jobs distance={distance}></Jobs>;
     } catch (e) {
       console.error(e);
     }
   };
-
   return (
     <Container className="bookingForm">
       <Row className="booking">
-<<<<<<< HEAD
         <Form>
           <Form.Group controlId="dob">
             <Form.Label>Select Date</Form.Label>
@@ -148,7 +135,6 @@ const BookingA = () => {
               onChange={handleChange}
             />
           </Form.Group>
-
           <Form.Group controlId="formBookJob">
             <Form.Label>Category</Form.Label>
             <Form.Control
@@ -168,7 +154,6 @@ const BookingA = () => {
               <option>Other</option>
             </Form.Control>
           </Form.Group>
-
           <Form.Group controlId="formQuantity">
             <Form.Label>Description</Form.Label>
             <br />
@@ -179,12 +164,10 @@ const BookingA = () => {
               placeholder="Type here"
             />
           </Form.Group>
-
           <Form.Group>
             <Form.Label>Upload Picture</Form.Label>
             <PictureUploader type="job" setImage={setImage} />
           </Form.Group>
-
           {/* Starting Address */}
           <h3 className="pickup1">Pick-up Address</h3>
           <Form.Group controlId="formGridAddress1">
@@ -207,19 +190,7 @@ const BookingA = () => {
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>City</Form.Label>
               <Form.Control onChange={handleChange} name="cityP" />
-=======
-          <Form>
-            <Form.Group controlId="dob">
-              <Form.Label>Select Date</Form.Label>
-              <Form.Control
-                type="date"
-                name="date"
-                placeholder="Day of Delivery"
-                onChange={handleChange}
-              />
->>>>>>> eaa4db3f765a615ecc0dae1296d6385c6558d4b1
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>State</Form.Label>
               <Form.Control
@@ -282,14 +253,12 @@ const BookingA = () => {
                 <option>Wyoming</option>
               </Form.Control>
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Zip</Form.Label>
               <Form.Control onChange={handleChange} name="zipP" />
             </Form.Group>
           </Form.Row>
           <br />
-
           {/* Ending Address */}
           <h3>Drop-off Address</h3>
           <Form.Group controlId="formGridAddress1">
@@ -313,7 +282,6 @@ const BookingA = () => {
               <Form.Label>City</Form.Label>
               <Form.Control onChange={handleChange} name="cityD" />
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>State</Form.Label>
               <Form.Control
@@ -376,12 +344,10 @@ const BookingA = () => {
                 <option>Wyoming</option>
               </Form.Control>
             </Form.Group>
-
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Zip</Form.Label>
               <Form.Control onChange={handleChange} name="zipD" />
             </Form.Group>
-<<<<<<< HEAD
           </Form.Row>
           <Button
             variant="btn btn-success"
@@ -392,102 +358,8 @@ const BookingA = () => {
             Continue
           </Button>
         </Form>
-=======
-            <Form.Group controlId="formGridAddress2">
-              <Form.Label>Address 2</Form.Label>
-              <Form.Control
-                placeholder="Apartment, studio, or floor"
-                onChange={handleChange}
-                name="addressD2"
-              />
-            </Form.Group>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridCity">
-                <Form.Label>City</Form.Label>
-                <Form.Control onChange={handleChange} name="cityD" />
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridState">
-                <Form.Label>State</Form.Label>
-                <Form.Control
-                  as="select"
-                  defaultValue="Choose..."
-                  onChange={handleChange}
-                  name="stateD"
-                >
-                  <option>Choose...</option>
-                  <option>Tennessee</option>
-                  <option>Alabama</option>
-                  <option>Alaska</option>
-                  <option>Arizona</option>
-                  <option>Arkansas</option>
-                  <option>California</option>
-                  <option>Colorado</option>
-                  <option>Connecticut</option>
-                  <option>Delaware</option>
-                  <option>Florida</option>
-                  <option>Georgia</option>
-                  <option>Hawaii</option>
-                  <option>Idaho</option>
-                  <option>Illinois</option>
-                  <option>Indiana</option>
-                  <option>Iowa</option>
-                  <option>Kansas</option>
-                  <option>Kentucky</option>
-                  <option>Louisiana</option>
-                  <option>Maine</option>
-                  <option>Maryland</option>
-                  <option>Massachusetts</option>
-                  <option>Michigan</option>
-                  <option>Minnesota</option>
-                  <option>Mississippi</option>
-                  <option>Missouri</option>
-                  <option>Montana</option>
-                  <option>Nebraska</option>
-                  <option>Nevada</option>
-                  <option>New Hampshire</option>
-                  <option>New Jersey</option>
-                  <option>New Mexico</option>
-                  <option>New York</option>
-                  <option>North Carolina</option>
-                  <option>North Dakota</option>
-                  <option>Ohio</option>
-                  <option>Oklahoma</option>
-                  <option>Oregon</option>
-                  <option>Pennsylvania</option>
-                  <option>Rhode Island</option>
-                  <option>South Carolina</option>
-                  <option>South Dakota</option>
-                  <option>Tennessee</option>
-                  <option>Texas</option>
-                  <option>Utah</option>
-                  <option>Vermont</option>
-                  <option>Virginia</option>
-                  <option>Washington</option>
-                  <option>West Virginia</option>
-                  <option>Wisconsin</option>
-                  <option>Wyoming</option>
-                </Form.Control>
-              </Form.Group>
-
-              <Form.Group as={Col} controlId="formGridZip">
-                <Form.Label>Zip</Form.Label>
-                <Form.Control onChange={handleChange} name="zipD" />
-              </Form.Group>
-            </Form.Row>
-            <Button
-              variant="btn btn-success"
-              onClick={handleFetch}
-              //   onClick={() => history.push("/BookingB")}
-              //
-            >
-              Continue
-            </Button>
-          </Form>
->>>>>>> eaa4db3f765a615ecc0dae1296d6385c6558d4b1
       </Row>
     </Container>
   );
 };
-
 export default BookingA;

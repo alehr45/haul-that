@@ -15,11 +15,15 @@ import CheckoutForm from "./components/CheckoutForm";
 import Details from "./components/Jobs/Details";
 import CustomerProfile from "./components/Profiles/CustomerProfile";
 import DriverProfile from "./components/Profiles/DriverProfile";
-import Payment from "./components/Payment"
+import Payment from "./components/Payment";
 
 // Stripe
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+
+const promise = loadStripe(
+  "pk_test_51K2IcuHwCWKZ1EspUFXInR9rqob5cH83GIYrO4oHFiX4OjuR9D0VCNNnOn9ypL8DJ4geDQatBSp1covJupAJyMKf00j0btAc76"
+);
 
 const client = new ApolloClient({
   request: (operation) => {

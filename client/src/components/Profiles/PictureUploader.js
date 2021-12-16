@@ -79,7 +79,8 @@ const PictureUploader = ({ type, setImage }) => {
     return result;
   };
 
-  const handleUpload = () => {
+  const handleUpload = (e) => {
+    e.preventDefault();
     inputRef.current?.click();
   };
 
@@ -91,10 +92,17 @@ const PictureUploader = ({ type, setImage }) => {
         className="d-none"
         onChange={handlePictureSelected}
       />
-      <button className="btn btn-outline-primary" onClick={handleUpload}>
-        <div>{renderPreview()}</div>
-        Add Profile Image
-      </button>
+      {type === "job" ? (
+        <button className="btn btn-outline-primary" onClick={handleUpload}>
+          <div>{renderPreview()}</div>
+          Add Job Image
+        </button>
+      ) : (
+        <button className="btn btn-outline-primary" onClick={handleUpload}>
+          <div>{renderPreview()}</div>
+          Add Profile Image
+        </button>
+      )}
     </div>
   );
 };

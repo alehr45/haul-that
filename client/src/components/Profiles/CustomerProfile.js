@@ -32,26 +32,12 @@ const CustomerProfile = () => {
 
   if (jobs) {
     for (let i = 0; i < jobs.length; i++) {
-<<<<<<< HEAD
       if (jobs[i].completed === false && jobs[i].email === user.email) {
-=======
-      if (
-        jobs[i].completed === false &&
-        jobs[i].email === user.email
-      ) {
->>>>>>> eaa4db3f765a615ecc0dae1296d6385c6558d4b1
         incompleteJobs.push(jobs[i]);
       }
     }
     for (let i = 0; i < jobs.length; i++) {
-<<<<<<< HEAD
       if (jobs[i].completed === true && jobs[i].email === user.email) {
-=======
-      if (
-        jobs[i].completed === true &&
-        jobs[i].email === user.email
-      ) {
->>>>>>> eaa4db3f765a615ecc0dae1296d6385c6558d4b1
         completedJobs.push(jobs[i]);
       }
     }
@@ -70,7 +56,7 @@ const CustomerProfile = () => {
   return (
     <Container className="profile2Form">
       <Row>
-        <h1 className="active"> Current Deliveries</h1>
+        <h1 className="activedelivery"> Current Deliveries</h1>
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -142,8 +128,8 @@ const CustomerProfile = () => {
                       />
                     ) : (
                       <Link className="link" to={"/payment/" + job._id}>
-                      Payment
-                    </Link>
+                        Payment
+                      </Link>
                     )}
                   </ProgressBar>
                 </ListGroup>

@@ -6,7 +6,8 @@ import Auth from "../utils/auth";
 
 const NavBar = () => {
   const { loading, data: jobsData } = useQuery(GET_JOBS);
-  const nonTakenJobs = jobsData?.jobs.filter((job) => job.taken === false) || [];
+  const nonTakenJobs =
+    jobsData?.jobs.filter((job) => job.taken === false) || [];
 
   const logout = (event) => {
     event.preventDefault();

@@ -17,25 +17,31 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
+const calculateOrderAmount = (items) => {
+  // Replace this constant with a calculation of the order's amount
+  // Calculate the order total on the server to prevent
+  // people from directly manipulating the amount on the client
+  return 1400;
+};
 app.post("/create-payment-intent", async (req, res) => {
   const { items } = req.body;
   // Create a PaymentIntent with the order amount and currency
   const paymentIntent = await stripe.paymentIntents.create({
     amount: calculateOrderAmount(items),
-    currency: "usd"
+    currency: "usd",
   });
   res.send({
-    clientSecret: paymentIntent.client_secret
+    clientSecret: paymentIntent.client_secret,
   });
 });
 
+app.listen(4242, () => console.log("Node server listening on port 4242!"));
 
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
