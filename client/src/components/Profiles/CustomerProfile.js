@@ -79,7 +79,7 @@ const CustomerProfile = ({ title, newTitle }) => {
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                   <Button size="sm" variant="outline-info">
-                    <Link className="link" to={"/details/" + job._id}>
+                    <Link className="link" to={`/job/${job._id}`}>
                       Details
                     </Link>
                   </Button>

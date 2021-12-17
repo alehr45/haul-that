@@ -39,19 +39,18 @@ function App() {
         <div className="App">
           <NavBar />
           <Switch>
+            <Route path="/success/" component={Success} />
+            <Route path="/checkoutform" component={CheckoutForm} />
+            <Route path="/payment/:job_Id" component={Payment} />
+            <Route path="/profile/driver" component={DriverProfile} />
+            <Route path="/profile/customer" component={CustomerProfile} />
+            <Route path="/profile" component={Profile} />
             <Route path="/details" component={Details} />
             <Route path="/job/:job_Id" component={Job} />
-            <Route path="/signup" component={Signup} />
-            {/* <Route path="/customerprofile" component={CustomerProfile} /> */}
-            <Route path="/profile" component={Profile} />
-            <Route path="/profile/customer" component={CustomerProfile} />
-            <Route path="/profile/driver" component={DriverProfile} />
-            <Route path="/booking" component={Booking} />
-            <Route path="/success" component={Success} />
-            <Route path="/checkoutform" component={CheckoutForm} />
-            <Route path="/login" component={Login} />
             <Route path="/jobs" component={Jobs} />
-            <Route path="/payment/:job_Id" component={Payment} />
+            <Route path="/booking" component={Booking} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
             <Route path="/" component={Home} />
           </Switch>
         </div>

@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Badge } from "react-bootstrap";
 import Auth from "../utils/auth";
 import NavBadge from "./NavBadge";
+import { QUERY_ME_BASIC } from "../utils/queries";
+import { useQuery } from "@apollo/react-hooks";
 
 const NavBar = () => {
   const [jobsArr, setJobsArr] = useState(13);
-
+  const { data: meData } = useQuery(QUERY_ME_BASIC);
+  const me = meData?.me || {};
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
@@ -30,12 +33,15 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/home">
                   Home
                 </Nav.Link>
-                <Nav.Link className="nav1" href="/booking">
-                  Booking
-                </Nav.Link>
-                <Nav.Link className="nav1" href="/jobs">
-                  Jobs
-                </Nav.Link>
+                {me.position == "customer" ? (
+                  <Nav.Link className="nav1" href="/booking">
+                    Booking
+                  </Nav.Link>
+                ) : (
+                  <Nav.Link className="nav1" href="/jobs">
+                    Jobs
+                  </Nav.Link>
+                )}
                 <NavBadge setJobsArr={setJobsArr} jobsArr={jobsArr} />
                 <Nav.Link className="nav1" href="/profile">
                   My Profile
