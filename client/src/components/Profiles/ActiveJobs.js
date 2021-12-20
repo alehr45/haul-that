@@ -1,73 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
-  ListGroupItem,
+  Body,
   ListGroup,
-  Container,
-  Row,
+  ListGroupItem,
   Button,
+  ProgressBar,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { QUERY_ME_BASIC, GET_JOBS } from "../../utils/queries";
-import {
-  COMPLETE_JOB,
-  UPDATE_STATUS,
-  ADD_VERIFICATION,
-} from "../../utils/mutation";
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { UPDATE_STATUS, ADD_VERIFICATION } from "../../utils/mutation";
+import { useMutation } from "@apollo/react-hooks";
 
-const DriverProfile = ({ title, options }) => {
-  const [completeJob] = useMutation(COMPLETE_JOB);
+const ActiveJobs = ({ info }) => {
   const [updateStatus] = useMutation(UPDATE_STATUS);
   const [addVerification] = useMutation(ADD_VERIFICATION);
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const { loading: jobsLoading, data: jobsData } = useQuery(GET_JOBS);
-
-  var user = {};
-  var jobs = [];
-  var completedJobs = [];
-  var incompleteJobs = [];
-
-  if (!userLoading) {
-    user = data.me;
-  }
-
-  if (!jobsLoading) {
-    jobs = jobsData.jobs;
-  }
-
-  if (jobs) {
-    for (let i = 0; i < jobs.length; i++) {
-      if (
-        jobs[i].completed === false &&
-        jobs[i].driverUsername === user.username
-      ) {
-        incompleteJobs.push(jobs[i]);
-      }
-    }
-    for (let i = 0; i < jobs.length; i++) {
-      if (
-        jobs[i].completed === true &&
-        jobs[i].driverUsername === user.username
-      ) {
-        completedJobs.push(jobs[i]);
-      }
-    }
-  }
-
-  // const handleComplete = async (_id) => {
-  //   // return <Payment></Payment>;
-
-  //   await completeJob({
-  //     variables: {
-  //       _id: _id,
-  //     },
-  //   });
-
-  //   // await emailjs.send("service_hsdqjea", "sign_up", formState, "user_VX87bNMDuxlz9E5XfnclG");
-  // };
+  let { title, options, jobs, user, incompleteJobs, newTitle } = info;
+  const driver = user.driver;
+  // const [statusBar, setStatusBar] = useState(0);
 
   const handleStatus = async (_id, status) => {
+    // setStatusBar(statusBar + 1);
     await updateStatus({
       variables: {
         _id: _id,
@@ -93,7 +45,7 @@ const DriverProfile = ({ title, options }) => {
     window.location.assign(`/payment/${_id}`);
   };
 
-  const progress = (options, title, job) => {
+  const jobProgress = (options, title, job) => {
     if (title !== "Generate Code") {
       return (
         <Button
@@ -101,6 +53,7 @@ const DriverProfile = ({ title, options }) => {
           onClick={() => handleStatus(job._id, job.status)}
         >
           {title}
+          {/* {info.title[statusBar]} */}
         </Button>
       );
     } else {
@@ -112,10 +65,17 @@ const DriverProfile = ({ title, options }) => {
     }
   };
 
+  const progressList = (title) => {
+    return <ListGroupItem className="progress2">{title}</ListGroupItem>;
+  };
+
+  const progress = (now, key) => {
+    return <ProgressBar animated variant="primary" now={now} key={key} />;
+  };
+
   return (
-    <Container className="profile2Form">
-      <Row>
-        <h1 className="active">Active Jobs</h1>
+    <div>
+      {driver === true ? (
         <div className="profilejob">
           {incompleteJobs &&
             incompleteJobs.map((job) => (
@@ -133,7 +93,6 @@ const DriverProfile = ({ title, options }) => {
                   </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
                   <ListGroupItem>
                     Haul: {parseInt(job.distance)} miles
                   </ListGroupItem>
@@ -142,17 +101,20 @@ const DriverProfile = ({ title, options }) => {
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem> {job.date} </ListGroupItem>
-                  <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
+                  <ListGroupItem>
+                    {"$"}
+                    {job.price / 100}
+                  </ListGroupItem>
                   {job.status === 1 ? (
-                    progress(options[0], title[0], job)
+                    jobProgress(options[0], title[0], job)
                   ) : job.status === 2 ? (
-                    progress(options[1], title[1], job)
+                    jobProgress(options[1], title[1], job)
                   ) : job.status === 3 ? (
-                    progress(options[2], title[2], job)
+                    jobProgress(options[2], title[2], job)
                   ) : job.status === 4 ? (
-                    progress(options[3], title[3], job)
+                    jobProgress(options[3], title[3], job)
                   ) : job.status === 5 ? (
-                    progress(options[4], title[4], job)
+                    jobProgress(options[4], title[4], job)
                   ) : (
                     <Link className="link" to={`/payment/${job._id}`}>
                       Payment
@@ -162,10 +124,10 @@ const DriverProfile = ({ title, options }) => {
               </Card>
             ))}
         </div>
-        <h1 className="completed">Completed Jobs</h1>
+      ) : (
         <div className="profilejob">
-          {completedJobs &&
-            completedJobs.map((job) => (
+          {incompleteJobs &&
+            incompleteJobs.map((job) => (
               <Card
                 className="cardbody"
                 key={job._id}
@@ -173,21 +135,54 @@ const DriverProfile = ({ title, options }) => {
               >
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
+                  <Button size="sm" variant="outline-info">
+                    <Link className="link" to={`/job/${job._id}`}>
+                      Details
+                    </Link>
+                  </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                  {/* <ListGroupItem>{job.date} </ListGroupItem> */}
                   <ListGroupItem>
-                    Haul: {parseInt(job.distance)} miles{" "}
+                    Haul: {parseInt(job.distance)} miles
                   </ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
-                  <ListGroupItem>${parseInt(job.distance * 1.2)}</ListGroupItem>
+                  <ListGroupItem>
+                    {"$"}
+                    {job.price / 100}
+                  </ListGroupItem>
+                  {job.status === 2
+                    ? progressList(newTitle[0])
+                    : job.status === 3
+                    ? progressList(newTitle[1])
+                    : job.status === 4
+                    ? progressList(newTitle[2])
+                    : job.status === 5
+                    ? progressList(newTitle[3])
+                    : progressList("pending")}
+                  <ListGroupItem>
+                    {job.status === 1 ? (
+                      progress(0, 1)
+                    ) : job.status === 2 ? (
+                      progress(25, 1)
+                    ) : job.status === 3 ? (
+                      progress(45, 2)
+                    ) : job.status === 4 ? (
+                      progress(75, 3)
+                    ) : job.status === 5 ? (
+                      progress(100, 4)
+                    ) : (
+                      <Link className="link" to={`/payment/${job._id}`}>
+                        <Button>Make Payment</Button>
+                      </Link>
+                    )}
+                  </ListGroupItem>
                 </ListGroup>
               </Card>
             ))}
         </div>
-      </Row>
-    </Container>
+      )}
+    </div>
   );
 };
 
-export default DriverProfile;
+export default ActiveJobs;

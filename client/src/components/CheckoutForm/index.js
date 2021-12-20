@@ -9,7 +9,6 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 import Details from "../Jobs/Details";
-import Success from "../Success";
 
 const CheckoutForm = ({ currentJob }) => {
   const amount = "$" + currentJob.price / 100;
@@ -27,10 +26,6 @@ const CheckoutForm = ({ currentJob }) => {
 
     window.location.href = response.data.url;
   };
-
-  useEffect(() => {
-    return <Success currentJob={currentJob} />;
-  }, []);
 
   return (
     <Container>
