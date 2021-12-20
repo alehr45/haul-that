@@ -13,11 +13,11 @@ import "./index.css";
 import Booking from "./components/Booking";
 import CheckoutForm from "./components/CheckoutForm";
 import Job from "./components/Jobs/Job";
-import CustomerProfile from "./components/Profiles/CustomerProfile";
-import DriverProfile from "./components/Profiles/DriverProfile";
 import Payment from "./components/Payment";
 import Success from "./components/Success";
 import Details from "./components/Jobs/Details";
+// import ActiveJobs from "./components/Profiles/ActiveJobs";
+// import CompletedJobs from "./components/Profiles/CompletedJobs";
 
 const client = new ApolloClient({
   request: (operation) => {
@@ -39,11 +39,11 @@ function App() {
         <div className="App">
           <NavBar />
           <Switch>
-            <Route path="/success/" component={Success} />
+            <Route path="/success/:job_Id" component={Success} />
             <Route path="/checkoutform" component={CheckoutForm} />
             <Route path="/payment/:job_Id" component={Payment} />
-            <Route path="/profile/driver" component={DriverProfile} />
-            <Route path="/profile/customer" component={CustomerProfile} />
+            {/* <Route path="/profile/driver/completed" component={CompletedJobs} />
+            <Route path="/profile/driver/active" component={ActiveJobs} /> */}
             <Route path="/profile" component={Profile} />
             <Route path="/details" component={Details} />
             <Route path="/job/:job_Id" component={Job} />
