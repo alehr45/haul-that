@@ -106,7 +106,7 @@ const typeDefs = gql`
       dropoff: addressInput!
     ): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
-    updateJob(_id: ID!): Job
+    updateJob(_id: ID!, taken: Boolean, status: Int): Job
     updateStatus(_id: ID!): Job
     addVerification(_id: ID!): Job
     updateJobDriver(_id: ID!, driverUsername: String!): Job

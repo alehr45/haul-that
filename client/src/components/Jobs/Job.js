@@ -50,7 +50,7 @@ const Job = () => {
       },
     });
     await updateJob({
-      variables: { _id: job_Id },
+      variables: { _id: job_Id, taken: true, status: 1 },
     });
     await updateJobDriver({
       variables: { _id: job_Id, driverUsername: driverUsername },
@@ -66,20 +66,39 @@ const Job = () => {
     window.location.assign("/profile");
   };
 
+  const handleCancel = async () => {
+    await updateJob({
+      variables: { _id: job_Id, taken: false, status: 1 },
+    });
+
+    await updateJobDriver({
+      variables: { _id: job_Id, driverUsername: "" },
+    });
+
+    window.location.assign("/profile");
+  };
+
   return (
     <Container className="currentjob">
       {loading ? <p>...loading</p> : <DetailsMap currentJob={currentJob} />}
       <Card className="cardbody" style={{ width: "100%" }}>
         <Details currentJob={currentJob} />
         {currentJob.taken ? (
-          <Button variant="primary">
-            <Link className="goback" to={"/profile"}>
-              Go Back
-            </Link>
-          </Button>
+          <div>
+            {currentJob.status <= 2 ? (
+              <Button variant="danger" onClick={handleCancel}>
+                Drop Job
+              </Button>
+            ) : null}
+            <Button variant="primary">
+              <Link className="goback" to={"/profile"}>
+                Go Back
+              </Link>
+            </Button>
+          </div>
         ) : (
           <div>
-            <Button variant="success" onClick={() => handlePickup()}>
+            <Button variant="success" onClick={handlePickup}>
               Accept Job
             </Button>
             <Button variant="primary">
