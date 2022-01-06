@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
+import { useMutation } from "@apollo/react-hooks";
+import { GET_JOB, COMPLETE_JOB } from "../utils/mutation";
 
-const Success = () => {
+const Success = ({ currentJob }) => {
   const [seconds, setSeconds] = useState(10);
   var timeRemaining = seconds;
 

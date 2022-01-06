@@ -22,29 +22,6 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-<<<<<<< HEAD
-const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1400;
-};
-app.post("/create-payment-intent", async (req, res) => {
-  const { items } = req.body;
-  // Create a PaymentIntent with the order amount and currency
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: calculateOrderAmount(items),
-    currency: "usd",
-  });
-  res.send({
-    clientSecret: paymentIntent.client_secret,
-  });
-});
-
-app.listen(4242, () => console.log("Node server listening on port 4242!"));
-
-=======
->>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
 // integrate our Apollo server with the Express application as middleware
 server.applyMiddleware({ app });
 
@@ -52,8 +29,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
-<<<<<<< HEAD
-=======
 // Creates session for user payment
 app.post("/create-checkout-session", async (req, res) => {
   console.log(req.body);
@@ -80,7 +55,6 @@ app.post("/create-checkout-session", async (req, res) => {
   res.json({ url: session.url });
 });
 
->>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
 // Serve up static assets
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../client/build")));

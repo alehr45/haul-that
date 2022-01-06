@@ -79,7 +79,7 @@ const CustomerProfile = ({ title, newTitle }) => {
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                   <Button size="sm" variant="outline-info">
-                    <Link className="link" to={"/details/" + job._id}>
+                    <Link className="link" to={"/job/" + job._id}>
                       Details
                     </Link>
                   </Button>
@@ -99,7 +99,7 @@ const CustomerProfile = ({ title, newTitle }) => {
                     ? progressList(newTitle[2])
                     : job.status === 5
                     ? progressList(newTitle[3])
-                    : progressList("pending")}
+                    : progressList("Pending...")}
                   {/* Displays progress bar as job.status receives updates */}
                   <ListGroupItem>
                     {job.status === 1 ? (
@@ -113,13 +113,8 @@ const CustomerProfile = ({ title, newTitle }) => {
                     ) : job.status === 5 ? (
                       progress(100, 4)
                     ) : (
-<<<<<<< HEAD
-                      <Link className="link" to={"/payment/" + job._id}>
-                        Payment
-=======
                       <Link className="link" to={`/payment/${job._id}`}>
                         <Button>Make Payment</Button>
->>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
                       </Link>
                     )}
                   </ListGroupItem>

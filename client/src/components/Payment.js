@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GET_JOB, QUERY_ME_BASIC } from "../utils/queries";
 import { Container, Button, InputGroup, FormControl } from "react-bootstrap";
@@ -32,6 +32,9 @@ const Payment = () => {
     }
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   // Get Job
   return (
     <div>

@@ -90,25 +90,11 @@ const PictureUploader = ({ type, setImage }) => {
         className="d-none"
         onChange={handlePictureSelected}
       />
-<<<<<<< HEAD
-      {type === "job" ? (
-        <button className="btn btn-outline-primary" onClick={handleUpload}>
-          <div>{renderPreview()}</div>
-          Add Job Image
-        </button>
-      ) : (
-        <button className="btn btn-outline-primary" onClick={handleUpload}>
-          <div>{renderPreview()}</div>
-          Add Profile Image
-        </button>
-      )}
-=======
 
       <button className="btn btn-outline-primary" onClick={handleUpload}>
         <div>{renderPreview()}</div>
         {type === "job" ? "Add Job Image" : "Add Profile Image"}
       </button>
->>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
     </div>
   );
 };

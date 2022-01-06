@@ -16,19 +16,8 @@ import Job from "./components/Jobs/Job";
 import CustomerProfile from "./components/Profiles/CustomerProfile";
 import DriverProfile from "./components/Profiles/DriverProfile";
 import Payment from "./components/Payment";
-<<<<<<< HEAD
-
-// Stripe
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
-=======
 import Success from "./components/Success";
 import Details from "./components/Jobs/Details";
->>>>>>> 116e57a45a372bd484d856432ad975c3653c3700
-
-const promise = loadStripe(
-  "pk_test_51K2IcuHwCWKZ1EspUFXInR9rqob5cH83GIYrO4oHFiX4OjuR9D0VCNNnOn9ypL8DJ4geDQatBSp1covJupAJyMKf00j0btAc76"
-);
 
 const client = new ApolloClient({
   request: (operation) => {
