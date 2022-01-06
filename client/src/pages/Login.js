@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
-import { LOGIN_USER } from '../utils/mutations';
+import React, { useState } from "react";
+import { Row, Container } from "react-bootstrap";
+import { useMutation } from "@apollo/react-hooks";
+import { LOGIN_USER } from "../utils/mutation";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
-  const [login, { error }] = useMutation(LOGIN_USER);
+  const [formState, setFormState] = useState({ username: "", password: "" });
+
+  const [login] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
   const handleChange = (event) => {
@@ -19,60 +21,71 @@ const Login = (props) => {
   };
 
   // submit form
-  const handleFormSubmit = async event => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const { data } = await login({
-        variables: { ...formState }
+        variables: { ...formState },
       });
 
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
     }
-
-    // clear form values
-    setFormState({
-      email: '',
-      password: ''
-    });
   };
 
   return (
-    <main className='flex-row justify-center mb-4'>
-      <div className='col-12 col-md-6'>
-        <div className='card'>
-          <h4 className='card-header'>Login</h4>
-          <div className='card-body'>
-            <form onSubmit={handleFormSubmit}>
-              <input
-                className='form-input'
-                placeholder='Your email'
-                name='email'
-                type='email'
-                id='email'
-                value={formState.email}
-                onChange={handleChange}
-              />
-              <input
-                className='form-input'
-                placeholder='******'
-                name='password'
-                type='password'
-                id='password'
-                value={formState.password}
-                onChange={handleChange}
-              />
-              <button className='btn d-block w-100' type='submit'>
-                Submit
-              </button>
-            </form>
-            {error && <div>Login failed</div>}
+    <Container>
+      <Row className="login-row">
+        <form className="loginform">
+          <h3 className="logintitle">Login</h3>
+
+          <div className="form-group">
+            <label>Username</label>
+            <input
+              type="username"
+              className="form-control"
+              placeholder="Enter username"
+              name="username"
+              onChange={handleChange}
+            />
           </div>
-        </div>
-      </div>
-    </main>
+
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              placeholder="Enter password"
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <div className="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                className="custom-control-input"
+                id="customCheck1"
+              />
+              <label className="custom-control-label" htmlFor="customCheck1">
+                Remember me
+              </label>
+            </div>
+          </div>
+
+          <button
+            onClick={handleFormSubmit}
+            type="submit"
+            className="btn btn-dark btn-lg btn-block"
+          >
+            Sign in
+          </button>
+        </form>
+      </Row>
+    </Container>
   );
 };
 

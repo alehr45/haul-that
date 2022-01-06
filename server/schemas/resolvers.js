@@ -96,11 +96,11 @@ const resolvers = {
         return updatedUser;
       }
     },
-    updateJob: async (parent, { _id }) => {
-      console.log(_id);
+    updateJob: async (parent, { _id, taken, status }) => {
+      console.log(_id, taken, status);
       const updatedJob = await Job.findOneAndUpdate(
         { _id },
-        { taken: true },
+        { taken: taken, status: status },
         { new: true }
       );
 
@@ -118,11 +118,11 @@ const resolvers = {
       return updatedStatus;
     },
 
-    addVerification: async (parent, {_id}) => {
-      console.log("tittes")
+    addVerification: async (parent, { _id }) => {
+      console.log("tittes");
       const updatedJob = await Job.findOneAndUpdate(
         { _id },
-        { verificationCode: Math.floor(Math.random() * 10000000)},
+        { verificationCode: Math.floor(Math.random() * 10000000) },
         { new: true }
       );
 
