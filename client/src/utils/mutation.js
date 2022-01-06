@@ -96,8 +96,8 @@ export const PICKUP_JOB = gql`
 `;
 
 export const UPDATE_JOB = gql`
-  mutation updateJob($_id: ID!) {
-    updateJob(_id: $_id) {
+  mutation updateJob($_id: ID!, $taken: Boolean, $status: Int) {
+    updateJob(_id: $_id, taken: $taken, status: $status) {
       _id
       taken
       status

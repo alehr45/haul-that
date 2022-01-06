@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useMutation } from "@apollo/react-hooks";
+import { COMPLETE_JOB } from "../utils/mutation";
 import { Button } from "react-bootstrap";
 import { useMutation } from "@apollo/react-hooks";
 import { GET_JOB, COMPLETE_JOB } from "../utils/mutation";
@@ -7,9 +10,17 @@ const Success = ({ currentJob }) => {
   const [seconds, setSeconds] = useState(10);
   var timeRemaining = seconds;
 
+  const [completeJob] = useMutation(COMPLETE_JOB);
+  const { job_Id } = useParams();
+
+  completeJob({
+    variables: { _id: job_Id },
+  });
+
+  // Timer to reroute
   const countDown = () => {
     timeRemaining--;
-    if (timeRemaining > 0 || timeRemaining === 1) {
+    if (timeRemaining > 0) {
       setSeconds(timeRemaining);
     } else {
       window.location.assign("/profile");

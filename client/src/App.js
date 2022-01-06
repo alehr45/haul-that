@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./pages/Home";
 import NavBar from "./components/NavBar.js";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient from "apollo-boost";
 import Jobs from "./components/Jobs/Jobs";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./components/Login";
+import Login from "./pages/Login";
 import Profile from "./components/Profiles/Profile";
-import Signup from "./components/Signup";
+import Signup from "./pages/Signup";
 import "./index.css";
 import Booking from "./components/Booking";
 import CheckoutForm from "./components/CheckoutForm";
 import Job from "./components/Jobs/Job";
-import CustomerProfile from "./components/Profiles/CustomerProfile";
-import DriverProfile from "./components/Profiles/DriverProfile";
 import Payment from "./components/Payment";
-import Success from "./components/Success";
+import Success from "./pages/Success";
 import Details from "./components/Jobs/Details";
 
 const client = new ApolloClient({
@@ -39,19 +37,16 @@ function App() {
         <div className="App">
           <NavBar />
           <Switch>
+            <Route path="/success/:job_Id" component={Success} />
+            <Route path="/checkoutform" component={CheckoutForm} />
+            <Route path="/payment/:job_Id" component={Payment} />
+            <Route path="/profile" component={Profile} />
             <Route path="/details" component={Details} />
             <Route path="/job/:job_Id" component={Job} />
-            <Route path="/signup" component={Signup} />
-            {/* <Route path="/customerprofile" component={CustomerProfile} /> */}
-            <Route path="/profile" component={Profile} />
-            <Route path="/profile/customer" component={CustomerProfile} />
-            <Route path="/profile/driver" component={DriverProfile} />
-            <Route path="/booking" component={Booking} />
-            <Route path="/success" component={Success} />
-            <Route path="/checkoutform" component={CheckoutForm} />
-            <Route path="/login" component={Login} />
             <Route path="/jobs" component={Jobs} />
-            <Route path="/payment/:job_Id" component={Payment} />
+            <Route path="/booking" component={Booking} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
             <Route path="/" component={Home} />
           </Switch>
         </div>

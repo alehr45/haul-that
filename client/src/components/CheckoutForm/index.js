@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   Container,
@@ -11,7 +11,6 @@ import axios from "axios";
 import Details from "../Jobs/Details";
 
 const CheckoutForm = ({ currentJob }) => {
-  console.log(currentJob._id);
   const amount = "$" + currentJob.price / 100;
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -21,11 +20,13 @@ const CheckoutForm = ({ currentJob }) => {
       url: "/create-checkout-session",
       data: {
         amount: currentJob.price,
+        id: currentJob._id,
       },
     });
 
     window.location.href = response.data.url;
   };
+
   return (
     <Container>
       <div style={{ margin: 300 }}>
