@@ -2,12 +2,15 @@ import {
   Card,
   ListGroupItem,
   ListGroup,
+  InputGroup,
   Container,
   Row,
   Button,
   Modal,
-  ToggleButton,
+  FormControl,
   Image,
+  DropdownButton,
+  Dropdown,
 } from "react-bootstrap";
 import React, { useState } from "react";
 import { UPDATE_USER } from "../../utils/mutation";
@@ -15,6 +18,7 @@ import { UPDATE_USER } from "../../utils/mutation";
 import { useQuery, useMutation } from "@apollo/react-hooks";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import PictureUploader from "./PictureUploader";
+import DropdownItem from "react-bootstrap/esm/DropdownItem";
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user }) => {
@@ -23,11 +27,12 @@ const UserProfile = ({ user }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  var result;
 
   // try setting (on signup) a value to equal customer or driver
 
-  const [checked1, setChecked1] = useState(user.customer);
-  const [checked2, setChecked2] = useState(user.driver);
+  const driver = "Driver";
+  const customer = "Customer";
 
   // Initializing formstate for input fields
   const [formState, setFormState] = useState({
@@ -41,24 +46,20 @@ const UserProfile = ({ user }) => {
     position: "",
     image: "https://i.imgur.com/mn6sKRv.png",
   });
+  console.log(formState.position);
 
-  const checkedInput = () => {
-    if (checked1 === false) {
-      setChecked1(true);
-      setChecked2(false);
-      formState.customer = true;
-      formState.driver = false;
-    } else {
-      setChecked1(false);
-      setChecked2(true);
-      formState.driver = true;
-      formState.customer = false;
-    }
-    if (formState.driver === true) {
-      formState.position = "driver";
-    } else {
-      formState.position = "customer";
-    }
+  const option1 = (thing) => {
+    console.log(thing);
+
+    formState.driver = true;
+    formState.customer = false;
+    formState.position = "driver";
+  };
+
+  const option2 = (event) => {
+    formState.customer = true;
+    formState.driver = false;
+    formState.position = "customer";
   };
 
   // Handles form submission via save button
@@ -91,6 +92,8 @@ const UserProfile = ({ user }) => {
       }
       if (formState.position === "") {
         formState.position = user.position;
+      } else {
+        formState.position = result;
       }
     }
 
@@ -136,7 +139,16 @@ const UserProfile = ({ user }) => {
               <form>
                 <h1 className="editprofile">Edit Profile</h1>
 
-                <div className="form-group6">
+                <DropdownButton title="Profile" id="dropdown-basic-button">
+                  <Dropdown.Item href="#" onSelect={option1}>
+                    driver
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#" onSelect={option2}>
+                    customer
+                  </Dropdown.Item>
+                </DropdownButton>
+
+                {/* <div className="form-group6">
                   <ToggleButton
                     id="toggle-check"
                     type="checkbox"
@@ -146,8 +158,6 @@ const UserProfile = ({ user }) => {
                   >
                     Customer
                   </ToggleButton>
-
-                  {/* <ButtonGroup className="mb-2"> */}
                   <ToggleButton
                     id="toggle-check"
                     type="checkbox"
@@ -157,8 +167,7 @@ const UserProfile = ({ user }) => {
                   >
                     Driver
                   </ToggleButton>
-                  {/* </ButtonGroup> */}
-                </div>
+                </div> */}
 
                 <div className="form-group">
                   <label>First name</label>

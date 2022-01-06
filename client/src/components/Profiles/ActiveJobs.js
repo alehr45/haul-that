@@ -16,15 +16,14 @@ const ActiveJobs = ({ info }) => {
   const [addVerification] = useMutation(ADD_VERIFICATION);
   let { title, options, jobs, user, incompleteJobs, newTitle } = info;
   const driver = user.driver;
-  // const [statusBar, setStatusBar] = useState(0);
 
   const handleStatus = async (_id, status) => {
-    // setStatusBar(statusBar + 1);
     await updateStatus({
       variables: {
         _id: _id,
       },
     });
+    console.log(status);
     window.location.assign("/profile");
   };
 
@@ -46,23 +45,18 @@ const ActiveJobs = ({ info }) => {
   };
 
   const jobProgress = (options, title, job) => {
-    if (title !== "Generate Code") {
-      return (
-        <Button
-          variant={options}
-          onClick={() => handleStatus(job._id, job.status)}
-        >
-          {title}
-          {/* {info.title[statusBar]} */}
-        </Button>
-      );
-    } else {
-      return (
-        <Button variant={options} onClick={() => handleVerification(job._id)}>
-          {title}
-        </Button>
-      );
-    }
+    return title !== "Generate Code" ? (
+      <Button
+        variant={options}
+        onClick={() => handleStatus(job._id, job.status)}
+      >
+        {title}
+      </Button>
+    ) : (
+      <Button variant={options} onClick={() => handleVerification(job._id)}>
+        {title}
+      </Button>
+    );
   };
 
   const progressList = (title) => {
