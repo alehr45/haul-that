@@ -19,16 +19,21 @@ import { useQuery, useMutation } from "@apollo/react-hooks";
 import { QUERY_ME_BASIC } from "../../utils/queries";
 import PictureUploader from "./PictureUploader";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
+import { Rating } from 'react-simple-star-rating'
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user }) => {
+
+
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
   const [updateUser] = useMutation(UPDATE_USER);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   var result;
+  let me = data?.me || {};
 
+  console.log(typeof me.rating / me.ratingNumber)
   // try setting (on signup) a value to equal customer or driver
 
   const driver = "Driver";
@@ -250,7 +255,9 @@ const UserProfile = ({ user }) => {
               About Me: <br />
               {user.aboutMe}
             </ListGroupItem>
-            <ListGroupItem>Rating</ListGroupItem>
+            {me.driver ? (<ListGroupItem>
+              Driver Rating:
+              <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating></ListGroupItem>) : null}
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>

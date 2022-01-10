@@ -188,8 +188,8 @@ export const UPDATE_JOB_DRIVER = gql`
 `;
 
 export const FIND_DRIVER_AND_RATE = gql`
-mutation findDriverAndRate($_id: ID!, $input: Int!){
-  findDriverAndRate(_id: $_id, input: $input){
+mutation findDriverAndRate($job_id: ID!, $input: Int!){
+  findDriverAndRate(job_id: $job_id, input: $input){
     ratingNumber
     rating
   }
