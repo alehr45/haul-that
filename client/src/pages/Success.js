@@ -2,9 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
 import { COMPLETE_JOB } from "../utils/mutation";
-import { Button } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import RatingPage from '../components/RatingPage'
 
 const Success = () => {
+  const [show, setShow] = useState(true);
+  const handleClose = () => {
+    setShow(false);
+    setInterval(countDown, 1000);
+  }
+
   const [seconds, setSeconds] = useState(10);
   var timeRemaining = seconds;
 
@@ -25,12 +32,6 @@ const Success = () => {
     }
   };
 
-  useEffect(() => {
-    if (timeRemaining > 0) {
-      setInterval(countDown, 1000);
-    }
-  }, []);
-
   return (
     <div style={{ margin: 200 }}>
       <h5>Rerouting in {seconds}</h5>
@@ -42,6 +43,21 @@ const Success = () => {
       >
         OK
       </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Rate Your Driver</Modal.Title>
+        </Modal.Header>
+        <Modal.Body><RatingPage /></Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            No Thanks
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -8,6 +8,7 @@ import {
   PICKUP_JOB,
   UPDATE_JOB,
   UPDATE_JOB_DRIVER,
+  DELETE_JOB
 } from "../../utils/mutation";
 import DetailsMap from "./DetailsMap";
 import Details from "./Details";
@@ -18,6 +19,7 @@ const Job = () => {
   const [updateJobDriver] = useMutation(UPDATE_JOB_DRIVER);
   const [pickupJob] = useMutation(PICKUP_JOB);
   const [updateJob] = useMutation(UPDATE_JOB);
+  const [deleteJob] = useMutation(DELETE_JOB);
   const { data: jobsData } = useQuery(GET_JOBS);
   let { job_Id } = useParams();
   const { loading, data: jobData } = useQuery(GET_JOB, {
@@ -31,7 +33,7 @@ const Job = () => {
   const driverUsername = meData?.me.username || "";
   const name = meData?.me.name || "";
 
-  console.log(nonTakenJobs);
+  console.log(meData.me.driver);
 
   const handlePickup = async () => {
     let userInfo = {
@@ -66,7 +68,7 @@ const Job = () => {
     window.location.assign("/profile");
   };
 
-  const handleCancel = async () => {
+  const handleDrop = async () => {
     await updateJob({
       variables: { _id: job_Id, taken: false, status: 1 },
     });
@@ -78,15 +80,24 @@ const Job = () => {
     window.location.assign("/profile");
   };
 
+  const handleCancel = async () => {
+    await deleteJob({
+      variables: { _id: job_Id }
+    })
+
+    window.location.assign("/profile");
+  }
+
   return (
     <Container className="currentjob">
       {loading ? <p>...loading</p> : <DetailsMap currentJob={currentJob} />}
+      {meData.me.driver == true ? (
       <Card className="cardbody" style={{ width: "100%" }}>
         <Details currentJob={currentJob} />
         {currentJob.taken ? (
           <div>
             {currentJob.status <= 2 ? (
-              <Button variant="danger" onClick={handleCancel}>
+              <Button variant="danger" onClick={handleDrop}>
                 Drop Job
               </Button>
             ) : null}
@@ -109,6 +120,36 @@ const Job = () => {
           </div>
         )}
       </Card>
+      ) : (
+      <Card className="cardbody" style={{ width: "100%" }}>
+        <Details currentJob={currentJob} />
+        {currentJob.taken ? (
+          <div>
+            {currentJob.status <= 2 ? (
+              <Button variant="danger" onClick={handleCancel}>
+                Cancel Job
+              </Button>
+            ) : null}
+            <Button variant="primary">
+              <Link className="goback" to={"/profile"}>
+                Go Back
+              </Link>
+            </Button>
+          </div>
+        ) : (
+          <div>
+            <Button variant="danger" onClick={handleCancel}>
+              Cancel Job
+            </Button>
+            <Button variant="primary">
+              <Link className="goback" to={"/jobs"}>
+                Go Back
+              </Link>
+            </Button>
+          </div>
+        )}
+      </Card>
+      )}
     </Container>
   );
 };
