@@ -1,22 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@apollo/react-hooks";
+import { Button, Modal, InputField } from "react-bootstrap";
 import { COMPLETE_JOB } from "../utils/mutation";
-import { Button, Modal } from "react-bootstrap";
-import RatingPage from '../components/RatingPage'
+import { QUERY_ME_BASIC, GET_JOB, GET_USER } from "../utils/queries";
+import { useQuery } from "@apollo/react-hooks";
+import { FIND_DRIVER_AND_RATE } from "../utils/mutation";
 
-const Success = () => {
+const Success = ({}) => {
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+  const [completeJob] = useMutation(COMPLETE_JOB);
+  const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE);
+  const { job_Id } = useParams();
   const [show, setShow] = useState(true);
-  const handleClose = () => {
-    setShow(false);
-    setInterval(countDown, 1000);
-  }
-
+  const [input, setInput] = useState(5);
   const [seconds, setSeconds] = useState(10);
   var timeRemaining = seconds;
 
-  const [completeJob] = useMutation(COMPLETE_JOB);
-  const { job_Id } = useParams();
+  // User data
+  const meData = data?.me || [];
+
+  function handleClose() {
+    setShow(false);
+    // setInterval(countDown, 1000);
+  }
+
+  const handleShow = () => setShow(true);
+
+  const handleSave = () => {
+    setShow(false);
+    setInterval(countDown, 1000);
+    findDriverAndRate({
+      variables: { job_id: job_Id, input: parseInt(input) },
+    });
+  };
 
   completeJob({
     variables: { _id: job_Id },
@@ -32,33 +49,46 @@ const Success = () => {
     }
   };
 
+  const handleChange = (event) => {
+    event.preventDefault();
+    const { value } = event.target;
+    setInput(value);
+  };
+
   return (
-    <div style={{ margin: 200 }}>
-      <h5>Rerouting in {seconds}</h5>
-      <h1>Your payment was successful!</h1>
-      <Button
-        onClick={() => {
-          window.location.assign("/profile");
-        }}
-      >
-        OK
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Rate Your Driver</Modal.Title>
+          <Modal.Title>Rate Your Driver!</Modal.Title>
         </Modal.Header>
-        <Modal.Body><RatingPage /></Modal.Body>
+        <Modal.Body className="stars">
+          <input type="number" value={input} onChange={handleChange}></input>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            No Thanks
+            Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Submit
+          <Button variant="primary" onClick={handleSave}>
+            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
+      <div style={{ margin: 200 }}>
+        <h5>Rerouting in {seconds}</h5>
+        <h1>Your payment was successful!</h1>
+        <Button
+          onClick={() => {
+            window.location.assign("/profile");
+          }}
+        >
+          OK
+        </Button>
+      </div>
+    </>
   );
 };
 

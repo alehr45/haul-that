@@ -11,12 +11,12 @@ const NavBadge = ({ setJobsArr, jobsArr }) => {
   const [counter, setCounter] = useState(nonTakenJobs.length)
   var count = counter
 
-  const badgeRender = () => {
-    count++;
-    setCounter(nonTakenJobs.length);
-  };
+  // const badgeRender = () => {
+  //   count++;
+  //   setCounter(nonTakenJobs.length);
+  // };
 
-  setInterval(badgeRender, 1000);
+  // setInterval(badgeRender, 1000);
 
   return (
     <div>

@@ -26,6 +26,8 @@ const typeDefs = gql`
     position: String!
     image: String
     jobs: [Job]
+    ratingNumber: Int
+    rating: String
   }
 
   type Job {
@@ -45,7 +47,7 @@ const typeDefs = gql`
     phone: String!
     name: String!
     email: String!
-    driverUsername: String
+    driver_id: String
     verificationCode: Float
     pickup: Address
     dropoff: Address
@@ -109,7 +111,7 @@ const typeDefs = gql`
     updateJob(_id: ID!, taken: Boolean, status: Int): Job
     updateStatus(_id: ID!): Job
     addVerification(_id: ID!): Job
-    updateJobDriver(_id: ID!, driverUsername: String!): Job
+    updateJobDriver(_id: ID!, driver_id: String!): Job
     completeJob(_id: ID!): Job
     deleteJob(_id: ID!): Job
     updateImage(_id: ID!, image: String!): User
@@ -125,6 +127,7 @@ const typeDefs = gql`
       driver: Boolean
       position: String
     ): User
+    findDriverAndRate(job_id: ID!, input: Int!): User
   }
 `;
 
