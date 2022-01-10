@@ -28,10 +28,11 @@ const Job = () => {
     jobsData?.jobs.filter((job) => job.taken === false) || [];
   const currentJob = jobData?.job || {};
   const meEmail = meData?.me.email || "";
-  const driverUsername = meData?.me.username || "";
+      // driverUsername to driver_id
+  const driver_id = meData?.me._id || "";
   const name = meData?.me.name || "";
 
-  console.log(nonTakenJobs);
+  console.log(typeof driver_id);
 
   const handlePickup = async () => {
     let userInfo = {
@@ -52,8 +53,9 @@ const Job = () => {
     await updateJob({
       variables: { _id: job_Id, taken: true, status: 1 },
     });
+    // driverUsername to driver_id
     await updateJobDriver({
-      variables: { _id: job_Id, driverUsername: driverUsername },
+      variables: { _id: job_Id, driver_id },
     });
 
     console.log(userInfo);
