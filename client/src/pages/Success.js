@@ -1,23 +1,37 @@
 import React, { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useMutation } from "@apollo/react-hooks"
-import { Button, Modal } from "react-bootstrap"
+import { Button, Modal, InputField } from "react-bootstrap"
 import { COMPLETE_JOB } from "../utils/mutation"
+import { QUERY_ME_BASIC, GET_JOB, GET_USER } from "../utils/queries"
+import { useQuery } from "@apollo/react-hooks"
+import { FIND_DRIVER_AND_RATE } from "../utils/mutation"
 
-const Success = ({ currentJob }) => {
+const Success = ({}) => {
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
   const [seconds, setSeconds] = useState(10)
   var timeRemaining = seconds
 
+  // User data
+  const meData = data?.me || []
+
   const [completeJob] = useMutation(COMPLETE_JOB)
+  const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE)
   const { job_Id } = useParams()
   const [show, setShow] = useState(true)
-  const [rating, setRating] = useState(0) // initial rating value
-
-  // Catch Rating value
+  const [input, setInput] = useState(5)
 
   function handleClose() {
     setShow(false)
-    // setInterval(countDown, 1000)
+    // setInterval(countDown, 1000);
+  }
+
+  const handleSave = () => {
+    setShow(false)
+    setInterval(countDown, 1000)
+    findDriverAndRate({
+      variables: { job_id: job_Id, input: parseInt(input) }
+    })
   }
 
   const handleShow = () => setShow(true)
@@ -36,6 +50,12 @@ const Success = ({ currentJob }) => {
     }
   }
 
+  const handleChange = event => {
+    event.preventDefault()
+    const { value } = event.target
+    setInput(value)
+  }
+
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
@@ -46,12 +66,14 @@ const Success = ({ currentJob }) => {
         <Modal.Header closeButton>
           <Modal.Title>Rate Your Driver!</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="stars">☆☆☆☆☆</Modal.Body>
+        <Modal.Body className="stars">
+          <input type="number" value={input} onChange={handleChange}></input>
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={handleSave}>
             Save Changes
           </Button>
         </Modal.Footer>

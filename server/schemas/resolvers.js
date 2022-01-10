@@ -75,7 +75,6 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!")
     },
     pickupJob: async (parent, { driverEmail, _id, distance, category, id }, context) => {
-      console.log(driverEmail)
       if (context.user) {
         console.log(id)
         await Job.findOneAndUpdate({ _id: _id }, { driverEmail: driverEmail })
@@ -93,7 +92,6 @@ const resolvers = {
       }
     },
     updateJob: async (parent, { _id, taken, status }) => {
-      console.log(_id, taken, status)
       const updatedJob = await Job.findOneAndUpdate({ _id }, { taken: taken, status: status }, { new: true })
 
       return updatedJob
@@ -112,17 +110,15 @@ const resolvers = {
       return updatedJob
     },
 
-    updateJobDriver: async (parent, { _id, driverUsername }) => {
-      console.log(_id, driverUsername)
-      const updatedJob = await Job.findOneAndUpdate({ _id }, { driverUsername: driverUsername }, { new: true })
+    updateJobDriver: async (parent, { _id, driver_id }) => {
+      console.log(driver_id)
+      const updatedJob = await Job.findOneAndUpdate({ _id }, { driver_id: driver_id }, { new: true })
 
       return updatedJob
     },
 
     completeJob: async (parent, { _id }) => {
       const completedJob = await Job.findOneAndUpdate({ _id }, { completed: true }, { new: true })
-
-      console.log(completedJob)
 
       return completedJob
     },
@@ -158,6 +154,29 @@ const resolvers = {
       )
 
       return updatedUser
+    },
+    findDriverAndRate: async (parent, { job_id, input }) => {
+      const job = await Job.findOne({ _id: job_id })
+
+      // now find driver based on driver_id from job
+      const driver = await User.findOne({ _id: job.driver_id })
+
+      // rating for current job added to driver rating TOTAL - converts to of type String
+      let userRating = (parseFloat(driver.rating) + input).toString()
+
+      const updatedDriver = await User.findOneAndUpdate(
+        // user is found based on driver_id from job
+        { _id: job.driver_id },
+        // number of ratings is incremented - new TOTAL rating is stored
+        { $inc: { ratingNumber: 1 }, rating: userRating },
+        { new: true }
+      )
+
+      // We now have 2 datapoints for rating - TOTAL rating and number of ratings
+      // Add another datapoint in database for average rating and do logic here?
+      // or simply do the math on the front end in query for user on profile?
+
+      return updatedDriver
     }
   }
 }

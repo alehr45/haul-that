@@ -26,11 +26,11 @@ const JobProfile = ({ options, title, newTitle }) => {
   if (driver === true) {
     incompleteJobs =
       jobs?.filter(
-        (job) => job.completed === false && job.driverUsername === user.username
+        (job) => job.completed === false && job.driver_id === user._id
       ) || [];
     completedJobs =
       jobs?.filter(
-        (job) => job.completed === true && job.driverUsername === user.username
+        (job) => job.completed === true && job.driver_id === user._id
       ) || [];
   } else {
     incompleteJobs =

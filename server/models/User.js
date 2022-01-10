@@ -58,6 +58,16 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    ratingNumber: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    rating: {
+      type: String,
+      required: false,
+      default: "0",
+    },
     jobs: [jobSchema],
   },
   {
