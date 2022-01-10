@@ -1,45 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useMutation } from "@apollo/react-hooks";
-import { Button, Modal, InputField } from "react-bootstrap";
-import { COMPLETE_JOB } from "../utils/mutation";
-import { QUERY_ME_BASIC, GET_JOB, GET_USER } from "../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
-import { FIND_DRIVER_AND_RATE } from "../utils/mutation";
-import { Rating } from 'react-simple-star-rating'
+import React, { useState } from "react"
+import { useParams } from "react-router-dom"
+import { useMutation } from "@apollo/react-hooks"
+import { Button, Modal } from "react-bootstrap"
+import { COMPLETE_JOB } from "../utils/mutation"
+// import { QUERY_ME_BASIC } from "../utils/queries"
 
-const Success = ({ }) => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+import { FIND_DRIVER_AND_RATE } from "../utils/mutation"
+import { Rating } from "react-simple-star-rating"
 
-  const [seconds, setSeconds] = useState(10);
-  var timeRemaining = seconds;
+const Success = () => {
+  // const { data } = useQuery(QUERY_ME_BASIC)
+
+  const [seconds, setSeconds] = useState(10)
+  var timeRemaining = seconds
 
   // User data
-  const meData = data?.me || []
 
-  const [completeJob] = useMutation(COMPLETE_JOB);
-  const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE);
-  const { job_Id } = useParams();
-  const [show, setShow] = useState(true);
+  const [completeJob] = useMutation(COMPLETE_JOB)
+  const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE)
+  const { job_Id } = useParams()
+  const [show, setShow] = useState(true)
   // const [input, setInput] = useState(5);
   const [rating, setRating] = useState(0)
 
   function handleClose() {
-    setShow(false);
-    setInterval(countDown, 1000);
+    setShow(false)
+    setInterval(countDown, 1000)
   }
 
-  const handleChange = (rate) => {
+  const handleChange = rate => {
     setRating(rate)
-  };
+  }
 
   const handleSave = () => {
     setShow(false)
     setInterval(countDown, 1000)
     findDriverAndRate({
-      variables: { job_id: job_Id, input: rating },
-    });
-  };
+      variables: { job_id: job_Id, input: rating }
+    })
+  }
 
   const handleShow = () => setShow(true)
 

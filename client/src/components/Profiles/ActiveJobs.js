@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Card, Body, ListGroup, ListGroupItem, Button, ProgressBar } from "react-bootstrap"
+import React from "react"
+import { Card, ListGroup, ListGroupItem, Button, ProgressBar } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UPDATE_STATUS, ADD_VERIFICATION } from "../../utils/mutation"
 import { useMutation } from "@apollo/react-hooks"
@@ -7,7 +7,7 @@ import { useMutation } from "@apollo/react-hooks"
 const ActiveJobs = ({ info }) => {
   const [updateStatus] = useMutation(UPDATE_STATUS)
   const [addVerification] = useMutation(ADD_VERIFICATION)
-  let { title, options, jobs, user, incompleteJobs, newTitle } = info
+  let { title, options, user, incompleteJobs, newTitle } = info
   const driver = user.driver
 
   const handleStatus = async (_id, status) => {
@@ -120,9 +120,11 @@ const ActiveJobs = ({ info }) => {
                     {"$"}
                     {job.price / 100}
                   </ListGroupItem>
-                  {job.status === 2 ? progressList(newTitle[0]) : job.status === 3 ? progressList(newTitle[1]) : job.status === 4 ? progressList(newTitle[2]) : job.status === 5 ? progressList(newTitle[3]) : progressList("pending")}
+                  {job.status === 2 ? progressList(newTitle[0]) : job.status === 3 ? progressList(newTitle[1]) : job.status === 4 ? progressList(newTitle[2]) : job.status === 5 ? progressList(newTitle[3]) : progressList("Pending...")}
                   <ListGroupItem>
-                    {job.status === 1 ? (
+                    {job.status === 0 ? (
+                      progress("")
+                    ) : job.status === 1 ? (
                       progress(0, 1)
                     ) : job.status === 2 ? (
                       progress(25, 1)

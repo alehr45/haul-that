@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react"
-import { Navbar, Nav, Container, Badge } from "react-bootstrap"
+import React, { useState } from "react"
+import { Navbar, Nav, Container } from "react-bootstrap"
 import Auth from "../utils/auth"
 import NavBadge from "./NavBadge"
 import { QUERY_ME_BASIC } from "../utils/queries"
@@ -26,7 +26,7 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/home">
                   Home
                 </Nav.Link>
-                {me.position == "customer" ? (
+                {me.position === "customer" ? (
                   <Nav.Link className="nav1" href="/booking">
                     Booking
                   </Nav.Link>

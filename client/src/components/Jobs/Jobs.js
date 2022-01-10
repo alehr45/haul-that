@@ -2,14 +2,13 @@ import React from "react"
 import { Button, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import Map from "../Map/Map"
-import { useContext } from "react"
 import { Container } from "react-bootstrap"
 import { useQuery } from "@apollo/react-hooks"
 import { GET_JOBS, QUERY_ME_BASIC } from "../../utils/queries"
 
 const Jobs = distance => {
   const { loading, data: jobsData } = useQuery(GET_JOBS)
-  const { loading: meLoading, data: meData } = useQuery(QUERY_ME_BASIC)
+  const { loading: meLoading } = useQuery(QUERY_ME_BASIC)
   const jobs = jobsData?.jobs || []
   const activeJobs = jobs.filter(job => job.completed === false)
 

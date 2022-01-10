@@ -17,9 +17,6 @@ import Payment from "./components/Payment"
 import Success from "./pages/Success"
 import Details from "./components/Jobs/Details"
 //Context Files
-import { useImmerReducer } from "use-immer"
-import StateContext from "./StateContext"
-import DispatchContext from "./DispatchContext"
 
 const client = new ApolloClient({
   request: operation => {
@@ -35,46 +32,27 @@ const client = new ApolloClient({
 })
 
 function App() {
-  const initialState = {
-    unreadChatCount: 0
-  }
-
-  function ourReducer(draft, action) {
-    switch (action.type) {
-      case "incrementJobCount":
-        draft.unreadChatCount++
-        return
-        return
-    }
-  }
-
-  const [state, dispatch] = useImmerReducer(ourReducer, initialState)
-
   return (
-    <StateContext.Provider value={state}>
-      <DispatchContext.Provider value={dispatch}>
-        <ApolloProvider client={client}>
-          <Router>
-            <div className="App">
-              <NavBar />
-              <Switch>
-                <Route path="/success/:job_Id" component={Success} />
-                <Route path="/checkoutform" component={CheckoutForm} />
-                <Route path="/payment/:job_Id" component={Payment} />
-                <Route path="/profile" component={Profile} />
-                <Route path="/details" component={Details} />
-                <Route path="/job/:job_Id" component={Job} />
-                <Route path="/jobs" component={Jobs} />
-                <Route path="/booking" component={Booking} />
-                <Route path="/login" component={Login} />
-                <Route path="/signup" component={Signup} />
-                <Route path="/" component={Home} />
-              </Switch>
-            </div>
-          </Router>
-        </ApolloProvider>
-      </DispatchContext.Provider>
-    </StateContext.Provider>
+    <ApolloProvider client={client}>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Switch>
+            <Route path="/success/:job_Id" component={Success} />
+            <Route path="/checkoutform" component={CheckoutForm} />
+            <Route path="/payment/:job_Id" component={Payment} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/details" component={Details} />
+            <Route path="/job/:job_Id" component={Job} />
+            <Route path="/jobs" component={Jobs} />
+            <Route path="/booking" component={Booking} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </div>
+      </Router>
+    </ApolloProvider>
   )
 }
 

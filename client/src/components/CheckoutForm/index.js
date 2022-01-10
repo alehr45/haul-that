@@ -1,31 +1,24 @@
-import React, { useState, useEffect } from "react";
-import {
-  Button,
-  Container,
-  Card,
-  ListGroup,
-  Item,
-  Image,
-} from "react-bootstrap";
-import axios from "axios";
-import Details from "../Jobs/Details";
+import React from "react"
+import { Button, Container, Card, ListGroup } from "react-bootstrap"
+import axios from "axios"
+import Details from "../Jobs/Details"
 
 const CheckoutForm = ({ currentJob }) => {
-  const amount = "$" + currentJob.price / 100;
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const amount = "$" + currentJob.price / 100
+  const handleSubmit = async event => {
+    event.preventDefault()
 
     const response = await axios({
       method: "post",
       url: "/create-checkout-session",
       data: {
         amount: currentJob.price,
-        id: currentJob._id,
-      },
-    });
+        id: currentJob._id
+      }
+    })
 
-    window.location.href = response.data.url;
-  };
+    window.location.href = response.data.url
+  }
 
   return (
     <Container>
@@ -43,7 +36,7 @@ const CheckoutForm = ({ currentJob }) => {
         </form>
       </div>
     </Container>
-  );
-};
+  )
+}
 
-export default CheckoutForm;
+export default CheckoutForm
