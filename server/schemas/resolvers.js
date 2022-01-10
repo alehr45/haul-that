@@ -202,6 +202,7 @@ const resolvers = {
       return updatedUser;
     },
     findDriverAndRate: async (parent, { job_id, input }) => {
+      console.log(input)
       const job = await Job.findOne({ _id: job_id });
 
       // now find driver based on driver_id from job
