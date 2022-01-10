@@ -1,65 +1,65 @@
-const { GraphQLScalarType } = require("graphql");
-const { GraphQLDateTime } = require("graphql-iso-date");
-const { Kind } = require("graphql/language");
-const { User, Job } = require("../models");
-const { AuthenticationError } = require("apollo-server-express");
-const { signToken } = require("../utils/auth");
-const { populate } = require("../models/User");
+const { GraphQLScalarType } = require("graphql")
+const { GraphQLDateTime } = require("graphql-iso-date")
+const { Kind } = require("graphql/language")
+const { User, Job } = require("../models")
+const { AuthenticationError } = require("apollo-server-express")
+const { signToken } = require("../utils/auth")
+const { populate } = require("../models/User")
 
 const resolvers = {
   DateTime: new GraphQLScalarType({
     name: "DateTime",
     description: "A date and time, represented as an ISO-8601 string",
-    serialize: (value) => value.toISOString(),
-    parseValue: (value) => new Date(value),
-    parseLiteral: (ast) => new Date(ast.value),
+    serialize: value => value.toISOString(),
+    parseValue: value => new Date(value),
+    parseLiteral: ast => new Date(ast.value)
   }),
   Query: {
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id });
-        return userData;
+        const userData = await User.findOne({ _id: context.user._id })
+        return userData
       }
 
-      throw new AuthenticationError("Not logged in");
+      throw new AuthenticationError("Not logged in")
     },
     jobs: async () => {
-      return Job.find().select("-__v -password");
+      return Job.find().select("-__v -password")
     },
     job: async (parent, { _id }) => {
-      return Job.findOne({ _id });
+      return Job.findOne({ _id })
     },
     time: () => new Date(),
     users: async () => {
-      return User.find();
+      return User.find()
     },
     user: async (parent, { _id }) => {
-      return User.findOne({ _id });
-    },
+      return User.findOne({ _id })
+    }
   },
 
   Mutation: {
     addUser: async (parent, args) => {
-      const user = await User.create(args);
-      const token = signToken(user);
+      const user = await User.create(args)
+      const token = signToken(user)
 
-      return { token, user };
+      return { token, user }
     },
     login: async (parent, { username, password }) => {
-      const user = await User.findOne({ username });
+      const user = await User.findOne({ username })
 
       if (!user) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError("Incorrect credentials")
       }
 
-      const correctPw = await user.isCorrectPassword(password);
+      const correctPw = await user.isCorrectPassword(password)
 
       if (!correctPw) {
-        throw new AuthenticationError("Incorrect credentials");
+        throw new AuthenticationError("Incorrect credentials")
       }
 
-      const token = signToken(user);
-      return { token, user };
+      const token = signToken(user)
+      return { token, user }
     },
     addJob: async (parent, args, context) => {
       if (context.user) {
@@ -67,127 +67,81 @@ const resolvers = {
           ...args,
           taken: false,
           status: 1,
-          username: context.user.username,
-        });
+          username: context.user.username
+        })
 
-        return job;
+        return job
       }
-      throw new AuthenticationError("You need to be logged in!");
+      throw new AuthenticationError("You need to be logged in!")
     },
-    pickupJob: async (
-      parent,
-      { driverEmail, _id, distance, category, id },
-      context
-    ) => {
-      console.log(driverEmail);
+    pickupJob: async (parent, { driverEmail, _id, distance, category, id }, context) => {
+      console.log(driverEmail)
       if (context.user) {
-        console.log(id);
-        await Job.findOneAndUpdate({ _id: _id }, { driverEmail: driverEmail });
+        console.log(id)
+        await Job.findOneAndUpdate({ _id: _id }, { driverEmail: driverEmail })
         const updatedUser = await User.findOneAndUpdate(
           { _id: context.user._id },
           {
             $push: {
-              jobs: { driverEmail, _id, distance, category, id },
-            },
+              jobs: { driverEmail, _id, distance, category, id }
+            }
           },
           { new: true }
-        );
+        )
 
-        return updatedUser;
+        return updatedUser
       }
     },
     updateJob: async (parent, { _id, taken, status }) => {
-      console.log(_id, taken, status);
-      const updatedJob = await Job.findOneAndUpdate(
-        { _id },
-        { taken: taken, status: status },
-        { new: true }
-      );
+      console.log(_id, taken, status)
+      const updatedJob = await Job.findOneAndUpdate({ _id }, { taken: taken, status: status }, { new: true })
 
-      return updatedJob;
+      return updatedJob
     },
 
     updateStatus: async (parent, { _id, status }) => {
-      console.log(_id);
-      const updatedStatus = await Job.findOneAndUpdate(
-        { _id },
-        { $inc: { status: 1 } },
-        { new: true }
-      );
+      console.log(_id)
+      const updatedStatus = await Job.findOneAndUpdate({ _id }, { $inc: { status: 1 } }, { new: true })
 
-      return updatedStatus;
+      return updatedStatus
     },
 
     addVerification: async (parent, { _id }) => {
-      console.log("tittes");
-      const updatedJob = await Job.findOneAndUpdate(
-        { _id },
-        { verificationCode: Math.floor(Math.random() * 10000000) },
-        { new: true }
-      );
+      const updatedJob = await Job.findOneAndUpdate({ _id }, { verificationCode: Math.floor(Math.random() * 10000000) }, { new: true })
 
-      return updatedJob;
+      return updatedJob
     },
 
     updateJobDriver: async (parent, { _id, driverUsername }) => {
-      console.log(_id, driverUsername);
-      const updatedJob = await Job.findOneAndUpdate(
-        { _id },
-        { driverUsername: driverUsername },
-        { new: true }
-      );
+      console.log(_id, driverUsername)
+      const updatedJob = await Job.findOneAndUpdate({ _id }, { driverUsername: driverUsername }, { new: true })
 
-      return updatedJob;
+      return updatedJob
     },
 
     completeJob: async (parent, { _id }) => {
-      const completedJob = await Job.findOneAndUpdate(
-        { _id },
-        { completed: true },
-        { new: true }
-      );
+      const completedJob = await Job.findOneAndUpdate({ _id }, { completed: true }, { new: true })
 
-      console.log(completedJob);
+      console.log(completedJob)
 
-      return completedJob;
+      return completedJob
     },
     deleteJob: async (parent, { _id }) => {
-      await Job.findOneAndDelete({ _id });
+      await Job.findOneAndDelete({ _id })
     },
 
     updateImage: async (parent, { _id, image }) => {
-      const updatedUser = await User.findOneAndUpdate(
-        { _id: _id },
-        { image: image },
-        { new: true }
-      );
+      const updatedUser = await User.findOneAndUpdate({ _id: _id }, { image: image }, { new: true })
 
-      return updatedUser;
+      return updatedUser
     },
     updateJobImage: async (parent, { _id, image }) => {
-      const updatedJob = await Job.findOneAndUpdate(
-        { _id: _id },
-        { image: image },
-        { new: true }
-      );
+      const updatedJob = await Job.findOneAndUpdate({ _id: _id }, { image: image }, { new: true })
 
-      return updatedJob;
+      return updatedJob
     },
 
-    updateUser: async (
-      parent,
-      {
-        _id,
-        firstName,
-        lastName,
-        email,
-        phone,
-        aboutMe,
-        customer,
-        driver,
-        position,
-      }
-    ) => {
+    updateUser: async (parent, { _id, firstName, lastName, email, phone, aboutMe, customer, driver, position }) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: _id },
         {
@@ -198,15 +152,15 @@ const resolvers = {
           aboutMe: aboutMe,
           customer: customer,
           driver: driver,
-          position: position,
+          position: position
         },
         { new: true }
-      );
+      )
 
-      return updatedUser;
-    },
-  },
-};
+      return updatedUser
+    }
+  }
+}
 
 // updateImage: async (parent, { _id, image }) => {
 //   const updatedImage = await User.findOneAndUpdate(
@@ -220,4 +174,4 @@ const resolvers = {
 //   return updatedImage;
 // };
 
-module.exports = resolvers;
+module.exports = resolvers

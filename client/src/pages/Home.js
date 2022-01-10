@@ -1,6 +1,6 @@
-import React from "react";
-import { Image } from "react-bootstrap";
-import image from "../images/homeimage.png";
+import React from "react"
+import { Image } from "react-bootstrap"
+import image from "../images/homeimage.png"
 
 function Home() {
   return (
@@ -19,9 +19,7 @@ function Home() {
           sign-up
         </Button>{" "} */}
       </div>
-      <div>
-        {/* <h1 className="footer"></h1> */}
-      </div>
+      <div>{/* <h1 className="footer"></h1> */}</div>
       <div className="d-flex flex-column">
         <footer className="footer">
           <div>
@@ -30,7 +28,7 @@ function Home() {
         </footer>
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

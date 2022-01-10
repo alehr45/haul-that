@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import { Badge } from "react-bootstrap";
-import { GET_JOBS } from "../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
+import React, { useState, useEffect, useContext } from "react"
+import { Badge } from "react-bootstrap"
+import { GET_JOBS } from "../utils/queries"
+import { useQuery } from "@apollo/react-hooks"
+import { useImmer } from "use-immer"
+import StateContext from "../StateContext"
+import DispatchContext from "../DispatchContext"
 
-const NavBadge = ({ setJobsArr, jobsArr }) => {
-  const { loading, data: jobsData } = useQuery(GET_JOBS);
-  const nonTakenJobs =
-    jobsData?.jobs.filter((job) => job.taken === false) || [];
-
-  useEffect(() => {
-    if (!loading && jobsArr === 13) {
-      setJobsArr(nonTakenJobs.length);
-    }
-  });
+const NavBadge = ({ me }) => {
+  const appState = useContext(StateContext)
+  const appDispatch = useContext(DispatchContext)
+  const { loading, data: jobsData } = useQuery(GET_JOBS)
+  const nonTakenJobs = jobsData?.jobs.filter(job => job.taken === false) || []
+  const [state, setState] = useImmer({
+    jobCountNum: []
+  })
 
   return (
     <div>
-      <Badge
-        style={{ paddingLeft: "0px" }}
-        className="badge"
-        pill
-        variant="primary"
-      >
-        {nonTakenJobs.length}
-      </Badge>
+      {me.driver == true ? (
+        <Badge style={{ paddingLeft: "0px" }} className="badge" pill variant="primary">
+          {nonTakenJobs.length}
+        </Badge>
+      ) : (
+        ""
+      )}
     </div>
-  );
-};
+  )
+}
 
-export default NavBadge;
+export default NavBadge

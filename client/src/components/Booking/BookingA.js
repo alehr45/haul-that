@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import { Button, Form, Container, Col, Row } from "react-bootstrap";
-import { useMutation, useQuery } from "@apollo/react-hooks";
-import { ADD_JOB } from "../../utils/mutation";
-import { QUERY_ME_BASIC } from "../../utils/queries";
-import PictureUploader from "../Profiles/PictureUploader";
-import Jobs from "../Jobs/Job";
+import React, { useState } from "react"
+import { Button, Form, Container, Col, Row } from "react-bootstrap"
+import { useMutation, useQuery } from "@apollo/react-hooks"
+import { ADD_JOB } from "../../utils/mutation"
+import { QUERY_ME_BASIC } from "../../utils/queries"
+import PictureUploader from "../Profiles/PictureUploader"
+import Jobs from "../Jobs/Job"
+
 const BookingA = () => {
-  const { loading, data } = useQuery(QUERY_ME_BASIC);
-  const [image, setImage] = useState("");
-  var phone = "";
-  var email = "";
-  var name = "";
+  const appDispatch = useContext(DispatchContext)
+  const { loading, data } = useQuery(QUERY_ME_BASIC)
+  const [image, setImage] = useState("")
+  var phone = ""
+  var email = ""
+  var name = ""
   if (!loading) {
-    phone = data.me.phone;
-    email = data.me.email;
-    name = data.me.firstName;
+    phone = data.me.phone
+    email = data.me.email
+    name = data.me.firstName
   }
   const [formState, setFormState] = useState({
     date: "",
@@ -29,58 +31,40 @@ const BookingA = () => {
     addressD2: "",
     cityD: "",
     stateD: "",
-    zipD: "",
-  });
-  const [addJob] = useMutation(ADD_JOB);
+    zipD: ""
+  })
+  const [addJob] = useMutation(ADD_JOB)
   // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    console.log(name);
-    console.log(typeof value);
+  const handleChange = event => {
+    const { name, value } = event.target
+
     setFormState({
       ...formState,
-      [name]: value,
-    });
-  };
+      [name]: value
+    })
+  }
   // submit form (notice the async!)
   const handleFetch = () => {
-    fetch(
-      `https://www.mapquestapi.com/directions/v2/route?key=ejlJ5TZ16qwyxA1YWDLZwhdPp6eTt2qA&from=${formState.addressP} ${formState.cityP}, ${formState.stateP} ${formState.zipP}}&to=${formState.addressD} ${formState.cityD}, ${formState.stateD} ${formState.zipD}`,
-      {}
-    ).then(function (response) {
+    fetch(`https://www.mapquestapi.com/directions/v2/route?key=ejlJ5TZ16qwyxA1YWDLZwhdPp6eTt2qA&from=${formState.addressP} ${formState.cityP}, ${formState.stateP} ${formState.zipP}}&to=${formState.addressD} ${formState.cityD}, ${formState.stateD} ${formState.zipD}`, {}).then(function (response) {
       if (response.ok) {
         response.json().then(function (routeInfo) {
-          const distance = routeInfo.route.distance;
+          const distance = routeInfo.route.distance
           // const pickupLat = routeInfo.route.locations[0].latLng.
-          const pickupLat = routeInfo.route.locations[0].latLng.lat;
-          const pickupLng = routeInfo.route.locations[0].latLng.lng;
-          const dropoffLat = routeInfo.route.locations[1].latLng.lat;
-          const dropoffLng = routeInfo.route.locations[1].latLng.lng;
-          const realTime = parseInt(routeInfo.route.realTime / 60);
-          console.log(realTime);
+          const pickupLat = routeInfo.route.locations[0].latLng.lat
+          const pickupLng = routeInfo.route.locations[0].latLng.lng
+          const dropoffLat = routeInfo.route.locations[1].latLng.lat
+          const dropoffLng = routeInfo.route.locations[1].latLng.lng
+          const realTime = parseInt(routeInfo.route.realTime / 60)
+
           setFormState({
-            ...formState,
-          });
-          handleFormSubmit(
-            distance,
-            pickupLat,
-            pickupLng,
-            dropoffLat,
-            dropoffLng,
-            realTime
-          );
-        });
+            ...formState
+          })
+          handleFormSubmit(distance, pickupLat, pickupLng, dropoffLat, dropoffLng, realTime)
+        })
       }
-    });
-  };
-  const handleFormSubmit = async (
-    distance,
-    pickupLat,
-    pickupLng,
-    dropoffLat,
-    dropoffLng,
-    realTime
-  ) => {
+    })
+  }
+  const handleFormSubmit = async (distance, pickupLat, pickupLng, dropoffLat, dropoffLng, realTime) => {
     let job = {
       date: formState.date,
       category: formState.category,
@@ -98,7 +82,7 @@ const BookingA = () => {
         state: formState.stateP,
         zip: formState.zipP,
         lat: pickupLat.toString(),
-        lng: pickupLng.toString(),
+        lng: pickupLng.toString()
       },
       dropoff: {
         address: formState.addressD,
@@ -107,43 +91,32 @@ const BookingA = () => {
         state: formState.stateD,
         zip: formState.zipD,
         lat: dropoffLat.toString(),
-        lng: dropoffLng.toString(),
-      },
-    };
+        lng: dropoffLng.toString()
+      }
+    }
     // use try/catch instead of promises to handle errors
     try {
-      console.log(job);
+      console.log(job)
       await addJob({
-        variables: { ...job },
-      });
-      window.location.assign("/jobs");
-      return <Jobs distance={distance}></Jobs>;
+        variables: { ...job }
+      })
+      window.location.assign("/jobs")
+      return <Jobs distance={distance}></Jobs>
     } catch (e) {
-      console.error(e);
+      console.error(e)
     }
-  };
+  }
   return (
     <Container className="bookingForm">
       <Row className="booking">
         <Form>
           <Form.Group controlId="dob">
             <Form.Label>Select Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
-              placeholder="Day of Delivery"
-              onChange={handleChange}
-            />
+            <Form.Control type="date" name="date" placeholder="Day of Delivery" onChange={handleChange} />
           </Form.Group>
           <Form.Group controlId="formBookJob">
             <Form.Label>Category</Form.Label>
-            <Form.Control
-              as="select"
-              defaultValue="Choose a category"
-              readOnly
-              name="category"
-              onChange={handleChange}
-            >
+            <Form.Control as="select" defaultValue="Choose a category" readOnly name="category" onChange={handleChange}>
               <option> ... </option>
               <option>Furniture</option>
               <option>Scrap Metal</option>
@@ -157,12 +130,7 @@ const BookingA = () => {
           <Form.Group controlId="formQuantity">
             <Form.Label>Description</Form.Label>
             <br />
-            <Form.Control
-              name="description"
-              onChange={handleChange}
-              as="textarea"
-              placeholder="Type here"
-            />
+            <Form.Control name="description" onChange={handleChange} as="textarea" placeholder="Type here" />
           </Form.Group>
           <Form.Group>
             <Form.Label>Upload Picture</Form.Label>
@@ -172,19 +140,11 @@ const BookingA = () => {
           <h3 className="pickup1">Pick-up Address</h3>
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control
-              placeholder="1234 Main St"
-              onChange={handleChange}
-              name="addressP"
-            />
+            <Form.Control placeholder="1234 Main St" onChange={handleChange} name="addressP" />
           </Form.Group>
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Address 2</Form.Label>
-            <Form.Control
-              placeholder="Apartment, studio, or floor"
-              onChange={handleChange}
-              name="addressP2"
-            />
+            <Form.Control placeholder="Apartment, studio, or floor" onChange={handleChange} name="addressP2" />
           </Form.Group>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
@@ -193,12 +153,7 @@ const BookingA = () => {
             </Form.Group>
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>State</Form.Label>
-              <Form.Control
-                as="select"
-                defaultValue="Choose..."
-                onChange={handleChange}
-                name="stateP"
-              >
+              <Form.Control as="select" defaultValue="Choose..." onChange={handleChange} name="stateP">
                 <option>Choose...</option>
                 <option>...</option>
                 <option>Alabama</option>
@@ -263,19 +218,11 @@ const BookingA = () => {
           <h3>Drop-off Address</h3>
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control
-              placeholder="1234 Main St"
-              onChange={handleChange}
-              name="addressD"
-            />
+            <Form.Control placeholder="1234 Main St" onChange={handleChange} name="addressD" />
           </Form.Group>
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Address 2</Form.Label>
-            <Form.Control
-              placeholder="Apartment, studio, or floor"
-              onChange={handleChange}
-              name="addressD2"
-            />
+            <Form.Control placeholder="Apartment, studio, or floor" onChange={handleChange} name="addressD2" />
           </Form.Group>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
@@ -284,12 +231,7 @@ const BookingA = () => {
             </Form.Group>
             <Form.Group as={Col} controlId="formGridState">
               <Form.Label>State</Form.Label>
-              <Form.Control
-                as="select"
-                defaultValue="Choose..."
-                onChange={handleChange}
-                name="stateD"
-              >
+              <Form.Control as="select" defaultValue="Choose..." onChange={handleChange} name="stateD">
                 <option>Choose...</option>
                 <option>Tennessee</option>
                 <option>Alabama</option>
@@ -360,6 +302,6 @@ const BookingA = () => {
         </Form>
       </Row>
     </Container>
-  );
-};
-export default BookingA;
+  )
+}
+export default BookingA

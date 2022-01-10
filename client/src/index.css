@@ -19,8 +19,7 @@
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .badge.badge-light {
@@ -47,8 +46,7 @@ code {
 }
 
 .logo2 {
-  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2),
-    6px 6px 10px 6px rgba(0, 0, 0, 0.19);
+  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2), 6px 6px 10px 6px rgba(0, 0, 0, 0.19);
 }
 
 .loginform {
@@ -483,8 +481,7 @@ input:checked + .slider:before {
 }
 
 .map-info {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .your-location {
@@ -512,18 +509,8 @@ body {
   font-weight: 400;
   font-family: sans-serif;
   background: #12c2e9; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #f64f59,
-    #eb9335,
-    #ceed07
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #f64f59,
-    #eb9335,
-    #ceed07
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #f64f59, #eb9335, #ceed07); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #f64f59, #eb9335, #ceed07); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .names {
@@ -605,6 +592,11 @@ html,
   font-size: 65px;
 }
 
+.stars {
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+}
 .subtitle {
   display: flex;
   justify-content: center;
