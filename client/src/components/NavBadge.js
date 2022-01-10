@@ -8,12 +8,6 @@ const NavBadge = ({ setJobsArr, jobsArr }) => {
   const nonTakenJobs =
     jobsData?.jobs.filter((job) => job.taken === false) || [];
 
-  useEffect(() => {
-    if (!loading && jobsArr === 13) {
-      setJobsArr(nonTakenJobs.length);
-    }
-  });
-
   return (
     <div>
       <Badge

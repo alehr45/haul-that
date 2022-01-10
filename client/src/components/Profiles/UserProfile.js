@@ -250,7 +250,7 @@ const UserProfile = ({ user }) => {
               About Me: <br />
               {user.aboutMe}
             </ListGroupItem>
-            <ListGroupItem>Rating ☆☆☆☆☆</ListGroupItem>
+            <ListGroupItem>Rating</ListGroupItem>
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>

@@ -177,11 +177,20 @@ export const UPDATE_USER = gql`
   }
 `;
 
+// driverUsername to driver_id
 export const UPDATE_JOB_DRIVER = gql`
-  mutation updateJobDriver($_id: ID!, $driverUsername: String!) {
-    updateJobDriver(_id: $_id, driverUsername: $driverUsername) {
+  mutation updateJobDriver($_id: ID!, $driver_id: String!) {
+    updateJobDriver(_id: $_id, driver_id: $driver_id) {
       _id
-      driverUsername
+      driver_id
     }
   }
 `;
+
+export const FIND_DRIVER_AND_RATE = gql`
+mutation findDriverAndRate($_id: ID!, $input: Int!){
+  findDriverAndRate(_id: $_id, input: $input){
+    ratingNumber
+    rating
+  }
+}`

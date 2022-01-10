@@ -14,6 +14,8 @@ export const GET_USER = gql`
   query user($_id: String!) {
     user(_id: $_id) {
       _id
+      rating
+      ratingNumber
     }
   }
 `;
@@ -32,6 +34,8 @@ export const QUERY_ME_BASIC = gql`
       image
       driver
       position
+      rating
+      ratingNumber
       jobs {
         id
         _id
@@ -59,7 +63,7 @@ export const GET_JOBS = gql`
       completed
       phone
       email
-      driverUsername
+      driver_id
       createdAt
       pickup {
         address
@@ -100,7 +104,7 @@ export const GET_JOB = gql`
       completed
       phone
       email
-      driverUsername
+      driver_id
       verificationCode
       createdAt
       pickup {
