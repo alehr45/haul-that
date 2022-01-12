@@ -7,9 +7,13 @@ const NavBadge = ({ setJobsArr, jobsArr }) => {
   const { loading, data: jobsData } = useQuery(GET_JOBS);
   const nonTakenJobs =
     jobsData?.jobs.filter((job) => job.taken === false) || [];
-
   const [counter, setCounter] = useState(nonTakenJobs.length)
-  var count = counter
+
+  if (counter !== nonTakenJobs.length) {
+    setCounter(nonTakenJobs.length)
+  }
+  
+  // var count = counter
 
   // const badgeRender = () => {
   //   count++;

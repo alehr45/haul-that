@@ -60,6 +60,7 @@ export const ADD_JOB = gql`
     $email: String!
     $pickup: addressInput!
     $dropoff: addressInput!
+    $customer_id: String
   ) {
     addJob(
       date: $date
@@ -74,6 +75,7 @@ export const ADD_JOB = gql`
       email: $email
       pickup: $pickup
       dropoff: $dropoff
+      customer_id: $customer_id
     ) {
       _id
     }
@@ -188,9 +190,19 @@ export const UPDATE_JOB_DRIVER = gql`
 `;
 
 export const FIND_DRIVER_AND_RATE = gql`
-mutation findDriverAndRate($job_id: ID!, $input: Int!){
-  findDriverAndRate(job_id: $job_id, input: $input){
-    ratingNumber
-    rating
+  mutation findDriverAndRate($job_id: ID!, $input: Int!) {
+    findDriverAndRate(job_id: $job_id, input: $input) {
+      ratingNumber
+      rating
+    }
   }
-}`
+`;
+
+export const FIND_CUSTOMER_AND_RATE = gql`
+  mutation findCustomerAndRate($job_id: ID!, $input: Int!) {
+    findCustomerAndRate(job_id: $job_id, input: $input) {
+      ratingNumber
+      rating
+    }
+  }
+`;
