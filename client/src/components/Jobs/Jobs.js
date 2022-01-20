@@ -46,10 +46,11 @@ const Jobs = distance => {
     return cards
   }
 
+  console.log(activeJobs)
   return (
     <div>
       <Map jobs={jobs} loading={loading} />
-      <Container>{handleCardRender()}</Container>
+      <Container>{activeJobs.length == 0 ? <h4 className="mt-5">No Jobs Available</h4> : handleCardRender()}</Container>
     </div>
   )
 }

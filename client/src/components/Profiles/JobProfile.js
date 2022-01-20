@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/react-hooks"
 import ActiveJobs from "./ActiveJobs"
 import CompletedJobs from "./CompletedJobs"
 
-const JobProfile = ({ options, title, newTitle }) => {
+const JobProfile = ({ options, title, newTitle, setDriverEarning }) => {
   const { data } = useQuery(QUERY_ME_BASIC)
   const { data: jobsData } = useQuery(GET_JOBS)
   const user = data?.me || {}
@@ -38,7 +38,7 @@ const JobProfile = ({ options, title, newTitle }) => {
         <h1 className="active9">Active Jobs</h1>
         <ActiveJobs info={info} />
         <h1 className="completed">Completed Jobs</h1>
-        <CompletedJobs info={info} />
+        <CompletedJobs setDriverEarning={setDriverEarning} info={info} />
       </Row>
     </Container>
   )

@@ -2,47 +2,26 @@ import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal, Image, D
 import React, { useState } from "react"
 import { UPDATE_USER } from "../../utils/mutation"
 // import emailjs from "emailjs-com";
-<<<<<<< HEAD
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import { QUERY_ME_BASIC } from "../../utils/queries"
 import PictureUploader from "./PictureUploader"
-
 import { Rating } from "react-simple-star-rating"
 
 // Displays user info card for profile and opens modal for editing user information
-const UserProfile = ({ user }) => {
-  const { data } = useQuery(QUERY_ME_BASIC)
+const UserProfile = ({ user, driverEarning }) => {
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
   const [updateUser] = useMutation(UPDATE_USER)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
   var result
   let me = data?.me || {}
-=======
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { QUERY_ME_BASIC } from "../../utils/queries";
-import PictureUploader from "./PictureUploader";
-import { Rating } from "react-simple-star-rating";
-
-// Displays user info card for profile and opens modal for editing user information
-const UserProfile = ({ user }) => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const [updateUser] = useMutation(UPDATE_USER);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  var result;
-  let me = data?.me || {};
->>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
 
   // try setting (on signup) a value to equal customer or driver
 
-<<<<<<< HEAD
-=======
   // const driver = "Driver";
   // const customer = "Customer";
 
->>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
   // Initializing formstate for input fields
   const [formState, setFormState] = useState({
     firstName: "",
@@ -53,51 +32,31 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
-<<<<<<< HEAD
     image: "https://i.imgur.com/mn6sKRv.png"
   })
-  console.log(formState.position)
 
-  const option1 = thing => {
-    console.log(thing)
-
-    formState.driver = true
-    formState.customer = false
-    formState.position = "driver"
-  }
-
-  const option2 = event => {
-    formState.customer = true
-    formState.driver = false
-    formState.position = "customer"
-  }
-=======
-    image: "https://i.imgur.com/mn6sKRv.png",
-  });
-
-  console.log(formState, me);
+  console.log(driverEarning)
 
   //  DEAL WITH THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  const setProfile = (event) => {
-    event.preventDefault();
-    console.log(event.target.value);
+  const setProfile = event => {
+    event.preventDefault()
+    console.log(event.target.value)
     if (event.target.value === "driver") {
       setFormState({
         ...formState,
         driver: true,
-        customer: false,
+        customer: false
         // position: "driver"
-      });
+      })
     } else {
       setFormState({
         ...formState,
         customer: true,
-        driver: false,
+        driver: false
         // position: "customer"
-      });
+      })
     }
-  };
->>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
+  }
 
   // Handles form submission via save button
   const handleFormSubmit = async event => {
@@ -172,18 +131,10 @@ const UserProfile = ({ user }) => {
                 <div className="form-group">
                   <label>Select a profile</label>
                   <br />
-                  <Button
-                    value="driver"
-                    variant="outline-dark"
-                    onClick={setProfile}
-                  >
+                  <Button value="driver" variant="outline-dark" onClick={setProfile}>
                     driver
                   </Button>
-                  <Button
-                    value="customer"
-                    variant="outline-dark"
-                    onClick={setProfile}
-                  >
+                  <Button value="customer" variant="outline-dark" onClick={setProfile}>
                     customer
                   </Button>
                 </div>
@@ -213,24 +164,14 @@ const UserProfile = ({ user }) => {
                   <textarea rows="5" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
                 </div>
 
-<<<<<<< HEAD
-                <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">
-                  Save
-                </button>
-=======
                 <PictureUploader type="user"></PictureUploader>
->>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
               </form>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Cancel
               </Button>{" "}
-              <Button
-                type="submit"
-                onClick={handleFormSubmit}
-                variant="primary"
-              >
+              <Button type="submit" onClick={handleFormSubmit} variant="primary">
                 Save
               </Button>
             </Modal.Footer>
@@ -253,38 +194,17 @@ const UserProfile = ({ user }) => {
             </ListGroupItem>
             {me.driver ? (
               <ListGroupItem>
-<<<<<<< HEAD
-                <Button
-                  onClick={() => {
-                    alert(`Your driver rating is ${me.rating / me.ratingNumber / 20}`)
-                  }}
-                >
-                  Driver Rating
-                  <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
-                </Button>
-              </ListGroupItem>
-            ) : null}
-=======
                 Driver Rating:
-                <Rating
-                  ratingValue={me.rating / me.ratingNumber}
-                  allowHalfIcon={true}
-                  allowHover={false}
-                  readonly={true}
-                ></Rating>
+                <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
               </ListGroupItem>
             ) : (
               <ListGroupItem>
                 Customer Rating:
-                <Rating
-                  ratingValue={me.rating / me.ratingNumber}
-                  allowHalfIcon={true}
-                  allowHover={false}
-                  readonly={true}
-                ></Rating>
+                <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
               </ListGroupItem>
             )}
->>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
+
+            {me.driver ? <ListGroupItem>Total Earnings: ${driverEarning}</ListGroupItem> : <ListGroupItem>Total Spent: ${driverEarning}</ListGroupItem>}
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
