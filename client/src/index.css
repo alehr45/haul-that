@@ -17,6 +17,8 @@
   font-family: airstream;
   src: url("./fonts/AIRSTREA.TTF");
 }
+.toggle1 {
+}
 
 @font-face {
   font-family: tunning;
@@ -374,7 +376,7 @@ code {
 }
 
 .profileForm {
-  padding-top: 50px;
+  padding-top: 20px;
   display: flex;
   justify-content: center;
   padding-bottom: 20px;

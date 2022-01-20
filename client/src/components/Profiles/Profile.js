@@ -8,6 +8,7 @@ import JobProfile from "./JobProfile"
 
 const Profile = () => {
   const [driverEarning, setDriverEarning] = useState(0)
+  const [jobNumber, setJobNumber] = useState(0)
   const { data } = useQuery(QUERY_ME_BASIC)
   let user = data?.me || {}
   console.log(driverEarning)
@@ -23,10 +24,12 @@ const Profile = () => {
           <Card.Body>
             <Row>
               <Col>
-                <JobProfile setDriverEarning={setDriverEarning} options={options} title={title} newTitle={newTitle} />
+                <h1>History</h1>
+                <JobProfile setJobNumber={setJobNumber} setDriverEarning={setDriverEarning} options={options} title={title} newTitle={newTitle} />
               </Col>
               <Col>
-                <UserProfile driverEarning={driverEarning} user={user}></UserProfile>
+                <h1>Profile</h1>
+                <UserProfile jobNumber={jobNumber} driverEarning={driverEarning} user={user}></UserProfile>
               </Col>
             </Row>
           </Card.Body>

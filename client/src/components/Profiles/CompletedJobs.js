@@ -19,7 +19,6 @@ const CompletedJobs = ({ info, setDriverEarning }) => {
   }
 
   const slicedJobs = completedJobs.slice(0, 3)
-  console.log(slicedJobs)
 
   return (
     <div className="profilejob">

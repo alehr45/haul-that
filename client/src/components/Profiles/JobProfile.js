@@ -5,7 +5,7 @@ import { useQuery } from "@apollo/react-hooks"
 import ActiveJobs from "./ActiveJobs"
 import CompletedJobs from "./CompletedJobs"
 
-const JobProfile = ({ options, title, newTitle, setDriverEarning }) => {
+const JobProfile = ({ options, title, newTitle, setDriverEarning, setJobNumber }) => {
   const { data } = useQuery(QUERY_ME_BASIC)
   const { data: jobsData } = useQuery(GET_JOBS)
   const user = data?.me || {}
@@ -17,6 +17,7 @@ const JobProfile = ({ options, title, newTitle, setDriverEarning }) => {
   if (driver === true) {
     incompleteJobs = jobs?.filter(job => job.completed === false && job.driver_id === user._id) || []
     completedJobs = jobs?.filter(job => job.completed === true && job.driver_id === user._id) || []
+    setJobNumber(completedJobs.length)
   } else {
     incompleteJobs = jobs?.filter(job => job.completed === false && job.email === user.email) || []
     completedJobs = jobs?.filter(job => job.completed === true && job.email === user.email) || []
@@ -38,7 +39,7 @@ const JobProfile = ({ options, title, newTitle, setDriverEarning }) => {
         <h1 className="active9">Active Jobs</h1>
         <ActiveJobs info={info} />
         <h1 className="completed">Completed Jobs</h1>
-        <CompletedJobs setDriverEarning={setDriverEarning} info={info} />
+        <CompletedJobs setJobNumber={setJobNumber} setDriverEarning={setDriverEarning} info={info} />
       </Row>
     </Container>
   )

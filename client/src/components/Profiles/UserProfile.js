@@ -8,7 +8,7 @@ import PictureUploader from "./PictureUploader"
 import { Rating } from "react-simple-star-rating"
 
 // Displays user info card for profile and opens modal for editing user information
-const UserProfile = ({ user, driverEarning }) => {
+const UserProfile = ({ user, driverEarning, jobNumber }) => {
   const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
   const [updateUser] = useMutation(UPDATE_USER)
   const [show, setShow] = useState(false)
@@ -34,29 +34,6 @@ const UserProfile = ({ user, driverEarning }) => {
     position: "",
     image: "https://i.imgur.com/mn6sKRv.png"
   })
-
-  console.log(driverEarning)
-
-  //  DEAL WITH THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  const setProfile = event => {
-    event.preventDefault()
-    console.log(event.target.value)
-    if (event.target.value === "driver") {
-      setFormState({
-        ...formState,
-        driver: true,
-        customer: false
-        // position: "driver"
-      })
-    } else {
-      setFormState({
-        ...formState,
-        customer: true,
-        driver: false
-        // position: "customer"
-      })
-    }
-  }
 
   // Handles form submission via save button
   const handleFormSubmit = async event => {
@@ -116,6 +93,8 @@ const UserProfile = ({ user, driverEarning }) => {
     })
   }
 
+  console.log(me)
+
   return (
     <Container className="profileForm">
       <Row className="row1">
@@ -128,17 +107,6 @@ const UserProfile = ({ user, driverEarning }) => {
             <h1 className="editprofile">Edit Profile</h1>
             <Modal.Body className="modalbody">
               <form>
-                <div className="form-group">
-                  <label>Select a profile</label>
-                  <br />
-                  <Button value="driver" variant="outline-dark" onClick={setProfile}>
-                    driver
-                  </Button>
-                  <Button value="customer" variant="outline-dark" onClick={setProfile}>
-                    customer
-                  </Button>
-                </div>
-
                 <div className="form-group">
                   <label>First name</label>
                   <input type="text" className="form-control" defaultValue={user.firstName} name="firstName" onChange={handleChange} />
@@ -205,7 +173,9 @@ const UserProfile = ({ user, driverEarning }) => {
             )}
 
             {me.driver ? <ListGroupItem>Total Earnings: ${driverEarning}</ListGroupItem> : <ListGroupItem>Total Spent: ${driverEarning}</ListGroupItem>}
+            <ListGroupItem>Completed Jobs: {jobNumber}</ListGroupItem>
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
+
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
