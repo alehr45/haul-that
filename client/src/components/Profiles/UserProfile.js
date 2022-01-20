@@ -2,6 +2,7 @@ import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal, Image, D
 import React, { useState } from "react"
 import { UPDATE_USER } from "../../utils/mutation"
 // import emailjs from "emailjs-com";
+<<<<<<< HEAD
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import { QUERY_ME_BASIC } from "../../utils/queries"
 import PictureUploader from "./PictureUploader"
@@ -17,10 +18,31 @@ const UserProfile = ({ user }) => {
   const handleShow = () => setShow(true)
   var result
   let me = data?.me || {}
+=======
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import { QUERY_ME_BASIC } from "../../utils/queries";
+import PictureUploader from "./PictureUploader";
+import { Rating } from "react-simple-star-rating";
 
-  console.log(typeof me.rating / me.ratingNumber)
+// Displays user info card for profile and opens modal for editing user information
+const UserProfile = ({ user }) => {
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
+  const [updateUser] = useMutation(UPDATE_USER);
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  var result;
+  let me = data?.me || {};
+>>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
+
   // try setting (on signup) a value to equal customer or driver
 
+<<<<<<< HEAD
+=======
+  // const driver = "Driver";
+  // const customer = "Customer";
+
+>>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
   // Initializing formstate for input fields
   const [formState, setFormState] = useState({
     firstName: "",
@@ -31,6 +53,7 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
+<<<<<<< HEAD
     image: "https://i.imgur.com/mn6sKRv.png"
   })
   console.log(formState.position)
@@ -48,6 +71,33 @@ const UserProfile = ({ user }) => {
     formState.driver = false
     formState.position = "customer"
   }
+=======
+    image: "https://i.imgur.com/mn6sKRv.png",
+  });
+
+  console.log(formState, me);
+
+  //  DEAL WITH THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  const setProfile = (event) => {
+    event.preventDefault();
+    console.log(event.target.value);
+    if (event.target.value === "driver") {
+      setFormState({
+        ...formState,
+        driver: true,
+        customer: false,
+        // position: "driver"
+      });
+    } else {
+      setFormState({
+        ...formState,
+        customer: true,
+        driver: false,
+        // position: "customer"
+      });
+    }
+  };
+>>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
 
   // Handles form submission via save button
   const handleFormSubmit = async event => {
@@ -116,39 +166,27 @@ const UserProfile = ({ user }) => {
 
           {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
+            <h1 className="editprofile">Edit Profile</h1>
             <Modal.Body className="modalbody">
               <form>
-                <h1 className="editprofile">Edit Profile</h1>
-
-                <DropdownButton title="Profile" id="dropdown-basic-button">
-                  <Dropdown.Item href="#" onSelect={option1}>
+                <div className="form-group">
+                  <label>Select a profile</label>
+                  <br />
+                  <Button
+                    value="driver"
+                    variant="outline-dark"
+                    onClick={setProfile}
+                  >
                     driver
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#" onSelect={option2}>
+                  </Button>
+                  <Button
+                    value="customer"
+                    variant="outline-dark"
+                    onClick={setProfile}
+                  >
                     customer
-                  </Dropdown.Item>
-                </DropdownButton>
-
-                {/* <div className="form-group6">
-                  <ToggleButton
-                    id="toggle-check"
-                    type="checkbox"
-                    variant="white"
-                    checked={checked1}
-                    onChange={(e) => checkedInput()}
-                  >
-                    Customer
-                  </ToggleButton>
-                  <ToggleButton
-                    id="toggle-check"
-                    type="checkbox"
-                    variant="white"
-                    checked={checked2}
-                    onChange={(e) => checkedInput()}
-                  >
-                    Driver
-                  </ToggleButton>
-                </div> */}
+                  </Button>
+                </div>
 
                 <div className="form-group">
                   <label>First name</label>
@@ -174,29 +212,48 @@ const UserProfile = ({ user }) => {
                   <label>About Me</label>
                   <textarea rows="5" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
                 </div>
-                <PictureUploader type="user"></PictureUploader>
 
+<<<<<<< HEAD
                 <button type="submit" onClick={handleFormSubmit} className="btn btn-dark btn-lg btn-block">
                   Save
                 </button>
+=======
+                <PictureUploader type="user"></PictureUploader>
+>>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
               </form>
             </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Cancel
+              </Button>{" "}
+              <Button
+                type="submit"
+                onClick={handleFormSubmit}
+                variant="primary"
+              >
+                Save
+              </Button>
+            </Modal.Footer>
           </Modal>
           {/* edit profile end */}
 
           <Image src={user.image} />
-          {/* <img src={ Pic1 }></img> */}
+
           {/* User's profile card - displays user's info */}
           <Card.Body>
             <Card.Title>{user.username}</Card.Title>
           </Card.Body>
           <ListGroup className="list-group-flush">
             <ListGroupItem>
+              {user.firstName} {user.lastName}
+            </ListGroupItem>
+            <ListGroupItem>
               About Me: <br />
               {user.aboutMe}
             </ListGroupItem>
             {me.driver ? (
               <ListGroupItem>
+<<<<<<< HEAD
                 <Button
                   onClick={() => {
                     alert(`Your driver rating is ${me.rating / me.ratingNumber / 20}`)
@@ -207,6 +264,27 @@ const UserProfile = ({ user }) => {
                 </Button>
               </ListGroupItem>
             ) : null}
+=======
+                Driver Rating:
+                <Rating
+                  ratingValue={me.rating / me.ratingNumber}
+                  allowHalfIcon={true}
+                  allowHover={false}
+                  readonly={true}
+                ></Rating>
+              </ListGroupItem>
+            ) : (
+              <ListGroupItem>
+                Customer Rating:
+                <Rating
+                  ratingValue={me.rating / me.ratingNumber}
+                  allowHalfIcon={true}
+                  allowHover={false}
+                  readonly={true}
+                ></Rating>
+              </ListGroupItem>
+            )}
+>>>>>>> 060ec212f1a04dba1b3830f2c3671fd0c8b860bd
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>

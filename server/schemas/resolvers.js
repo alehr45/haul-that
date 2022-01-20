@@ -157,12 +157,11 @@ const resolvers = {
     },
     findDriverAndRate: async (parent, { job_id, input }) => {
       console.log(input)
-      const job = await Job.findOne({ _id: job_id });
+      const job = await Job.findOne({ _id: job_id })
 
       // now find driver based on driver_id from job
       const driver = await User.findOne({ _id: job.driver_id })
 
-      // rating for current job added to driver rating TOTAL - converts to of type String
       let userRating = (parseFloat(driver.rating) + input).toString()
 
       const updatedDriver = await User.findOneAndUpdate(
@@ -173,11 +172,31 @@ const resolvers = {
         { new: true }
       )
 
+      return updatedDriver
+    },
+    findCustomerAndRate: async (parent, { job_id, input }) => {
+      console.log(input)
+      const job = await Job.findOne({ _id: job_id })
+
+      // now find customer based on customer_id from job
+      const customer = await User.findOne({ _id: job.customer_id })
+
+      // rating for current job added to driver rating TOTAL - converts to of type String
+      let userRating = (parseFloat(customer.rating) + input).toString()
+
+      const updatedCustomer = await User.findOneAndUpdate(
+        // user is found based on driver_id from job
+        { _id: job.customer_id },
+        // number of ratings is incremented - new TOTAL rating is stored
+        { $inc: { ratingNumber: 1 }, rating: userRating },
+        { new: true }
+      )
+
       // We now have 2 datapoints for rating - TOTAL rating and number of ratings
       // Add another datapoint in database for average rating and do logic here?
       // or simply do the math on the front end in query for user on profile?
 
-      return updatedDriver
+      return updatedCustomer
     }
   }
 }
@@ -187,11 +206,5 @@ const resolvers = {
 //     { _id: _id },
 //     {
 //       image: image,
-//     },
-//     { new: true }
-//   );
-
-//   return updatedImage;
-// };
 
 module.exports = resolvers

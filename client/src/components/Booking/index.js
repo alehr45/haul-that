@@ -13,11 +13,13 @@ const Booking = () => {
   var phone = "";
   var email = "";
   var name = "";
+  var ID = "";
 
   if (!loading) {
     phone = data.me.phone;
     email = data.me.email;
     name = data.me.firstName;
+    ID = data.me._id;
   }
 
   const [formState, setFormState] = useState({
@@ -92,6 +94,7 @@ const Booking = () => {
     price
   ) => {
     let job = {
+      customer_id: ID,
       date: formState.date,
       category: formState.category,
       description: formState.description,

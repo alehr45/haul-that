@@ -48,6 +48,7 @@ const typeDefs = gql`
     name: String!
     email: String!
     driver_id: String
+    customer_id: String
     verificationCode: Float
     pickup: Address
     dropoff: Address
@@ -106,6 +107,7 @@ const typeDefs = gql`
       email: String!
       pickup: addressInput!
       dropoff: addressInput!
+      customer_id: String
     ): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
     updateJob(_id: ID!, taken: Boolean, status: Int): Job
@@ -128,6 +130,7 @@ const typeDefs = gql`
       position: String
     ): User
     findDriverAndRate(job_id: ID!, input: Int!): User
+    findCustomerAndRate(job_id: ID!, input: Int!): User
   }
 `;
 
