@@ -1,83 +1,72 @@
-import React, { useState } from "react";
-import {
-  Card,
-  Body,
-  ListGroup,
-  ListGroupItem,
-  Button,
-  ProgressBar,
-} from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { UPDATE_STATUS, ADD_VERIFICATION } from "../../utils/mutation";
-import { useMutation } from "@apollo/react-hooks";
+import React from "react"
+import { Card, ListGroup, ListGroupItem, Button, ProgressBar } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import { UPDATE_STATUS, ADD_VERIFICATION } from "../../utils/mutation"
+import { useMutation } from "@apollo/react-hooks"
 
 const ActiveJobs = ({ info }) => {
-  const [updateStatus] = useMutation(UPDATE_STATUS);
-  const [addVerification] = useMutation(ADD_VERIFICATION);
-  let { title, options, jobs, user, incompleteJobs, newTitle } = info;
-  const driver = user.driver;
+  const [updateStatus] = useMutation(UPDATE_STATUS)
+  const [addVerification] = useMutation(ADD_VERIFICATION)
+  let { title, options, user, incompleteJobs, newTitle } = info
+  const driver = user.driver
 
   const handleStatus = async (_id, status) => {
     await updateStatus({
       variables: {
-        _id: _id,
-      },
-    });
-    console.log(status);
-    window.location.assign("/profile");
-  };
+        _id: _id
+      }
+    })
+    console.log(status)
+    window.location.assign("/profile")
+  }
 
-  const handleVerification = async (_id) => {
-    console.log("here");
+  const handleVerification = async _id => {
+    console.log("here")
     await addVerification({
       variables: {
-        _id: _id,
-      },
-    });
+        _id: _id
+      }
+    })
 
     await updateStatus({
       variables: {
-        _id: _id,
-      },
-    });
+        _id: _id
+      }
+    })
 
-    window.location.assign(`/payment/${_id}`);
-  };
+    window.location.assign(`/payment/${_id}`)
+  }
 
   const jobProgress = (options, title, job) => {
     return title !== "Generate Code" ? (
-      <Button
-        variant={options}
-        onClick={() => handleStatus(job._id, job.status)}
-      >
+      <Button variant={options} onClick={() => handleStatus(job._id, job.status)}>
         {title}
       </Button>
     ) : (
       <Button variant={options} onClick={() => handleVerification(job._id)}>
         {title}
       </Button>
-    );
-  };
+    )
+  }
 
-  const progressList = (title) => {
-    return <ListGroupItem className="progress2">{title}</ListGroupItem>;
-  };
+  const progressList = title => {
+    return <ListGroupItem className="progress2">{title}</ListGroupItem>
+  }
 
   const progress = (now, key) => {
-    return <ProgressBar animated variant="primary" now={now} key={key} />;
-  };
+    return <ProgressBar animated variant="primary" now={now} key={key} />
+  }
+
+  const slicedJobs = incompleteJobs.slice(0, 3)
+  console.log(slicedJobs)
 
   return (
     <div>
       {driver === true ? (
         <div className="profilejob">
-          {incompleteJobs &&
-            incompleteJobs.map((job) => (
-              <Card
-                className="cardbody"
-                key={job._id}
-                style={{ width: "12rem" }}
-              >
+          {slicedJobs &&
+            slicedJobs.map(job => (
+              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                   <Button size="sm" variant="outline-info">
@@ -87,12 +76,8 @@ const ActiveJobs = ({ info }) => {
                   </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                  <ListGroupItem>
-                    Haul: {parseInt(job.distance)} miles
-                  </ListGroupItem>
-                  <ListGroupItem>
-                    Drive Time: {job.realTime} minutes
-                  </ListGroupItem>
+                  <ListGroupItem>Haul: {parseInt(job.distance)} miles</ListGroupItem>
+                  <ListGroupItem>Drive Time: {job.realTime} minutes</ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem> {job.date} </ListGroupItem>
                   <ListGroupItem>
@@ -120,13 +105,9 @@ const ActiveJobs = ({ info }) => {
         </div>
       ) : (
         <div className="profilejob">
-          {incompleteJobs &&
-            incompleteJobs.map((job) => (
-              <Card
-                className="cardbody"
-                key={job._id}
-                style={{ width: "12rem" }}
-              >
+          {slicedJobs &&
+            slicedJobs.map(job => (
+              <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
                   <Button size="sm" variant="outline-info">
@@ -136,25 +117,17 @@ const ActiveJobs = ({ info }) => {
                   </Button>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                  <ListGroupItem>
-                    Haul: {parseInt(job.distance)} miles
-                  </ListGroupItem>
+                  <ListGroupItem>Haul: {parseInt(job.distance)} miles</ListGroupItem>
                   <ListGroupItem> {job.category} </ListGroupItem>
                   <ListGroupItem>
                     {"$"}
                     {job.price / 100}
                   </ListGroupItem>
-                  {job.status === 2
-                    ? progressList(newTitle[0])
-                    : job.status === 3
-                    ? progressList(newTitle[1])
-                    : job.status === 4
-                    ? progressList(newTitle[2])
-                    : job.status === 5
-                    ? progressList(newTitle[3])
-                    : progressList("pending")}
+                  {job.status === 2 ? progressList(newTitle[0]) : job.status === 3 ? progressList(newTitle[1]) : job.status === 4 ? progressList(newTitle[2]) : job.status === 5 ? progressList(newTitle[3]) : progressList("Pending...")}
                   <ListGroupItem>
-                    {job.status === 1 ? (
+                    {job.status === 0 ? (
+                      progress("")
+                    ) : job.status === 1 ? (
                       progress(0, 1)
                     ) : job.status === 2 ? (
                       progress(25, 1)
@@ -176,7 +149,7 @@ const ActiveJobs = ({ info }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ActiveJobs;
+export default ActiveJobs

@@ -1,28 +1,21 @@
-import React, { useState, useEffect } from "react";
-import { Navbar, Nav, Container, Badge } from "react-bootstrap";
-import Auth from "../utils/auth";
-import NavBadge from "./NavBadge";
-import { QUERY_ME_BASIC } from "../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
+import React, { useState } from "react"
+import { Navbar, Nav, Container } from "react-bootstrap"
+import Auth from "../utils/auth"
+import NavBadge from "./NavBadge"
+import { QUERY_ME_BASIC } from "../utils/queries"
+import { useQuery } from "@apollo/react-hooks"
 
 const NavBar = () => {
-  const [jobsArr, setJobsArr] = useState(13);
-  const { data: meData } = useQuery(QUERY_ME_BASIC);
-  const me = meData?.me || {};
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
+  const [jobsArr, setJobsArr] = useState(13)
+  const { data: meData } = useQuery(QUERY_ME_BASIC)
+  const me = meData?.me || {}
+  const logout = event => {
+    event.preventDefault()
+    Auth.logout()
+  }
 
   return (
-    <Navbar
-      className="nav9"
-      collapseOnSelect
-      fixed="top"
-      expand="sm"
-      bg="danger"
-      variant="dark"
-    >
+    <Navbar className="nav9" collapseOnSelect fixed="top" expand="sm" bg="danger" variant="dark">
       <h1 className="title">HaulThat</h1>
       <Container className="nav3">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -33,7 +26,7 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/home">
                   Home
                 </Nav.Link>
-                {me.position == "customer" ? (
+                {me.position === "customer" ? (
                   <Nav.Link className="nav1" href="/booking">
                     Booking
                   </Nav.Link>
@@ -42,7 +35,7 @@ const NavBar = () => {
                     Jobs
                   </Nav.Link>
                 )}
-                <NavBadge setJobsArr={setJobsArr} jobsArr={jobsArr} />
+                {me.position == "driver" ? <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} /> : ""}
                 <Nav.Link className="nav1" href="/profile">
                   My Profile
                 </Nav.Link>
@@ -58,7 +51,7 @@ const NavBar = () => {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  );
-};
+  )
+}
 
-export default NavBar;
+export default NavBar

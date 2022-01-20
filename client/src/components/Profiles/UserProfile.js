@@ -1,34 +1,21 @@
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  InputGroup,
-  Container,
-  Row,
-  Button,
-  Modal,
-  FormControl,
-  Image,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
-import React, { useState } from "react";
-import { UPDATE_USER } from "../../utils/mutation";
+import { Card, ListGroupItem, ListGroup, Container, Row, Button, Modal, Image, DropdownButton, Dropdown } from "react-bootstrap"
+import React, { useState } from "react"
+import { UPDATE_USER } from "../../utils/mutation"
 // import emailjs from "emailjs-com";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { QUERY_ME_BASIC } from "../../utils/queries";
-import PictureUploader from "./PictureUploader";
-import { Rating } from "react-simple-star-rating";
+import { useQuery, useMutation } from "@apollo/react-hooks"
+import { QUERY_ME_BASIC } from "../../utils/queries"
+import PictureUploader from "./PictureUploader"
+import { Rating } from "react-simple-star-rating"
 
 // Displays user info card for profile and opens modal for editing user information
-const UserProfile = ({ user }) => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const [updateUser] = useMutation(UPDATE_USER);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  var result;
-  let me = data?.me || {};
+const UserProfile = ({ user, driverEarning }) => {
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
+  const [updateUser] = useMutation(UPDATE_USER)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+  var result
+  let me = data?.me || {}
 
   // try setting (on signup) a value to equal customer or driver
 
@@ -45,64 +32,64 @@ const UserProfile = ({ user }) => {
     customer: "",
     driver: "",
     position: "",
-    image: "https://i.imgur.com/mn6sKRv.png",
-  });
+    image: "https://i.imgur.com/mn6sKRv.png"
+  })
 
-  console.log(formState, me);
+  console.log(driverEarning)
 
   //  DEAL WITH THIS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  const setProfile = (event) => {
-    event.preventDefault();
-    console.log(event.target.value);
+  const setProfile = event => {
+    event.preventDefault()
+    console.log(event.target.value)
     if (event.target.value === "driver") {
       setFormState({
         ...formState,
         driver: true,
-        customer: false,
+        customer: false
         // position: "driver"
-      });
+      })
     } else {
       setFormState({
         ...formState,
         customer: true,
-        driver: false,
+        driver: false
         // position: "customer"
-      });
+      })
     }
-  };
+  }
 
   // Handles form submission via save button
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  const handleFormSubmit = async event => {
+    event.preventDefault()
 
     // Checks for blank/unaltered input fields to assign the original value
     // Ensures required user data in database is not sent an empty field
     if (formState) {
       if (formState.firstName === "") {
-        formState.firstName = user.firstName;
+        formState.firstName = user.firstName
       }
       if (formState.lastName === "") {
-        formState.lastName = user.lastName;
+        formState.lastName = user.lastName
       }
       if (formState.email === "") {
-        formState.email = user.email;
+        formState.email = user.email
       }
       if (formState.phone === "") {
-        formState.phone = user.phone;
+        formState.phone = user.phone
       }
       if (formState.aboutMe === "") {
-        formState.aboutMe = user.aboutMe;
+        formState.aboutMe = user.aboutMe
       }
       if (formState.customer === "") {
-        formState.customer = user.customer;
+        formState.customer = user.customer
       }
       if (formState.driver === "") {
-        formState.driver = user.driver;
+        formState.driver = user.driver
       }
       if (formState.position === "") {
-        formState.position = user.position;
+        formState.position = user.position
       } else {
-        formState.position = result;
+        formState.position = result
       }
     }
 
@@ -114,33 +101,27 @@ const UserProfile = ({ user }) => {
     // );
 
     await updateUser({
-      variables: { ...formState, _id: user._id },
-    });
+      variables: { ...formState, _id: user._id }
+    })
 
     // reloads this page after form submission
-    window.location.assign("/profile");
-  };
+    window.location.assign("/profile")
+  }
 
   // Update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
+  const handleChange = event => {
     setFormState({
       ...formState,
-      [event.target.name]: event.target.value,
-    });
-  };
+      [event.target.name]: event.target.value
+    })
+  }
 
   return (
     <Container className="profileForm">
       <Row className="row1">
         <Card style={{ width: "18rem" }}>
           {/* button to open editing modal */}
-          <Button
-            variant="primary"
-            className="edit"
-            onClick={handleShow}
-          ></Button>
+          <Button variant="primary" className="edit" onClick={handleShow}></Button>
 
           {/* edit profile modal */}
           <Modal show={show} onHide={handleClose}>
@@ -150,77 +131,37 @@ const UserProfile = ({ user }) => {
                 <div className="form-group">
                   <label>Select a profile</label>
                   <br />
-                  <Button
-                    value="driver"
-                    variant="outline-dark"
-                    onClick={setProfile}
-                  >
+                  <Button value="driver" variant="outline-dark" onClick={setProfile}>
                     driver
                   </Button>
-                  <Button
-                    value="customer"
-                    variant="outline-dark"
-                    onClick={setProfile}
-                  >
+                  <Button value="customer" variant="outline-dark" onClick={setProfile}>
                     customer
                   </Button>
                 </div>
 
                 <div className="form-group">
                   <label>First name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    defaultValue={user.firstName}
-                    name="firstName"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" defaultValue={user.firstName} name="firstName" onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
                   <label>Last name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    defaultValue={user.lastName}
-                    name="lastName"
-                    onChange={handleChange}
-                  />
+                  <input type="text" className="form-control" defaultValue={user.lastName} name="lastName" onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
                   <label>Phone Number</label>
-                  <input
-                    type="tel"
-                    pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
-                    className="form-control"
-                    defaultValue={user.phone}
-                    name="phone"
-                    onChange={handleChange}
-                  />
+                  <input type="tel" pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}" className="form-control" defaultValue={user.phone} name="phone" onChange={handleChange} />
                 </div>
 
                 <div className="form-group">
                   <label>Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    defaultValue={user.email}
-                    name="email"
-                    onChange={handleChange}
-                  />
+                  <input type="email" className="form-control" defaultValue={user.email} name="email" onChange={handleChange} />
                 </div>
 
                 <div className="form-group about">
                   <label>About Me</label>
-                  <textarea
-                    rows="5"
-                    type="text"
-                    className="form-control aboutInput"
-                    defaultValue={user.aboutMe}
-                    name="aboutMe"
-                    onChange={handleChange}
-                  />
+                  <textarea rows="5" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
                 </div>
 
                 <PictureUploader type="user"></PictureUploader>
@@ -230,11 +171,7 @@ const UserProfile = ({ user }) => {
               <Button variant="secondary" onClick={handleClose}>
                 Cancel
               </Button>{" "}
-              <Button
-                type="submit"
-                onClick={handleFormSubmit}
-                variant="primary"
-              >
+              <Button type="submit" onClick={handleFormSubmit} variant="primary">
                 Save
               </Button>
             </Modal.Footer>
@@ -258,31 +195,23 @@ const UserProfile = ({ user }) => {
             {me.driver ? (
               <ListGroupItem>
                 Driver Rating:
-                <Rating
-                  ratingValue={me.rating / me.ratingNumber}
-                  allowHalfIcon={true}
-                  allowHover={false}
-                  readonly={true}
-                ></Rating>
+                <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
               </ListGroupItem>
             ) : (
               <ListGroupItem>
                 Customer Rating:
-                <Rating
-                  ratingValue={me.rating / me.ratingNumber}
-                  allowHalfIcon={true}
-                  allowHover={false}
-                  readonly={true}
-                ></Rating>
+                <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
               </ListGroupItem>
             )}
+
+            {me.driver ? <ListGroupItem>Total Earnings: ${driverEarning}</ListGroupItem> : <ListGroupItem>Total Spent: ${driverEarning}</ListGroupItem>}
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
             <ListGroupItem>Email: {user.email}</ListGroupItem>
           </ListGroup>
         </Card>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default UserProfile;
+export default UserProfile

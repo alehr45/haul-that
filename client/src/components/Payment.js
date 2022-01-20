@@ -1,71 +1,65 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { GET_JOB, QUERY_ME_BASIC } from "../utils/queries";
-import {
-  Container,
-  Button,
-  InputGroup,
-  FormControl,
-  Modal,
-} from "react-bootstrap";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { FIND_CUSTOMER_AND_RATE } from "../utils/mutation";
-import CheckoutForm from "./CheckoutForm";
-import { Rating } from "react-simple-star-rating";
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { GET_JOB, QUERY_ME_BASIC } from "../utils/queries"
+import { Container, Button, InputGroup, FormControl, Modal } from "react-bootstrap"
+import { useQuery, useMutation } from "@apollo/react-hooks"
+import { FIND_CUSTOMER_AND_RATE } from "../utils/mutation"
+import CheckoutForm from "./CheckoutForm"
+import { Rating } from "react-simple-star-rating"
 
 const Payment = () => {
-  const [code, setCode] = useState(0);
-  const [verified, setVerified] = useState(false);
-  const { job_Id } = useParams();
+  const [code, setCode] = useState(0)
+  const [verified, setVerified] = useState(false)
+  const { job_Id } = useParams()
   const { loading, data: jobData } = useQuery(GET_JOB, {
-    variables: { _id: job_Id },
-  });
-  const [findCustomerAndRate] = useMutation(FIND_CUSTOMER_AND_RATE);
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const currentJob = jobData?.job || {};
-  const currentUser = data?.me || {};
-  const price = currentJob.price;
-  const [show, setShow] = useState(true);
-  const [rating, setRating] = useState(0);
-  console.log(rating);
+    variables: { _id: job_Id }
+  })
+  const [findCustomerAndRate] = useMutation(FIND_CUSTOMER_AND_RATE)
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
+  const currentJob = jobData?.job || {}
+  const currentUser = data?.me || {}
+  const price = currentJob.price
+  const [show, setShow] = useState(true)
+  const [rating, setRating] = useState(0)
+  console.log(rating)
   // User declines rating
   function handleClose() {
-    setShow(false);
+    setShow(false)
   }
 
   // User selects rating
-  const handleChange = (rate) => {
-    console.log(rating, rate);
-    setRating(rate);
-  };
+  const handleChange = rate => {
+    console.log(rating, rate)
+    setRating(rate)
+  }
 
   // User saves rating
-  const handleSave = (event) => {
-    event.preventDefault();
-    setShow(false);
-    let newRating = rating;
+  const handleSave = event => {
+    event.preventDefault()
+    setShow(false)
+    let newRating = rating
     findCustomerAndRate({
-      variables: { job_id: job_Id, input: newRating },
-    });
-  };
+      variables: { job_id: job_Id, input: newRating }
+    })
+  }
 
-  console.log(currentJob);
+  console.log(currentJob)
 
   const checkCode = () => {
-    console.log(currentJob.verificationCode, code);
+    console.log(currentJob.verificationCode, code)
     if (code == currentJob.verificationCode) {
-      setVerified(true);
+      setVerified(true)
       // window.location.assign("/checkoutform");
       // Stripe
       // CompleteJob
     } else {
-      console.log("incorrect");
+      console.log("incorrect")
     }
-  };
+  }
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   // Get Job
   return (
@@ -77,9 +71,9 @@ const Payment = () => {
               <FormControl
                 placeholder="enter code"
                 value={code}
-                onChange={(event) => {
-                  console.log(code);
-                  setCode(event.target.value);
+                onChange={event => {
+                  console.log(code)
+                  setCode(event.target.value)
                 }}
               ></FormControl>
               <Button type="submit" onClick={checkCode}>
@@ -112,7 +106,7 @@ const Payment = () => {
         <CheckoutForm currentJob={currentJob} />
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Payment;
+export default Payment

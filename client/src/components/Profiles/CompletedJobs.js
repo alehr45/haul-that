@@ -1,21 +1,36 @@
-import React from "react";
-import { Card, Body, ListGroup, ListGroupItem } from "react-bootstrap";
+import React from "react"
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Link } from "react-router-dom"
+import moment from "moment"
 
-const CompletedJobs = ({ info }) => {
-  let { jobs, user, completedJobs } = info;
+const CompletedJobs = ({ info, setDriverEarning }) => {
+  let { completedJobs } = info
+
+  function add(accumulator, a) {
+    return accumulator + a
+  }
+
+  const totalEarnings = completedJobs.map(job => job.price)
+  const sum = totalEarnings.reduce(add, 0)
+  const finalEarnings = sum / 100
+
+  if (finalEarnings) {
+    setDriverEarning(finalEarnings)
+  }
+
+  const slicedJobs = completedJobs.slice(0, 3)
+  console.log(slicedJobs)
 
   return (
     <div className="profilejob">
-      {completedJobs &&
-        completedJobs.map((job) => (
+      {slicedJobs &&
+        slicedJobs.map(job => (
           <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
             <Card.Body>
               <Card.Title>Job # {job.id}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
-              <ListGroupItem>
-                Haul: {parseInt(job.distance)} miles
-              </ListGroupItem>
+              <ListGroupItem>Haul: {parseInt(job.distance)} miles</ListGroupItem>
               <ListGroupItem> {job.category} </ListGroupItem>
               <ListGroupItem>
                 {"$"}
@@ -23,9 +38,15 @@ const CompletedJobs = ({ info }) => {
               </ListGroupItem>
             </ListGroup>
           </Card>
+
+          // <li>
+          //   <Link className="link4" to={`/job/${job._id}`}>
+          //     {moment(job.date).format("MMMM Do YYYY")}
+          //   </Link>
+          // </li>
         ))}
     </div>
-  );
-};
+  )
+}
 
-export default CompletedJobs;
+export default CompletedJobs

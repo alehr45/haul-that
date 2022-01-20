@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 @font-face {
   font-family: ubunto;
   src: url("./fonts/UbuntuMono-Regular.ttf");
@@ -19,8 +24,7 @@
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .badge.badge-light {
@@ -47,8 +51,7 @@ code {
 }
 
 .logo2 {
-  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2),
-    6px 6px 10px 6px rgba(0, 0, 0, 0.19);
+  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2), 6px 6px 10px 6px rgba(0, 0, 0, 0.19);
 }
 
 .loginform {
@@ -85,10 +88,61 @@ code {
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
+.App {
+  text-align: center;
+}
 
-/* .navbar a:hover,
-.dropdown:hover .dropbtn {
-  
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: ubunto;
+  src: url("./fonts/UbuntuMono-Regular.ttf");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.copyright {
+  font-family: "tunning";
+  padding-top: 12px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  color: rgba(58, 58, 58, 0.762);
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 
+.image1 {
+ 
+
 } */
 
 .title {
@@ -129,6 +183,42 @@ code {
     padding-left: 75px;
     padding-right: 75px;
   }
+}
+
+@media screen and (min-width: 575px) {
+  .signup-row {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .signup-row {
+    padding-left: 300px;
+    padding-right: 300px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .signup-row {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+.use.btn.btn-white {
+  font-size: 15px;
 }
 
 @media screen and (min-width: 575px) {
@@ -277,16 +367,29 @@ code {
   justify-content: center;
   display: flex;
 }
+.row7 {
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+}
 
 .profileForm {
-  padding-top: 60px;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
 
+.profilecard.card {
+  background-color: rgb(220, 220, 220);
+  border-radius: 50px;
+}
+
+.cardbody.card {
+  border-radius: 10px;
+}
+
 .profile2Form {
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 .description1 {
@@ -390,8 +493,7 @@ input:checked + .slider:before {
 }
 
 .map-info {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .your-location {
@@ -419,18 +521,8 @@ body {
   font-weight: 400;
   font-family: sans-serif;
   background: #12c2e9; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #f64f59,
-    #eb9335,
-    #ceed07
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #f64f59,
-    #eb9335,
-    #ceed07
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #f64f59, #eb9335, #ceed07); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #f64f59, #eb9335, #ceed07); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .names {
@@ -512,6 +604,11 @@ html,
   font-size: 65px;
 }
 
+.stars {
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+}
 .subtitle {
   display: flex;
   justify-content: center;
@@ -534,18 +631,34 @@ html,
   font-size: 10px;
   font-family: "ubunto";
 }
-
-.active {
+.checkout-form {
+  padding-top: 40px;
+}
+.activedelivery {
   font-weight: 700;
   font-size: 20px;
   font-family: "ubunto";
 }
 
+.active9 {
+  font-weight: 700;
+  padding-top: 35px;
+  font-size: 20px;
+  font-family: "ubunto";
+}
 .completed {
   font-weight: 700;
   padding-top: 20px;
   font-size: 20px;
   font-family: "ubunto";
+}
+
+.link4 {
+  color: rgb(32, 47, 210);
+}
+
+ul {
+  list-style-type: none;
 }
 
 .modalbody {

@@ -1,65 +1,64 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useMutation } from "@apollo/react-hooks";
-import { Button, Modal, InputField } from "react-bootstrap";
-import { COMPLETE_JOB } from "../utils/mutation";
-import { QUERY_ME_BASIC, GET_JOB, GET_USER } from "../utils/queries";
-import { useQuery } from "@apollo/react-hooks";
-import { FIND_DRIVER_AND_RATE } from "../utils/mutation";
-import { Rating } from "react-simple-star-rating";
+import React, { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { useMutation } from "@apollo/react-hooks"
+import { Button, Modal, InputField } from "react-bootstrap"
+import { COMPLETE_JOB } from "../utils/mutation"
+import { QUERY_ME_BASIC, GET_JOB, GET_USER } from "../utils/queries"
+import { useQuery } from "@apollo/react-hooks"
+import { FIND_DRIVER_AND_RATE } from "../utils/mutation"
+import { Rating } from "react-simple-star-rating"
 
 const Success = () => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const [completeJob] = useMutation(COMPLETE_JOB);
-  const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE);
-  const { job_Id } = useParams();
-  const [show, setShow] = useState(true);
-  const [rating, setRating] = useState(0);
-  const [seconds, setSeconds] = useState(10);
-  var timeRemaining = seconds;
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
+  const [completeJob] = useMutation(COMPLETE_JOB)
+  const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE)
+  const { job_Id } = useParams()
+  const [show, setShow] = useState(true)
+  const [rating, setRating] = useState(0)
+  const [seconds, setSeconds] = useState(10)
+  var timeRemaining = seconds
 
   // User data
-  const meData = data?.me || [];
 
   // User declines rating
   function handleClose() {
-    setShow(false);
-    setInterval(countDown, 1000);
+    setShow(false)
+    setInterval(countDown, 1000)
   }
 
   // User selects rating
-  const handleChange = (rate) => {
-    setRating(rate);
-  };
+  const handleChange = rate => {
+    setRating(rate)
+  }
 
   // User saves rating
   const handleSave = () => {
-    setShow(false);
-    setInterval(countDown, 1000);
+    setShow(false)
+    setInterval(countDown, 1000)
     findDriverAndRate({
-      variables: { job_id: job_Id, input: rating },
-    });
-  };
+      variables: { job_id: job_Id, input: rating }
+    })
+  }
 
   completeJob({
-    variables: { _id: job_Id },
-  });
+    variables: { _id: job_Id }
+  })
 
   // Timer to reroute
   const countDown = () => {
-    timeRemaining--;
+    timeRemaining--
     if (timeRemaining > 0) {
-      setSeconds(timeRemaining);
+      setSeconds(timeRemaining)
     } else {
-      window.location.assign("/profile");
+      window.location.assign("/profile")
     }
-  };
+  }
 
   return (
     <>
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header>
-          <Modal.Title>Rate Your Driver!</Modal.Title>
+          <h3 className="modal-rate">Rate Your Driver!</h3>
         </Modal.Header>
         <Modal.Body className="stars">
           <Rating onClick={handleChange} ratingValue={rating} />
@@ -79,14 +78,14 @@ const Success = () => {
         <h1>Your payment was successful!</h1>
         <Button
           onClick={() => {
-            window.location.assign("/profile");
+            window.location.assign("/profile")
           }}
         >
           OK
         </Button>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Success;
+export default Success
