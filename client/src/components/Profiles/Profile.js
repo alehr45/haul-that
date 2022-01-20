@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Container } from "react-bootstrap"
+import { Container, Row, Col, Card } from "react-bootstrap"
 import { QUERY_ME_BASIC } from "../../utils/queries"
 // import emailjs from "emailjs-com";
 import { useQuery } from "@apollo/react-hooks"
@@ -18,8 +18,20 @@ const Profile = () => {
 
   return (
     <Container className="profile2Form">
-      <UserProfile driverEarning={driverEarning} user={user}></UserProfile>
-      <JobProfile setDriverEarning={setDriverEarning} options={options} title={title} newTitle={newTitle} />
+      <Row style={{ "margin-top": 70, height: 500 }}>
+        <Card className="profilecard">
+          <Card.Body>
+            <Row>
+              <Col>
+                <JobProfile setDriverEarning={setDriverEarning} options={options} title={title} newTitle={newTitle} />
+              </Col>
+              <Col>
+                <UserProfile driverEarning={driverEarning} user={user}></UserProfile>
+              </Col>
+            </Row>
+          </Card.Body>
+        </Card>
+      </Row>
     </Container>
   )
 }

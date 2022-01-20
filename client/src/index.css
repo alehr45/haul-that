@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 @font-face {
   font-family: ubunto;
   src: url("./fonts/UbuntuMono-Regular.ttf");
@@ -369,15 +374,22 @@ code {
 }
 
 .profileForm {
-  padding-top: 60px;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
 
-.profile2Form {
-  padding-top: 20px;
+.profilecard.card {
+  background-color: rgb(220, 220, 220);
+  border-radius: 50px;
+}
 
+.cardbody.card {
+  border-radius: 10px;
+}
+
+.profile2Form {
   padding-bottom: 20px;
 }
 .description1 {
@@ -630,7 +642,7 @@ html,
 
 .active9 {
   font-weight: 700;
-  padding-top: 20px;
+  padding-top: 35px;
   font-size: 20px;
   font-family: "ubunto";
 }

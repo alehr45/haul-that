@@ -57,12 +57,15 @@ const ActiveJobs = ({ info }) => {
     return <ProgressBar animated variant="primary" now={now} key={key} />
   }
 
+  const slicedJobs = incompleteJobs.slice(0, 3)
+  console.log(slicedJobs)
+
   return (
     <div>
       {driver === true ? (
         <div className="profilejob">
-          {incompleteJobs &&
-            incompleteJobs.map(job => (
+          {slicedJobs &&
+            slicedJobs.map(job => (
               <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>
@@ -102,8 +105,8 @@ const ActiveJobs = ({ info }) => {
         </div>
       ) : (
         <div className="profilejob">
-          {incompleteJobs &&
-            incompleteJobs.map(job => (
+          {slicedJobs &&
+            slicedJobs.map(job => (
               <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
                 <Card.Body>
                   <Card.Title>Job # {job.id}</Card.Title>

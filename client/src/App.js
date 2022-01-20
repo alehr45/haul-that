@@ -16,6 +16,7 @@ import Job from "./components/Jobs/Job"
 import Payment from "./components/Payment"
 import Success from "./pages/Success"
 import Details from "./components/Jobs/Details"
+import TestProfile from "./components/TestProfile"
 //Context Files
 
 const client = new ApolloClient({
@@ -48,6 +49,7 @@ function App() {
             <Route path="/booking" component={Booking} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/testprofile" component={TestProfile} />
             <Route path="/" component={Home} />
           </Switch>
         </div>

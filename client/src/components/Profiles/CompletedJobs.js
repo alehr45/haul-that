@@ -18,10 +18,13 @@ const CompletedJobs = ({ info, setDriverEarning }) => {
     setDriverEarning(finalEarnings)
   }
 
+  const slicedJobs = completedJobs.slice(0, 3)
+  console.log(slicedJobs)
+
   return (
     <div className="profilejob">
-      {completedJobs &&
-        completedJobs.map(job => (
+      {slicedJobs &&
+        slicedJobs.map(job => (
           <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
             <Card.Body>
               <Card.Title>Job # {job.id}</Card.Title>
