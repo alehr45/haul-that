@@ -59,6 +59,9 @@ const jobSchema = new Schema(
     driver_id: {
       type: String,
     },
+    customer_id: {
+      type: String
+    },
     verificationCode: {
       type: Number,
     },
