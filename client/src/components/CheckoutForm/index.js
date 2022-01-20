@@ -22,7 +22,7 @@ const CheckoutForm = ({ currentJob }) => {
 
   return (
     <Container>
-      <div style={{ margin: 300 }}>
+      <div style={{ margin: 150 }}>
         {/* <form action="/create-checkout-session" method="POST"> */}
         <form className="logo2" onClick={handleSubmit}>
           <h2 className="logo">Job Summary</h2>

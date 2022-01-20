@@ -64,7 +64,7 @@ const Success = () => {
 
       <Modal show={show} onHide={handleClose} animation={false}>
         <Modal.Header>
-          <Modal.Title>Rate Your Driver!</Modal.Title>
+          <h3 className="modal-rate">Rate Your Driver!</h3>
         </Modal.Header>
         <Modal.Body className="stars">
           {/* <input type="number" value={input} onChange={handleChange}></input> */}

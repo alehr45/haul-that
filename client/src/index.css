@@ -619,12 +619,15 @@ html,
   font-size: 10px;
   font-family: "ubunto";
 }
-
+.checkout-form {
+  padding-top: 40px;
+}
 .activedelivery {
   font-weight: 700;
   font-size: 20px;
   font-family: "ubunto";
 }
+
 .active9 {
   font-weight: 700;
   padding-top: 20px;
@@ -636,6 +639,14 @@ html,
   padding-top: 20px;
   font-size: 20px;
   font-family: "ubunto";
+}
+
+.link4 {
+  color: rgb(32, 47, 210);
+}
+
+ul {
+  list-style-type: none;
 }
 
 .modalbody {

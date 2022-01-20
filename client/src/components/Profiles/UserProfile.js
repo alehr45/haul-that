@@ -197,8 +197,14 @@ const UserProfile = ({ user }) => {
             </ListGroupItem>
             {me.driver ? (
               <ListGroupItem>
-                Driver Rating:
-                <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
+                <Button
+                  onClick={() => {
+                    alert(`Your driver rating is ${me.rating / me.ratingNumber / 20}`)
+                  }}
+                >
+                  Driver Rating
+                  <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true}></Rating>
+                </Button>
               </ListGroupItem>
             ) : null}
             <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>

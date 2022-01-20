@@ -9,19 +9,20 @@ const Payment = () => {
   const [code, setCode] = useState(0)
   const [verified, setVerified] = useState(false)
   let { job_Id } = useParams()
-  const { data: jobData } = useQuery(GET_JOB, {
+  const { loading, data: jobData } = useQuery(GET_JOB, {
     variables: { _id: job_Id }
   })
-  const { data } = useQuery(QUERY_ME_BASIC)
+  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
 
   const currentJob = jobData?.job || {}
   const currentUser = data?.me || {}
+  const price = currentJob.price
 
   console.log(currentJob)
 
   const checkCode = () => {
     console.log(currentJob.verificationCode, code)
-    if (code === currentJob.verificationCode) {
+    if (code == currentJob.verificationCode) {
       setVerified(true)
       // window.location.assign("/checkoutform");
       // Stripe
@@ -34,6 +35,7 @@ const Payment = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
+
   // Get Job
   return (
     <div>
