@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap"
+import { Card, ListGroup, ListGroupItem, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import moment from "moment"
 
@@ -25,17 +25,18 @@ const CompletedJobs = ({ info, setDriverEarning }) => {
       {slicedJobs &&
         slicedJobs.map(job => (
           <Card className="cardbody" key={job._id} style={{ width: "12rem" }}>
-            <Card.Body>
-              <Card.Title>Job # {job.id}</Card.Title>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroupItem>Haul: {parseInt(job.distance)} miles</ListGroupItem>
-              <ListGroupItem> {job.category} </ListGroupItem>
-              <ListGroupItem>
-                {"$"}
-                {job.price / 100}
-              </ListGroupItem>
-            </ListGroup>
+            <ListGroupItem className="job-box">
+              <Col className="pt-2">
+                <h4>Job # {job.id}</h4>
+                <h6>{parseInt(job.distance)} miles</h6>
+                <h6>{moment(job.date).format("MMMM Do YYYY")}</h6>
+                <h6>{job.category}</h6>
+                <h6>
+                  {"$"}
+                  {job.price / 100}
+                </h6>
+              </Col>
+            </ListGroupItem>
           </Card>
 
           // <li>

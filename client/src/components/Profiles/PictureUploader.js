@@ -84,10 +84,10 @@ const PictureUploader = ({ type, setImage }) => {
   }
 
   return (
-    <div className="m-3">
+    <div className="modal-button">
       <input ref={inputRef} type="file" className="d-none" onChange={handlePictureSelected} />
 
-      <button className="btn btn-outline-primary" onClick={handleUpload}>
+      <button className="btn bg-light btn-outline-dark" onClick={handleUpload}>
         <div>{renderPreview()}</div>
         {type === "job" ? "Add Job Image" : "Add Profile Image"}
       </button>

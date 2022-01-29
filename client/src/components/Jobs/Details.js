@@ -1,6 +1,6 @@
-import React from "react";
-import { Card, ListGroupItem, Image } from "react-bootstrap";
-import moment from "moment";
+import React from "react"
+import { Card, ListGroupItem, Image } from "react-bootstrap"
+import moment from "moment"
 
 const Details = ({ currentJob }) => {
   return (
@@ -19,11 +19,9 @@ const Details = ({ currentJob }) => {
       <ListGroupItem>Email: {currentJob.email}</ListGroupItem>
       <ListGroupItem>Distance: {currentJob.distance} miles</ListGroupItem>
       <ListGroupItem>Phone: {currentJob.phone}</ListGroupItem>
-      <ListGroupItem>
-        Date: {moment(currentJob.date).format("MMMM Do YYYY")}
-      </ListGroupItem>
+      <ListGroupItem>Date: {moment(currentJob.date).format("MMMM Do YYYY")}</ListGroupItem>
     </Card.Body>
-  );
-};
+  )
+}
 
-export default Details;
+export default Details

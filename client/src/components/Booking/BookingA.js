@@ -109,6 +109,7 @@ const BookingA = () => {
   return (
     <Container className="bookingForm">
       <Row className="booking">
+        <h1>Book A Job</h1>
         <Form>
           <Form.Group controlId="dob">
             <Form.Label>Select Date</Form.Label>
@@ -133,7 +134,7 @@ const BookingA = () => {
             <Form.Control name="description" onChange={handleChange} as="textarea" placeholder="Type here" />
           </Form.Group>
           <Form.Group>
-            <Form.Label>Upload Picture</Form.Label>
+            <Form.Label>Upload Picture:</Form.Label>
             <PictureUploader type="job" setImage={setImage} />
           </Form.Group>
           {/* Starting Address */}

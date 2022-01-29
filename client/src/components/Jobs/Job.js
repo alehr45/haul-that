@@ -82,7 +82,7 @@ const Job = () => {
     <Container className="currentjob">
       {loading ? <p>...loading</p> : <DetailsMap currentJob={currentJob} />}
       {meData.me.driver == true ? (
-        <Card className="cardbody" style={{ width: "100%" }}>
+        <Card>
           <Details currentJob={currentJob} />
           {currentJob.taken ? (
             <div>
@@ -111,7 +111,7 @@ const Job = () => {
           )}
         </Card>
       ) : (
-        <Card className="cardbody" style={{ width: "100%" }}>
+        <Card>
           <Details currentJob={currentJob} />
           {currentJob.taken ? (
             <div>

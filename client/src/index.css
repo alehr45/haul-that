@@ -14,10 +14,8 @@
 }
 
 @font-face {
-  font-family: airstream;
-  src: url("./fonts/AIRSTREA.TTF");
-}
-.toggle1 {
+  font-family: merriweather;
+  src: url("./fonts/Merriweather-Black.ttf");
 }
 
 @font-face {
@@ -76,10 +74,6 @@ code {
   margin-bottom: 20px;
 }
 
-.nav9 {
-  position: fixed;
-  left: 200px;
-}
 .dropdown .dropbtn {
   font-size: 16px;
   border: none;
@@ -247,7 +241,9 @@ code {
     padding-right: 75px;
   }
 }
-
+.small {
+  color: rgba(80, 53, 215, 0.865);
+}
 @media screen and (min-width: 560px) {
   .booking {
     padding-left: 75px;
@@ -297,8 +293,116 @@ code {
   padding-bottom: 20px;
 }
 
+.profile-title {
+  font-family: "tunning";
+  font-size: 35px;
+  color: #2e2e2e;
+}
+
+/*  Profile Left  */
+
+.p-5.card {
+  color: #2e2e2e;
+  background-image: linear-gradient(0deg, rgba(194, 126, 8, 0.604), rgba(182, 156, 110, 0.604));
+  border-style: solid;
+  border-color: rgba(94, 94, 94, 0.584);
+}
+
+.p-4.col {
+  background-color: #9b782d6e;
+}
+
+.profile-box.col {
+  border-style: solid;
+  border-color: rgb(225, 225, 225);
+  border-radius: 15px;
+  background-image: linear-gradient(360deg, rgba(186, 41, 41, 0.413), rgba(184, 184, 184, 0.42));
+}
+
+.rating-box.card-body {
+  background-image: linear-gradient(360deg, rgba(194, 126, 8, 0.345), rgba(181, 176, 38, 0.509));
+}
+
+.profile-bottom.card {
+  background-color: #bfaa7d87;
+}
+.booking-title {
+  font-family: merriweather;
+  color: rgba(62, 20, 3, 0.728);
+}
+
+.border.card-body {
+  background-image: linear-gradient(180deg, rgba(191, 194, 8, 0.344), rgba(232, 18, 18, 0.488));
+}
+
+.pt-4.username {
+  margin-top: 5px;
+}
+
+.padding-booking {
+  padding-top: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.name-profile {
+  font-family: merriweather;
+  font-size: 25px;
+}
+
+.submit-modal.btn.btn-primary {
+  font-size: 17px;
+}
+
+.rounded-circle {
+  border: 7px solid rgb(210, 210, 210);
+}
+/* Profile Right  */
+
+.progress2.list-group-item {
+  background-color: rgba(250, 235, 215, 0);
+  border-style: none;
+}
+
+.job-box.list-group-item {
+  background-image: linear-gradient(360deg, rgba(17, 5, 77, 0.344), rgba(210, 210, 210, 0.488));
+}
+
+.job-box2.list-group-item {
+  margin: 2px;
+  background-image: linear-gradient(360deg, rgba(208, 124, 94, 0.721), rgba(210, 210, 210, 0.488));
+}
+/* More Details Button*/
+.m-2.btn.btn-primary.btn-sm {
+  background-image: linear-gradient(360deg, rgba(17, 5, 77, 0.344), rgba(210, 210, 210, 0.488));
+}
+.link.text-white {
+  font-size: 15px;
+  font-family: ubunto;
+}
+
+.pt-2.completed.col {
+  background-image: linear-gradient(180deg, rgba(191, 194, 8, 0.344), rgba(232, 18, 18, 0.488));
+}
+
 .custom-control-label {
   font-weight: 400;
+}
+
+.p-5.card {
+  border-radius: 10px 10px 0 0;
+}
+
+.profile-bottom.card {
+  padding: 25px;
+  border-radius: 0 0 10px 10px;
+}
+
+.jobs-title {
+  position: relative;
+  padding: 20px;
+  top: 90px;
+  font-family: merriweather;
+  color: rgba(62, 20, 3, 0.728);
 }
 
 .jobsForm {
@@ -376,19 +480,20 @@ code {
 }
 
 .profileForm {
-  padding-top: 20px;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
 
 .profilecard.card {
-  background-color: rgb(220, 220, 220);
-  border-radius: 50px;
+  background-color: rgba(198, 94, 94, 0.324);
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
-.cardbody.card {
-  border-radius: 10px;
+.p-4.details.card {
+  border-style: none;
 }
 
 .profile2Form {
@@ -398,26 +503,30 @@ code {
   font-size: 15px;
 }
 
-/* edit profile */
+/* edit profile
 .edit {
   position: absolute;
-  margin-left: 80%;
-  height: 30px;
-  width: 30px;
+  margin-left: 85%;
+
+  height: 40px;
+  width: 40px;
   font-size: 1px;
   background-image: url("../src/images/pencil_icon.png");
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(237, 11, 11, 0.947);
   opacity: 0.7;
-}
+} */
 
 .error-text {
   color: #ee1e1e;
   margin-left: 5%;
 }
 
+.rating-box {
+  background-color: blue;
+}
 /* edit profile end */
 
 /* The switch - the box around the slider */
@@ -666,20 +775,31 @@ ul {
 .modalbody {
   display: flex;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(180deg, rgba(199, 150, 25, 0.934), rgba(222, 44, 13, 0.502));
 }
+
 .preview {
   height: 40px;
   width: 40px;
 }
 
 .editprofile {
-  color: rgb(164, 6, 6);
+  background-color: rgba(194, 28, 28, 0.817);
+  color: rgb(227, 227, 227);
   font-size: 30px;
-  font-family: "tunning";
-  padding-top: 10px;
+  font-family: "ubunto";
+  padding: 20px;
   display: flex;
   justify-content: center;
+}
+
+.modal-button {
+  padding: 10px;
+  margin-left: 23px;
+}
+.modal-footer {
+  display: flex;
+  background-color: rgba(194, 28, 28, 0.817);
 }
 
 .mb-3 {

@@ -24,12 +24,10 @@ const Profile = () => {
           <Card.Body>
             <Row>
               <Col>
-                <h1>History</h1>
-                <JobProfile setJobNumber={setJobNumber} setDriverEarning={setDriverEarning} options={options} title={title} newTitle={newTitle} />
+                <UserProfile jobNumber={jobNumber} driverEarning={driverEarning} user={user}></UserProfile>
               </Col>
               <Col>
-                <h1>Profile</h1>
-                <UserProfile jobNumber={jobNumber} driverEarning={driverEarning} user={user}></UserProfile>
+                <JobProfile setJobNumber={setJobNumber} setDriverEarning={setDriverEarning} options={options} title={title} newTitle={newTitle} />
               </Col>
             </Row>
           </Card.Body>
