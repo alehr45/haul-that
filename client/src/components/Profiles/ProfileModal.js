@@ -115,7 +115,7 @@ function ProfileModal({ user, show, setShow }) {
 
           <div className="form-group about">
             <label>About Me</label>
-            <textarea rows="6" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
+            <textarea rows="4" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
           </div>
 
           <PictureUploader type="user"></PictureUploader>
