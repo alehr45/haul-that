@@ -17,13 +17,13 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
 
   return (
     <>
-      <Container className="pt-4">
+      <Container className="pt-2">
         <Row className="profile-top-color">
           <Card className="p-5">
             <Row>
               <ProfileModal show={show} setShow={setShow} user={user} />
-              <Col className="p-0 profile-box">
-                <h6 className="pt-4 username">{user.username}</h6>
+              <Col className="mb-4 profile-box">
+                <h6 className="pt-3 username">{user.username}</h6>
                 <h6 className="name-profile">
                   {user.firstName} {user.lastName}
                 </h6>
@@ -34,7 +34,7 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
                 </h6>
               </Col>
               <Col>
-                <Image src={user.image} roundedCircle height={140} />
+                <Image src={user.image} roundedCircle height={160} />
               </Col>
             </Row>
           </Card>
