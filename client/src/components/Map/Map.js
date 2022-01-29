@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 const Map = ({ jobs, loading }) => {
   const [selected, setSelected] = useState({})
+
   const onSelect = job => {
     setSelected(job[0])
   }
@@ -24,6 +25,7 @@ const Map = ({ jobs, loading }) => {
           }
         ]
       })
+      console.log(selected)
 
       return (
         <GoogleMap mapContainerStyle={mapStyles} zoom={11} center={defaultCenter}>
@@ -36,7 +38,7 @@ const Map = ({ jobs, loading }) => {
               <p className="map-info">
                 <h4>Job #{selected.id}</h4>
                 {parseInt(selected.distance)} miles from A to B<br></br>
-                <Link to={"/details/" + jobSelected}>Link</Link>
+                <Link to={"/job/" + selected.name}>Link</Link>
               </p>
             </InfoWindow>
           )}

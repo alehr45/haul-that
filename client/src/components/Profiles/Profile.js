@@ -19,7 +19,7 @@ const Profile = () => {
 
   return (
     <Container>
-      <Row style={{ height: 500 }}>
+      <Row style={{ "margin-top": 40, height: 500 }}>
         <Card className="profilecard">
           <Card.Body>
             <Row>

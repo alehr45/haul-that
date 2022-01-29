@@ -36,10 +36,29 @@ const JobProfile = ({ options, title, newTitle, setDriverEarning, setJobNumber }
   return (
     <Container className="profile2Form">
       <Row>
-        <h1 className="active9">Active Jobs</h1>
-        <ActiveJobs info={info} />
-        <h1 className="completed">Completed Jobs</h1>
-        <CompletedJobs setJobNumber={setJobNumber} setDriverEarning={setDriverEarning} info={info} />
+        <div>
+          {incompleteJobs.length ? (
+            <div>
+              <h1 className="active9">Active Jobs</h1>
+              <ActiveJobs info={info} />
+            </div>
+          ) : (
+            <div>
+              <h1 className="active9">No Available Jobs</h1>
+            </div>
+          )}
+        </div>
+
+        {completedJobs.length ? (
+          <div>
+            <h1 className="active9">Completed Jobs</h1>
+            <CompletedJobs setJobNumber={setJobNumber} setDriverEarning={setDriverEarning} info={info} />
+          </div>
+        ) : (
+          <div>
+            <h1 className="active9">No Completed Jobs</h1>
+          </div>
+        )}
       </Row>
     </Container>
   )
