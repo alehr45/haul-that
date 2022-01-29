@@ -28,7 +28,7 @@ const Map = ({ jobs, loading }) => {
       console.log(selected)
 
       return (
-        <GoogleMap mapContainerStyle={mapStyles} zoom={11} center={defaultCenter}>
+        <GoogleMap mapContainerStyle={mapStyles} zoom={9} center={defaultCenter}>
           {locations.map(item => {
             return <Marker icon="http://maps.google.com/mapfiles/ms/micons/truck.png" key={item[0].name} position={item[0].location} onClick={() => onSelect(item)} />
           })}
@@ -54,7 +54,7 @@ const Map = ({ jobs, loading }) => {
 
   const mapStyles = {
     height: "50vh",
-    width: "80%"
+    width: "100%"
   }
 
   // Get users location and set

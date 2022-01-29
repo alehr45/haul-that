@@ -611,10 +611,10 @@ input:checked + .slider:before {
   background-color: blue;
 }
 
-.badge1 {
-  position: fixed;
-  top: 18px;
-  font-weight: 100px;
+.badge.badge.badge-pill.badge-primary {
+  position: relative;
+  padding: 0px;
+  bottom: 8px;
 }
 
 .list-group-item {

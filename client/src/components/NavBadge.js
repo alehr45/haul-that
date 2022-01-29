@@ -22,11 +22,9 @@ const NavBadge = ({ setJobsArr, jobsArr }) => {
   // setInterval(badgeRender, 1000);
 
   return (
-    <div>
-      <Badge style={{ paddingLeft: "0px" }} className="badge" pill variant="primary">
-        {counter}
-      </Badge>
-    </div>
+    <Badge style={{ paddingLeft: "2px" }} className="badge" pill variant="primary">
+      {counter}
+    </Badge>
   )
 }
 

@@ -32,10 +32,9 @@ const NavBar = () => {
                   </Nav.Link>
                 ) : (
                   <Nav.Link className="nav1" href="/jobs">
-                    Jobs
+                    Jobs {me.position == "driver" ? <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} /> : ""}
                   </Nav.Link>
                 )}
-                {me.position == "driver" ? <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} /> : ""}
                 <Nav.Link className="nav1" href="/profile">
                   My Profile
                 </Nav.Link>

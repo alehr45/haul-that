@@ -49,9 +49,11 @@ const Jobs = distance => {
   console.log(activeJobs)
   return (
     <div>
-      <h1 className="jobs-title">-Pick Up a Job-</h1>
-      <Map jobs={jobs} loading={loading} />
-      <Container>{activeJobs.length == 0 ? <h4 className="mt-5">No Jobs Available</h4> : handleCardRender()}</Container>
+      <Container>
+        <h1 className="jobs-title">-Pick Up a Job-</h1>
+        <Map jobs={jobs} loading={loading} />
+        <Container>{activeJobs.length == 0 ? <h4 className="mt-5">No Jobs Available</h4> : handleCardRender()}</Container>
+      </Container>
     </div>
   )
 }
