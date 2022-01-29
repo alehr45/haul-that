@@ -316,7 +316,7 @@ code {
   border-style: solid;
   border-color: rgb(225, 225, 225);
   border-radius: 15px;
-  background-image: linear-gradient(360deg, rgba(186, 41, 41, 0.413), rgba(184, 184, 184, 0.42));
+  background-image: linear-gradient(360deg, rgba(225, 225, 225, 0.413), rgba(184, 184, 184, 0.42));
 }
 
 .rating-box.card-body {
