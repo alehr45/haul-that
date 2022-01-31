@@ -114,12 +114,14 @@ const Signup = () => {
             <label>Preferred Use</label>
             <br />
             <ButtonGroup>
-              <ToggleButton className="m-2" id="toggle-check" type="checkbox" variant="light" checked={checked1} onChange={e => checkedInput()}>
+              <ToggleButton className="m-2" id="toggle-check" type="checkbox" variant="secondary" checked={checked1} onChange={e => checkedInput()}>
+                {" "}
                 Customer
               </ToggleButton>
             </ButtonGroup>
             <ButtonGroup>
-              <ToggleButton variant="light" id="toggle-check" type="checkbox" checked={checked2} onChange={e => checkedInput()}>
+              <ToggleButton variant="secondary" id="toggle-check" type="checkbox" checked={checked2} onChange={e => checkedInput()}>
+                {" "}
                 Driver
               </ToggleButton>
             </ButtonGroup>
