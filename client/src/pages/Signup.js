@@ -77,8 +77,8 @@ const Signup = () => {
 
   return (
     <Container>
-      <Row>
-        <form className="signupform">
+      <Row className="p-5">
+        <form className="p-5">
           <h3>Sign Up</h3>
 
           <div className="form-group">
