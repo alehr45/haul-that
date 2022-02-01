@@ -174,38 +174,6 @@ code {
   }
 }
 
-@media screen and (min-width: 766px) {
-  .booking {
-    padding-left: 75px;
-    padding-right: 75px;
-  }
-}
-
-@media screen and (min-width: 575px) {
-  .signup-row {
-    padding-left: 150px;
-    padding-right: 150px;
-  }
-}
-
-@media screen and (min-width: 991px) {
-  .signup-row {
-    padding-left: 300px;
-    padding-right: 300px;
-  }
-}
-
-@media screen and (max-width: 766px) {
-  .signup-row {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .booking {
-    padding-left: 75px;
-    padding-right: 75px;
-  }
-}
-
 @media screen and (min-width: 560px) {
   .booking {
     padding-left: 75px;

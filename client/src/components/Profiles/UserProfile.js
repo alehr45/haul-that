@@ -37,9 +37,9 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
                   {user.firstName} {user.lastName}
                 </h6>
                 <h6>
-                  <Link className="small" onClick={handleShow}>
+                  <a className="small" onClick={handleShow}>
                     Edit Profile
-                  </Link>
+                  </a>
                 </h6>
               </Col>
               <Col>
@@ -61,9 +61,9 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
                   </h6>
                   <h6>
                     {""}
-                    <i class="bi bi-telephone"> {user.phone}</i>
+                    <i className="bi bi-telephone"> {user.phone}</i>
                   </h6>
-                  {me.driver ? <h6 className="display-5"> ${driverEarning.toFixed(2)}</h6> : <h6 className="display-5"> ${driverEarning.toFixed(2)}</h6>}
+                  {me.driver ? <h6 className="display-5">$ {driverEarning.toFixed(2)}</h6> : <h6 className="display-5">$ {driverEarning.toFixed(2)}</h6>}
                 </Col>
               </ListGroup>
             </Card>

@@ -34,7 +34,7 @@ const JobProfile = ({ options, title, newTitle, setDriverEarning, setJobNumber }
   }
 
   return (
-    <Container className="profile2Form">
+    <Container>
       <Row>
         <div>
           {incompleteJobs.length ? (

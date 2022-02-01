@@ -17,8 +17,8 @@ const Profile = () => {
   const options = ["secondary", "info", "warning", "danger", "success"]
 
   return (
-    <Container>
-      <Row style={{ "margin-top": 40, height: 500 }}>
+    <Container fluid>
+      <Row style={{ marginTop: 40, height: 500 }}>
         <Card className="profilecard">
           <Card.Body>
             <Row>
