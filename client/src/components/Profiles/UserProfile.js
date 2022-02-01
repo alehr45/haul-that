@@ -19,6 +19,7 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
   var result
   let me = data?.me || {}
 
+  //Rating
   let rating = me.rating / me.ratingNumber
   let secondRating = rating / 20
   let finalRating = secondRating.toFixed(2)
@@ -73,11 +74,11 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
               <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mi lectus, blandit nec libero in, pellentesque molestie tellus. Nam vel ultricies sem. Aenean aliquam convallis consectetur. Phasellus at metus interdum, ornare massa nec, convallis metus. Duis luctus orci a est semper, eget bibendum est pellentesque. </Card.Text>
 
               <Card.Body className="rating-box">
-                <Card.Subtitle className="mb-2  text-white">Customer Rating</Card.Subtitle>
+                {me.driver ? <Card.Subtitle className="mb-2  text-white">Driver Rating</Card.Subtitle> : <Card.Subtitle className="mb-2  text-white">Customer Rating</Card.Subtitle>}
                 <Card.Title>
+                  <RatingModal setShowModal={setShowModal} showModal={showModal} finalRating={finalRating}></RatingModal>
                   <a onClick={handleShowModal}>
                     <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true} />
-                    <RatingModal setShowModal={setShowModal} showModal={showModal} finalRating={finalRating}></RatingModal>
                   </a>
                 </Card.Title>
               </Card.Body>
