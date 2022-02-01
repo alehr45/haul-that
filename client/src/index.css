@@ -244,11 +244,18 @@ code {
 .small {
   color: rgba(80, 53, 215, 0.865);
 }
+
 @media screen and (min-width: 560px) {
   .booking {
     padding-left: 75px;
     padding-right: 75px;
   }
+}
+
+.rating-modal {
+  position: relative;
+  left: 105px;
+  padding: 20px;
 }
 
 .use.btn.btn-white {

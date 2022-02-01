@@ -77,7 +77,7 @@ const Signup = () => {
 
   return (
     <Container>
-      <Row className="p-5">
+      <Row className="p-4 pt-5">
         <form className="p-5">
           <h3>Sign Up</h3>
 
@@ -114,13 +114,13 @@ const Signup = () => {
             <label>Preferred Use</label>
             <br />
             <ButtonGroup>
-              <ToggleButton className="m-2" id="toggle-check" type="checkbox" variant="secondary" checked={checked1} onChange={e => checkedInput()}>
+              <ToggleButton className="m-2" id="toggle-check" type="checkbox" variant="primary" checked={checked1} onChange={e => checkedInput()}>
                 {" "}
                 Customer
               </ToggleButton>
             </ButtonGroup>
             <ButtonGroup>
-              <ToggleButton variant="secondary" id="toggle-check" type="checkbox" checked={checked2} onChange={e => checkedInput()}>
+              <ToggleButton variant="primary" id="toggle-check" type="checkbox" checked={checked2} onChange={e => checkedInput()}>
                 {" "}
                 Driver
               </ToggleButton>

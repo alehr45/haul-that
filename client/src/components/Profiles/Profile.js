@@ -11,7 +11,6 @@ const Profile = () => {
   const [jobNumber, setJobNumber] = useState(0)
   const { data } = useQuery(QUERY_ME_BASIC)
   let user = data?.me || {}
-  console.log(driverEarning)
 
   const title = ["Start Job", "At Pickup", "Delivering", "At Dropoff", "Generate Code", "Payment"]
   const newTitle = ["Job Starting", "At Pickup", "Delivering", "At Dropoff", "Get CODE from Driver"]

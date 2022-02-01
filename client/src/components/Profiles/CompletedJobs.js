@@ -33,7 +33,7 @@ const CompletedJobs = ({ info, setDriverEarning }) => {
                 <h6>{job.category}</h6>
                 <h6>
                   {"$"}
-                  {job.price / 100}
+                  {(job.price / 100).toFixed(2)}
                 </h6>
               </Col>
             </ListGroupItem>
