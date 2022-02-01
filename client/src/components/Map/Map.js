@@ -3,14 +3,16 @@ import { GoogleMap, LoadScript, Marker, InfoWindow } from "@react-google-maps/ap
 import { Link } from "react-router-dom"
 
 const Map = ({ jobs, loading }) => {
+  console.log(jobs)
   const [selected, setSelected] = useState({})
   const onSelect = job => {
     setSelected(job[0])
   }
 
   const handleMapRender = currentLocation => {
+    console.log(jobs)
     if (!loading) {
-      const jobSelected = jobs._id
+      const jobSelected = selected.name
       const locations = jobs.map(location => {
         return [
           {
@@ -28,6 +30,7 @@ const Map = ({ jobs, loading }) => {
       return (
         <GoogleMap mapContainerStyle={mapStyles} zoom={11} center={defaultCenter}>
           {locations.map(item => {
+            console.log(item)
             return <Marker icon="http://maps.google.com/mapfiles/ms/micons/truck.png" key={item[0].name} position={item[0].location} onClick={() => onSelect(item)} />
           })}
           <Marker icon="http://maps.google.com/mapfiles/ms/micons/blue-dot.png" className="your-location" key={"you are here"} position={currentLocation} />

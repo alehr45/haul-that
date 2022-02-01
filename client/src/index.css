@@ -498,6 +498,7 @@ code {
 
 .profile2Form {
   padding-bottom: 20px;
+  max-width: 50vw
 }
 .description1 {
   font-size: 15px;
@@ -855,6 +856,7 @@ ul {
   height: 40vmin;
   pointer-events: none;
 }
+
 
 @font-face {
   font-family: ubunto;
