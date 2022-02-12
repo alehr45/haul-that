@@ -21,7 +21,7 @@ const Payment = () => {
 
   const [show, setShow] = useState(true)
   const [rating, setRating] = useState(0)
-  console.log(rating)
+
   // User declines rating
   function handleClose() {
     setShow(false)
@@ -29,7 +29,6 @@ const Payment = () => {
 
   // User selects rating
   const handleChange = rate => {
-    console.log(rating, rate)
     setRating(rate)
   }
 
@@ -43,10 +42,7 @@ const Payment = () => {
     })
   }
 
-  console.log(currentJob)
-
   const checkCode = () => {
-    console.log(currentJob.verificationCode, code)
     if (code === currentJob.verificationCode) {
       setVerified(true)
       // window.location.assign("/checkoutform");
@@ -72,7 +68,6 @@ const Payment = () => {
                 placeholder="enter code"
                 value={code}
                 onChange={event => {
-                  console.log(code)
                   setCode(event.target.value)
                 }}
               ></FormControl>
