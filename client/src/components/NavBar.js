@@ -26,14 +26,16 @@ const NavBar = () => {
                 <Nav.Link className="nav1" href="/home">
                   Home
                 </Nav.Link>
-                {me.position === "customer" ? (
+                {me.customer ? (
                   <Nav.Link className="nav1" href="/booking">
                     Booking
                   </Nav.Link>
-                ) : (
+                ) : me.driver ? (
                   <Nav.Link className="nav1" href="/jobs">
-                    Jobs {me.position == "driver" ? <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} /> : ""}
+                    Jobs {me.driver ? <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} /> : ""}
                   </Nav.Link>
+                ) : (
+                  ""
                 )}
                 <Nav.Link className="nav1" href="/profile">
                   My Profile

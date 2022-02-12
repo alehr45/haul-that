@@ -1,6 +1,5 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem, Col } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Card, ListGroupItem, Col } from "react-bootstrap"
 import moment from "moment"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
@@ -47,7 +46,7 @@ const CompletedJobs = ({ info, setDriverEarning }) => {
         <li> </li>
       </div>
     ))
-    console.log(items)
+
     return <AliceCarousel mouseTracking items={items} responsive={responsive} disableButtonsControls={true} />
   }
 

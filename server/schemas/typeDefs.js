@@ -1,4 +1,4 @@
-const { gql } = require("apollo-server-express");
+const { gql } = require("apollo-server-express")
 
 const typeDefs = gql`
   scalar DateTime
@@ -21,9 +21,8 @@ const typeDefs = gql`
     username: String!
     phone: String!
     aboutMe: String
-    customer: Boolean!
-    driver: Boolean!
-    position: String!
+    customer: Boolean
+    driver: Boolean
     image: String
     jobs: [Job]
     ratingNumber: Int
@@ -80,35 +79,9 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(
-      firstName: String!
-      lastName: String!
-      username: String!
-      email: String!
-      phone: String!
-      password: String!
-      aboutMe: String
-      customer: Boolean!
-      driver: Boolean!
-      image: String
-      position: String!
-    ): Auth
+    addUser(firstName: String!, lastName: String!, username: String!, email: String!, phone: String!, password: String!, aboutMe: String, customer: Boolean, driver: Boolean, image: String): Auth
     login(username: String!, password: String!): Auth
-    addJob(
-      date: String!
-      category: String!
-      description: String!
-      image: String
-      distance: String!
-      price: Int
-      realTime: Int
-      phone: String!
-      name: String!
-      email: String!
-      pickup: addressInput!
-      dropoff: addressInput!
-      customer_id: String
-    ): Job
+    addJob(date: String!, category: String!, description: String!, image: String, distance: String!, price: Int, realTime: Int, phone: String!, name: String!, email: String!, pickup: addressInput!, dropoff: addressInput!, customer_id: String): Job
     pickupJob(_id: ID!, distance: String!, category: String!, id: String!): User
     updateJob(_id: ID!, taken: Boolean, status: Int): Job
     updateStatus(_id: ID!): Job
@@ -118,21 +91,12 @@ const typeDefs = gql`
     deleteJob(_id: ID!): Job
     updateImage(_id: ID!, image: String!): User
     updateJobImage(_id: ID!, image: String!): Job
-    updateUser(
-      _id: ID!
-      firstName: String
-      lastName: String
-      email: String
-      phone: String
-      aboutMe: String
-      customer: Boolean
-      driver: Boolean
-      position: String
-    ): User
+    updateUser(_id: ID!, firstName: String, lastName: String, email: String, phone: String, aboutMe: String, customer: Boolean, driver: Boolean): User
     findDriverAndRate(job_id: ID!, input: Int!): User
     findCustomerAndRate(job_id: ID!, input: Int!): User
+    updatePosition(_id: ID!, driver: Boolean, customer: Boolean): User
   }
-`;
+`
 
 // export the typeDefs
-module.exports = typeDefs;
+module.exports = typeDefs

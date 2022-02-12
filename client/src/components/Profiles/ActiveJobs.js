@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem, Button, ProgressBar, Col } from "react-bootstrap"
+import { Card, ListGroupItem, Button, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UPDATE_STATUS, ADD_VERIFICATION } from "../../utils/mutation"
 import { useMutation } from "@apollo/react-hooks"
@@ -10,10 +10,9 @@ import "react-alice-carousel/lib/alice-carousel.css"
 const ActiveJobs = ({ info }) => {
   const [updateStatus] = useMutation(UPDATE_STATUS)
   const [addVerification] = useMutation(ADD_VERIFICATION)
-  let { title, options, user, incompleteJobs, newTitle } = info
-  const driver = user.driver
+  let { title, options, incompleteJobs } = info
 
-  const handleDragStart = e => e.preventDefault()
+  // const handleDragStart = e => e.preventDefault()
 
   const handleStatus = async (_id, status) => {
     await updateStatus({
@@ -21,12 +20,11 @@ const ActiveJobs = ({ info }) => {
         _id: _id
       }
     })
-    console.log(status)
+
     window.location.assign("/profile")
   }
 
   const handleVerification = async _id => {
-    console.log("here")
     await addVerification({
       variables: {
         _id: _id
@@ -52,14 +50,6 @@ const ActiveJobs = ({ info }) => {
         {title}
       </Button>
     )
-  }
-
-  const progressList = title => {
-    return <ListGroupItem className="progress2">{title}</ListGroupItem>
-  }
-
-  const progress = (now, key) => {
-    return <ProgressBar animated variant="primary" now={now} key={key} />
   }
 
   const responsive = {
