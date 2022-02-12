@@ -31,7 +31,7 @@ const ExampleDirections = ({ currentJob }) => {
       origin: origin,
       travelMode: "DRIVING"
     }
-  })
+  }, [destination, origin])
 
   // receives response, updates state with response
   const directionsCallback = React.useCallback(res => {
@@ -46,7 +46,7 @@ const ExampleDirections = ({ currentJob }) => {
         console.log("response: ", res)
       }
     }
-  })
+  }, [])
 
   // sets directions with response
   const directionsRendererOptions = React.useMemo(() => {
@@ -55,7 +55,7 @@ const ExampleDirections = ({ currentJob }) => {
         directions: response
       }
     }
-  })
+  }, [response])
 
   return (
     <div className="map">

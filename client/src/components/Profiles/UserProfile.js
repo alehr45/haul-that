@@ -1,9 +1,7 @@
-import { Card, ListGroupItem, ListGroup, Container, Row, Button, Image, DropdownButton, Dropdown, Col } from "react-bootstrap"
+import { Card, Container, Row, ListGroup, Image, Col } from "react-bootstrap"
 import React, { useState } from "react"
-import { Alert } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { UPDATE_USER } from "../../utils/mutation"
-import { useQuery, useMutation } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/react-hooks"
 import { QUERY_ME_BASIC } from "../../utils/queries"
 import { Rating } from "react-simple-star-rating"
 import ProfileModal from "./ProfileModal"
@@ -11,12 +9,12 @@ import RatingModal from "./RatingModal"
 
 // Displays user info card for profile and opens modal for editing user information
 const UserProfile = ({ user, driverEarning, jobNumber }) => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
+  const { data } = useQuery(QUERY_ME_BASIC)
   const [show, setShow] = useState(false)
   const [showModal, setShowModal] = useState(false)
   const handleShowModal = () => setShowModal(true)
   const handleShow = () => setShow(true)
-  var result
+
   let me = data?.me || {}
 
   //Rating
@@ -61,9 +59,9 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
                   </h6>
                   <h6>
                     {""}
-                    <i class="bi bi-telephone"> {user.phone}</i>
+                    <i className="bi bi-telephone"> {user.phone}</i>
                   </h6>
-                  {me.driver ? <h6 className="display-5"> ${driverEarning.toFixed(2)}</h6> : <h6 className="display-5"> ${driverEarning.toFixed(2)}</h6>}
+                  {me.driver ? <h6 className="display-5">$ {driverEarning.toFixed(2)}</h6> : <h6 className="display-5">$ {driverEarning.toFixed(2)}</h6>}
                 </Col>
               </ListGroup>
             </Card>
@@ -77,9 +75,9 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
                 {me.driver ? <Card.Subtitle className="mb-2  text-white">Driver Rating</Card.Subtitle> : <Card.Subtitle className="mb-2  text-white">Customer Rating</Card.Subtitle>}
                 <Card.Title>
                   <RatingModal setShowModal={setShowModal} showModal={showModal} finalRating={finalRating}></RatingModal>
-                  <a onClick={handleShowModal}>
+                  <Link onClick={handleShowModal}>
                     <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true} />
-                  </a>
+                  </Link>
                 </Card.Title>
               </Card.Body>
             </Card.Body>

@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap"
 import PictureUploader from "./PictureUploader"
 import { UPDATE_USER } from "../../utils/mutation"
 
-import { useQuery, useMutation } from "@apollo/react-hooks"
+import { useMutation } from "@apollo/react-hooks"
 
 function ProfileModal({ user, show, setShow }) {
   const [updateUser] = useMutation(UPDATE_USER)

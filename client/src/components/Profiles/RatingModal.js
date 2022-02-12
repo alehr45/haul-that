@@ -1,5 +1,5 @@
-import React, { useState } from "react"
-import { Modal, Button } from "react-bootstrap"
+import React from "react"
+import { Modal } from "react-bootstrap"
 import { useQuery } from "@apollo/react-hooks"
 import { QUERY_ME_BASIC } from "../../utils/queries"
 
@@ -11,7 +11,7 @@ function RatingModal({ finalRating, showModal, setShowModal }) {
 
   return (
     <>
-      {me.position == "driver" ? (
+      {me.position === "driver" ? (
         <Modal onHide={handleCloseModal} show={showModal}>
           <h5 className="rating-modal">-Your current driver rating is {finalRating}-</h5>
           <h6 className="rating-modal2">Complete more jobs to increase your rating!</h6>

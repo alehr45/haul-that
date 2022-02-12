@@ -16,6 +16,7 @@
     "jsonwebtoken": "^8.5.1",
     "mdb-react-ui-kit": "^2.2.0",
     "npm-watch": "^0.9.0",
+    "react-alice-carousel": "^2.5.1",
     "react-simple-star-rating": "^4.0.5",
     "stripe": "^8.156.0"
   },

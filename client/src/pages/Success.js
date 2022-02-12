@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { useParams } from "react-router-dom"
 import { useMutation } from "@apollo/react-hooks"
-import { Button, Modal, InputField } from "react-bootstrap"
+import { Button, Modal } from "react-bootstrap"
 import { COMPLETE_JOB } from "../utils/mutation"
-import { QUERY_ME_BASIC, GET_JOB, GET_USER } from "../utils/queries"
-import { useQuery } from "@apollo/react-hooks"
 import { FIND_DRIVER_AND_RATE } from "../utils/mutation"
 import { Rating } from "react-simple-star-rating"
 
 const Success = () => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
   const [completeJob] = useMutation(COMPLETE_JOB)
   const [findDriverAndRate] = useMutation(FIND_DRIVER_AND_RATE)
   const { job_Id } = useParams()

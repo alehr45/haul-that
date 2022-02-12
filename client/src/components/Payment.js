@@ -11,14 +11,14 @@ const Payment = () => {
   const [code, setCode] = useState(0)
   const [verified, setVerified] = useState(false)
   const { job_Id } = useParams()
-  const { loading, data: jobData } = useQuery(GET_JOB, {
+  const { data: jobData } = useQuery(GET_JOB, {
     variables: { _id: job_Id }
   })
   const [findCustomerAndRate] = useMutation(FIND_CUSTOMER_AND_RATE)
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC)
+  const { data } = useQuery(QUERY_ME_BASIC)
   const currentJob = jobData?.job || {}
   const currentUser = data?.me || {}
-  const price = currentJob.price
+
   const [show, setShow] = useState(true)
   const [rating, setRating] = useState(0)
   console.log(rating)
@@ -47,7 +47,7 @@ const Payment = () => {
 
   const checkCode = () => {
     console.log(currentJob.verificationCode, code)
-    if (code == currentJob.verificationCode) {
+    if (code === currentJob.verificationCode) {
       setVerified(true)
       // window.location.assign("/checkoutform");
       // Stripe

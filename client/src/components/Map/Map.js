@@ -11,7 +11,6 @@ const Map = ({ jobs, loading }) => {
 
   const handleMapRender = currentLocation => {
     if (!loading) {
-      const jobSelected = jobs._id
       const locations = jobs.map(location => {
         return [
           {
@@ -25,7 +24,6 @@ const Map = ({ jobs, loading }) => {
           }
         ]
       })
-      console.log(selected)
 
       return (
         <GoogleMap mapContainerStyle={mapStyles} zoom={9} center={defaultCenter}>
