@@ -1,3 +1,8 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 @font-face {
   font-family: ubunto;
   src: url("./fonts/UbuntuMono-Regular.ttf");
@@ -9,8 +14,8 @@
 }
 
 @font-face {
-  font-family: airstream;
-  src: url("./fonts/AIRSTREA.TTF");
+  font-family: merriweather;
+  src: url("./fonts/Merriweather-Black.ttf");
 }
 
 @font-face {
@@ -19,8 +24,7 @@
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .badge.badge-light {
@@ -46,10 +50,13 @@ code {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
 
+.logo2 {
+  box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.2), 6px 6px 10px 6px rgba(0, 0, 0, 0.19);
+}
+
 .loginform {
   position: relative;
   top: 150px;
-  left: 20px;
 }
 
 .logo.rounded-circle {
@@ -60,7 +67,6 @@ code {
 .signupform {
   position: relative;
   top: 100px;
-  left: 20px;
 }
 
 .btn.btn-dark.btn-lg.btn-block {
@@ -78,10 +84,61 @@ code {
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
+.App {
+  text-align: center;
+}
 
-/* .navbar a:hover,
-.dropdown:hover .dropbtn {
-  
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: ubunto;
+  src: url("./fonts/UbuntuMono-Regular.ttf");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.copyright {
+  font-family: "tunning";
+  padding-top: 12px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  color: rgba(58, 58, 58, 0.762);
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 
+.image1 {
+ 
+
 } */
 
 .title {
@@ -93,15 +150,108 @@ code {
 
 @media screen and (max-width: 575px) {
   .title {
-    top: 4px;
-    position: fixed;
-    left: 125px;
-    font-size: 35px;
+    display: none;
+  }
+}
+@media screen and (min-width: 575px) {
+  .login-row {
+    padding-left: 150px;
+    padding-right: 150px;
   }
 }
 
-* {
-  box-sizing: border-box;
+@media screen and (min-width: 991px) {
+  .login-row {
+    padding-left: 300px;
+    padding-right: 300px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .login-row {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media screen and (min-width: 560px) {
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+.use.btn.btn-white {
+  font-size: 15px;
+}
+
+@media screen and (min-width: 575px) {
+  .signup-row {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+
+@media screen and (min-width: 991px) {
+  .signup-row {
+    padding-left: 300px;
+    padding-right: 300px;
+  }
+}
+
+@media screen and (max-width: 766px) {
+  .signup-row {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+.small {
+  color: rgba(80, 53, 215, 0.865);
+}
+
+@media screen and (min-width: 560px) {
+  .booking {
+    padding-left: 75px;
+    padding-right: 75px;
+  }
+}
+
+.p-3.text-center {
+  background-image: linear-gradient(0deg, rgba(194, 126, 8, 0.604), rgba(182, 156, 110, 0.604));
+  margin: 0;
+  border-radius: 2px;
+}
+
+.rating-modal {
+  position: relative;
+  left: 85px;
+  padding: 20px;
+}
+
+.rating-modal2 {
+  position: relative;
+  left: 90px;
+  bottom: 20px;
+}
+
+.rating-modal3 {
+  position: relative;
+  left: 70px;
+  padding: 20px;
+}
+
+.rating-modal4 {
+  position: relative;
+  left: 100px;
+  bottom: 20px;
+}
+
+.use.btn.btn-white {
+  font-size: 15px;
 }
 
 .pickup1 {
@@ -111,6 +261,16 @@ code {
 .navbar-light {
   background-color: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.welcome {
+  padding-top: 200px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.welcome-title {
+  font-size: 60px;
+  font-family: "ubunto";
 }
 
 .outer {
@@ -142,8 +302,116 @@ code {
   padding-bottom: 20px;
 }
 
+.profile-title {
+  font-family: "tunning";
+  font-size: 35px;
+  color: #2e2e2e;
+}
+
+/*  Profile Left  */
+
+.p-5.card {
+  color: #2e2e2e;
+  background-image: linear-gradient(0deg, rgba(194, 126, 8, 0.604), rgba(182, 156, 110, 0.604));
+  border-style: solid;
+  border-color: rgba(94, 94, 94, 0.584);
+}
+
+.p-4.col {
+  background-color: #9b782d6e;
+}
+
+.profile-box.col {
+  border-style: solid;
+  border-color: rgb(225, 225, 225);
+  border-radius: 15px;
+  background-image: linear-gradient(360deg, rgba(225, 225, 225, 0.413), rgba(184, 184, 184, 0.42));
+}
+
+.rating-box.card-body {
+  background-image: linear-gradient(360deg, rgba(194, 126, 8, 0.345), rgba(181, 176, 38, 0.509));
+}
+
+.profile-bottom.card {
+  background-color: #bfaa7d87;
+}
+.booking-title {
+  font-family: merriweather;
+  color: rgba(62, 20, 3, 0.728);
+}
+
+.border.card-body {
+  background-image: linear-gradient(180deg, rgba(191, 194, 8, 0.344), rgba(232, 18, 18, 0.488));
+}
+
+.pt-4.username {
+  margin-top: 5px;
+}
+
+.padding-booking {
+  padding-top: 20px;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+.name-profile {
+  font-family: merriweather;
+  font-size: 35px;
+}
+
+.submit-modal.btn.btn-primary {
+  font-size: 17px;
+}
+
+.rounded-circle {
+  border: 7px solid rgb(210, 210, 210);
+}
+/* Profile Right  */
+
+.progress2.list-group-item {
+  background-color: rgba(250, 235, 215, 0);
+  border-style: none;
+}
+
+.job-box.list-group-item {
+  background-image: linear-gradient(360deg, rgba(17, 5, 77, 0.344), rgba(210, 210, 210, 0.488));
+}
+
+.job-box2.list-group-item {
+  margin: 2px;
+  background-image: linear-gradient(360deg, rgba(208, 124, 94, 0.721), rgba(210, 210, 210, 0.488));
+}
+/* More Details Button*/
+.m-2.btn.btn-primary.btn-sm {
+  background-image: linear-gradient(360deg, rgba(17, 5, 77, 0.344), rgba(210, 210, 210, 0.488));
+}
+.link.text-white {
+  font-size: 15px;
+  font-family: ubunto;
+}
+
+.pt-2.completed.col {
+  background-image: linear-gradient(180deg, rgba(191, 194, 8, 0.344), rgba(232, 18, 18, 0.488));
+}
+
 .custom-control-label {
   font-weight: 400;
+}
+
+.p-5.card {
+  border-radius: 10px 10px 0 0;
+}
+
+.profile-bottom.card {
+  padding: 25px;
+  border-radius: 0 0 10px 10px;
+}
+
+.jobs-title {
+  position: relative;
+  padding: 20px;
+  top: 90px;
+  font-family: merriweather;
+  color: rgba(62, 20, 3, 0.728);
 }
 
 .jobsForm {
@@ -211,45 +479,63 @@ code {
 }
 
 .row1 {
+  justify-content: center;
+  display: flex;
+}
+.row7 {
   display: flex;
   justify-content: center;
+  margin: 0px;
 }
 
 .profileForm {
-  padding-top: 60px;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
   padding-bottom: 20px;
 }
 
+.profilecard.card {
+  background-color: rgba(198, 94, 94, 0.324);
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.p-4.details.card {
+  border-style: none;
+}
+
 .profile2Form {
-  padding-top: 20px;
   padding-bottom: 20px;
 }
 .description1 {
   font-size: 15px;
 }
 
-/* edit profile */
+/* edit profile
 .edit {
   position: absolute;
-  margin-left: 80%;
-  height: 30px;
-  width: 30px;
+  margin-left: 85%;
+
+  height: 40px;
+  width: 40px;
   font-size: 1px;
   background-image: url("../src/images/pencil_icon.png");
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(237, 11, 11, 0.947);
   opacity: 0.7;
-}
+} */
 
 .error-text {
   color: #ee1e1e;
   margin-left: 5%;
 }
 
+.rating-box {
+  background-color: blue;
+}
 /* edit profile end */
 
 /* The switch - the box around the slider */
@@ -327,18 +613,17 @@ input:checked + .slider:before {
 }
 
 .map-info {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 .your-location {
   background-color: blue;
 }
 
-.badge1 {
-  position: fixed;
-  top: 18px;
-  font-weight: 100px;
+.badge.badge.badge-pill.badge-primary {
+  position: relative;
+  padding: 0px;
+  bottom: 8px;
 }
 
 .list-group-item {
@@ -350,23 +635,14 @@ input:checked + .slider:before {
 }
 
 body {
-  width: 100%;
+  width: auto;
   display: flex;
+  justify-content: center;
   font-weight: 400;
   font-family: sans-serif;
   background: #12c2e9; /* fallback for old browsers */
-  background: -webkit-linear-gradient(
-    to right,
-    #f64f59,
-    #eb9335,
-    #ceed07
-  ); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to left,
-    #f64f59,
-    #eb9335,
-    #ceed07
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(to right, #f64f59, #eb9335, #ceed07); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #f64f59, #eb9335, #ceed07); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .names {
@@ -383,7 +659,7 @@ html,
   width: 100%;
   height: 100%;
 }
-.nav3 {
+.nav3.container {
   margin: 0px;
 }
 
@@ -448,6 +724,11 @@ html,
   font-size: 65px;
 }
 
+.stars {
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+}
 .subtitle {
   display: flex;
   justify-content: center;
@@ -470,13 +751,21 @@ html,
   font-size: 10px;
   font-family: "ubunto";
 }
-
-.active {
+.checkout-form {
+  padding-top: 40px;
+}
+.activedelivery {
   font-weight: 700;
   font-size: 20px;
   font-family: "ubunto";
 }
 
+.active9 {
+  font-weight: 700;
+  padding-top: 35px;
+  font-size: 20px;
+  font-family: "ubunto";
+}
 .completed {
   font-weight: 700;
   padding-top: 20px;
@@ -484,23 +773,46 @@ html,
   font-family: "ubunto";
 }
 
+.link4 {
+  color: rgb(32, 47, 210);
+}
+
+ul {
+  list-style-type: none;
+}
+
 .modalbody {
   display: flex;
   justify-content: center;
-  background-color: rgb(255, 255, 255);
+  background-image: linear-gradient(180deg, rgba(199, 150, 25, 0.934), rgba(222, 44, 13, 0.502));
 }
+
 .preview {
   height: 40px;
   width: 40px;
 }
 
 .editprofile {
-  color: rgb(164, 6, 6);
+  background-color: rgba(194, 28, 28, 0.817);
+  color: rgb(227, 227, 227);
   font-size: 30px;
-  font-family: "tunning";
-  padding-top: 10px;
+  font-family: "ubunto";
+  padding: 20px;
   display: flex;
   justify-content: center;
+}
+
+.modal-backdrop {
+  background-color: rgb(138, 91, 91);
+}
+
+.modal-button {
+  padding: 10px;
+  margin-left: 23px;
+}
+.modal-footer {
+  display: flex;
+  background-color: rgba(194, 28, 28, 0.817);
 }
 
 .mb-3 {
@@ -542,3 +854,65 @@ html,
   display: flex;
   justify-content: center;
 }
+
+.row7 {
+  display: flex;
+  justify-content: center;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: ubunto;
+  src: url("./fonts/UbuntuMono-Regular.ttf");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.copyright {
+  font-family: "tunning";
+  padding-top: 12px;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  color: rgba(58, 58, 58, 0.762);
+}
+
+.App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* 
+.image1 {
+ 
+
+} */

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from "graphql-tag"
 
 export const QUERY_USER = gql`
   query user($username: String!) {
@@ -8,15 +8,17 @@ export const QUERY_USER = gql`
       email
     }
   }
-`;
+`
 
 export const GET_USER = gql`
   query user($_id: String!) {
     user(_id: $_id) {
       _id
+      rating
+      ratingNumber
     }
   }
-`;
+`
 
 export const QUERY_ME_BASIC = gql`
   {
@@ -31,7 +33,8 @@ export const QUERY_ME_BASIC = gql`
       customer
       image
       driver
-      position
+      rating
+      ratingNumber
       jobs {
         id
         _id
@@ -40,7 +43,7 @@ export const QUERY_ME_BASIC = gql`
       }
     }
   }
-`;
+`
 
 export const GET_JOBS = gql`
   {
@@ -52,13 +55,14 @@ export const GET_JOBS = gql`
       description
       image
       distance
+      price
       realTime
       taken
       status
       completed
       phone
       email
-      driverUsername
+      driver_id
       createdAt
       pickup {
         address
@@ -80,7 +84,7 @@ export const GET_JOBS = gql`
       }
     }
   }
-`;
+`
 
 export const GET_JOB = gql`
   query Job($_id: String!) {
@@ -92,13 +96,15 @@ export const GET_JOB = gql`
       description
       image
       distance
+      price
       realTime
       taken
       status
       completed
       phone
       email
-      driverUsername
+      driver_id
+      verificationCode
       createdAt
       pickup {
         address
@@ -120,4 +126,4 @@ export const GET_JOB = gql`
       }
     }
   }
-`;
+`

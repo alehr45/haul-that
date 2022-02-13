@@ -1,93 +1,76 @@
-import * as React from "react";
-import {
-  GoogleMap,
-  LoadScript,
-  DirectionsService,
-  DirectionsRenderer,
-} from "@react-google-maps/api";
+import * as React from "react"
+import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from "@react-google-maps/api"
 
 const mapStyles = {
   height: "40vh",
-  width: "100%",
-};
+  width: "100%"
+}
 
 const ExampleDirections = ({ currentJob }) => {
   var start = {
     lat: parseFloat(currentJob.pickup.lat),
-    lng: parseFloat(currentJob.pickup.lng),
-  };
+    lng: parseFloat(currentJob.pickup.lng)
+  }
   var end = {
     lat: parseFloat(currentJob.dropoff.lat),
-    lng: parseFloat(currentJob.dropoff.lng),
-  };
+    lng: parseFloat(currentJob.dropoff.lng)
+  }
 
-  const [response, setResponse] = React.useState(null);
-  const [origin, setOrigin] = React.useState(start);
-  const [destination, setDestination] = React.useState(end);
+  const [response, setResponse] = React.useState(null)
+  const [origin, setOrigin] = React.useState(start)
+  const [destination, setDestination] = React.useState(end)
   const defaultCenter = {
     lat: start.lat,
-    lng: start.lng,
-  };
+    lng: start.lng
+  }
 
   // returns object to receive a response
   const directionsServiceOptions = React.useMemo(() => {
     return {
       destination: destination,
       origin: origin,
-      travelMode: "DRIVING",
-    };
-  });
+      travelMode: "DRIVING"
+    }
+  }, [destination, origin])
 
   // receives response, updates state with response
-  const directionsCallback = React.useCallback((res) => {
+  const directionsCallback = React.useCallback(res => {
     // updates state to prevent multiple rerenders
-    setOrigin("");
-    setDestination("");
+    setOrigin("")
+    setDestination("")
 
     if (res !== null) {
       if (res.status === "OK") {
-        setResponse(res);
+        setResponse(res)
       } else {
-        console.log("response: ", res);
+        console.log("response: ", res)
       }
     }
-  });
+  }, [])
 
   // sets directions with response
   const directionsRendererOptions = React.useMemo(() => {
     if (response !== null) {
       return {
-        directions: response,
-      };
+        directions: response
+      }
     }
-  });
+  }, [response])
 
   return (
     <div className="map">
       <div className="map-settings">
         <div className="map-container details-map" id="map">
           <LoadScript googleMapsApiKey="AIzaSyB_c7GFN8Edf79UFOfpLna7LNX4X7MALHM">
-            <GoogleMap
-              id="direction-example"
-              mapContainerStyle={mapStyles}
-              zoom={11}
-              center={defaultCenter}
-            >
-              {destination !== "" && origin !== "" && (
-                <DirectionsService
-                  options={directionsServiceOptions}
-                  callback={directionsCallback}
-                />
-              )}
-              {response !== null && (
-                <DirectionsRenderer options={directionsRendererOptions} />
-              )}
+            <GoogleMap id="direction-example" mapContainerStyle={mapStyles} zoom={11} center={defaultCenter}>
+              {destination !== "" && origin !== "" && <DirectionsService options={directionsServiceOptions} callback={directionsCallback} />}
+              {response !== null && <DirectionsRenderer options={directionsRendererOptions} />}
             </GoogleMap>
           </LoadScript>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default React.memo(ExampleDirections);
+export default React.memo(ExampleDirections)

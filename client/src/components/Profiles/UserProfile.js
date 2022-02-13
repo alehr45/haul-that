@@ -1,258 +1,91 @@
-import {
-  Card,
-  ListGroupItem,
-  ListGroup,
-  Container,
-  Row,
-  Button,
-  Modal,
-  ToggleButton,
-  ButtonGroup,
-  Image,
-} from "react-bootstrap";
-import React, { useState } from "react";
-import { UPDATE_USER } from "../../utils/mutation";
-// import emailjs from "emailjs-com";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { QUERY_ME_BASIC } from "../../utils/queries";
-import Avatar from "react-avatar";
-import PictureUploader from "./PictureUploader";
+import { Card, Container, Row, ListGroup, Image, Col } from "react-bootstrap"
+import React, { useState } from "react"
+import { Link } from "react-router-dom"
+import { useQuery } from "@apollo/react-hooks"
+import { QUERY_ME_BASIC } from "../../utils/queries"
+import { Rating } from "react-simple-star-rating"
+import ProfileModal from "./ProfileModal"
+import RatingModal from "./RatingModal"
 
 // Displays user info card for profile and opens modal for editing user information
-const UserProfile = ({ user }) => {
-  const { loading: userLoading, data } = useQuery(QUERY_ME_BASIC);
-  const [updateUser] = useMutation(UPDATE_USER);
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+const UserProfile = ({ user, driverEarning, jobNumber }) => {
+  const { data } = useQuery(QUERY_ME_BASIC)
+  const [show, setShow] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+  const handleShowModal = () => setShowModal(true)
+  const handleShow = () => setShow(true)
 
-  // try setting (on signup) a value to equal customer or driver
+  let me = data?.me || {}
 
-  const [checked1, setChecked1] = useState(user.customer);
-  const [checked2, setChecked2] = useState(user.driver);
-
-  // Initializing formstate for input fields
-  const [formState, setFormState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    aboutMe: "",
-    customer: "",
-    driver: "",
-    position: "",
-    image: "https://i.imgur.com/mn6sKRv.png",
-  });
-
-  const checkedInput = () => {
-    if (checked1 === false) {
-      setChecked1(true);
-      setChecked2(false);
-      formState.customer = true;
-      formState.driver = false;
-    } else {
-      setChecked1(false);
-      setChecked2(true);
-      formState.driver = true;
-      formState.customer = false;
-    }
-    if (formState.driver === true) {
-      formState.position = "driver";
-    } else {
-      formState.position = "customer";
-    }
-  };
-
-  // Handles form submission via save button
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-
-    // Checks for blank/unaltered input fields to assign the original value
-    // Ensures required user data in database is not sent an empty field
-    if (formState) {
-      if (formState.firstName === "") {
-        formState.firstName = user.firstName;
-      }
-      if (formState.lastName === "") {
-        formState.lastName = user.lastName;
-      }
-      if (formState.email === "") {
-        formState.email = user.email;
-      }
-      if (formState.phone === "") {
-        formState.phone = user.phone;
-      }
-      if (formState.aboutMe === "") {
-        formState.aboutMe = user.aboutMe;
-      }
-      if (formState.customer === "") {
-        formState.customer = user.customer;
-      }
-      if (formState.driver === "") {
-        formState.driver = user.driver;
-      }
-      if (formState.position === "") {
-        formState.position = user.position;
-      }
-    }
-
-    // await emailjs.send(
-    //   "service_hsdqjea",
-    //   "sign_up",
-    //   formState,
-    //   "user_VX87bNMDuxlz9E5XfnclG"
-    // );
-
-    await updateUser({
-      variables: { ...formState, _id: user._id },
-    });
-
-    // reloads this page after form submission
-    window.location.assign("/profile");
-  };
-
-  // Update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [event.target.name]: event.target.value,
-    });
-  };
+  //Rating
+  let rating = me.rating / me.ratingNumber
+  let secondRating = rating / 20
+  let finalRating = secondRating.toFixed(2)
 
   return (
-    <Container className="profileForm">
-      <Row className="row1">
-        <Card style={{ width: "18rem" }}>
-          {/* button to open editing modal */}
-          <Button
-            variant="primary"
-            className="edit"
-            onClick={handleShow}
-          ></Button>
+    <>
+      <Container className="pt-2">
+        <Row className="profile-top-color">
+          <Card className="p-5">
+            <Row>
+              <ProfileModal show={show} setShow={setShow} user={user} />
+              <Col className="mb-4 profile-box">
+                <h6 className="pt-3 username">{user.username}</h6>
+                <h6 className="name-profile">
+                  {user.firstName} {user.lastName}
+                </h6>
+                <h6>
+                  <Link className="small" onClick={handleShow}>
+                    Edit Profile
+                  </Link>
+                </h6>
+              </Col>
+              <Col>
+                <Image src={user.image} roundedCircle height={160} />
+              </Col>
+            </Row>
+          </Card>
+        </Row>
+      </Container>
+      <Container className="pb-4">
+        <Row>
+          <Card className="profile-bottom">
+            <Card className="mb-3">
+              <ListGroup>
+                <Col className="p-4">
+                  <h6>
+                    {""}
+                    <i className="bi bi-envelope"> {user.email}</i>
+                  </h6>
+                  <h6>
+                    {""}
+                    <i className="bi bi-telephone"> {user.phone}</i>
+                  </h6>
+                  {me.driver ? <h6 className="display-5">$ {driverEarning.toFixed(2)}</h6> : <h6 className="display-5">$ {driverEarning.toFixed(2)}</h6>}
+                </Col>
+              </ListGroup>
+            </Card>
 
-          {/* edit profile modal */}
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Body className="modalbody">
-              <form>
-                <h1 className="editprofile">Edit Profile</h1>
+            <Card.Body className="border">
+              <Card.Title>About Me</Card.Title>
 
-                <div className="form-group6">
-                  <ToggleButton
-                    id="toggle-check"
-                    type="checkbox"
-                    variant="white"
-                    checked={checked1}
-                    onChange={(e) => checkedInput()}
-                  >
-                    Customer
-                  </ToggleButton>
+              <Card.Text>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur mi lectus, blandit nec libero in, pellentesque molestie tellus. Nam vel ultricies sem. Aenean aliquam convallis consectetur. Phasellus at metus interdum, ornare massa nec, convallis metus. Duis luctus orci a est semper, eget bibendum est pellentesque. </Card.Text>
 
-                  {/* <ButtonGroup className="mb-2"> */}
-                  <ToggleButton
-                    id="toggle-check"
-                    type="checkbox"
-                    variant="white"
-                    checked={checked2}
-                    onChange={(e) => checkedInput()}
-                  >
-                    Driver
-                  </ToggleButton>
-                  {/* </ButtonGroup> */}
-                </div>
+              <Card.Body className="rating-box">
+                {me.driver ? <Card.Subtitle className="mb-2  text-white">Driver Rating</Card.Subtitle> : <Card.Subtitle className="mb-2  text-white">Customer Rating</Card.Subtitle>}
+                <Card.Title>
+                  <RatingModal setShowModal={setShowModal} showModal={showModal} finalRating={finalRating}></RatingModal>
+                  <Link onClick={handleShowModal}>
+                    <Rating ratingValue={me.rating / me.ratingNumber} allowHalfIcon={true} allowHover={false} readonly={true} />
+                  </Link>
+                </Card.Title>
+              </Card.Body>
+            </Card.Body>
+          </Card>
+        </Row>
+      </Container>
+    </>
+  )
+}
 
-                <div className="form-group">
-                  <label>First name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    defaultValue={user.firstName}
-                    name="firstName"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Last name</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    defaultValue={user.lastName}
-                    name="lastName"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Phone Number</label>
-                  <input
-                    type="tel"
-                    pattern="[\+]\d{2}[\(]\d{2}[\)]\d{4}[\-]\d{4}"
-                    className="form-control"
-                    defaultValue={user.phone}
-                    name="phone"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    className="form-control"
-                    defaultValue={user.email}
-                    name="email"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="form-group about">
-                  <label>About Me</label>
-                  <textarea
-                    rows="5"
-                    type="text"
-                    className="form-control aboutInput"
-                    defaultValue={user.aboutMe}
-                    name="aboutMe"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <PictureUploader type="user"></PictureUploader>
-
-                <button
-                  type="submit"
-                  onClick={handleFormSubmit}
-                  className="btn btn-dark btn-lg btn-block"
-                >
-                  Save
-                </button>
-              </form>
-            </Modal.Body>
-          </Modal>
-          {/* edit profile end */}
-
-          <Image src={user.image} />
-          {/* <img src={ Pic1 }></img> */}
-
-          {/* User's profile card - displays user's info */}
-          <Card.Body>
-            <Card.Title>{user.username}</Card.Title>
-          </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroupItem>
-              About Me: <br />
-              {user.aboutMe}
-            </ListGroupItem>
-            <ListGroupItem>Rating ☆☆☆☆☆</ListGroupItem>
-            <ListGroupItem>Phone Number: {user.phone}</ListGroupItem>
-            <ListGroupItem>Email: {user.email}</ListGroupItem>
-          </ListGroup>
-        </Card>
-      </Row>
-    </Container>
-  );
-};
-
-export default UserProfile;
+export default UserProfile

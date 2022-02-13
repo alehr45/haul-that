@@ -1,72 +1,60 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Home from "./components/Home";
-import NavBar from "./components/NavBar.js";
-import { ApolloProvider } from "@apollo/react-hooks";
-import ApolloClient from "apollo-boost";
-import Jobs from "./components/Jobs/Job";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Login from "./components/Login";
-import Profile from "./components/Profiles/Profile";
-import Signup from "./components/Signup";
-import "./App.css";
-import BookingA from "./components/Booking/BookingA";
-import CheckoutForm from "./components/Booking/BookingB";
-import Details from "./components/Jobs/Details";
-import CustomerProfile from "./components/Profiles/CustomerProfile";
-import DriverProfile from "./components/Profiles/DriverProfile";
-
-// Stripe
-import { loadStripe } from "@stripe/stripe-js";
-import { Elements } from "@stripe/react-stripe-js";
+import React from "react"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
+import Home from "./pages/Home"
+import NavBar from "./components/NavBar.js"
+import { ApolloProvider } from "@apollo/react-hooks"
+import ApolloClient from "apollo-boost"
+import Jobs from "./components/Jobs/Jobs"
+import "bootstrap/dist/css/bootstrap.min.css"
+import Login from "./pages/Login"
+import Profile from "./components/Profiles/Profile"
+import Signup from "./pages/Signup"
+import "./index.css"
+import Booking from "./components/Booking"
+import CheckoutForm from "./components/CheckoutForm"
+import Job from "./components/Jobs/Job"
+import Payment from "./components/Payment"
+import Success from "./pages/Success"
+import Details from "./components/Jobs/Details"
+import Welcome from "./pages/Welcome"
 
 const client = new ApolloClient({
-  request: (operation) => {
-    const token = localStorage.getItem("id_token");
+  request: operation => {
+    const token = localStorage.getItem("id_token")
 
     operation.setContext({
       headers: {
-        authorization: token ? `Bearer ${token}` : "",
-      },
-    });
+        authorization: token ? `Bearer ${token}` : ""
+      }
+    })
   },
-  uri: "/graphql",
-});
+  uri: "/graphql"
+})
 
 function App() {
-  // Make sure to call loadStripe outside of a component’s render to avoid
-  // recreating the Stripe object on every render.
-  // loadStripe is initialized with a fake API key.
-  // Sign in to see examples pre-filled with your key.
-  const promise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
-
   return (
     <ApolloProvider client={client}>
       <Router>
         <div className="App">
           <NavBar />
           <Switch>
-            <Route path="/details/:job_Id" component={Details} />
-            <Route path="/signup" component={Signup} />
-            {/* <Route path="/customerprofile" component={CustomerProfile} /> */}
+            <Route path="/success/:job_Id" component={Success} />
+            <Route path="/checkoutform" component={CheckoutForm} />
+            <Route path="/payment/:job_Id" component={Payment} />
             <Route path="/profile" component={Profile} />
-            <Route path="/profile/customer" component={CustomerProfile} />
-            <Route path="/profile/driver" component={DriverProfile} />
-            <Route path="/BookingA" component={BookingA} />
-
-            <Route path="/BookingB" component={CheckoutForm}>
-              <Elements stripe={promise}>
-                <CheckoutForm />
-              </Elements>
-            </Route>
-            <Route path="/login" component={Login} />
+            <Route path="/details" component={Details} />
+            <Route path="/job/:job_Id" component={Job} />
             <Route path="/jobs" component={Jobs} />
+            <Route path="/booking" component={Booking} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/welcome" component={Welcome} />
             <Route path="/" component={Home} />
           </Switch>
         </div>
       </Router>
     </ApolloProvider>
-  );
+  )
 }
 
-export default App;
+export default App

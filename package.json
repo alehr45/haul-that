@@ -4,15 +4,20 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@stripe/react-stripe-js": "^1.4.1",
-    "@stripe/stripe-js": "^1.15.0",
+    "@stripe/react-stripe-js": "^1.6.0",
+    "@stripe/stripe-js": "^1.21.2",
+    "axios": "^0.24.0",
     "bootstrap-icons": "^1.6.0",
     "cors": "^2.8.5",
     "emailjs-com": "^3.1.0",
     "if-env": "^1.0.4",
+    "immer": "^9.0.7",
     "jquery": "^3.6.0",
     "jsonwebtoken": "^8.5.1",
+    "mdb-react-ui-kit": "^2.2.0",
     "npm-watch": "^0.9.0",
+    "react-alice-carousel": "^2.5.1",
+    "react-simple-star-rating": "^4.0.5",
     "stripe": "^8.156.0"
   },
   "scripts": {

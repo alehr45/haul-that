@@ -21,7 +21,7 @@ const jobSchema = new Schema(
       required: true,
     },
     image: {
-      type: String
+      type: String,
     },
     createdAt: {
       type: Date,
@@ -32,8 +32,11 @@ const jobSchema = new Schema(
       type: String,
       required: true,
     },
+    price: {
+      type: Number,
+    },
     realTime: {
-      type: Number
+      type: Number,
     },
     status: {
       type: Number,
@@ -53,8 +56,14 @@ const jobSchema = new Schema(
     email: {
       type: String,
     },
-    driverUsername: {
+    driver_id: {
       type: String,
+    },
+    customer_id: {
+      type: String
+    },
+    verificationCode: {
+      type: Number,
     },
     name: {
       type: String,
