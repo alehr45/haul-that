@@ -18,8 +18,6 @@ import Success from "./pages/Success"
 import Details from "./components/Jobs/Details"
 import Welcome from "./pages/Welcome"
 
-//Context Files
-
 const client = new ApolloClient({
   request: operation => {
     const token = localStorage.getItem("id_token")

@@ -36,18 +36,17 @@ const Welcome = () => {
 
   return (
     <div className="welcome">
-      <h3 className="p-3">
+      <h3>
         Hello <strong>{newFirstName}</strong>,
       </h3>
-      <h1>Welcome to Haul-That!</h1>
-      <br></br>
-      <Col>
-        <h6 className="pt-2">Pick one of the following positions:</h6>
-
-        <Button className="m-2" value="customer" onClick={handleSubmit}>
+      <h1 className="welcome-title ">Welcome to Haul-That</h1>
+      <Col className="p-3">
+        <h6>
+          <small>Choose a position to get started.</small>
+        </h6>
+        <Button variant="success" className="m-2" value="customer" onClick={handleSubmit}>
           Customer
         </Button>
-        {}
         <Button className="m-2" value="driver" onClick={handleSubmit}>
           Driver
         </Button>
