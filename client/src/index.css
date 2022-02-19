@@ -174,38 +174,6 @@ code {
   }
 }
 
-@media screen and (min-width: 766px) {
-  .booking {
-    padding-left: 75px;
-    padding-right: 75px;
-  }
-}
-
-@media screen and (min-width: 575px) {
-  .signup-row {
-    padding-left: 150px;
-    padding-right: 150px;
-  }
-}
-
-@media screen and (min-width: 991px) {
-  .signup-row {
-    padding-left: 300px;
-    padding-right: 300px;
-  }
-}
-
-@media screen and (max-width: 766px) {
-  .signup-row {
-    padding-left: 50px;
-    padding-right: 50px;
-  }
-  .booking {
-    padding-left: 75px;
-    padding-right: 75px;
-  }
-}
-
 @media screen and (min-width: 560px) {
   .booking {
     padding-left: 75px;
@@ -244,11 +212,36 @@ code {
 .small {
   color: rgba(80, 53, 215, 0.865);
 }
+
 @media screen and (min-width: 560px) {
   .booking {
     padding-left: 75px;
     padding-right: 75px;
   }
+}
+
+.rating-modal {
+  position: relative;
+  left: 85px;
+  padding: 20px;
+}
+
+.rating-modal2 {
+  position: relative;
+  left: 90px;
+  bottom: 20px;
+}
+
+.rating-modal3 {
+  position: relative;
+  left: 70px;
+  padding: 20px;
+}
+
+.rating-modal4 {
+  position: relative;
+  left: 100px;
+  bottom: 20px;
 }
 
 .use.btn.btn-white {
@@ -262,6 +255,10 @@ code {
 .navbar-light {
   background-color: #ffffff;
   box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.welcome {
+  padding-top: 100px;
 }
 
 .outer {
@@ -316,7 +313,7 @@ code {
   border-style: solid;
   border-color: rgb(225, 225, 225);
   border-radius: 15px;
-  background-image: linear-gradient(360deg, rgba(186, 41, 41, 0.413), rgba(184, 184, 184, 0.42));
+  background-image: linear-gradient(360deg, rgba(225, 225, 225, 0.413), rgba(184, 184, 184, 0.42));
 }
 
 .rating-box.card-body {
@@ -612,10 +609,10 @@ input:checked + .slider:before {
   background-color: blue;
 }
 
-.badge1 {
-  position: fixed;
-  top: 18px;
-  font-weight: 100px;
+.badge.badge.badge-pill.badge-primary {
+  position: relative;
+  padding: 0px;
+  bottom: 8px;
 }
 
 .list-group-item {

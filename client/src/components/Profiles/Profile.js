@@ -18,7 +18,7 @@ const Profile = () => {
 
   return (
     <Container fluid>
-      <Row style={{ height: 500, marginTop: 40 }}>
+      <Row style={{ marginTop: 40, height: 500 }}>
         <Card className="profilecard">
           <Card.Body>
             <Row>

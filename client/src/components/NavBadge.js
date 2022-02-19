@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import { Badge } from "react-bootstrap"
 import { GET_JOBS } from "../utils/queries"
-import { useQuery, useMutation } from "@apollo/react-hooks"
+import { useQuery } from "@apollo/react-hooks"
 
 const NavBadge = ({ setJobsArr, jobsArr }) => {
-  const { loading, data: jobsData } = useQuery(GET_JOBS)
+  const { data: jobsData } = useQuery(GET_JOBS)
   const nonTakenJobs = jobsData?.jobs.filter(job => job.taken === false) || []
   const [counter, setCounter] = useState(nonTakenJobs.length)
 
@@ -12,21 +12,10 @@ const NavBadge = ({ setJobsArr, jobsArr }) => {
     setCounter(nonTakenJobs.length)
   }
 
-  // var count = counter
-
-  // const badgeRender = () => {
-  //   count++;
-  //   setCounter(nonTakenJobs.length);
-  // };
-
-  // setInterval(badgeRender, 1000);
-
   return (
-    <div>
-      <Badge style={{ paddingLeft: "0px" }} className="badge" pill variant="primary">
-        {counter}
-      </Badge>
-    </div>
+    <Badge style={{ paddingLeft: "2px" }} className="badge" pill variant="primary">
+      {nonTakenJobs.length > 0 ? counter : ""}
+    </Badge>
   )
 }
 

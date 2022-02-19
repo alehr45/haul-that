@@ -12,8 +12,6 @@ const Jobs = (distance) => {
   const jobs = jobsData?.jobs || [];
   const activeJobs = jobs.filter((job) => job.completed === false);
 
-  console.log(distance, jobs);
-
   const handleCardRender = () => {
     var cards = [];
     if (loading) {
@@ -34,8 +32,7 @@ const Jobs = (distance) => {
                 <Button className="button6" variant="text-white-20">
                   <Link className="link" to={`/job/${_id}`}>
                     <h5>Active Job #{job.id} </h5>
-                    Haul: {parseInt(job.distance)} miles {job.category} for $
-                    {parseInt(job.distance * 1.2)}
+                    Haul: {parseInt(job.distance)} miles {job.category} for $ {parseInt(job.distance * 1.2)}
                   </Link>
                 </Button>
               )}
@@ -49,8 +46,11 @@ const Jobs = (distance) => {
 
   return (
     <div>
-      <Map jobs={jobs} loading={loading} />
-      <Container>{handleCardRender()}</Container>
+      <Container>
+        <h1 className="jobs-title">-Pick Up a Job-</h1>
+        <Map jobs={jobs} loading={loading} />
+        <Container>{activeJobs.length === 0 ? <h4 className="mt-5">No Jobs Available</h4> : handleCardRender()}</Container>
+      </Container>
     </div>
   );
 };

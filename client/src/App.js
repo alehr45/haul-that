@@ -16,6 +16,7 @@ import Job from "./components/Jobs/Job"
 import Payment from "./components/Payment"
 import Success from "./pages/Success"
 import Details from "./components/Jobs/Details"
+import Welcome from "./pages/Welcome"
 
 //Context Files
 
@@ -49,7 +50,7 @@ function App() {
             <Route path="/booking" component={Booking} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-
+            <Route path="/welcome" component={Welcome} />
             <Route path="/" component={Home} />
           </Switch>
         </div>

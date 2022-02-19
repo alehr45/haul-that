@@ -2,7 +2,7 @@ import React from "react"
 import { Container, Card, Button } from "react-bootstrap"
 import { useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
-import { QUERY_ME_BASIC, GET_JOB, GET_JOBS } from "../../utils/queries"
+import { QUERY_ME_BASIC, GET_JOB } from "../../utils/queries"
 import { useQuery, useMutation } from "@apollo/react-hooks"
 import { PICKUP_JOB, UPDATE_JOB, UPDATE_JOB_DRIVER, DELETE_JOB } from "../../utils/mutation"
 import DetailsMap from "./DetailsMap"
@@ -10,12 +10,12 @@ import Details from "./Details"
 import emailjs from "emailjs-com"
 
 const Job = () => {
-  const { loading: meLoading, data: meData } = useQuery(QUERY_ME_BASIC)
+  const { data: meData } = useQuery(QUERY_ME_BASIC)
   const [updateJobDriver] = useMutation(UPDATE_JOB_DRIVER)
   const [pickupJob] = useMutation(PICKUP_JOB)
   const [updateJob] = useMutation(UPDATE_JOB)
   const [deleteJob] = useMutation(DELETE_JOB)
-  const { data: jobsData } = useQuery(GET_JOBS)
+
   let { job_Id } = useParams()
   const { loading, data: jobData } = useQuery(GET_JOB, {
     variables: { _id: job_Id }
@@ -26,8 +26,6 @@ const Job = () => {
   // driverUsername to driver_id
   const driver_id = meData?.me._id || ""
   const name = meData?.me.name || ""
-
-  console.log(typeof driver_id)
 
   const handlePickup = async () => {
     let userInfo = {
@@ -53,7 +51,6 @@ const Job = () => {
       variables: { _id: job_Id, driver_id }
     })
 
-    console.log(userInfo)
     await emailjs.send("service_rvgpaz5", "accept_job", userInfo, "user_ZAvEHL9UX2xiYewnTTWEa")
     window.location.assign("/profile")
   }
@@ -81,7 +78,7 @@ const Job = () => {
   return (
     <Container className="currentjob">
       {loading ? <p>...loading</p> : <DetailsMap currentJob={currentJob} />}
-      {meData.me.driver == true ? (
+      {meData.me.driver === true ? (
         <Card>
           <Details currentJob={currentJob} />
           {currentJob.taken ? (

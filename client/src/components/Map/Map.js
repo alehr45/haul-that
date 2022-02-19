@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 const Map = ({ jobs, loading }) => {
   console.log(jobs)
   const [selected, setSelected] = useState({})
+
   const onSelect = job => {
     setSelected(job[0])
   }
@@ -12,7 +13,6 @@ const Map = ({ jobs, loading }) => {
   const handleMapRender = currentLocation => {
     console.log(jobs)
     if (!loading) {
-      const jobSelected = selected.name
       const locations = jobs.map(location => {
         return [
           {
@@ -28,7 +28,7 @@ const Map = ({ jobs, loading }) => {
       })
 
       return (
-        <GoogleMap mapContainerStyle={mapStyles} zoom={11} center={defaultCenter}>
+        <GoogleMap mapContainerStyle={mapStyles} zoom={9} center={defaultCenter}>
           {locations.map(item => {
             console.log(item)
             return <Marker icon="http://maps.google.com/mapfiles/ms/micons/truck.png" key={item[0].name} position={item[0].location} onClick={() => onSelect(item)} />
@@ -39,7 +39,7 @@ const Map = ({ jobs, loading }) => {
               <p className="map-info">
                 <h4>Job #{selected.id}</h4>
                 {parseInt(selected.distance)} miles from A to B<br></br>
-                <Link to={"/details/" + jobSelected}>Link</Link>
+                <Link to={"/job/" + selected.name}>Link</Link>
               </p>
             </InfoWindow>
           )}
@@ -55,7 +55,7 @@ const Map = ({ jobs, loading }) => {
 
   const mapStyles = {
     height: "50vh",
-    width: "80%"
+    width: "100%"
   }
 
   // Get users location and set

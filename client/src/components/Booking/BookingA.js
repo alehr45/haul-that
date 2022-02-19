@@ -96,7 +96,6 @@ const BookingA = () => {
     }
     // use try/catch instead of promises to handle errors
     try {
-      console.log(job)
       await addJob({
         variables: { ...job }
       })

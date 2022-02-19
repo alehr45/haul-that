@@ -1,17 +1,18 @@
 import React from "react"
-import { Card, ListGroup, ListGroupItem, Button, ProgressBar, Col } from "react-bootstrap"
+import { Card, ListGroupItem, Button, Col } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { UPDATE_STATUS, ADD_VERIFICATION } from "../../utils/mutation"
 import { useMutation } from "@apollo/react-hooks"
 import moment from "moment"
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
+import AliceCarousel from "react-alice-carousel"
+import "react-alice-carousel/lib/alice-carousel.css"
 
 const ActiveJobs = ({ info }) => {
   const [updateStatus] = useMutation(UPDATE_STATUS)
   const [addVerification] = useMutation(ADD_VERIFICATION)
-  let { title, options, user, incompleteJobs, newTitle } = info
-  const driver = user.driver
+  let { title, options, incompleteJobs } = info
+
+  // const handleDragStart = e => e.preventDefault()
 
   const handleDragStart = (e) => e.preventDefault();
 
@@ -21,12 +22,11 @@ const ActiveJobs = ({ info }) => {
         _id: _id
       }
     })
-    console.log(status)
+
     window.location.assign("/profile")
   }
 
   const handleVerification = async _id => {
-    console.log("here")
     await addVerification({
       variables: {
         _id: _id
@@ -54,25 +54,17 @@ const ActiveJobs = ({ info }) => {
     )
   }
 
-  const progressList = title => {
-    return <ListGroupItem className="progress2">{title}</ListGroupItem>
-  }
-
-  const progress = (now, key) => {
-    return <ProgressBar animated variant="primary" now={now} key={key} />
-  }
-
   const responsive = {
-    1024: { items: 4 },
-    0: {items: 1}
+    1024: { items: 3 },
+    0: { items: 1 }
   }
 
   // const slicedJobs = incompleteJobs.splice(0, 3)
 
   const handleDriverJobs = () => {
     const items = incompleteJobs.map(job => (
-      <div className = "profileJob" onDragStart={handleDragStart} role="presentation">
-        <Card key={job._id} style={{ width: "12rem" }}>
+      <div className="profileJob">
+        <Card className="m-3" key={job._id}>
           <ListGroupItem className="job-box2">
             <Col className="pt-2">
               <h4>Job # {job.id}</h4>
@@ -113,17 +105,10 @@ const ActiveJobs = ({ info }) => {
       </div>
     ))
 
-    incompleteJobs.sort()
-    console.log(incompleteJobs)
-
-    return <AliceCarousel mouseTracking items={items} responsive={responsive} disableButtonsControls={true}   />
+    return <AliceCarousel mouseTracking items={items} responsive={responsive} disableButtonsControls={true} />
   }
 
-  return (
-    <div>
-      {handleDriverJobs()}
-    </div>);
-
+  return <div>{handleDriverJobs()}</div>
 }
 
 export default ActiveJobs;

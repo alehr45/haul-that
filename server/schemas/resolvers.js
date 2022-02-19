@@ -137,7 +137,7 @@ const resolvers = {
       return updatedJob
     },
 
-    updateUser: async (parent, { _id, firstName, lastName, email, phone, aboutMe, customer, driver, position }) => {
+    updateUser: async (parent, { _id, firstName, lastName, email, phone, aboutMe, customer, driver }) => {
       const updatedUser = await User.findOneAndUpdate(
         { _id: _id },
         {
@@ -147,14 +147,27 @@ const resolvers = {
           phone: phone,
           aboutMe: aboutMe,
           customer: customer,
-          driver: driver,
-          position: position
+          driver: driver
         },
         { new: true }
       )
 
       return updatedUser
     },
+
+    updatePosition: async (parent, { _id, customer, driver }) => {
+      const updatedPosition = await User.findOneAndUpdate(
+        { _id: _id },
+        {
+          customer: customer,
+          driver: driver
+        },
+        { new: true }
+      )
+
+      return updatedPosition
+    },
+
     findDriverAndRate: async (parent, { job_id, input }) => {
       console.log(input)
       const job = await Job.findOne({ _id: job_id })
@@ -174,6 +187,7 @@ const resolvers = {
 
       return updatedDriver
     },
+
     findCustomerAndRate: async (parent, { job_id, input }) => {
       console.log(input)
       const job = await Job.findOne({ _id: job_id })

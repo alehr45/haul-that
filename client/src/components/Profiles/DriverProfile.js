@@ -60,7 +60,7 @@ const DriverProfile = ({ title, options }) => {
   }
 
   const handleVerification = async _id => {
-    console.log("here")
+    
     await addVerification({
       variables: {
         _id: _id

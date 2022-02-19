@@ -62,7 +62,6 @@ const PictureUploader = ({ type, setImage }) => {
       async: false,
       success: function (response) {
         result = data
-        console.log(response.data.link)
 
         if (type === "job") {
           setImage(response.data.link)
@@ -84,10 +83,10 @@ const PictureUploader = ({ type, setImage }) => {
   }
 
   return (
-    <div className="modal-button">
+    <div className="m-3">
       <input ref={inputRef} type="file" className="d-none" onChange={handlePictureSelected} />
 
-      <button className="btn bg-light btn-outline-dark" onClick={handleUpload}>
+      <button className="btn btn-secondary" onClick={handleUpload}>
         <div>{renderPreview()}</div>
         {type === "job" ? "Add Job Image" : "Add Profile Image"}
       </button>
