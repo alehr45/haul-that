@@ -226,6 +226,10 @@ code {
   border-radius: 2px;
 }
 
+.details-card {
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0.604), rgba(198, 178, 27, 0.604));
+}
+
 .rating-modal {
   position: relative;
   left: 85px;
