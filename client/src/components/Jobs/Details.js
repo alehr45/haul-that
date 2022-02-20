@@ -1,25 +1,25 @@
 import React from "react"
-import { Card, ListGroupItem, Image } from "react-bootstrap"
+import { Card, Image } from "react-bootstrap"
 import moment from "moment"
 
 const Details = ({ currentJob }) => {
   return (
-    <Card.Body>
+    <Card.Body className="details-card">
       <Card.Title>Job # {currentJob.id}</Card.Title>
-      <ListGroupItem>Description: {currentJob.description}</ListGroupItem>
+      <h6>Description: {currentJob.description}</h6>
       {currentJob.image === "" ? (
-        <ListGroupItem> No Images Provided...</ListGroupItem>
+        <h6> No Images Provided...</h6>
       ) : (
-        <ListGroupItem>
+        <h6>
           <a href={currentJob.image}>
             <Image style={{ height: 100, width: 100 }} src={currentJob.image} />
           </a>
-        </ListGroupItem>
+        </h6>
       )}
-      <ListGroupItem>Email: {currentJob.email}</ListGroupItem>
-      <ListGroupItem>Distance: {currentJob.distance} miles</ListGroupItem>
-      <ListGroupItem>Phone: {currentJob.phone}</ListGroupItem>
-      <ListGroupItem>Date: {moment(currentJob.date).format("MMMM Do YYYY")}</ListGroupItem>
+      <h6>Email: {currentJob.email}</h6>
+      <h6>Distance: {currentJob.distance} miles</h6>
+      <h6>Phone: {currentJob.phone}</h6>
+      <h6>Date: {moment(currentJob.date).format("MMMM Do YYYY")}</h6>
     </Card.Body>
   )
 }
