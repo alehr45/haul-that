@@ -118,7 +118,9 @@ function ProfileModal({ user, show, setShow }) {
             <textarea rows="4" type="text" className="form-control aboutInput" defaultValue={user.aboutMe} name="aboutMe" onChange={handleChange} />
           </div>
 
-          <PictureUploader type="user"></PictureUploader>
+          <div>
+            <PictureUploader center type="user"></PictureUploader>
+          </div>
         </form>
       </Modal.Body>
       <Modal.Footer>

@@ -6,6 +6,7 @@ import { useMutation } from "@apollo/react-hooks"
 import moment from "moment"
 import AliceCarousel from "react-alice-carousel"
 import "react-alice-carousel/lib/alice-carousel.css"
+import { GET_JOBS } from "../../utils/queries"
 
 const ActiveJobs = ({ info }) => {
   const [updateStatus] = useMutation(UPDATE_STATUS)
@@ -18,10 +19,9 @@ const ActiveJobs = ({ info }) => {
     await updateStatus({
       variables: {
         _id: _id
-      }
+      },
+      refetchQueries: [{ query: GET_JOBS }]
     })
-
-    window.location.assign("/profile")
   }
 
   const handleVerification = async _id => {
