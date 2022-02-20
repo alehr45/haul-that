@@ -5,6 +5,7 @@ import NavBadge from "./NavBadge"
 import { QUERY_ME_BASIC } from "../utils/queries"
 import { useQuery } from "@apollo/react-hooks"
 import Alert from "../components/Alert"
+import JobSwitchButton from "./JobSwitchButton"
 
 const NavBar = () => {
   const [jobsArr, setJobsArr] = useState(13)
@@ -28,27 +29,19 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           {me.driver === true || me.customer === true ? (
-            <Nav className="mr-auto">
+            <Nav>
               {Auth.loggedIn() ? (
                 <React.Fragment>
-                  <Nav.Link className="nav1" href="/home">
-                    Home
-                  </Nav.Link>
-                  {me.customer ? (
-                    <Nav.Link className="nav1" href="/booking">
-                      Booking
+                  <Nav.Link href="/home">Home</Nav.Link>
+                  {me.customer && <Nav.Link href="/booking">Booking</Nav.Link>}
+                  {me.driver && (
+                    <Nav.Link href="/jobs">
+                      Jobs <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} />
                     </Nav.Link>
-                  ) : me.driver ? (
-                    <Nav.Link className="nav1" href="/jobs">
-                      Jobs {me.driver ? <NavBadge me={me} setJobsArr={setJobsArr} jobsArr={jobsArr} /> : ""}
-                    </Nav.Link>
-                  ) : (
-                    ""
                   )}
-                  <Nav.Link className="nav1" href="/profile">
-                    My Profile
-                  </Nav.Link>
+                  <Nav.Link href="/profile">My Profile</Nav.Link>
                   <Nav.Link onClick={logout}>Logout</Nav.Link>
+                  <div className="nav-switch">{Auth.loggedIn() && <JobSwitchButton />}</div>
                 </React.Fragment>
               ) : (
                 <React.Fragment>

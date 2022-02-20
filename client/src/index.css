@@ -46,6 +46,14 @@ code {
   padding: 10px;
 }
 
+.nav-switch {
+  font-family: ubunto;
+  font-size: 14px;
+  position: fixed;
+  margin-top: 3px;
+  right: 20px;
+}
+
 .logo {
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
 }
@@ -126,20 +134,6 @@ code {
 .App-link {
   color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-/* 
-.image1 {
- 
-
-} */
 
 .title {
   padding-left: 5px;
@@ -642,7 +636,7 @@ body {
   width: auto;
   display: flex;
   justify-content: center;
-  font-weight: 400;
+  font-weight: 100;
   font-family: sans-serif;
   background: #12c2e9; /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #f64f59, #eb9335, #ceed07); /* Chrome 10-25, Safari 5.1-6 */

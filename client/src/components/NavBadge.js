@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { Badge } from "react-bootstrap"
 import { GET_JOBS } from "../utils/queries"
 import { useQuery } from "@apollo/react-hooks"
@@ -11,6 +11,8 @@ const NavBadge = ({ setJobsArr, jobsArr }) => {
   if (counter !== nonTakenJobs.length) {
     setCounter(nonTakenJobs.length)
   }
+
+  useEffect(() => {}, nonTakenJobs.length)
 
   return (
     <Badge style={{ paddingLeft: "2px" }} className="badge" pill variant="primary">

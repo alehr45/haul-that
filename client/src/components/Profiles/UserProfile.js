@@ -22,7 +22,6 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
   let secondRating = rating / 20
   let finalRating = secondRating.toFixed(2)
 
-  console.log(me)
   return (
     <>
       <Container className="pt-2">
@@ -68,8 +67,7 @@ const UserProfile = ({ user, driverEarning, jobNumber }) => {
             </Card>
 
             <Card.Body className="border">
-              <Card.Title>About Me</Card.Title>
-
+              {me.aboutMe && <Card.Title>About Me:</Card.Title>}
               <Card.Text>{me.aboutMe} </Card.Text>
               <Card.Body className="rating-box">
                 {me.driver ? <Card.Subtitle className="mb-2  text-white">Driver Rating</Card.Subtitle> : <Card.Subtitle className="mb-2  text-white">Customer Rating</Card.Subtitle>}

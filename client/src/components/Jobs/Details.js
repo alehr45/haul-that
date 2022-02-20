@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, ListGroupItem, Image } from "react-bootstrap"
+import { Card, Image } from "react-bootstrap"
 import moment from "moment"
 
 const Details = ({ currentJob }) => {

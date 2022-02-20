@@ -12,7 +12,7 @@ function RatingModal({ finalRating, showModal, setShowModal }) {
 
   let isNumber = isNaN(finalRating)
   console.log(isNumber)
-  if (isNumber != true) {
+  if (isNumber !== true) {
     return (
       <>
         {me.position === "driver" ? (
